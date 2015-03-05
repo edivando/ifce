@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="1.0"
 	xmlns="http://java.sun.com/xml/ns/persistence">
-	<persistence-unit name="j7" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="ifce_estagio_postgree" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
 			<property name ="javax.persistence.jdbc.driver" value ="org.postgresql.Driver"/> 
