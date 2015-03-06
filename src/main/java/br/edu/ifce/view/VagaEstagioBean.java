@@ -82,4 +82,9 @@ public class VagaEstagioBean implements Serializable{
 	public VagaEstagio getVagaEstagio() {
 		return (vagaEstagio == null) ? vagaEstagio = new VagaEstagio() : vagaEstagio;
 	}
+	
+	
+	
+	
+	
 }
