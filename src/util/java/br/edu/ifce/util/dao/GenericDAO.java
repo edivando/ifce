@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
@@ -23,32 +22,17 @@ import br.edu.ifce.util.exception.DAOException;
  *
  * @param <T>
  */
-public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGenericDAO<T>{
-
-	private static final long serialVersionUID = 1L;
+public class GenericDAO<T extends IGenericEntity<T>>{
 
 	private final Class<T> clazz;
 	
 	private GenericJPA jpaUtil;
-
-	/**
-	 * Contrutor recebendo obrigatoriamente um EntityManager
-	 * 
-	 * @param manager EntityManager
-	 */
-	@SuppressWarnings("unchecked")
-	public GenericDAO() {
+	
+	public GenericDAO(Class<T> clazz) {
 		this.jpaUtil = GenericJPA.getInstance();
-		this.clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+		this.clazz = clazz;   //(Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 
-	/**
-	 * Adiciona uma entidade qualqer no banco de dados
-	 * 
-	 * @param entity T
-	 * @return T
-	 * @throws JPAException
-	 */
 	public T add(T entity) throws DAOException {
 		EntityManager entityManager = getEMFactory().createEntityManager();
 		entityManager.getTransaction().begin();
@@ -56,10 +40,7 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 			entityManager.persist(entity);
 			entityManager.getTransaction().commit();
 			return entity;
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!", e); 
-		} catch (Exception e) {
+		}catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			throw new DAOException(e);
 		}finally{
@@ -67,13 +48,6 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 		}
 	}
 	
-	/**
-	 * Adiciona uma lista de <T> no banco de dados
-	 * 
-	 * @param list {@link List} of <T>
-	 * @return list {@link List} of <T>
-	 * @throws DAOException
-	 */
 	 public List<T> add(List<T> list) throws DAOException{
 		EntityManager entityManager = getEMFactory().createEntityManager();
 		entityManager.getTransaction().begin();
@@ -83,10 +57,7 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 			}
 			entityManager.getTransaction().commit();
 			return list;
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!", e); 
-		} catch (Exception e) {
+		}catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			throw new DAOException(e);
 		}finally{
@@ -95,18 +66,16 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 	 }
 
 	 
-	 public void add(IGenericEntity...entitys) throws DAOException{
+	@SuppressWarnings("unchecked")
+	public void add(T ...entitys) throws DAOException{
 		EntityManager entityManager = getEMFactory().createEntityManager();
 		entityManager.getTransaction().begin();
 		try {
-			for (IGenericEntity iGenericEntity : entitys) {
+			for (T iGenericEntity : entitys) {
 				entityManager.persist(iGenericEntity);
 			}
 			entityManager.getTransaction().commit();
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!", e); 
-		} catch (Exception e) {
+		}catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			throw new DAOException(e);
 		}finally{
@@ -114,23 +83,14 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 		}
 	 }
 	 
-	/**
-	 * Remove qualquer entidade do banco de dados a partir do id
-	 * 
-	 * @param Long id
-	 * @throws JPAException
-	 */
 	public boolean remove(Integer id) throws DAOException {
 		EntityManager entityManager = getEMFactory().createEntityManager();
 		entityManager.getTransaction().begin();
 		try {
-			entityManager.remove(find(id));
+			entityManager.remove(findOne(id));
 			entityManager.getTransaction().commit();
 			return true;
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!",e); 
-		} catch (Exception e) {
+		}catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			throw new DAOException(e);
 		}finally{
@@ -138,12 +98,6 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 		}
 	}
 
-	/**
-	 * Remove qualquer entidade do banco de dados a apartir da propria entidade.
-	 * 
-	 * @param entity T
-	 * @throws JPAException
-	 */
 	public boolean remove(T entity) throws DAOException {
 		EntityManager entityManager = getEMFactory().createEntityManager();
 		entityManager.getTransaction().begin();
@@ -152,9 +106,6 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 			entityManager.remove(entityToBeRemoved);
 			entityManager.getTransaction().commit();
 			return true;
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!", e); 
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			throw new DAOException(e);
@@ -163,13 +114,6 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 		}
 	}
 
-	/**
-	 * Atualiza qualquer entidade no banco de dados
-	 * 
-	 * @param entity T
-	 * @return T
-	 * @throws JPAException
-	 */
 	public T update(T entity) throws DAOException {
 		EntityManager entityManager = getEMFactory().createEntityManager();
 		entityManager.getTransaction().begin();
@@ -177,10 +121,7 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 			entityManager.merge(entity);
 			entityManager.getTransaction().commit();
 			return entity;
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("A conexão com o banco de dados será reiniciada!", e); 
-		} catch (Exception e) {
+		}catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			throw new DAOException(e);
 		}finally{
@@ -188,20 +129,8 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 		}
 	}
 
-	/**
-	 * Obtem uma lista de qualquer entidade da aplica��o.
-	 * 
-	 * @param clazz
-	 *            O Class da entidade que quero listar
-	 * @param jpql
-	 *            A consulta jpql
-	 * @param parametros
-	 *            Os parametros dessa consulta
-	 * @return Uma lista de entidades.
-	 * @throws JPAException
-	 */
 	@SuppressWarnings({ "unchecked", "hiding" })
-	public <T> List<T> listByNamedQuery(int maxResult, String namedQuery, Object... parametros) throws DAOException {
+	public <T> List<T> findByNamedQuery(int maxResult, String namedQuery, Object... parametros) {
 		EntityManager entityManager = getEMFactory().createEntityManager();
 		try {
 			Query query = entityManager.createNamedQuery(namedQuery, clazz);
@@ -212,28 +141,23 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 				query.setMaxResults(maxResult);
 			}
 			return query.getResultList();
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!", e); 
-		} catch (Exception e) {
-			throw new DAOException(e);
 		}finally{
 			entityManager.close();
 		}
 	}
 	
 	@SuppressWarnings("hiding")
-	public <T> List<T> listByNamedQuery(String namedQuery, Object... parametros) throws DAOException {
-		return listByNamedQuery(0, namedQuery, parametros);
+	public <T> List<T> findByNamedQuery(String namedQuery, Object... parametros) {
+		return findByNamedQuery(0, namedQuery, parametros);
 	}
 
 	@SuppressWarnings("hiding")
-	public <T> List<T> listByQuery(String select, Object... parametros) throws DAOException {
-		return listByQuery(0, select, parametros);
+	public <T> List<T> findByQuery(String select, Object... parametros){
+		return findByQuery(0, select, parametros);
 	}
 	
 	@SuppressWarnings({ "unchecked", "hiding" })
-	public <T> List<T> listByQuery(int maxResult, String select, Object... parametros) throws DAOException {
+	public <T> List<T> findByQuery(int maxResult, String select, Object... parametros) {
 		EntityManager entityManager = getEMFactory().createEntityManager();
 		try {
 			Query query = entityManager.createQuery(select, clazz);
@@ -247,24 +171,19 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 			
 		}catch (NoResultException e){
 			return null;
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!", e); 
-		} catch (Exception e) {
-			throw new DAOException(e);
 		}finally{
 			entityManager.close();
 		}
 	}
 	
 	@SuppressWarnings("hiding")
-	public <T> List<T> listByNativeQuery(String select, Object... parametros) throws DAOException {
-		return listByNativeQuery(0, select, parametros);
+	public <T> List<T> findByNativeQuery(String select, Object... parametros) {
+		return findByNativeQuery(0, select, parametros);
 	}
 	
 	
 	@SuppressWarnings({ "unchecked", "hiding" })
-	public <T> List<T> listByNativeQuery(int maxResult, String select, Object... parametros) throws DAOException {
+	public <T> List<T> findByNativeQuery(int maxResult, String select, Object... parametros) {
 		EntityManager entityManager = getEMFactory().createEntityManager();
 		try {
 			Query query = entityManager.createNativeQuery(select, clazz);
@@ -277,18 +196,13 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 			return query.getResultList();
 		}catch (NoResultException e){
 			return null;
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!", e); 
-		} catch (Exception e) {
-			throw new DAOException(e);
 		}finally{
 			entityManager.close();
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public T getEntity(String namedQuery, Object... parametros) throws DAOException {
+	public T findOneByNamedQuery(String namedQuery, Object... parametros) {
 		EntityManager entityManager = getEMFactory().createEntityManager();
 		try {
 			Query query = entityManager.createNamedQuery(namedQuery, clazz);
@@ -298,18 +212,13 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 			return (T) query.getSingleResult();
 		}catch (NoResultException e){
 			return null;
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!", e); 
-		} catch (Exception e) {
-			throw new DAOException(e);
 		}finally{
 			entityManager.close();
 		}
 	}
 	
 	@SuppressWarnings("unchecked")
-	public T getEntityQuery(String select, Object... parametros) throws DAOException {
+	public T findOneByQuery(String select, Object... parametros) {
 		EntityManager entityManager = getEMFactory().createEntityManager();
 		try {
 			Query query = entityManager.createQuery(select, clazz);
@@ -319,64 +228,27 @@ public abstract class GenericDAO<T extends IGenericEntity<T>> implements IGeneri
 			return (T) query.getSingleResult();
 		}catch (NoResultException e){
 			return null;
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!", e); 
-		} catch (Exception e) {
-			throw new DAOException(e);
 		}finally{
 			entityManager.close();
 		}
 	}
 
-	/**
-	 * Obtem uma �nica entidade, passando como parametro o Class e a primary key
-	 * <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/youbode_music7" />
-			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="root" />
-	 * @param clazz
-	 *            Class da entidade
-	 * @param pk
-	 *            Atributo identificador
-	 * @return T
-	 * @throws JPAException
-	 */
 	@SuppressWarnings({ "unchecked", "hiding" })
-	public <T> T getEntity(Serializable pk) throws DAOException {
+	public <T> T findOne(Serializable pk) {
 		EntityManager entityManager = getEMFactory().createEntityManager();
 		try {
 			return (T) entityManager.find(clazz, pk);
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!", e); 
-		} catch (Exception e) {
-			throw new DAOException(e);
 		}finally{
 			entityManager.close();
 		}
 	}
-	
-	@SuppressWarnings("unchecked")
-	public T find(Integer id) throws DAOException {
-		try {
-  			return (T) getEntity(id);
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!", e); 
-		} catch (DAOException e) {
-			throw new DAOException(e);
-		}
+
+	public T findOne(Integer id){
+  		return (T) findOne(id);
 	}
 	
-	public List<T> list() throws DAOException {
-		try {
-			return listByNamedQuery(clazz.getSimpleName());
-		}catch(PersistenceException e){
-			renewEMFactory();
-			throw new DAOException("Aguarde um momento, estamos reconectando com o servidor!", e); 
-		} catch (DAOException e) {
-			throw new DAOException(e);
-		}
+	public List<T> findAll() {
+		return findByQuery("SELECT x FROM "+clazz.getSimpleName()+" x");
 	}
 
 	protected EntityManager beginManager() {
