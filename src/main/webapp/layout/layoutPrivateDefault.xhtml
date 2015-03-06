@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="#{localeBean.locale}" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+<h:head class="header fixed-top clearfix">
+	<ui:include src="/template/templatePageHeader.xhtml" />
+</h:head>
+<h:body>
+
+
+<section id="container" >
+	<ui:include src="/template/templateMenuTop.xhtml" /> 
+	<ui:include src="/template/templateMenuLateral.xhtml" />
+
+    <section id="main-content">
+        <section class="wrapper">
+       		<ui:insert name="container"/>
+        </section>
+    </section>
+    
+    	
+    
+<!--right sidebar start-->
+<div class="right-sidebar">
+
+<div class="search-row">
+    <input type="text" placeholder="Pesquisar" class="form-control"/>
+</div>
+
+<div class="right-stat-bar">
+<ul class="right-side-accordion">
+
+<li class="widget-collapsible">
+  	<a href="#" class="head widget-head red-bg active clearfix">
+        <span class="pull-left">Novas Vagas</span>
+        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+    </a>
+    <ul class="widget-container">
+        <li>
+        	<div class="prog-row">
+                <div class="user-thumb rsn-activity">
+                    <i class="fa fa-suitcase"></i>
+                </div>
+                
+                <div class="rsn-details ">
+                    <p class="text-muted">
+                        Agora
+                    </p>
+                    <p>
+                        <a href="#">PROGRAMADOR PHP </a><br/>
+                        Ivia <br/>
+                        4h/dia, Manhã, R$ 800,00
+                        
+                    </p>
+                </div>
+            </div>
+            
+            <div class="prog-row">
+                <div class="user-thumb rsn-activity">
+                    <i class="fa fa-suitcase"></i>
+                </div>
+                
+                <div class="rsn-details ">
+                    <p class="text-muted">
+                        Agora
+                    </p>
+                    <p>
+                        <a href="#">PROGRAMADOR JAVA </a><br/>
+                        Ivia <br/>
+                        4h/dia, Manhã, R$ 800,00
+                        
+                    </p>
+                </div>
+            </div>
+            
+            <div class="prog-row">
+                <div class=" user-thumb rsn-activity">
+                    <i class="fa fa-suitcase"></i>
+                </div>
+                
+                <div class="rsn-details ">
+                    <p class="text-muted">
+                        Agora
+                    </p>
+                    <p>
+                        <a href="#">PROGRAMADOR PYTHON </a><br/>
+                        Ivia <br/>
+                        4h/dia, Manhã, R$ 800,00
+                        
+                    </p>
+                </div>
+            </div>
+        	
+            <div class="prog-row">
+                <div class="side-graph-info">
+                    <h4>Novas Vagas</h4>
+                    <p>
+                        Você tem acesso <br/>
+                        a 30 novas vagas!
+                    </p>
+                </div>
+                <div class="side-mini-graph">
+                    <div class="target-sell">
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</li>
+
+<li class="widget-collapsible">
+    <a href="#" class="head widget-head purple-bg active">
+        <span class="pull-left"> Top Mais </span>
+        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+    </a>
+    <ul class="widget-container">
+        <li>
+            <div class="prog-row">
+                <div class="user-thumb rsn-activity">
+                    <i class="fa  fa-thumbs-o-up"></i>
+                </div>
+                <div class="rsn-details ">
+                    <p class="text-muted">
+                        #1
+                    </p>
+                    <p>
+                        <a href="#"> Gerente de Projetos </a>
+                        100 candidatos se insteressaram nessa vaga
+                    </p>
+                </div>
+            </div>
+            
+            <div class="prog-row">
+                <div class="user-thumb rsn-activity">
+                    <i class="fa  fa-thumbs-o-up"></i>
+                </div>
+                <div class="rsn-details ">
+                    <p class="text-muted">
+                        #2
+                    </p>
+                    <p>
+                        <a href="#"> DBA </a>
+                        60 candidatos se insteressaram nessa vaga
+                    </p>
+                </div>
+            </div>
+            
+            <div class="prog-row">
+                <div class="user-thumb rsn-activity">
+                    <i class="fa  fa-thumbs-o-up"></i>
+                </div>
+                <div class="rsn-details ">
+                    <p class="text-muted">
+                        #3
+                    </p>
+                    <p>
+                        <a href="#"> Programador Web </a>
+                        55 candidatos se insteressaram nessa vaga
+                    </p>
+                </div>
+            </div>
+            
+            <div class="prog-row">
+                <div class="user-thumb rsn-activity">
+                    <i class="fa  fa-thumbs-o-up"></i>
+                </div>
+                <div class="rsn-details ">
+                    <p class="text-muted">
+                        #4
+                    </p>
+                    <p>
+                        <a href="#"> Programador Java </a>
+                        45 candidatos se insteressaram nessa vaga
+                    </p>
+                </div>
+            </div>
+            
+            <div class="prog-row">
+                <div class="user-thumb rsn-activity">
+                    <i class="fa  fa-thumbs-o-up"></i>
+                </div>
+                <div class="rsn-details ">
+                    <p class="text-muted">
+                        #5
+                    </p>
+                    <p>
+                        <a href="#"> Programador Ruby </a>
+                        40 candidatos se insteressaram nessa vaga
+                    </p>
+                </div>
+            </div>            
+        </li>
+    </ul>
+</li>
+
+</ul>
+</div>
+</div>
+<!--right sidebar end-->
+
+</section>
+
+<!-- 	<section id="container" >
+		<ui:include src="/template/templateMenuTop.xhtml" />
+		<ui:include src="/template/templateMenuLateral.xhtml" />
+	    <section id="main-content">
+	        <section class="wrapper">
+	        	<p:messages autoUpdate="true" showDetail="true" showSummary="true"/>
+		        <div class="row">
+		            <div class="col-sm-12">
+		                <section class="panel">
+		                    <ui:insert name="container"/>
+		                </section>
+		            </div>
+		        </div>
+	        </section>
+	    </section>
+	</section> -->
+	<h:form>
+		<p:remoteCommand name="logoff" action="#{loginBean.logoff}" />
+	</h:form>
+	<ui:include src="/template/templateIncludeJS.xhtml" />
+</h:body>
+</f:view>
+</html>
