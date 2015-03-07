@@ -29,7 +29,7 @@ public class Curso implements IGenericEntity<Curso>{
 	private Integer idCurso;
 	
 	@Getter @Setter
-	private String nomeCurso;
+	private String nome;
 	
 	@Getter @Setter
 	private String de;
