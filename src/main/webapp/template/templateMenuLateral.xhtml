@@ -13,6 +13,7 @@
 	<aside>
 	    <div id="sidebar" class="nav-collapse">
 	        <div class="leftside-navigation">
+	        
 	        	<!-- Menu Administrador -->
 	        	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario.id eq 1}">
 	        		<ul class="sidebar-menu" id="nav-accordion">
@@ -55,7 +56,7 @@
 		        	</ul>
 	        	</p:outputPanel>
 	        	
-	        	<!-- Menu Estagiario -->
+	        	<!-- Menu Aluno -->
 	        	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario.id eq 3}">
 	        		<ul class="sidebar-menu" id="nav-accordion">
 			            <li>
@@ -155,8 +156,7 @@
 			            </li>
 			        </ul>
 	        	</p:outputPanel>
-	        
-	            
+
 	       </div>        
 	    </div>
 	</aside>
