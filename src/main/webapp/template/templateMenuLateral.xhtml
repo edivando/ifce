@@ -15,7 +15,7 @@
 	        <div class="leftside-navigation">
 	        
 	        	<!-- Menu Administrador -->
-	        	<p:outputPanel>
+	        	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario eq ADMINISTRADOR}">
 	        		<ul class="sidebar-menu" id="nav-accordion">
 						<li>
 			                <a href="aluno.html">
@@ -62,8 +62,8 @@
 		        	</ul>
 	        	</p:outputPanel>
 	        	
-	        	<!-- Menu Empresa -->
-	        	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario.id eq 2}">
+	        	<!-- Menu Instituicao -->
+	        	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario eq INSTITUICAO}">
 	        		<ul class="sidebar-menu" id="nav-accordion">
 			            <li>
 			                <a href="#">
@@ -80,8 +80,26 @@
 		        	</ul>
 	        	</p:outputPanel>
 	        	
+	        	<!-- Menu Empresa -->
+	        	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario eq EMPRESA}">
+	        		<ul class="sidebar-menu" id="nav-accordion">""
+			             <li>
+			                <a href="#">
+			                    <i class="fa fa-user"></i>
+			                    <span>Ofertar Estágio</span>
+			                </a>
+			            </li>
+			            <li>
+			                <a href="#">
+			                    <i class="fa fa-user"></i>
+			                    <span>Pesquisar Estagiários</span>
+			                </a>
+			            </li>
+			        </ul>
+	        	</p:outputPanel>
+	        	
 	        	<!-- Menu Aluno -->
-	        	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario.id eq 3}">
+	        	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario eq ALUNO}">
 	        		<ul class="sidebar-menu" id="nav-accordion">
 			            <li>
 			            	<a href="../MeuEstagio/home.xhtml">

@@ -9,7 +9,7 @@
 
 <f:view contentType="text/html">
 <h:head>
-	<title>404</title>
+	<title>500</title>
 
 	<!-- Bootstrap core CSS -->
     <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
@@ -26,25 +26,23 @@
     <script src="resources/js/respond.min.js"></script>
     <![endif]-->
 </h:head>
-<h:body styleClass="body-404">
+<h:body styleClass="body-500">
 
 	<div class="error-head"> </div>
 
     <div class="container ">
 
       <section class="error-wrapper text-center">
-          <h1><img src="images/404.png" alt=""/></h1>
+          <h1><img src="resources/images/500.png" alt=""/></h1>
           <div class="error-desk">
-              <h2>page not found</h2>
-              <p class="nrml-txt">We Couldn’t Find This Page</p>
+              <h2>OOOPS!!!</h2>
+              <p class="nrml-txt-alt">Acorreu algum erro.</p>
+              <p>Why not try refreshing you page? Or you can <a href="#" class="sp-link">contact our support</a> if the problem persists.</p>
           </div>
-          <a href="index.html" class="back-btn"><i class="fa fa-home"></i> Back To Home</a>
+          <a href="/MeuEstagio/home.xhtml" class="back-btn"><i class="fa fa-home"></i> Voltar para a página inicial</a>
       </section>
 
     </div>
-
-	
-	<ui:include src="/template/templateIncludeJS.xhtml" />
 </h:body>
 </f:view>
 </html>

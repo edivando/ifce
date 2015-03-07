@@ -9,9 +9,15 @@
 	<ui:define name="title">Turnos</ui:define>
 	<ui:define name="container">
 	
-	    <!-- Conteudo da página aqui -->
-		<a href="login.html">Login</a><br/>
-		<a href="cadastro.html">Cadastro</a>
+	<h:form>
+	    <p:inputText value="#{loginBean.usuario.email}" placeholder="Email"/>
+	    <p:password value="#{loginBean.usuario.senha}" placeholder="Senha"/>
+	    
+	    <p:commandLink action="#{loginBean.login}" update="@form" styleClass="btn btn-primary btn-sm">
+			<i class="fa fa-save" />
+			Login
+		</p:commandLink>
+	</h:form>
 		
 	</ui:define>
 </ui:composition>

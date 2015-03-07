@@ -38,6 +38,12 @@ public class Usuario implements IGenericEntity<Usuario>{
 	private String senha;
 	
 	@Getter @Setter
+	private TipoUsuario tipoUsuario;
+	
+	@Getter @Setter
 	private Boolean emailValido;
+	
+	@Getter @Setter
+	private Boolean ativo;
 	
 }

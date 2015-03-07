@@ -40,4 +40,8 @@ public class UsuarioDAO{
 	public List<Usuario> findAll(){
 		return dao.findAll();
 	}
+	
+	public List<Usuario> findByEmailAndSenha(String email, String senha){
+		return dao.findByQuery("SELECT u FROM Usuario u WHERE u.email = ?1 and u.senha = ?2", email, senha);
+	}
 }
