@@ -10,8 +10,8 @@ import javax.faces.context.FacesContext;
 
 import lombok.Getter;
 import lombok.Setter;
-import br.edu.ifce.dao.VagaEstagioDAO;
-import br.edu.ifce.entity.VagaEstagio;
+import br.edu.ifce.dao.CampusDAO;
+import br.edu.ifce.entity.Campus;
 import br.edu.ifce.util.exception.DAOException;
 
 /**
@@ -23,20 +23,20 @@ import br.edu.ifce.util.exception.DAOException;
  */
 @ManagedBean
 @ViewScoped
-public class VagaEstagioBean implements Serializable{
+public class CampusBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Setter
-	private VagaEstagio vagaEstagio;
-	private List<VagaEstagio> vagaEstagios;
+	private Campus campu;
+	private List<Campus> campus;
 	@Getter
 	private boolean form = false;
 	
-	private VagaEstagioDAO vagaEstagioDAO = new VagaEstagioDAO();
+	private CampusDAO campusDAO = new CampusDAO();
 	
 	public void grid(){
-		vagaEstagio  = null;
-		vagaEstagios = null;
+		campu  = null;
+		campus = null;
 		form = false;
 	}
 	
@@ -44,14 +44,14 @@ public class VagaEstagioBean implements Serializable{
 		form = true;
 	}
 	
-	public List<VagaEstagio> getVagaEstagios() {
-		return vagaEstagios == null ? vagaEstagios = vagaEstagioDAO.findAll() : vagaEstagios ;
+	public List<Campus> getCampus() {
+		return campus == null ? campus = campusDAO.findAll() : campus;
 	}
 	
 	public void salvar(){
 		try {
-			vagaEstagioDAO.save(vagaEstagio);
-			FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Vaga de Estágio", "salvo com sucesso!")));
+			campusDAO.save(campu);
+			FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Campus", "salvo com sucesso!")));
 		} catch (DAOException e) {
 			FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Erro durante o processo de salvar os dados")));
 		}
@@ -59,9 +59,9 @@ public class VagaEstagioBean implements Serializable{
 	}
 	
 	public void excluir(){
-		if(vagaEstagio != null){
+		if(campu != null){
 			try {
-				vagaEstagioDAO.remove(vagaEstagio);
+				campusDAO.remove(campu);
 				FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Vaga de Estágio", "Excluído com sucesso!")));
 			} catch (DAOException e) {
 				FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Erro ao excluir")));
@@ -70,8 +70,7 @@ public class VagaEstagioBean implements Serializable{
 		grid();
 	}
 
-	public VagaEstagio getVagaEstagio() {
-		return (vagaEstagio == null) ? vagaEstagio = new VagaEstagio() : vagaEstagio;
+	public Campus getCampu() {
+		return campu == null ? campu = new Campus() : campu;
 	}
-	
 }

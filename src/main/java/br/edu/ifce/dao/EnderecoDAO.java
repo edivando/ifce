@@ -6,9 +6,24 @@ import br.edu.ifce.entity.Endereco;
 import br.edu.ifce.util.dao.GenericDAO;
 import br.edu.ifce.util.exception.DAOException;
 
+/**
+ * 
+ * 
+ * 
+ * @author edivandoalves
+ *
+ */
 public class EnderecoDAO{
 
 	private GenericDAO<Endereco> dao = new GenericDAO<>(Endereco.class);
+	
+	public Endereco save(Endereco endereco) throws DAOException {
+		if(endereco.getIdEndereco() == null){
+			return dao.add(endereco);
+		}else{
+			return dao.update(endereco);
+		}
+	}
 	
 	public Endereco add(Endereco endereco) throws DAOException {
 		return dao.add(endereco);

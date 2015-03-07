@@ -4,18 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
 import br.edu.ifce.util.entity.IGenericEntity;
 
-
+/**
+ * 
+ * 
+ * 
+ * @author edivandoalves
+ *
+ */
 @Entity
 @Table(name = "vaga_estagio")
-@NamedQueries({ @NamedQuery(name = "VagaEstagio", query = "Select v from VagaEstagio v") })
 public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	
 	private static final long serialVersionUID = 1L;
@@ -31,7 +34,7 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	private String nome;
 	
 	@Getter @Setter
-	private String area;
+	private String descricao;
 	
 	@Getter @Setter
 	private String requisitos;

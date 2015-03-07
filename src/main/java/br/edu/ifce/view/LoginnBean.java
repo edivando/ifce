@@ -3,9 +3,7 @@ package br.edu.ifce.view;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
-import lombok.Getter;
+import javax.faces.bean.SessionScoped;
 
 /**
  * 
@@ -15,10 +13,9 @@ import lombok.Getter;
  *
  */
 @ManagedBean
-@ViewScoped
-public class HomeBean implements Serializable{
-
+@SessionScoped
+public class LoginnBean implements Serializable{
 	private static final long serialVersionUID = 1L;
-	@Getter
-	private String text = "aaaaaa";
+	
+	
 }

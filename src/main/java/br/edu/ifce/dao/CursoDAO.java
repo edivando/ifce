@@ -6,9 +6,24 @@ import br.edu.ifce.entity.Curso;
 import br.edu.ifce.util.dao.GenericDAO;
 import br.edu.ifce.util.exception.DAOException;
 
+/**
+ * 
+ * 
+ * 
+ * @author edivandoalves
+ *
+ */
 public class CursoDAO{
 
 	private GenericDAO<Curso> dao = new GenericDAO<>(Curso.class);
+	
+	public Curso save(Curso curso) throws DAOException {
+		if(curso.getIdCurso() == null){
+			return dao.add(curso);
+		}else{
+			return dao.update(curso);
+		}
+	}
 	
 	public Curso add(Curso curso) throws DAOException {
 		return dao.add(curso);

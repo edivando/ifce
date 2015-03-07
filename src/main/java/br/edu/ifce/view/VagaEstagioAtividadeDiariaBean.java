@@ -10,8 +10,8 @@ import javax.faces.context.FacesContext;
 
 import lombok.Getter;
 import lombok.Setter;
-import br.edu.ifce.dao.VagaEstagioDAO;
-import br.edu.ifce.entity.VagaEstagio;
+import br.edu.ifce.dao.VagaEstagioAtividadeDiariaDAO;
+import br.edu.ifce.entity.VagaEstagioAtividadeDiaria;
 import br.edu.ifce.util.exception.DAOException;
 
 /**
@@ -23,20 +23,20 @@ import br.edu.ifce.util.exception.DAOException;
  */
 @ManagedBean
 @ViewScoped
-public class VagaEstagioBean implements Serializable{
+public class VagaEstagioAtividadeDiariaBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Setter
-	private VagaEstagio vagaEstagio;
-	private List<VagaEstagio> vagaEstagios;
+	private VagaEstagioAtividadeDiaria atividade;
+	private List<VagaEstagioAtividadeDiaria> atividades;
 	@Getter
 	private boolean form = false;
 	
-	private VagaEstagioDAO vagaEstagioDAO = new VagaEstagioDAO();
+	private VagaEstagioAtividadeDiariaDAO atividadeDAO = new VagaEstagioAtividadeDiariaDAO();
 	
 	public void grid(){
-		vagaEstagio  = null;
-		vagaEstagios = null;
+		atividade  = null;
+		atividades = null;
 		form = false;
 	}
 	
@@ -44,14 +44,14 @@ public class VagaEstagioBean implements Serializable{
 		form = true;
 	}
 	
-	public List<VagaEstagio> getVagaEstagios() {
-		return vagaEstagios == null ? vagaEstagios = vagaEstagioDAO.findAll() : vagaEstagios ;
+	public List<VagaEstagioAtividadeDiaria> getAtividades() {
+		return atividades == null ? atividades = atividadeDAO.findAll() : atividades;
 	}
 	
 	public void salvar(){
 		try {
-			vagaEstagioDAO.save(vagaEstagio);
-			FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Vaga de Estágio", "salvo com sucesso!")));
+			atividadeDAO.save(atividade);
+			FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Atividade Diária", "salva com sucesso!")));
 		} catch (DAOException e) {
 			FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Erro durante o processo de salvar os dados")));
 		}
@@ -59,10 +59,10 @@ public class VagaEstagioBean implements Serializable{
 	}
 	
 	public void excluir(){
-		if(vagaEstagio != null){
+		if(atividade != null){
 			try {
-				vagaEstagioDAO.remove(vagaEstagio);
-				FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Vaga de Estágio", "Excluído com sucesso!")));
+				atividadeDAO.remove(atividade);
+				FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Atividade", "Excluído com sucesso!")));
 			} catch (DAOException e) {
 				FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Erro ao excluir")));
 			}
@@ -70,8 +70,7 @@ public class VagaEstagioBean implements Serializable{
 		grid();
 	}
 
-	public VagaEstagio getVagaEstagio() {
-		return (vagaEstagio == null) ? vagaEstagio = new VagaEstagio() : vagaEstagio;
+	public VagaEstagioAtividadeDiaria getAtividade() {
+		return atividade == null ? atividade = new VagaEstagioAtividadeDiaria() : atividade;
 	}
-	
 }

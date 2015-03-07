@@ -4,17 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
 import br.edu.ifce.util.entity.IGenericEntity;
 
+/**
+ * 
+ * 
+ * 
+ * @author edivandoalves
+ *
+ */
 @Entity
 @Table(name = "endereco")
-@NamedQueries({ @NamedQuery(name = "Endereco", query = "Select e from Endereco e") })
 public class Endereco implements IGenericEntity<Endereco>{
 
 	private static final long serialVersionUID = 1L;

@@ -6,9 +6,24 @@ import br.edu.ifce.entity.VagaEstagio;
 import br.edu.ifce.util.dao.GenericDAO;
 import br.edu.ifce.util.exception.DAOException;
 
+/**
+ * 
+ * 
+ * 
+ * @author edivandoalves
+ *
+ */
 public class VagaEstagioDAO{
 
 	private GenericDAO<VagaEstagio> dao = new GenericDAO<VagaEstagio>(VagaEstagio.class);
+	
+	public VagaEstagio save(VagaEstagio vagaEstagio) throws DAOException {
+		if(vagaEstagio.getIdVaga() == null){
+			return dao.add(vagaEstagio);
+		}else{
+			return dao.update(vagaEstagio);
+		}
+	}
 	
 	public VagaEstagio add(VagaEstagio vaga) throws DAOException {
 		return dao.add(vaga);
