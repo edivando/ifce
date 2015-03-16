@@ -1,7 +1,7 @@
 package br.edu.ifce.view.listener;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -20,13 +20,7 @@ public class AuthorizationListener implements PhaseListener {
 	private List<String> publicPages;
 	
 	public AuthorizationListener() {
-		publicPages = new ArrayList<String>();
-		publicPages.add("index");
-		publicPages.add("login");
-		publicPages.add("erro404");
-		publicPages.add("erro500");
-		publicPages.add("erro-acessoNegado");	
-		publicPages.add("cadastro");
+		publicPages = Arrays.asList("index","login","erro404","erro500","erro-acessoNegado","cadastro");
 	}
 	
 

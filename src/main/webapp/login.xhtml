@@ -5,8 +5,17 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-<ui:composition template="/layout/layoutPrivateDefault.xhtml">
+<ui:composition template="/layout/layoutPublicDefault.xhtml">
 	<ui:define name="title">Turnos</ui:define>
+		<ui:define name="menu">	
+		<div class="horizontal-menu navbar-collapse collapse ">
+        	<ul class="nav navbar-nav">
+        	    <li><a href="index.html">Home</a></li>
+            	<li><a href="cadastro.html">Cadastro</a></li>
+            	<li class="active"><a href="login.html">Login</a></li>
+           	</ul>
+    	</div>
+	</ui:define>
 	<ui:define name="container">
 	
 	<h:form>
