@@ -17,23 +17,89 @@
     	</div>
 	</ui:define>
 	<ui:define name="container">
-	
-	   	<h:form>
-			<p:inputText value="#{loginBean.usuario.nome}" placeholder="Nome"/>
-			<p:inputText value="#{loginBean.usuario.email}" placeholder="Email"/>
-			<p:password value="#{loginBean.usuario.senha}" placeholder="Senha" />
-			<p:selectOneMenu value="#{loginBean.usuario.tipoUsuario}" style="width:125px">
-            	<f:selectItem itemLabel="Selecione" itemValue="" />
-            	<f:selectItem itemLabel="Aluno" itemValue="ALUNO" />
-            	<f:selectItem itemLabel="Instituição" itemValue="INSTITUICAO" />
-            	<f:selectItem itemLabel="Empresa" itemValue="EMPRESA" />
-        	</p:selectOneMenu>
-		
-			<p:commandLink action="#{loginBean.beginRegister}" >
-				Cadastre-se
-			</p:commandLink>
-		</h:form>
-		
+		<div class="row">
+	        <div class="col-sm-7">
+	            <section class="panel">
+	                <header class="panel-heading">
+	                    Title
+	          		<span class="tools pull-right">
+	                	<a href="javascript:;" class="fa fa-chevron-down"></a>
+	                  	<a href="javascript:;" class="fa fa-cog"></a>
+	                  	<a href="javascript:;" class="fa fa-times"></a>
+	               	</span>
+	                </header>
+	                <div class="panel-body">
+	                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	                </div>
+	            </section>
+	        </div>
+	         <div class="col-sm-5">
+	            <section class="panel">
+	                <header class="panel-heading">
+	                    Cadastro
+	          		<span class="tools pull-right">
+	                	<a href="javascript:;" class="fa fa-chevron-down"></a>
+	                  	<a href="javascript:;" class="fa fa-cog"></a>
+	                  	<a href="javascript:;" class="fa fa-times"></a>
+	               	</span>
+	                </header>
+	                <div class="panel-body">
+	                	<h:form>
+	                		<div class="form-horizontal">
+	                			<div class="form-group">
+								    <label for="nome" class="col-sm-2 control-label">Nome:</label>
+								    <div class="col-sm-10">
+								    	<p:inputText value="#{loginBean.usuario.nome}" placeholder="Seu nome completo..." styleClass="form-control"
+								    		maxlength="80" rendered="true" requiredMessage="Você deve informar o seu nome completo!"
+								    		id="nome"/>			    
+								    </div>
+						    	</div>
+	                		</div>
+	                		<div class="form-horizontal">
+	                			<div class="form-group">
+								    <label for="email" class="col-sm-2 control-label">Email:</label>
+								    <div class="col-sm-10">
+								    	<p:inputText value="#{loginBean.usuario.email}" placeholder="Email..." styleClass="form-control"
+								    		maxlength="80" rendered="true" requiredMessage="Você deve informar o email!"
+								    		id="email"/>			    
+								    </div>
+						    	</div>
+	                		</div>
+	                		<div class="form-horizontal">
+	                			<div class="form-group">
+								    <label for="email" class="col-sm-2 control-label">Senha:</label>
+								    <div class="col-sm-10">
+								    	<p:password value="#{loginBean.usuario.senha}" placeholder="Senha" styleClass="form-control"
+								    		maxlength="20" rendered="true" requiredMessage="Você deve informar o sua senha!"
+								    		id="senha"/>			    
+								    </div>
+						    	</div>
+	                		</div>
+	                		<div class="form-horizontal">
+	                			<div class="form-group">
+								    <label for="email" class="col-sm-2 control-label"></label>
+								    <div class="col-sm-10">
+								    	<p:selectOneMenu value="#{loginBean.usuario.tipoUsuario}" style="width:250px">
+							            	<f:selectItem itemLabel="Selecione" itemValue="" />
+							            	<f:selectItem itemLabel="Aluno" itemValue="ALUNO" />
+							            	<f:selectItem itemLabel="Instituição" itemValue="INSTITUICAO" />
+							            	<f:selectItem itemLabel="Empresa" itemValue="EMPRESA" />
+							        	</p:selectOneMenu>		    
+								    </div>
+						    	</div>
+	                		</div>
+	                		<hr/>
+							<div class="text-center">
+								<p:commandLink action="#{loginBean.beginRegister}" styleClass="btn btn-info">
+									Cadastre-se
+								</p:commandLink>
+							</div>
+						</h:form>
+	                </div>
+	            </section>
+	        </div>
+	    </div>
 	</ui:define>
 </ui:composition>
 </html>

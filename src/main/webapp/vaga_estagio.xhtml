@@ -11,7 +11,7 @@
 	    <h:form>
 			<p:dataTable id="vagaEstagioTable" var="vagaEstagio" value="#{vagaEstagioBean.vagaEstagios}" paginator="true"
 				emptyMessage="Nenhuma vaga encontrada!" rendered="#{!vagaEstagioBean.form}">
-				<p:column width="200">
+				<p:column width="170" styleClass="text-center">
 					<f:facet name="header">
 						<p:commandLink action="#{vagaEstagioBean.form}" update="@form" title="Cadastrar nova vaga de estágio" styleClass="btn btn-primary btn-sm">
 							<i class="fa fa-plus-square"/>

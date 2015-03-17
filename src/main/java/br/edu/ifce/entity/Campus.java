@@ -30,4 +30,10 @@ public class Campus implements IGenericEntity<Campus>{
 	
 	@Getter @Setter
 	private String nome;
+	
+	@Getter @Setter
+	private String telefone;
+	
+	@Getter @Setter
+	private String email;
 }

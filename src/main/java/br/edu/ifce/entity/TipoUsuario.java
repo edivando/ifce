@@ -2,7 +2,7 @@ package br.edu.ifce.entity;
 
 public enum TipoUsuario {
 
-	ADMINISTRADOR("home,perfil,aluno,campus,curso,departamento,empresa,instituicao,vaga_estagio"), 
+	ADMINISTRADOR("home,perfil,aluno,campus,curso,departamento,empresa,instituicao,vaga_estagio,usuario"), 
 	INSTITUICAO("home"), 
 	EMPRESA("home"), 
 	ALUNO("home");

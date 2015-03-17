@@ -11,7 +11,7 @@
 	    <h:form>
 			<p:dataTable id="alunoTable" var="aluno" value="#{alunoBean.alunos}" paginator="true"
 				emptyMessage="Nenhuma aluno encontrado!" rendered="#{!alunoBean.form}">
-				<p:column width="200">
+				<p:column width="170" styleClass="text-center">
 					<f:facet name="header">
 						<p:commandLink action="#{alunoBean.form}" update="@form" title="Cadastrar novo aluno" styleClass="btn btn-primary btn-sm">
 							<i class="fa fa-plus-square"/>
@@ -37,16 +37,82 @@
 				<p:column headerText="Aluno">
 					#{aluno.nome}
 				</p:column>
+				<p:column headerText="Matrícula">
+					#{aluno.matricula}
+				</p:column>
+				<p:column headerText="Email">
+					#{aluno.email}
+				</p:column>
 			</p:dataTable>
 			<p:panel header="Aluno" rendered="#{alunoBean.form}" styleClass="form-horizontal">
-				
 				<div class="form-group">
 				    <label for="nome" class="col-sm-2 control-label">Aluno:</label>
 				    <div class="col-sm-8">
 						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.nome}" maxlength="80"
-							rendered="true" requiredMessage="Você deve informar o nome do Aluno!"/>				    
+							rendered="true" requiredMessage="Você deve informar o nome do Aluno!"
+							placeholder="Nome completo do aluno"/>				    
 				    </div>
 		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Matrícula:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.matricula}" maxlength="30"
+							rendered="true" requiredMessage="Você deve informar o nome da Matrícula!"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Email:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.email}" maxlength="80"
+							rendered="true" requiredMessage="Você deve informar o nome do Email!"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Telefone:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.telefone}" maxlength="80"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Habilidades:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.habilidades}" maxlength="80"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Curriculum Lattes:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.cvLattes}" maxlength="80"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Semestre Atual:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.semestreAtual}" maxlength="80"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Data de Nascimento:</label>
+				    <div class="col-sm-8">
+						<p:inputMask styleClass="form-control" value="#{alunoBean.aluno.dataNascimento}" 
+							mask="99/99/9999">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</p:inputMask>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">CPF:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.cpf}" maxlength="80"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">RG:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.rg}" maxlength="80"/>				    
+				    </div>
+		    	</div>
+		    	
 				<div class="text-center">
 					<p:commandLink action="#{alunoBean.salvar}" update="@form" styleClass="btn btn-primary btn-sm">
 						<i class="fa fa-save" />

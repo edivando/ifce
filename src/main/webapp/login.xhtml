@@ -17,17 +17,66 @@
     	</div>
 	</ui:define>
 	<ui:define name="container">
-	
-	<h:form>
-	    <p:inputText value="#{loginBean.usuario.email}" placeholder="Email"/>
-	    <p:password value="#{loginBean.usuario.senha}" placeholder="Senha"/>
-	    
-	    <p:commandLink action="#{loginBean.login}" update="@form" styleClass="btn btn-primary btn-sm">
-			<i class="fa fa-save" />
-			Login
-		</p:commandLink>
-	</h:form>
-		
+	<div class="row">
+	        <div class="col-sm-7">
+	            <section class="panel">
+	                <header class="panel-heading">
+	                    Title
+	          		<span class="tools pull-right">
+	                	<a href="javascript:;" class="fa fa-chevron-down"></a>
+	                  	<a href="javascript:;" class="fa fa-cog"></a>
+	                  	<a href="javascript:;" class="fa fa-times"></a>
+	               	</span>
+	                </header>
+	                <div class="panel-body">
+	                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	                </div>
+	            </section>
+	        </div>
+	         <div class="col-sm-5">
+	            <section class="panel">
+	                <header class="panel-heading">
+	                    Login
+	          		<span class="tools pull-right">
+	                	<a href="javascript:;" class="fa fa-chevron-down"></a>
+	                  	<a href="javascript:;" class="fa fa-cog"></a>
+	                  	<a href="javascript:;" class="fa fa-times"></a>
+	               	</span>
+	                </header>
+	                <div class="panel-body">
+	                	<h:form>
+	                		<div class="form-horizontal">
+	                			<div class="form-group">
+								    <label for="email" class="col-sm-2 control-label">Email:</label>
+								    <div class="col-sm-10">
+								    	<p:inputText value="#{loginBean.usuario.email}" placeholder="Email..." styleClass="form-control"
+								    		id="email"/>			    
+								    </div>
+						    	</div>
+	                		</div>
+	                		<div class="form-horizontal">
+	                			<div class="form-group">
+								    <label for="email" class="col-sm-2 control-label">Senha:</label>
+								    <div class="col-sm-10">
+								    	<p:password value="#{loginBean.usuario.senha}" placeholder="Senha" styleClass="form-control"
+								    		id="senha"/>			    
+								    </div>
+						    	</div>
+	                		</div>
+	                		
+	                		<hr/>
+							<div class="text-center">
+								<p:commandLink action="#{loginBean.login}" update="@form" styleClass="btn btn-info">
+									<i class="fa fa-save" />
+									Login
+								</p:commandLink>
+							</div>
+						</h:form>
+	                </div>
+	            </section>
+	        </div>
+	    </div>
 	</ui:define>
 </ui:composition>
 </html>

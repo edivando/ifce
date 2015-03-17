@@ -11,7 +11,7 @@
 	    <h:form>
 			<p:dataTable id="instituicaoTable" var="instituicao" value="#{instituicaoBean.instituicaos}" paginator="true"
 				emptyMessage="Nenhuma instituição encontrada!" rendered="#{!instituicaoBean.form}">
-				<p:column width="200">
+				<p:column width="170" styleClass="text-center">
 					<f:facet name="header">
 						<p:commandLink action="#{instituicaoBean.form}" update="@form" title="Cadastrar nova instituição" styleClass="btn btn-primary btn-sm">
 							<i class="fa fa-plus-square"/>

@@ -30,7 +30,4 @@ public class Curso implements IGenericEntity<Curso>{
 	
 	@Getter @Setter
 	private String nome;
-	
-	@Getter @Setter
-	private String de;
 }

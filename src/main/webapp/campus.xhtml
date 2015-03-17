@@ -11,7 +11,7 @@
 	    <h:form>
 			<p:dataTable id="campusTable" var="campu" value="#{campusBean.campus}" paginator="true"
 				emptyMessage="Nenhuma campus encontrado!" rendered="#{!campusBean.form}">
-				<p:column width="200">
+				<p:column width="170" styleClass="text-center">
 					<f:facet name="header">
 						<p:commandLink action="#{campusBean.form}" update="@form" title="Cadastrar novo campus" styleClass="btn btn-primary btn-sm">
 							<i class="fa fa-plus-square"/>
@@ -39,12 +39,24 @@
 				</p:column>
 			</p:dataTable>
 			<p:panel header="Campus" rendered="#{campusBean.form}" styleClass="form-horizontal">
-				
 				<div class="form-group">
 				    <label for="nome" class="col-sm-2 control-label">Campus:</label>
 				    <div class="col-sm-8">
 						<p:inputText styleClass="form-control" value="#{campusBean.campu.nome}" maxlength="80"
 							rendered="true" requiredMessage="Você deve informar o nome do Campus!"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Telefone:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{campusBean.campu.telefone}" maxlength="80"/>				    
+				    </div>
+		    	</div>
+		    	
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Email:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{campusBean.campu.email}" maxlength="80"/>				    
 				    </div>
 		    	</div>
 				<div class="text-center">

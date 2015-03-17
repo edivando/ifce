@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import lombok.Setter;
 import br.edu.ifce.dao.UsuarioDAO;
+import br.edu.ifce.entity.TipoUsuario;
 import br.edu.ifce.entity.Usuario;
 import br.edu.ifce.util.MD5;
 import br.edu.ifce.util.exception.DAOException;
@@ -102,5 +103,13 @@ public class LoginBean implements Serializable{
 			}
 		}
 		return false;
-	}	
+	}
+	
+	public boolean isAluno(){
+		return usuario.getTipoUsuario().equals(TipoUsuario.ALUNO.name());
+	}
+	
+	public boolean isEmpresa(){
+		return usuario.getTipoUsuario().equals(TipoUsuario.EMPRESA.name());
+	}
 }
