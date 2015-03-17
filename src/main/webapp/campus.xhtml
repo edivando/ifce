@@ -11,7 +11,7 @@
 	    <h:form>
 			<p:dataTable id="campusTable" var="campu" value="#{campusBean.campus}" paginator="true"
 				emptyMessage="Nenhuma campus encontrado!" rendered="#{!campusBean.form}">
-				<p:column width="170" styleClass="text-center">
+				<p:column width="180" styleClass="text-center">
 					<f:facet name="header">
 						<p:commandLink action="#{campusBean.form}" update="@form" title="Cadastrar novo campus" styleClass="btn btn-primary btn-sm">
 							<i class="fa fa-plus-square"/>

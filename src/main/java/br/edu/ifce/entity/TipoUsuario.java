@@ -5,7 +5,7 @@ public enum TipoUsuario {
 	ADMINISTRADOR("home,perfil,aluno,campus,curso,departamento,empresa,instituicao,vaga_estagio,usuario"), 
 	INSTITUICAO("home"), 
 	EMPRESA("home"), 
-	ALUNO("home,usuario");
+	ALUNO("home");
 	
 	private String page;
 	

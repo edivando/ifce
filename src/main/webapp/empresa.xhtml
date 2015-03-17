@@ -11,7 +11,7 @@
 	    <h:form>
 			<p:dataTable id="empresaTable" var="empresa" value="#{empresaBean.empresas}" paginator="true"
 				emptyMessage="Nenhuma empresa encontrada!" rendered="#{!empresaBean.form}">
-				<p:column width="170" styleClass="text-center">
+				<p:column width="180" styleClass="text-center">
 					<f:facet name="header">
 						<p:commandLink action="#{empresaBean.form}" update="@form" title="Cadastrar nova empresa" styleClass="btn btn-primary btn-sm">
 							<i class="fa fa-plus-square"/>

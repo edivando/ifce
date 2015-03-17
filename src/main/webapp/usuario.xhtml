@@ -11,7 +11,7 @@
 	    <h:form>
 			<p:dataTable id="usuarioTable" var="usuario" value="#{usuarioBean.usuarios}" paginator="true"
 				emptyMessage="Nenhuma usuario encontrado!" rendered="#{!usuarioBean.form}">
-				<p:column width="200" styleClass="text-center">
+				<p:column width="210" styleClass="text-center">
 					<f:facet name="header">
 						<p:commandLink action="#{usuarioBean.form}" update="@form" title="Cadastrar novo usuario" styleClass="btn btn-primary btn-sm">
 							<i class="fa fa-plus-square"/>
