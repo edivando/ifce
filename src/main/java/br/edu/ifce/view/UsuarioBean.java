@@ -58,6 +58,15 @@ public class UsuarioBean implements Serializable{
 		grid();
 	}
 	
+	public void update(Usuario usuario){
+		try {
+			usuarioDAO.save(usuario);
+			FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Usuário", "salvo com sucesso!")));
+		} catch (DAOException e) {
+			FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage("Erro durante o processo de salvar os dados")));
+		}
+	}
+	
 	public void excluir(){
 		if(usuario != null){
 			try {

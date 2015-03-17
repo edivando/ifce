@@ -41,7 +41,15 @@
 					#{usuario.email}
 				</p:column>
 				<p:column headerText="Tipo de Usuário">
-					#{usuario.tipoUsuario}
+					<p:inplace id="tipoUsuario" label="#{usuario.tipoUsuario}" effectSpeed="fast" editor="true">
+			            <h:selectOneMenu value="#{usuario.tipoUsuario}">
+			                <f:selectItem itemLabel="Administrador" itemValue="ADMINISTRADOR" />
+			                <f:selectItem itemLabel="Instituíção" itemValue="INSTITUICAO" />
+			                <f:selectItem itemLabel="Empresa" itemValue="EMPRESA" />
+			                <f:selectItem itemLabel="Aluno" itemValue="ALUNO" />
+			                <p:ajax listener="#{usuarioBean.update(usuario)}"/>
+			            </h:selectOneMenu>
+			        </p:inplace>
 				</p:column>
 			</p:dataTable>
 			<p:panel header="Aluno" rendered="#{alunoBean.form}" styleClass="form-horizontal">
