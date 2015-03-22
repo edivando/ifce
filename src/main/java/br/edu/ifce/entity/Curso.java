@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -30,4 +31,8 @@ public class Curso implements IGenericEntity<Curso>{
 	
 	@Getter @Setter
 	private String nome;
+	
+	@ManyToOne
+	@Getter @Setter
+	private Departamento departamento;
 }

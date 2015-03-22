@@ -46,4 +46,13 @@ public class Usuario implements IGenericEntity<Usuario>{
 	@Getter @Setter
 	private Boolean ativo;
 	
+	@Getter @Setter
+	private String urlFacebook;
+	
+	@Getter @Setter
+	private String urlTwitter;
+	
+	@Getter @Setter
+	private String urlGooglePlus;
+	
 }

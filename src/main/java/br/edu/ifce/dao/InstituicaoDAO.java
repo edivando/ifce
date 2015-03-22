@@ -3,7 +3,7 @@ package br.edu.ifce.dao;
 import java.util.List;
 
 import br.edu.ifce.entity.Instituicao;
-import br.edu.ifce.util.dao.GenericDAO;
+import br.edu.ifce.util.dao.DAO;
 import br.edu.ifce.util.exception.DAOException;
 
 /**
@@ -15,7 +15,7 @@ import br.edu.ifce.util.exception.DAOException;
  */
 public class InstituicaoDAO{
 
-	private GenericDAO<Instituicao> dao = new GenericDAO<>(Instituicao.class);
+	private DAO<Instituicao> dao = new DAO<>(Instituicao.class);
 	
 	public Instituicao save(Instituicao instituicao) throws DAOException {
 		if(instituicao.getIdInstiruicao() == null){
@@ -39,5 +39,9 @@ public class InstituicaoDAO{
 
 	public List<Instituicao> findAll(){
 		return dao.findAll();
+	}
+	
+	public Instituicao findByIdUsuario(Integer idUsuario){
+		return dao.findOneByQuery("SELECT i FROM Instituicao i WHERE i.idUsuario = ?1" , idUsuario);
 	}
 }

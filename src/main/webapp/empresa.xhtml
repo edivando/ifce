@@ -34,7 +34,7 @@
 				        <p:commandButton value="Não, ainda não!" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
 				    </p:confirmDialog> 
 				</p:column>
-				<p:column headerText="Vaga de Estágio">
+				<p:column headerText="Empresa">
 					#{empresa.nome}
 				</p:column>
 			</p:dataTable>
@@ -44,11 +44,51 @@
 				    <label for="nome" class="col-sm-2 control-label">Empresa:</label>
 				    <div class="col-sm-8">
 						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.nome}" maxlength="80"
-							rendered="true" requiredMessage="Você deve informar o nome da empresa!"/>				    
+							required="true" requiredMessage="Você deve informar o nome da empresa!"/>				    
 				    </div>
 		    	</div>
-
-		    	
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Email:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.email}" maxlength="80"/>				    
+				    </div>
+		    	</div>
+				<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Telefone:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.telefone}" maxlength="80"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Supervisor:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.supervisor}" maxlength="80"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Cargo do Supervisor:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.cargoSupervisor}"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">CNPJ:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.cnpj}"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Site:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.site}"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Ramo de Atividade:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.ramoAtividade}"/>				    
+				    </div>
+		    	</div>
 				<div class="text-center">
 					<p:commandLink action="#{empresaBean.salvar}" update="@form" styleClass="btn btn-primary btn-sm">
 						<i class="fa fa-save" />

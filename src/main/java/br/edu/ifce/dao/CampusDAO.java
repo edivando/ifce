@@ -3,7 +3,7 @@ package br.edu.ifce.dao;
 import java.util.List;
 
 import br.edu.ifce.entity.Campus;
-import br.edu.ifce.util.dao.GenericDAO;
+import br.edu.ifce.util.dao.DAO;
 import br.edu.ifce.util.exception.DAOException;
 
 /**
@@ -15,7 +15,7 @@ import br.edu.ifce.util.exception.DAOException;
  */
 public class CampusDAO{
 
-	private GenericDAO<Campus> dao = new GenericDAO<>(Campus.class);
+	private DAO<Campus> dao = new DAO<>(Campus.class);
 	
 	public Campus save(Campus campus) throws DAOException {
 		if(campus.getIdCampus() == null){

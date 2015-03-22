@@ -23,8 +23,6 @@ public class AuthorizationListener implements PhaseListener {
 		publicPages = Arrays.asList("index","login","erro404","erro500","erro-acessoNegado","cadastro");
 	}
 	
-
-
 	@Override
 	public void beforePhase(PhaseEvent event) {	
 		FacesContext ctx = event.getFacesContext();	

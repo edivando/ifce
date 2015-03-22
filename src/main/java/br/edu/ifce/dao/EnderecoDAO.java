@@ -3,7 +3,7 @@ package br.edu.ifce.dao;
 import java.util.List;
 
 import br.edu.ifce.entity.Endereco;
-import br.edu.ifce.util.dao.GenericDAO;
+import br.edu.ifce.util.dao.DAO;
 import br.edu.ifce.util.exception.DAOException;
 
 /**
@@ -15,7 +15,7 @@ import br.edu.ifce.util.exception.DAOException;
  */
 public class EnderecoDAO{
 
-	private GenericDAO<Endereco> dao = new GenericDAO<>(Endereco.class);
+	private DAO<Endereco> dao = new DAO<>(Endereco.class);
 	
 	public Endereco save(Endereco endereco) throws DAOException {
 		if(endereco.getIdEndereco() == null){

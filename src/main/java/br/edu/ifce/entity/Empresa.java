@@ -29,6 +29,9 @@ public class Empresa implements IGenericEntity<Empresa>{
 	private Integer idEmpresa;
 	
 	@Getter @Setter
+	private Integer idUsuario;
+	
+	@Getter @Setter
 	private String nome;
 	
 	@Getter @Setter

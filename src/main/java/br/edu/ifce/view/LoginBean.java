@@ -10,8 +10,15 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import lombok.Getter;
 import lombok.Setter;
+import br.edu.ifce.dao.AlunoDAO;
+import br.edu.ifce.dao.EmpresaDAO;
+import br.edu.ifce.dao.InstituicaoDAO;
 import br.edu.ifce.dao.UsuarioDAO;
+import br.edu.ifce.entity.Aluno;
+import br.edu.ifce.entity.Empresa;
+import br.edu.ifce.entity.Instituicao;
 import br.edu.ifce.entity.TipoUsuario;
 import br.edu.ifce.entity.Usuario;
 import br.edu.ifce.util.MD5;
@@ -32,41 +39,38 @@ public class LoginBean implements Serializable{
 
 	@Setter
 	private Usuario usuario;
+	@Getter
+	private Aluno aluno;
+	@Getter
+	private Instituicao instituicao;
+	@Getter
+	private Empresa empresa;
+	
 	private UsuarioDAO usuarioDAO = new UsuarioDAO();
+	private EmpresaDAO empresaDAO = new EmpresaDAO();
+	private InstituicaoDAO instituicaoDAO = new InstituicaoDAO();
+	private AlunoDAO alunoDAO = new AlunoDAO();
 	
-//	public void loginTwo(){
-//		try {
-//			List<Usuario> usuarios = usuarioDAO.ListByCdEmailAndSenha(usuario.getCdEmail(), MD5.md5(usuario.getCdSenha()));
-//			if(usuarios != null && usuarios.size() > 0 ){
-//				usuario = usuarios.get(0);
-//				if(usuario.getTipoUsuario().getId() == 2){
-//					empresa = empresaDAO.find(usuario.getEmpresa().getId());
-//				}else if(usuario.getTipoUsuario().getId() == 3){
-//					aluno = alunoDao.find(1); // TODO: Obter id do aluno nao do usuario
-//				}
-//				FacesContext.getCurrentInstance().getExternalContext().redirect("home.xhtml");
-//			}else{
-//				usuario = new Usuario();
-//				FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage(FacesMessage.SEVERITY_WARN, "Desculpe!", "Mas o email ou a senha informada n�o confere. Tente novamente!")));
-//			}
-//		} catch (Exception e) {
-//		
-//		}
-//	}
-	
-	
-	public void login(){
+	public void login(){	
 		try {
 			List<Usuario> usuarios = usuarioDAO.findByEmailAndSenha(usuario.getEmail(), MD5.md5(usuario.getSenha()));
 			if(usuarios != null && usuarios.size() > 0 ){
 				usuario = usuarios.get(0);
+				if(usuario.getTipoUsuario().equals(TipoUsuario.EMPRESA)){
+					empresa = empresaDAO.findByIdUsuario( usuario.getIdUsuario() );
+				}else if(usuario.getTipoUsuario().equals(TipoUsuario.INSTITUICAO)){
+					instituicao = instituicaoDAO.findByIdUsuario( usuario.getIdUsuario() );
+				}else if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
+					aluno = alunoDAO.findByIdUsuario( usuario.getIdUsuario() );
+				}
+				
 				FacesContext.getCurrentInstance().getExternalContext().redirect("home.html");
 			}else{
 				usuario = new Usuario();
 				FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage(FacesMessage.SEVERITY_WARN, "Desculpe!", "Mas o email ou a senha informada não confere. Tente novamente!")));
 			}
 		} catch (Exception e) {
-		
+			e.printStackTrace();
 		}
 	}
 	
@@ -105,11 +109,11 @@ public class LoginBean implements Serializable{
 		return false;
 	}
 	
-	public boolean isAluno(){
-		return usuario.getTipoUsuario().equals(TipoUsuario.ALUNO.name());
-	}
-	
-	public boolean isEmpresa(){
-		return usuario.getTipoUsuario().equals(TipoUsuario.EMPRESA.name());
+	public String getNome(){
+		if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
+			return aluno.getNome();
+		}else{
+			return usuario.getNome();
+		}
 	}
 }

@@ -39,16 +39,26 @@
 				</p:column>
 			</p:dataTable>
 			<p:panel header="Empresa" rendered="#{instituicaoBean.form}" styleClass="form-horizontal">
-				
 				<div class="form-group">
 				    <label for="nome" class="col-sm-2 control-label">Instituição:</label>
 				    <div class="col-sm-8">
 						<p:inputText styleClass="form-control" value="#{instituicaoBean.instituicao.nome}" maxlength="80"
-							rendered="true" requiredMessage="Você deve informar o nome da instituíção!"/>				    
+							required="true" requiredMessage="Você deve informar o nome da instituíção!"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Email:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{instituicaoBean.instituicao.email}"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Professor Responsável:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{instituicaoBean.instituicao.responsavel}" />				    
 				    </div>
 		    	</div>
 
-		    	
 				<div class="text-center">
 					<p:commandLink action="#{instituicaoBean.salvar}" update="@form" styleClass="btn btn-primary btn-sm">
 						<i class="fa fa-save" />

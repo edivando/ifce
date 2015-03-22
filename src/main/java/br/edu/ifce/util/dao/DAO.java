@@ -1,7 +1,6 @@
 package br.edu.ifce.util.dao;
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -22,13 +21,13 @@ import br.edu.ifce.util.exception.DAOException;
  *
  * @param <T>
  */
-public class GenericDAO<T extends IGenericEntity<T>>{
+public class DAO<T extends IGenericEntity<T>>{
 
 	private final Class<T> clazz;
 	
 	private GenericJPA jpaUtil;
 	
-	public GenericDAO(Class<T> clazz) {
+	public DAO(Class<T> clazz) {
 		this.jpaUtil = GenericJPA.getInstance();
 		this.clazz = clazz;   //(Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}

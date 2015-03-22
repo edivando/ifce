@@ -40,16 +40,13 @@
 				<p:column headerText="Matrícula">
 					#{aluno.matricula}
 				</p:column>
-				<p:column headerText="Email">
-					#{aluno.email}
-				</p:column>
 			</p:dataTable>
 			<p:panel header="Aluno" rendered="#{alunoBean.form}" styleClass="form-horizontal">
 				<div class="form-group">
 				    <label for="nome" class="col-sm-2 control-label">Aluno:</label>
 				    <div class="col-sm-8">
 						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.nome}" maxlength="80"
-							rendered="true" requiredMessage="Você deve informar o nome do Aluno!"
+							required="true" requiredMessage="Você deve informar o nome do Aluno!"
 							placeholder="Nome completo do aluno"/>				    
 				    </div>
 		    	</div>
@@ -57,14 +54,7 @@
 				    <label for="nome" class="col-sm-2 control-label">Matrícula:</label>
 				    <div class="col-sm-8">
 						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.matricula}" maxlength="30"
-							rendered="true" requiredMessage="Você deve informar o nome da Matrícula!"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Email:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.email}" maxlength="80"
-							rendered="true" requiredMessage="Você deve informar o nome do Email!"/>				    
+							required="true" requiredMessage="Você deve informar o nome da Matrícula!"/>				    
 				    </div>
 		    	</div>
 		    	<div class="form-group">
@@ -126,7 +116,6 @@
 				</div>
 			</p:panel>
 		</h:form>
-	    
 	</ui:define>
 </ui:composition>
 </html>

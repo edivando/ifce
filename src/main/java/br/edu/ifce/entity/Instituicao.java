@@ -29,6 +29,9 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 	private Integer idInstiruicao;
 	
 	@Getter @Setter
+	private Integer idUsuario;
+	
+	@Getter @Setter
 	private String nome;
 	
 	@Getter @Setter

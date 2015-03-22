@@ -3,7 +3,7 @@ package br.edu.ifce.dao;
 import java.util.List;
 
 import br.edu.ifce.entity.Aluno;
-import br.edu.ifce.util.dao.GenericDAO;
+import br.edu.ifce.util.dao.DAO;
 import br.edu.ifce.util.exception.DAOException;
 
 /**
@@ -15,7 +15,7 @@ import br.edu.ifce.util.exception.DAOException;
  */
 public class AlunoDAO{
 
-	private GenericDAO<Aluno> dao = new GenericDAO<>(Aluno.class);
+	private DAO<Aluno> dao = new DAO<>(Aluno.class);
 	
 	public Aluno save(Aluno aluno) throws DAOException {
 		if(aluno.getIdAluno() == null){
@@ -41,4 +41,7 @@ public class AlunoDAO{
 		return dao.findAll();
 	}
 	
+	public Aluno findByIdUsuario(Integer idUsuario){
+		return dao.findOneByQuery("SELECT a FROM Aluno a WHERE a.idUsuario = ?1" , idUsuario);
+	}
 }
