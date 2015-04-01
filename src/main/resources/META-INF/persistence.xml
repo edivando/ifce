@@ -11,17 +11,16 @@
 			<property name="hibernate.format_sql" value="false" />
 			
 			<!-- Access OpenShift Postgree -->
-			<!--
 			<property name="hibernate.connection.url" value="jdbc:postgresql://127.6.177.2:5432/ifce"/>
 			<property name="javax.persistence.jdbc.user" value="admin9eg1unf" />
 			<property name="javax.persistence.jdbc.password" value="3-bU-QdK-Qx5" />
-			 -->
-			
+
 			<!-- Access Local Postgree --> 
+			<!-- 
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/ifce"/>
 			<property name="javax.persistence.jdbc.user" value="postgres" />
 			<property name="javax.persistence.jdbc.password" value="123" />
-			
+			 -->
 		</properties>
 	</persistence-unit>
 	
