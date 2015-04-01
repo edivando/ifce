@@ -89,6 +89,10 @@ public class LoginBean implements Serializable{
 			usuario.setEmailValido(false);
 			usuario.setAtivo(true);
 			usuarioDAO.add(usuario);
+			if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
+				aluno = new Aluno(usuario.getIdUsuario(), usuario.getNome());
+				alunoDAO.save(aluno);
+			}
 			usuario = null;
 			return "login";
 		} catch (DAOException e) {

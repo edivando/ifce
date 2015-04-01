@@ -76,9 +76,32 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@Getter @Setter
 	private Endereco endereco;
 	
+	public Aluno(){}
+	
+	public Aluno(Integer idUsuario, String nome){
+		this.idUsuario = idUsuario;
+		this.nome = nome;
+	}
+	
+	
 	public String getDescricaoCurso(){
-		return String.format("%s <br/> Departamento de  %s <br/> Campus %s <br/> %s", curso.getNome(), curso.getDepartamento().getNome(), 
-			curso.getDepartamento().getCampus().getNome(), curso.getDepartamento().getCampus().getInstituicao().getNome());
+		String cursoName = "";
+		String departamentoName = "";
+		String campusName = "";
+		String instituicaoName = "";
+		if(curso != null){
+			cursoName = curso.getNome();
+			if(curso.getDepartamento() != null){
+				departamentoName = curso.getDepartamento().getNome();
+				if(curso.getDepartamento().getCampus() != null){
+					campusName = curso.getDepartamento().getCampus().getNome();
+					if(curso.getDepartamento().getCampus().getInstituicao() != null){
+						instituicaoName = curso.getDepartamento().getCampus().getInstituicao().getNome();
+					}
+				}
+			}
+		}
+		return String.format("%s <br/> Departamento de  %s <br/> Campus %s <br/> %s", cursoName, departamentoName, campusName, instituicaoName);
 	}
 	
 }
