@@ -114,7 +114,7 @@ public class LoginBean implements Serializable{
 	}
 	
 	public String getNome(){
-		if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
+		if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO) && aluno != null){
 			return aluno.getNome();
 		}else{
 			return usuario.getNome();
