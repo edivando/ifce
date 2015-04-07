@@ -12,7 +12,7 @@
 	<h:form>
 	<p:wizard >
         <p:tab id="empresa" title="Empresa">
-            <p:panel styleClass="form-horizontal">
+            <p:panel header="Dados da empresa" styleClass="form-horizontal">
                 <p:messages />
                 <div class="form-group">
 				    <label for="nome" class="col-sm-2 control-label">Nome:</label>
@@ -94,9 +94,7 @@
         </p:tab>
  
         <p:tab id="estagiario" title="Estagiário">
-            <p:panel header="Address Details">
-                <p:messages />
-                <p:panel styleClass="form-horizontal">
+            <p:panel header="Dados do estagiário" styleClass="form-horizontal">
                 <p:messages />
                 <div class="form-group">
 				    <label for="nome" class="col-sm-2 control-label">Nome:</label>
@@ -109,7 +107,16 @@
 				    <label for="nome" class="col-sm-2 control-label">CPF:</label>
 				    <div class="col-sm-8">
 						<p:inputText styleClass="form-control" value="#{termoCompromissoBean.aluno.cpf}" maxlength="14"
-							required="true" requiredMessage="Você deve informar o CNPJ da empresa!"/>				    
+							required="true" requiredMessage="Você deve informar o seu CPF!"/>				    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Data de Nascimento:</label>
+				    <div class="col-sm-8">
+						<p:inputMask styleClass="form-control" value="#{termoCompromissoBean.aluno.dataNascimento}" 
+							mask="99/99/9999">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</p:inputMask>				    
 				    </div>
 		    	</div>
 		    	<div class="form-group">
@@ -123,35 +130,28 @@
 				    <label for="nome" class="col-sm-2 control-label">Bairro:</label>
 				    <div class="col-sm-8">
 						<p:inputText styleClass="form-control" value="#{termoCompromissoBean.aluno.endereco.bairro}" maxlength="80"
-						required="true" requiredMessage="Você deve informar o bairro da empresa!"/>				    
+						required="true" requiredMessage="Você deve informar o seu bairro!"/>				    
 				    </div>
 		    	</div>
 		    	<div class="form-group">
 				    <label for="nome" class="col-sm-2 control-label">CEP:</label>
 				    <div class="col-sm-8">
 						<p:inputText styleClass="form-control" value="#{termoCompromissoBean.aluno.endereco.cep}" maxlength="8"
-						required="true" requiredMessage="Você deve informar o CEP da empresa!"/>				    
+						required="true" requiredMessage="Você deve informar o seu CEP!"/>				    
 				    </div>
 		    	</div>
 		    	<div class="form-group">
 				    <label for="nome" class="col-sm-2 control-label">Cidade:</label>
 				    <div class="col-sm-8">
 						<p:inputText styleClass="form-control" value="#{termoCompromissoBean.aluno.endereco.cidade}" maxlength="80"
-						required="true" requiredMessage="Você deve informar a cidade da empresa!"/>				    
+						required="true" requiredMessage="Você deve informar a sua cidade!"/>				    
 				    </div>
 		    	</div>
 		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">UF:</label>
+				    <label for="nome" class="col-sm-2 control-label">Curso:</label>
 				    <div class="col-sm-8">
 						<p:inputText styleClass="form-control" value="#{termoCompromissoBean.aluno.endereco.uf}" maxlength="2"
-						required="true" requiredMessage="Você deve informar o UF da empresa!"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Telefone:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{termoCompromissoBean.aluno.telefone}" maxlength="80"
-						required="true" requiredMessage="Você deve informar o seu telefone!"/>				    
+						required="true" requiredMessage="Você deve informar o seu curso!"/>				    
 				    </div>
 		    	</div>
 		    	<div class="form-group">
@@ -161,7 +161,6 @@
 						required="true" requiredMessage="Você deve informar o seu semestre atual!"/>			    
 				    </div>
 		    	</div>
-            </p:panel>
             </p:panel>
         </p:tab>
  
