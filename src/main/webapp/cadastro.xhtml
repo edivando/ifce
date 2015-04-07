@@ -48,6 +48,17 @@
 	                	<h:form>
 	                		<div class="form-horizontal">
 	                			<div class="form-group">
+								    <div class="col-sm-12 text-center">
+								    	<p:selectOneButton value="#{loginBean.usuario.tipoUsuario}">
+							            	<f:selectItem itemLabel="Aluno" itemValue="ALUNO"/>
+							            	<f:selectItem itemLabel="Instituição" itemValue="INSTITUICAO" />
+							            	<f:selectItem itemLabel="Empresa" itemValue="EMPRESA" />
+							        	</p:selectOneButton>		    
+								    </div>
+						    	</div>
+	                		</div>
+	                		<div class="form-horizontal">
+	                			<div class="form-group">
 								    <label for="nome" class="col-sm-2 control-label">Nome:</label>
 								    <div class="col-sm-10">
 								    	<p:inputText value="#{loginBean.usuario.nome}" placeholder="Seu nome completo..." styleClass="form-control"
@@ -73,19 +84,6 @@
 								    	<p:password value="#{loginBean.usuario.senha}" placeholder="Senha" styleClass="form-control"
 								    		maxlength="20" rendered="true" requiredMessage="Você deve informar o sua senha!"
 								    		id="senha"/>			    
-								    </div>
-						    	</div>
-	                		</div>
-	                		<div class="form-horizontal">
-	                			<div class="form-group">
-								    <label for="email" class="col-sm-2 control-label"></label>
-								    <div class="col-sm-10">
-								    	<p:selectOneMenu value="#{loginBean.usuario.tipoUsuario}" style="width:250px">
-							            	<f:selectItem itemLabel="Selecione" itemValue="" />
-							            	<f:selectItem itemLabel="Aluno" itemValue="ALUNO" />
-							            	<f:selectItem itemLabel="Instituição" itemValue="INSTITUICAO" />
-							            	<f:selectItem itemLabel="Empresa" itemValue="EMPRESA" />
-							        	</p:selectOneMenu>		    
 								    </div>
 						    	</div>
 	                		</div>
