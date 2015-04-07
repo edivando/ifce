@@ -9,8 +9,39 @@
 	<ui:define name="title">Turnos</ui:define>
 	<ui:define name="container">
 	
-	   Termo de Compromisso
-		
+	<h:form>
+	<p:wizard >
+        <p:tab id="personal" title="Personal">
+            <p:panel header="Personal Details">
+                <p:messages />
+                AAAA
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="address" title="Address">
+            <p:panel header="Address Details">
+                <p:messages />
+                BBB
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="contact" title="Contact">
+            <p:panel header="Contact Information">
+                <p:messages />
+                CCCC
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="confirm" title="Confirmation">
+            <p:panel header="Confirmation">
+                
+                DDDD
+ 
+                <p:commandButton value="Submit" update="growl" process="@this"/>
+            </p:panel>
+        </p:tab>
+    </p:wizard>
+ 	</h:form>
 	</ui:define>
 </ui:composition>
 </html>
