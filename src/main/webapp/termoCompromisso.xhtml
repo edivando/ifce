@@ -33,8 +33,7 @@
         </p:tab>
  
         <p:tab id="confirm" title="Confirmação">
-            <p:panel header="Termo de Compromisso">
-
+            <p:panel>
                 <h:panelGroup id="termoPrint">
                 	<div class="text-center">
                 		<p:graphicImage id="image" url="resources/images/ifce.jpeg" width="200"/><br/><br/>
@@ -49,37 +48,87 @@
 	                	</strong>
 	                </div>
                 	<br/>
-                	<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Em conformidade com a Lei nº 11.788, de 25/09/2008, 
+                	<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Em conformidade com a Lei nº 11.788, de 25/09/2008, 
                 		o INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DO CEARÁ,
                 	</strong>
                 		 interveniente obrigatório neste instrumento, representado por seu Coordenador de 
                 		 Acompanhamentos de estágios doravante denominado, simplesmente, <strong>IFCE</strong>, 
                 		 e do outro lado, a empresa (nome) <ins>#{termoCompromissoBean.empresa.nome}</ins> , 
-                		 CNPJ Nº<ins>#{termoCompromissoBean.empresa.cnpj}</ins>, 
+                		 CNPJ Nº<ins>#{termoCompromissoBean.empresa.cnpj}&nbsp;&nbsp;</ins>, 
                 		 situada a Rua (Av.), Bairro______, CEP. _______, 
-                		 Fone: <ins>#{termoCompromissoBean.empresa.telefone}</ins>, 
+                		 Fone: <ins>#{termoCompromissoBean.empresa.telefone}&nbsp;&nbsp;</ins>, 
                 		 Fax:______, ramo de atividade________, 
-                		 E-mail <ins>#{termoCompromissoBean.empresa.email}</ins>, doravante designada 
+                		 E-mail <ins>#{termoCompromissoBean.empresa.email}&nbsp;&nbsp;</ins>, doravante designada 
                 		 <strong>PARTE CONCEDENTE</strong>, 
-                		 e o estagiário <ins>#{termoCompromissoBean.aluno.nome}</ins>, 
-                		 CPF Nº <ins>#{termoCompromissoBean.aluno.cpf}</ins>, 
-                		 data de nascimento <ins>#{termoCompromissoBean.aluno.dataNascimento}</ins>, 
-                		 residente na Rua (Av.) <ins>#{termoCompromissoBean.aluno.endereco.endereco}</ins> nº ___, 
-                		 Complemento ___,Bairro <ins>#{termoCompromissoBean.aluno.endereco.bairro}</ins>, 
-                		 Cidade <ins>#{termoCompromissoBean.aluno.endereco.cidade}</ins>, 
-                		 CEP. <ins>#{termoCompromissoBean.aluno.endereco.cep}</ins>, 
-                		 aluno de <ins>#{termoCompromissoBean.aluno.curso.nome}</ins>, 
+                		 e o estagiário <ins>#{termoCompromissoBean.aluno.nome}&nbsp;&nbsp;</ins>, 
+                		 CPF Nº <ins>#{termoCompromissoBean.aluno.cpf}&nbsp;&nbsp;</ins>, 
+                		 data de nascimento <ins>#{termoCompromissoBean.aluno.dataNascimento}&nbsp;&nbsp;</ins>, 
+                		 residente na Rua (Av.) <ins>#{termoCompromissoBean.aluno.endereco.endereco}&nbsp;&nbsp;</ins> nº ___, 
+                		 Complemento ___,Bairro <ins>#{termoCompromissoBean.aluno.endereco.bairro}&nbsp;&nbsp;</ins>, 
+                		 Cidade <ins>#{termoCompromissoBean.aluno.endereco.cidade}&nbsp;&nbsp;</ins>, 
+                		 CEP. <ins>#{termoCompromissoBean.aluno.endereco.cep}&nbsp;&nbsp;</ins>, 
+                		 aluno de <ins>#{termoCompromissoBean.aluno.curso.nome}&nbsp;&nbsp;</ins>, 
                 		 Semestre_____, desta instituição de ensino, resolvem firmar o presente 
                 		 <strong>Termo de Compromisso de estágio</strong>, mediante as cláusulas e condições 
                 		 a seguir estabelecidas:<br/><br/>
                 		 
                 		 <strong>PRIMEIRA -></strong> As atividades desenvolvidas pelo estagiário devem ser compatíveis com a formação recebida no Curso, conforme plano de atividades em anexo.<br/>
 						 <strong>SEGUNDA  -></strong> Caberá à parte concedente:<br/>
-						 <ol>
+						 <ol type="a">
   							<li>Oferecer ao estagiário condições de desenvolvimento vivencial, treinamento prático e de relacionamento humano com observância do plano de atividades do estagiário que passa a ser parte integrante deste documento.</li>
+  							<li>Proporcionar à instituição de ensino condições para aprimoramento e avaliação do estagiário.
+Designar profissional qualificado como supervisor do estagiário.</li>
+							<li>Estabelecer nos períodos de atividade acadêmicas redução de pelo menos a metade da jornada a ser cumprida em estágio.</li>
+							<li>Conceder período de 30 dias de recesso ao estagiário sempre que o estágio tenha duração igual ou superior a 01(um) ano ou proporcional quando de duração inferior a ser gozado preferencialmente durante as férias escolares.</li>
+							<li>Fornecer, por ocasião do desligamento do estagiário, termo de realização do estágio com indicação resumida das atividades desenvolvidas, dos períodos e da avaliação de desempenho.</li>
 						</ol>
-		
-                		
+						<strong>TERCEIRA -></strong> Caberá ao Estagiário:
+						<ol type="a">
+							<li>Cumprir as atividades estabelecidas pela parte concedente de acordo com a cláusula primeira;</li>
+							<li>Observar as normas internas da parte concedente;</li>
+							<li>Cumprir as instruções contidas no Manual do Estagiário elaborado pela instituição de ensino.</li>
+						</ol>
+						<strong>QUARTA -></strong> O Horário do estágio será das __ às __ horas, e de __ às ___ horas perfazendo ___ horas semanais, devendo esta jornada ser compatível com o horário escolar do estagiário.<br/>
+						<strong>QUINTA -></strong> Este Termo de Compromisso terá vigência de __/__/__ a __/__/__, podendo ser rescindido a qualquer tempo, unilateralmente, mediante comunicação escrita, independente de pre-aviso, inexistindo qualquer indenização e vínculo de emprego.<br/>
+						<strong>SEXTA -></strong> A parte concedente remunerará mensalmente  estagiário através de uma bolsa-auxilio, no valor de R$___ ( ____ )  e de auxilio-transporte no valor de R$ ____ (____).<br/>
+						<strong>SÉTIMA -></strong> A parte concedente, neste ato, oferece ao estagiário seguro contra acidentes pessoais, com cobertura limitada ao local e período de estágio, mediante apólice nº ___ da Companhia___, comprovado mediante fotocópia da apólice.<br/>
+						<strong>OITAVA -></strong> A Empresa designa o funcionário ____ cargo/qualificacao:________ para ser o supervisor(a) interno do estagiário, que fica responsável pelo acompanhamento e programação das atividades a serem desempenhadas no estágio.<br/>
+						<strong>NONA -></strong> Constituem motivos para cessação automática do presente Termo de Compromisso:
+						<ol type="a">
+							<li>A conclusão ou abandono do estágio/bolsa ou cancelamento da matrícula.</li>
+							<li>O não cumprimento das cláusulas estabelecidas neste documento.</li>
+							<li>Trancamento ou abandono do semestre ou do curso</li>
+							<li>Pedido de revisão por parte do aluno ou da parte concedente.</li>
+						</ol>
+Estando de acordo com o que ficou acima expresso, vai o presente instrumento assinado, em três vias de igual teor, pelas partes.
+
+					<br/><br/>
+					<div class="text-right">
+						<strong>
+							Fortaleza,_________de_____________________________de_________.
+						</strong>
+					</div>
+					<br/><br/>
+					<div class="row">
+						<div class="col-lg-4 text-center">
+							_________________________________<br/>
+							Empresa<br/>
+							(Assinatura e Carimbo)
+							
+						</div>
+						<div class="col-lg-4 text-center">
+							_________________________________<br/>
+							Aluno Estagiário/Bolsista<br/>
+							(Assinatura)
+						</div>
+						<div class="col-lg-4 text-center">
+							_________________________________<br/>
+							Instituição de Ensino<br/>
+							Coordenadoria de Estágios<br/>
+							(Assinatura e Carimbo)
+						</div>
+					</div>
+
                 </h:panelGroup>
                	<br/>
                	<div class="text-center">
