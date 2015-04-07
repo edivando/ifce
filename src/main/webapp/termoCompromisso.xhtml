@@ -14,7 +14,14 @@
         <p:tab id="empresa" title="Empresa">
             <p:panel>
                 <p:messages />
-                Empresa
+                <div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Nome da empresa:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" value="#{termoCompromissoBean.empresa.nome}" maxlength="80"
+							required="true" requiredMessage="Você deve informar o nome da empresa!"
+							placeholder="Nome da empresa"/>				    
+				    </div>
+		    	</div>
             </p:panel>
         </p:tab>
  
