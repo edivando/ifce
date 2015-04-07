@@ -76,8 +76,10 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@Getter @Setter
 	private Endereco endereco;
 	
-	public Aluno(){}
-	
+	public Aluno(){
+		endereco = new Endereco();
+	}
+
 	public Aluno(Integer idUsuario, String nome){
 		this.idUsuario = idUsuario;
 		this.nome = nome;
