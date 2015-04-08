@@ -12,6 +12,7 @@ import lombok.Setter;
 import br.edu.ifce.dao.EmpresaDAO;
 import br.edu.ifce.entity.Aluno;
 import br.edu.ifce.entity.Empresa;
+import br.edu.ifce.entity.VagaEstagio;
 
 /**
  * 
@@ -28,6 +29,9 @@ public class TermoCompromissoBean implements Serializable{
 	@Getter @Setter
 	private Empresa empresa = new Empresa();
 	private List<Empresa> empresas;
+	
+	@Getter @Setter
+	private VagaEstagio vagaEstagio = new VagaEstagio();
 	
 	@Setter
 	@ManagedProperty("#{loginBean}")

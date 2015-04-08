@@ -1,5 +1,7 @@
 package br.edu.ifce.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -54,4 +56,37 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	@Getter @Setter
 	private Turno turno;
 	
+	@Getter @Setter
+	private Date horaInicioEstagio;
+	
+	@Getter @Setter
+	private Date horaFimOuIntervalo;
+	
+	@Getter @Setter
+	private Date horaRetorno;
+	
+	@Getter @Setter
+	private Date horaFimEstagio;
+
+	@Getter @Setter
+	private Date vigenciaInicio;
+	
+	@Getter @Setter
+	private Date vigenciaFim;
+
+	@Getter @Setter
+	private Double valorTransporte;
+	
+	@Getter @Setter
+    private Integer apoliceNumero;
+    
+	@Getter @Setter
+	private String apoliceEmpresa;
+	
+	@Getter @Setter
+    private String supervisorEstagio;
+    
+    @Getter @Setter
+    private String supervisorCargo;
+
 }

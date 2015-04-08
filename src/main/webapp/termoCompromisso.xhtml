@@ -24,8 +24,8 @@
 		    	<div class="form-group">
 				    <label for="nome" class="col-sm-2 control-label">CNPJ:</label>
 				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{termoCompromissoBean.empresa.cnpj}" maxlength="14"
-							required="true" requiredMessage="Você deve informar o CNPJ da empresa!"/>				    
+						<p:inputMask styleClass="form-control" value="#{termoCompromissoBean.empresa.cnpj}" maxlength="14"
+							required="true" requiredMessage="Você deve informar o CNPJ da empresa!" mask="99.999.999/9999-99"/>				    
 				    </div>
 		    	</div>
 		    	<div class="form-group">
@@ -45,8 +45,8 @@
 		    	<div class="form-group">
 				    <label for="nome" class="col-sm-2 control-label">CEP:</label>
 				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{termoCompromissoBean.empresa.endereco.cep}" maxlength="8"
-						required="true" requiredMessage="Você deve informar o CEP da empresa!"/>				    
+						<p:inputMask styleClass="form-control" value="#{termoCompromissoBean.empresa.endereco.cep}" maxlength="8"
+						required="true" requiredMessage="Você deve informar o CEP da empresa!" mask="99999-99"/>				    
 				    </div>
 		    	</div>
 		    	<div class="form-group">
@@ -66,8 +66,8 @@
 		    	<div class="form-group">
 				    <label for="nome" class="col-sm-2 control-label">Telefone:</label>
 				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{termoCompromissoBean.empresa.telefone}" maxlength="80"
-						required="true" requiredMessage="Você deve informar o telefone da empresa!"/>				    
+						<p:inputMask styleClass="form-control" value="#{termoCompromissoBean.empresa.telefone}" maxlength="80"
+						required="true" requiredMessage="Você deve informar o telefone da empresa!" mask="(99) 9999-9999?9"/>				    
 				    </div>
 		    	</div>
 		    	<div class="form-group">
@@ -81,7 +81,7 @@
 				    <label for="nome" class="col-sm-2 control-label">Email:</label>
 				    <div class="col-sm-8">
 						<p:inputText styleClass="form-control" value="#{termoCompromissoBean.empresa.email}" maxlength="80"
-						required="true" requiredMessage="Você deve informar o email da empresa!"/>				    
+						required="true" requiredMessage="Você deve informar o email da empresa!" type="email"/>				    
 				    </div>
 		    	</div>
 		    	<div class="form-group">
@@ -167,7 +167,15 @@
         <p:tab id="estagio" title="Dados do Estágio">
             <p:panel header="Contact Information">
                 <p:messages />
-                Estágio
+                Horas Semanai<br/>
+                Horário Diário<br/>
+                Data Inicio e Fim vigencia do termo<br/>
+                Valor da Bolsa<br/>
+                Valor auxilio transporte<br/>
+                Apolice nº<br/>
+                Apolice Empresa<br/>
+                Funcionário<br/>
+                CargoFuncionario<br/>
             </p:panel>
         </p:tab>
  
@@ -191,23 +199,28 @@
                 		o INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DO CEARÁ,
                 	</strong>
                 		 interveniente obrigatório neste instrumento, representado por seu Coordenador de 
-                		 Acompanhamentos de estágios doravante denominado, simplesmente, <strong>IFCE</strong>, 
-                		 e do outro lado, a empresa (nome) <ins>#{termoCompromissoBean.empresa.nome}</ins> , 
-                		 CNPJ Nº<ins>#{termoCompromissoBean.empresa.cnpj}&nbsp;&nbsp;</ins>, 
-                		 situada a Rua (Av.), Bairro______, CEP. _______, 
+                		 Acompanhamentos de estágios doravante denominado, simplesmente, <strong>IFCE</strong>, e do outro lado, 
+                		 a empresa (nome) <ins>#{termoCompromissoBean.empresa.nome}&nbsp;&nbsp;</ins> , 
+                		 CNPJ Nº <ins>#{termoCompromissoBean.empresa.cnpj}&nbsp;&nbsp;</ins>, 
+                		 situada a Rua (Av.) <ins>#{termoCompromissoBean.empresa.endereco.endereco}&nbsp;&nbsp;</ins>,     
+                		 Bairro <ins>#{termoCompromissoBean.empresa.endereco.bairro}&nbsp;&nbsp;</ins>,
+                		 CEP. <ins>#{termoCompromissoBean.empresa.endereco.cep}&nbsp;&nbsp;</ins>,
                 		 Fone: <ins>#{termoCompromissoBean.empresa.telefone}&nbsp;&nbsp;</ins>, 
-                		 Fax:______, ramo de atividade________, 
-                		 E-mail <ins>#{termoCompromissoBean.empresa.email}&nbsp;&nbsp;</ins>, doravante designada 
-                		 <strong>PARTE CONCEDENTE</strong>, 
+                		 Fax:___________________, 
+                		 ramo de atividade <ins>#{termoCompromissoBean.empresa.ramoAtividade}&nbsp;&nbsp;</ins>,
+                		 E-mail <ins>#{termoCompromissoBean.empresa.email}&nbsp;&nbsp;</ins>, 
+                		 doravante designada <strong>PARTE CONCEDENTE</strong>, 
                 		 e o estagiário <ins>#{termoCompromissoBean.aluno.nome}&nbsp;&nbsp;</ins>, 
                 		 CPF Nº <ins>#{termoCompromissoBean.aluno.cpf}&nbsp;&nbsp;</ins>, 
                 		 data de nascimento <ins>#{termoCompromissoBean.aluno.dataNascimento}&nbsp;&nbsp;</ins>, 
-                		 residente na Rua (Av.) <ins>#{termoCompromissoBean.aluno.endereco.endereco}&nbsp;&nbsp;</ins> nº ___, 
-                		 Complemento ___,Bairro <ins>#{termoCompromissoBean.aluno.endereco.bairro}&nbsp;&nbsp;</ins>, 
+                		 residente na Rua (Av.) <ins>#{termoCompromissoBean.aluno.endereco.endereco}&nbsp;&nbsp;</ins> 
+                		 nº __________, 
+                		 Complemento ___________________________,
+                		 Bairro <ins>#{termoCompromissoBean.aluno.endereco.bairro}&nbsp;&nbsp;</ins>, 
                 		 Cidade <ins>#{termoCompromissoBean.aluno.endereco.cidade}&nbsp;&nbsp;</ins>, 
                 		 CEP. <ins>#{termoCompromissoBean.aluno.endereco.cep}&nbsp;&nbsp;</ins>, 
                 		 aluno de <ins>#{termoCompromissoBean.aluno.curso.nome}&nbsp;&nbsp;</ins>, 
-                		 Semestre_____, desta instituição de ensino, resolvem firmar o presente 
+                		 Semestre <ins>#{termoCompromissoBean.aluno.semestreAtual}&nbsp;&nbsp;</ins>, desta instituição de ensino, resolvem firmar o presente 
                 		 <strong>Termo de Compromisso de estágio</strong>, mediante as cláusulas e condições 
                 		 a seguir estabelecidas:<br/><br/>
                 		 
