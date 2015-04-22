@@ -30,7 +30,7 @@ public class TermoCompromissoBean implements Serializable{
 	private Empresa empresa = new Empresa();
 	private List<Empresa> empresas;
 	
-	@Getter @Setter
+	@Setter
 	private VagaEstagio vagaEstagio = new VagaEstagio();
 	
 	@Setter
@@ -43,8 +43,13 @@ public class TermoCompromissoBean implements Serializable{
 		return loginBean.getAluno();
 	}
 	
+	public VagaEstagio getVagaEstagio() {
+		return vagaEstagio == null ? vagaEstagio = new VagaEstagio() : vagaEstagio;
+	}
+	
 	public List<Empresa> getEmpresas(){
 		return empresas == null ? empresas = empresaDAO.findAll() : empresas;
 	}
+	
 
 }

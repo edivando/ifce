@@ -165,17 +165,52 @@
         </p:tab>
  
         <p:tab id="estagio" title="Dados do Estágio">
-            <p:panel header="Contact Information">
+            <p:panel header="Contact Information" styleClass="form-horizontal">
                 <p:messages />
-                Horas Semanai<br/>
-                Horário Diário<br/>
-                Data Inicio e Fim vigencia do termo<br/>
-                Valor da Bolsa<br/>
-                Valor auxilio transporte<br/>
-                Apolice nº<br/>
-                Apolice Empresa<br/>
-                Funcionário<br/>
-                CargoFuncionario<br/>
+                <div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Horas Semanais:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" maxlength="80" />			    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Valor da Bolsa:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" maxlength="80" />			    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Valor auxilio transporte:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" maxlength="80" />			    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Apolice nº:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" maxlength="80" />			    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Apolice Empresa:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" maxlength="80" />			    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Funcionário Responsável:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" maxlength="80" />			    
+				    </div>
+		    	</div>
+		    	<div class="form-group">
+				    <label for="nome" class="col-sm-2 control-label">Cargo do Funcionario:</label>
+				    <div class="col-sm-8">
+						<p:inputText styleClass="form-control" maxlength="80" />			    
+				    </div>
+		    	</div>
+                <!-- Horário Diário<br/>
+                Data Inicio e Fim vigencia do termo<br/> -->
             </p:panel>
         </p:tab>
  
@@ -206,7 +241,7 @@
                 		 Bairro <ins>#{termoCompromissoBean.empresa.endereco.bairro}&nbsp;&nbsp;</ins>,
                 		 CEP. <ins>#{termoCompromissoBean.empresa.endereco.cep}&nbsp;&nbsp;</ins>,
                 		 Fone: <ins>#{termoCompromissoBean.empresa.telefone}&nbsp;&nbsp;</ins>, 
-                		 Fax:___________________, 
+                		 Fax:<ins>#(85) 3224-5434&nbsp;&nbsp;</ins>, 
                 		 ramo de atividade <ins>#{termoCompromissoBean.empresa.ramoAtividade}&nbsp;&nbsp;</ins>,
                 		 E-mail <ins>#{termoCompromissoBean.empresa.email}&nbsp;&nbsp;</ins>, 
                 		 doravante designada <strong>PARTE CONCEDENTE</strong>, 
