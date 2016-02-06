@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="#{localeBean.locale}" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+<h:head class="header fixed-top clearfix">
+	<ui:include src="/template/templatePageHeader.xhtml" />
+</h:head>
+<h:body>
+	<section id="container" >
+		<ui:include src="/template/private/templateMenuTop.xhtml" /> 
+		<ui:include src="/template/private/templateMenuLateral.xhtml" />
+	
+	    <section id="main-content">
+	        <section class="wrapper">
+	       		
+	       		<h:form id="formAll">
+	       			<div class="row">
+		                <div class="col-md-12">
+		                    <ul class="breadcrumb">
+		                        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+		                        <li class="active"><a href="#{headerLink}">#{headerTitle}</a></li>
+		                    </ul>
+		                </div>
+		            </div>
+					<p:growl id="growl" for="growl" showDetail="true" globalOnly="true" escape="false"/>
+					<p:messages id="messages" for="messages" showDetail="false" showSummary="true" closable="true" />
+					
+					<p:dataTable id="#{id}Table" var="entity" value="#{view.entitys}" 
+						paginator="true" rows="20" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						emptyMessage="#{emptyMessage}" rendered="#{!view.form}" resizableColumns="true" paginatorPosition="top">
+					
+						<p:column width="40" rendered="#{rowToggler}" >
+			            	<p:rowToggler/>
+			        	</p:column>
+					
+						<p:column width="120" styleClass="text-center" rendered="#{btnEdit or btnRemove}" >
+							<f:facet name="header">
+								<p:commandLink update="@form" actionListener="#{view.form}" styleClass="btn btn-primary" rendered="#{!view.form and btnNew}">
+									<f:setPropertyActionListener target="#{view.entity}" value=""/>
+									<i class="fa fa-plus" />
+						 			Novo
+								</p:commandLink>
+							</f:facet>
+						
+			 				<p:commandLink update=":formAll" actionListener="#{view.form}" styleClass="btn btn-outline" rendered="#{btnEdit}" >
+					 			<f:setPropertyActionListener target="#{view.entity}" value="#{entity}"/>
+					 			<i class="fa fa-edit text-info" />
+							</p:commandLink>
+							&nbsp;
+							<p:commandLink actionListener="#{view.remove(entity)}" update=":formAll" styleClass="btn btn-outline" rendered="#{btnRemove}" >
+								<i class="fa fa-trash-o text-danger" />
+						        <p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
+						    </p:commandLink>
+			 
+						    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						    </p:confirmDialog>
+						</p:column>
+						
+						<ui:insert name="contentGrid" />
+					</p:dataTable>
+		
+					<p:panel rendered="#{view.form}" styleClass="form-horizontal">
+						<p:focus />
+						<f:facet name="header">
+							<span class="lead">
+								<i class="fa #{headerIcon}"/> #{formTitle}
+							</span>
+							<p:commandLink  action="#{view.grid}" update=":formAll" styleClass="pull-right btn btn-danger btn-sm" title="Back" immediate="true"
+								rendered="#{btnBack}" >
+								<i class="fa fa-reply-all" />
+								Back
+							</p:commandLink>
+							<p:commandLink  action="#{view.save}" update=":formAll" styleClass="pull-right btn btn-info btn-sm" title="Salvar"
+								style="margin-right: 10px;" rendered="#{btnSave}" >
+								<i class="fa fa-save" />
+								Salvar
+							</p:commandLink>
+						</f:facet>
+						
+						<ui:insert name="contentForm" />
+							
+					</p:panel>
+				</h:form>
+
+	        </section>
+	    </section>
+	
+		<div class="right-sidebar">
+			<div class="search-row">
+			    <input type="text" placeholder="Pesquisar" class="form-control"/>
+			</div>
+		
+			<div class="right-stat-bar">
+				<ul class="right-side-accordion">
+		
+					<li class="widget-collapsible">
+					  	<a href="#" class="head widget-head red-bg active clearfix">
+					        <span class="pull-left">Novas Vagas</span>
+					        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+					    </a>
+
+					</li>
+		
+					<li class="widget-collapsible">
+					    <a href="#" class="head widget-head purple-bg active">
+					        <span class="pull-left"> Top Mais </span>
+					        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+					    </a>
+					    <ul class="widget-container">
+					        <li>                     
+					            <div class="prog-row">
+					                <div class="user-thumb rsn-activity">
+					                    <i class="fa  fa-thumbs-o-up"></i>
+					                </div>
+					                <div class="rsn-details ">
+					                    <p class="text-muted">
+					                        #5
+					                    </p>
+					                    <p>
+					                        <a href="#"> Programador Ruby </a>
+					                        40 candidatos se insteressaram nessa vaga
+					                    </p>
+					                </div>
+					            </div>            
+					        </li>
+					    </ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<h:form>
+		<p:remoteCommand name="logoff" action="#{loginBean.logoff}" />
+	</h:form>
+	<ui:include src="/template/templateIncludeJS.xhtml" />
+</h:body>
+</f:view>
+</html>

@@ -5,62 +5,38 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-<ui:composition template="/layout/layoutPrivateDefault.xhtml">
-	<ui:define name="title">Turnos</ui:define>
-	<ui:define name="container">
-	    <h:form>
-			<p:dataTable id="cursoTable" var="curso" value="#{cursoBean.cursos}" paginator="true"
-				emptyMessage="Nenhuma curso encontrado!" rendered="#{!cursoBean.form}">
-				<p:column width="180" styleClass="text-center">
-					<f:facet name="header">
-						<p:commandLink action="#{cursoBean.form}" update="@form" title="Cadastrar novo curso" styleClass="btn btn-primary btn-sm">
-							<i class="fa fa-plus-square"/>
-							Novo
-						</p:commandLink>
-					</f:facet>
-					<p:commandLink update="@form" actionListener="#{cursoBean.form}" styleClass="btn btn-primary btn-sm">
-			 			<f:setPropertyActionListener target="#{cursoBean.curso}" value="#{curso}"/>
-			 			<i class="fa fa-pencil"/>
-			 			Editar
-					</p:commandLink>&nbsp;
-					<p:commandLink action="#{cursoBean.excluir}" update="@form" styleClass="btn btn-danger btn-sm"> 
-						<f:setPropertyActionListener target="#{cursoBean.curso}" value="#{curso}"/>
-						<i class="fa fa-times-circle"/>  
-						Excluir
-						<p:confirm header="Excluir Curso" message="Deseja realmente excluir este Curso?" icon="ui-icon-alert" /> 
-				   	</p:commandLink>  
-				 	<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
-				        <p:commandButton value="Sim, Claro" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
-				        <p:commandButton value="Não, ainda não!" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
-				    </p:confirmDialog> 
-				</p:column>
-				<p:column headerText="Curso">
-					#{curso.nome}
-				</p:column>
-			</p:dataTable>
-			<p:panel header="Campus" rendered="#{cursoBean.form}" styleClass="form-horizontal">
-				
-				<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Campus:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{cursoBean.curso.nome}" maxlength="80"
-							rendered="true" requiredMessage="Você deve informar o nome do Curso!"/>				    
-				    </div>
-		    	</div>
-				<div class="text-center">
-					<p:commandLink action="#{cursoBean.salvar}" update="@form" styleClass="btn btn-primary btn-sm">
-						<i class="fa fa-save" />
-						Salvar
-					</p:commandLink>
-					&nbsp;
-					<p:commandLink  action="#{cursoBean.grid}" update="@form" styleClass="btn btn-danger btn-sm">
-						<i class="fa fa-reply-all" />
-						Cancelar
-					</p:commandLink>
-				</div>
-			</p:panel>
-		</h:form>
-	    
+<ui:composition template="/layout/layoutPrivateBasic.xhtml">
+	<ui:define name="title">IFCE Estágios - Curso</ui:define>
+	
+	<ui:param name="id" value="curso" />
+	<ui:param name="view" value="#{cursoBean}" />
+	<ui:param name="headerIcon" value="fa-book" />
+	<ui:param name="headerTitle" value="Cursos" />
+	<ui:param name="headerLink" value="curso.html" />
+	<ui:param name="formTitle" value="Curso" />
+	<ui:param name="emptyMessage" value="Nenhum curso cadastrado!" />
+	<ui:param name="btnNew" value="true" />
+	<ui:param name="btnBack" value="true" />
+	<ui:param name="btnSave" value="true" />
+	<ui:param name="btnEdit" value="true" />
+	<ui:param name="btnRemove" value="true" />
+	
+	<ui:define name="contentGrid">
+		<p:column headerText="Instituição">
+			#{entity.nome}
+		</p:column>
+	</ui:define>
+	<ui:define name="contentForm">
+		<div class="form-group">
+			<label for="inputNome" class="col-sm-2 control-label">Curso:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputNome" value="#{cursoBean.entity.nome}" placeholder="Nome do Curso" styleClass="form-control" 
+					required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputNome"  />
+			</div>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

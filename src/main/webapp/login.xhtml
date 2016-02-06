@@ -6,82 +6,66 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/layout/layoutPublicDefault.xhtml">
-	<ui:define name="title">Turnos</ui:define>
+	<ui:define name="title">IFCE Estágios - Login</ui:define>
 		<ui:define name="menu">	
 		<div class="horizontal-menu navbar-collapse collapse ">
         	<ul class="nav navbar-nav">
-        	    <li><a href="index.html">Home</a></li>
-            	<li><a href="cadastro.html">Cadastro</a></li>
+        	    <!-- <li><a href="index.html">Home</a></li>
+            	<li><a href="cadastro.html">Cadastro</a></li> -->
             	<li class="active"><a href="login.html">Login</a></li>
            	</ul>
     	</div>
 	</ui:define>
 	<ui:define name="container">
+	<br/><br/><br/><br/><br/><br/>
 	<div class="row">
-	        <div class="col-sm-7">
-	            <section class="panel">
-	                <header class="panel-heading">
-	                    Title
-	          		<span class="tools pull-right">
-	                	<a href="javascript:;" class="fa fa-chevron-down"></a>
-	                  	<a href="javascript:;" class="fa fa-cog"></a>
-	                  	<a href="javascript:;" class="fa fa-times"></a>
-	               	</span>
-	                </header>
-	                <div class="panel-body">
-	                	edivando7@gmail.com -- Admin<br/>
-	                	yuri@gmail.com -- Empresa<br/>
-	                	dd@gmail.com -- Instituição<br/>
-	                	tereza@gmail.com -- Aluno<br/>
-	                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-	                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-	                </div>
-	            </section>
-	        </div>
-	         <div class="col-sm-5">
-	            <section class="panel">
-	                <header class="panel-heading">
-	                    Login
-	          		<span class="tools pull-right">
-	                	<a href="javascript:;" class="fa fa-chevron-down"></a>
-	                  	<a href="javascript:;" class="fa fa-cog"></a>
-	                  	<a href="javascript:;" class="fa fa-times"></a>
-	               	</span>
-	                </header>
-	                <div class="panel-body">
-	                	<h:form>
-	                		<div class="form-horizontal">
-	                			<div class="form-group">
-								    <label for="email" class="col-sm-2 control-label">Email:</label>
-								    <div class="col-sm-10">
-								    	<p:inputText value="#{loginBean.usuario.email}" placeholder="Email..." styleClass="form-control"
-								    		id="email"/>			    
-								    </div>
-						    	</div>
-	                		</div>
-	                		<div class="form-horizontal">
-	                			<div class="form-group">
-								    <label for="email" class="col-sm-2 control-label">Senha:</label>
-								    <div class="col-sm-10">
-								    	<p:password value="#{loginBean.usuario.senha}" placeholder="Senha" styleClass="form-control"
-								    		id="senha"/>			    
-								    </div>
-						    	</div>
-	                		</div>
-	                		
-	                		<hr/>
-							<div class="text-center">
-								<p:commandLink action="#{loginBean.login}" update="@form" styleClass="btn btn-info" 
-									type="submit">
-									<i class="fa fa-save"/>
-									Login
-								</p:commandLink>
-							</div>
-						</h:form>
-	                </div>
-	            </section>
-	        </div>
-	    </div>
+		<div class="col-md-4"/>
+		<div class="col-md-4">
+			<section class="panel">
+				<br/><br/>
+                <div class="panel-body">
+                	<h:form>
+                		<div class="form-horizontal">
+                			<div class="form-group">
+							    <label for="email" class="col-sm-2 control-label">Email:</label>
+							    <div class="col-sm-10">
+							    	<p:inputText value="#{loginBean.usuario.email}" placeholder="Email..." styleClass="form-control"
+							    		id="email"/>			    
+							    </div>
+					    	</div>
+                		</div>
+                		<br/>
+                		<div class="form-horizontal">
+                			<div class="form-group">
+							    <label for="email" class="col-sm-2 control-label">Senha:</label>
+							    <div class="col-sm-10">
+							    	<p:password value="#{loginBean.usuario.senha}" placeholder="Senha" styleClass="form-control"
+							    		id="senha"/>			    
+							    </div>
+					    	</div>
+                		</div>
+                		<br/>
+                		<hr/>
+						<div class="text-center">
+							<p:commandLink action="#{loginBean.login}" update="@form" styleClass="btn btn-info" 
+								type="submit">
+								<i class="fa fa-save"/>
+								Login
+							</p:commandLink>
+						</div>
+					</h:form>
+                </div>
+            </section>
+		</div>
+		<div class="col-md-4"/>
+	</div>
+
+
+edivando7@gmail.com -- Admin<br/>
+yuri@gmail.com -- Empresa<br/>
+dd@gmail.com -- Instituição<br/>
+tereza@gmail.com -- Aluno<br/>
+
 	</ui:define>
 </ui:composition>
 </html>

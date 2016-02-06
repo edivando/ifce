@@ -5,117 +5,86 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-<ui:composition template="/layout/layoutPrivateDefault.xhtml">
-	<ui:define name="title">Turnos</ui:define>
-	<ui:define name="container">
-	    <h:form>
-			<p:dataTable id="alunoTable" var="aluno" value="#{alunoBean.alunos}" paginator="true"
-				emptyMessage="Nenhuma aluno encontrado!" rendered="#{!alunoBean.form}">
-				<p:column width="180" styleClass="text-center">
-					<f:facet name="header">
-						<p:commandLink action="#{alunoBean.form}" update="@form" title="Cadastrar novo aluno" styleClass="btn btn-primary btn-sm">
-							<i class="fa fa-plus-square"/>
-							Novo
-						</p:commandLink>
-					</f:facet>
-					<p:commandLink update="@form" actionListener="#{alunoBean.form}" styleClass="btn btn-primary btn-sm">
-			 			<f:setPropertyActionListener target="#{alunoBean.aluno}" value="#{aluno}"/>
-			 			<i class="fa fa-pencil"/>
-			 			Editar
-					</p:commandLink>&nbsp;
-					<p:commandLink action="#{alunoBean.excluir}" update="@form" styleClass="btn btn-danger btn-sm"> 
-						<f:setPropertyActionListener target="#{alunoBean.aluno}" value="#{aluno}"/>
-						<i class="fa fa-times-circle"/>  
-						Excluir
-						<p:confirm header="Excluir Aluno" message="Deseja realmente excluir este Aluno?" icon="ui-icon-alert" /> 
-				   	</p:commandLink>  
-				 	<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
-				        <p:commandButton value="Sim, Claro" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
-				        <p:commandButton value="Não, ainda não!" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
-				    </p:confirmDialog> 
-				</p:column>
-				<p:column headerText="Aluno">
-					#{aluno.nome}
-				</p:column>
-				<p:column headerText="Matrícula">
-					#{aluno.matricula}
-				</p:column>
-			</p:dataTable>
-			<p:panel header="Aluno" rendered="#{alunoBean.form}" styleClass="form-horizontal">
-				<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Aluno:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.nome}" maxlength="80"
-							required="true" requiredMessage="Você deve informar o nome do Aluno!"
-							placeholder="Nome completo do aluno"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Matrícula:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.matricula}" maxlength="30"
-							required="true" requiredMessage="Você deve informar o nome da Matrícula!"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Telefone:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.telefone}" maxlength="80"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Habilidades:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.habilidades}" maxlength="80"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Curriculum Lattes:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.cvLattes}" maxlength="80"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Semestre Atual:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.semestreAtual}" maxlength="80"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Data de Nascimento:</label>
-				    <div class="col-sm-8">
-						<p:inputMask styleClass="form-control" value="#{alunoBean.aluno.dataNascimento}" 
-							mask="99/99/9999">
-							<f:convertDateTime pattern="dd/MM/yyyy"/>
-						</p:inputMask>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">CPF:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.cpf}" maxlength="80"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">RG:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{alunoBean.aluno.rg}" maxlength="80"/>				    
-				    </div>
-		    	</div>
-		    	
-				<div class="text-center">
-					<p:commandLink action="#{alunoBean.salvar}" update="@form" styleClass="btn btn-primary btn-sm">
-						<i class="fa fa-save" />
-						Salvar
-					</p:commandLink>
-					&nbsp;
-					<p:commandLink  action="#{alunoBean.grid}" update="@form" styleClass="btn btn-danger btn-sm">
-						<i class="fa fa-reply-all" />
-						Cancelar
-					</p:commandLink>
-				</div>
-			</p:panel>
-		</h:form>
+<ui:composition template="/layout/layoutPrivateBasic.xhtml">
+	<ui:define name="title">IFCE Estágios - Alunos</ui:define>
+	
+	<ui:param name="id" value="aluno" />
+	<ui:param name="view" value="#{alunoBean}" />
+	<ui:param name="headerIcon" value="fa-book" />
+	<ui:param name="headerTitle" value="Alunos" />
+	<ui:param name="headerLink" value="aluno.html" />
+	<ui:param name="formTitle" value="Aluno" />
+	<ui:param name="emptyMessage" value="Nenhum aluno cadastrado!" />
+	<ui:param name="btnNew" value="true" />
+	<ui:param name="btnBack" value="true" />
+	<ui:param name="btnSave" value="true" />
+	<ui:param name="btnEdit" value="true" />
+	<ui:param name="btnRemove" value="true" />
+	
+	<ui:define name="contentGrid">
+		<p:column headerText="CPF">
+			#{entity.cpf}
+		</p:column>
+		<p:column headerText="Matrícula">
+			#{entity.matricula}
+		</p:column>
+	</ui:define>
+	<ui:define name="contentForm">
+		<div class="form-group">
+			<label for="inputMatricula" class="col-sm-2 control-label">Matrícula:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputMatricula" value="#{alunoBean.entity.matricula}" placeholder="Matrícula do Aluno" styleClass="form-control" 
+					required="true" requiredMessage="Item obrigatório!" maxlength="30"/>
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputMatricula"  />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputTelefone" class="col-sm-2 control-label">Telefone:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputTelefone" value="#{alunoBean.entity.telefone}" placeholder="Telefone do Aluno" styleClass="form-control"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputDescricao" class="col-sm-2 control-label">Descricao:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputDescricao" value="#{alunoBean.entity.descricao}" placeholder="Fale sobre você!" styleClass="form-control"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputLattes" class="col-sm-2 control-label">Curriculum Lattes:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputLattes" value="#{alunoBean.entity.cvLattes}" placeholder="Curriculum Lattes" styleClass="form-control"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputSemestreAtual" class="col-sm-2 control-label">Semestre Atual:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputSemestreAtual" value="#{alunoBean.entity.semestreAtual}" placeholder="Semestre Atual" styleClass="form-control"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputDataNascimento" class="col-sm-2 control-label">Data de Nascimento:</label>
+			<div class="col-sm-8">
+				<p:inputMask id="inputDataNascimento" styleClass="form-control" value="#{alunoBean.entity.dataNascimento}" mask="99/99/9999"
+					placeholder="Data de Nascimento" >
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</p:inputMask>	
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputCPF" class="col-sm-2 control-label">CPF:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputCPF" value="#{alunoBean.entity.cpf}" placeholder="CPF" styleClass="form-control"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputRG" class="col-sm-2 control-label">RG:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputRG" value="#{alunoBean.entity.rg}" placeholder="RG" styleClass="form-control"/>
+			</div>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

@@ -7,7 +7,7 @@
     version="2.0">
     
     <lifecycle>
-		<phase-listener>br.edu.ifce.view.listener.AuthorizationListener</phase-listener>
+		<phase-listener>com.j7ss.view.listener.AuthorizationListener</phase-listener>
 	</lifecycle>
     
 </faces-config>

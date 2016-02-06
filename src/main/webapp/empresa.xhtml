@@ -5,104 +5,87 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-<ui:composition template="/layout/layoutPrivateDefault.xhtml">
-	<ui:define name="title">Turnos</ui:define>
-	<ui:define name="container">
-	    <h:form>
-			<p:dataTable id="empresaTable" var="empresa" value="#{empresaBean.empresas}" paginator="true"
-				emptyMessage="Nenhuma empresa encontrada!" rendered="#{!empresaBean.form}">
-				<p:column width="180" styleClass="text-center">
-					<f:facet name="header">
-						<p:commandLink action="#{empresaBean.form}" update="@form" title="Cadastrar nova empresa" styleClass="btn btn-primary btn-sm">
-							<i class="fa fa-plus-square"/>
-							Novo
-						</p:commandLink>
-					</f:facet>
-					<p:commandLink update="@form" actionListener="#{empresaBean.form}" styleClass="btn btn-primary btn-sm">
-			 			<f:setPropertyActionListener target="#{empresaBean.empresa}" value="#{empresa}"/>
-			 			<i class="fa fa-pencil"/>
-			 			Editar
-					</p:commandLink>&nbsp;
-					<p:commandLink action="#{empresaBean.excluir}" update="@form" styleClass="btn btn-danger btn-sm"> 
-						<f:setPropertyActionListener target="#{empresaBean.empresa}" value="#{empresa}"/>
-						<i class="fa fa-times-circle"/>  
-						Excluir
-						<p:confirm header="Excluir Empresa" message="Deseja realmente excluir esta empresa?" icon="ui-icon-alert" /> 
-				   	</p:commandLink>  
-				 	<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
-				        <p:commandButton value="Sim, Claro" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
-				        <p:commandButton value="Não, ainda não!" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
-				    </p:confirmDialog> 
-				</p:column>
-				<p:column headerText="Empresa">
-					#{empresa.nome}
-				</p:column>
-			</p:dataTable>
-			<p:panel header="Empresa" rendered="#{empresaBean.form}" styleClass="form-horizontal">
-				
-				<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Empresa:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.nome}" maxlength="80"
-							required="true" requiredMessage="Você deve informar o nome da empresa!"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Email:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.email}" maxlength="80"/>				    
-				    </div>
-		    	</div>
-				<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Telefone:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.telefone}" maxlength="80"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Supervisor:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.supervisor}" maxlength="80"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Cargo do Supervisor:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.cargoSupervisor}"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">CNPJ:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.cnpj}"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Site:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.site}"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Ramo de Atividade:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{empresaBean.empresa.ramoAtividade}"/>				    
-				    </div>
-		    	</div>
-				<div class="text-center">
-					<p:commandLink action="#{empresaBean.salvar}" update="@form" styleClass="btn btn-primary btn-sm">
-						<i class="fa fa-save" />
-						Salvar
-					</p:commandLink>
-					&nbsp;
-					<p:commandLink  action="#{empresaBean.grid}" update="@form" styleClass="btn btn-danger btn-sm">
-						<i class="fa fa-reply-all" />
-						Cancelar
-					</p:commandLink>
-				</div>
-			</p:panel>
-		</h:form>
-	    
+<ui:composition template="/layout/layoutPrivateBasic.xhtml">
+	<ui:define name="title">IFCE Estágios - Empresas</ui:define>
+	
+	<ui:param name="id" value="empresa" />
+	<ui:param name="view" value="#{empresaBean}" />
+	<ui:param name="headerIcon" value="fa-book" />
+	<ui:param name="headerTitle" value="Empresas" />
+	<ui:param name="headerLink" value="empresa.html" />
+	<ui:param name="formTitle" value="Empresa" />
+	<ui:param name="emptyMessage" value="Nenhuma empresa cadastrada!" />
+	<ui:param name="btnNew" value="true" />
+	<ui:param name="btnBack" value="true" />
+	<ui:param name="btnSave" value="true" />
+	<ui:param name="btnEdit" value="true" />
+	<ui:param name="btnRemove" value="true" />
+	
+	<ui:define name="contentGrid">
+		<p:column headerText="Instituição">
+			#{entity.nome}
+		</p:column>
+	</ui:define>
+	<ui:define name="contentForm">
+		<div class="form-group">
+			<label for="inputNome" class="col-sm-2 control-label">Empresa:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputNome" value="#{empresaBean.entity.nome}" placeholder="Nome da Empresa" styleClass="form-control" 
+					required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputNome"  />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="inputEmail" class="col-sm-2 control-label">Email:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputEmail" value="#{empresaBean.entity.email}" placeholder="Nome da Empresa" styleClass="form-control" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="inputTelefone" class="col-sm-2 control-label">Telefone:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputTelefone" value="#{empresaBean.entity.telefone}" placeholder="Telefone da Empresa" styleClass="form-control" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="inputSupervisor" class="col-sm-2 control-label">Supervisor:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputSupervisor" value="#{empresaBean.entity.supervisor}" placeholder="Supervisor" styleClass="form-control" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="inputCargoSupervisor" class="col-sm-2 control-label">Cargo do Supervisor:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputCargoSupervisor" value="#{empresaBean.entity.cargoSupervisor}" placeholder="Cargo do Supervisor" styleClass="form-control" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="inputCNPJ" class="col-sm-2 control-label">CNPJ:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputCNPJ" value="#{empresaBean.entity.cnpj}" placeholder="CNPJ" styleClass="form-control" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="inputSite" class="col-sm-2 control-label">Site:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputSite" value="#{empresaBean.entity.site}" placeholder="Site" styleClass="form-control" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="inputRamoAtividade" class="col-sm-2 control-label">Ramo de Atividade:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputRamoAtividade" value="#{empresaBean.entity.ramoAtividade}" placeholder="Ramo de Atividade" styleClass="form-control" />
+			</div>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

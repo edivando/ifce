@@ -5,74 +5,56 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-<ui:composition template="/layout/layoutPrivateDefault.xhtml">
-	<ui:define name="title">Turnos</ui:define>
-	<ui:define name="container">
-	    <h:form>
-			<p:dataTable id="instituicaoTable" var="instituicao" value="#{instituicaoBean.instituicaos}" paginator="true"
-				emptyMessage="Nenhuma instituição encontrada!" rendered="#{!instituicaoBean.form}">
-				<p:column width="180" styleClass="text-center">
-					<f:facet name="header">
-						<p:commandLink action="#{instituicaoBean.form}" update="@form" title="Cadastrar nova instituição" styleClass="btn btn-primary btn-sm">
-							<i class="fa fa-plus-square"/>
-							Novo
-						</p:commandLink>
-					</f:facet>
-					<p:commandLink update="@form" actionListener="#{instituicaoBean.form}" styleClass="btn btn-primary btn-sm">
-			 			<f:setPropertyActionListener target="#{instituicaoBean.instituicao}" value="#{instituicao}"/>
-			 			<i class="fa fa-pencil"/>
-			 			Editar
-					</p:commandLink>&nbsp;
-					<p:commandLink action="#{instituicaoBean.excluir}" update="@form" styleClass="btn btn-danger btn-sm"> 
-						<f:setPropertyActionListener target="#{instituicaoBean.instituicao}" value="#{instituicao}"/>
-						<i class="fa fa-times-circle"/>  
-						Excluir
-						<p:confirm header="Excluir Instituicao" message="Deseja realmente excluir esta instituição" icon="ui-icon-alert" /> 
-				   	</p:commandLink>  
-				 	<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
-				        <p:commandButton value="Sim, Claro" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
-				        <p:commandButton value="Não, ainda não!" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
-				    </p:confirmDialog> 
-				</p:column>
-				<p:column headerText="Instituição">
-					#{instituicao.nome}
-				</p:column>
-			</p:dataTable>
-			<p:panel header="Empresa" rendered="#{instituicaoBean.form}" styleClass="form-horizontal">
-				<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Instituição:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{instituicaoBean.instituicao.nome}" maxlength="80"
-							required="true" requiredMessage="Você deve informar o nome da instituíção!"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Email:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{instituicaoBean.instituicao.email}"/>				    
-				    </div>
-		    	</div>
-		    	<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Professor Responsável:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{instituicaoBean.instituicao.responsavel}" />				    
-				    </div>
-		    	</div>
-
-				<div class="text-center">
-					<p:commandLink action="#{instituicaoBean.salvar}" update="@form" styleClass="btn btn-primary btn-sm">
-						<i class="fa fa-save" />
-						Salvar
-					</p:commandLink>
-					&nbsp;
-					<p:commandLink  action="#{instituicaoBean.grid}" update="@form" styleClass="btn btn-danger btn-sm">
-						<i class="fa fa-reply-all" />
-						Cancelar
-					</p:commandLink>
-				</div>
-			</p:panel>
-		</h:form>
-	    
+<ui:composition template="/layout/layoutPrivateBasic.xhtml">
+	<ui:define name="title">IFCE Estágios - Instituições</ui:define>
+	
+	<ui:param name="id" value="instituicao" />
+	<ui:param name="view" value="#{instituicaoBean}" />
+	<ui:param name="headerIcon" value="fa-book" />
+	<ui:param name="headerTitle" value="Instituiçoes" />
+	<ui:param name="headerLink" value="instituicao.html" />
+	<ui:param name="formTitle" value="Instituíção" />
+	<ui:param name="emptyMessage" value="Nenhuma instituição cadastrada!" />
+	<ui:param name="btnNew" value="true" />
+	<ui:param name="btnBack" value="true" />
+	<ui:param name="btnSave" value="true" />
+	<ui:param name="btnEdit" value="true" />
+	<ui:param name="btnRemove" value="true" />
+	
+	<ui:define name="contentGrid">
+		<p:column headerText="Instituição">
+			#{entity.nome}
+		</p:column>
+	</ui:define>
+	<ui:define name="contentForm">
+		<div class="form-group">
+			<label for="inputNome" class="col-sm-2 control-label">Nome:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputNome" value="#{instituicaoBean.entity.nome}" placeholder="Nome da Institição" styleClass="form-control" 
+					required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputNome"  />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail" class="col-sm-2 control-label">Email:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputEmail" value="#{instituicaoBean.entity.email}" placeholder="Email" styleClass="form-control" />
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputEmail"  />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputResponsavel" class="col-sm-2 control-label">Professor Responsável:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputResponsavel" value="#{instituicaoBean.entity.responsavel}" placeholder="Professor responsável" styleClass="form-control" />
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputResponsavel"  />
+			</div>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>
