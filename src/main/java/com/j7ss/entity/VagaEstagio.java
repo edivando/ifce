@@ -74,6 +74,10 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
     @Getter @Setter
     private String supervisorCargo;
     
+	@Override
+	public boolean isNew() {
+		return idVaga == null;
+	}
     
 //## Builder
 	public VagaEstagio idVaga(Integer idVaga){
@@ -182,7 +186,7 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	
 	@Override
 	public VagaEstagio save() throws DAOException{
-		return idVaga == null ? dao.add(this) : dao.update(this);
+		return isNew() ? dao.add(this) : dao.update(this);
 	}
 
 	@Override

@@ -42,9 +42,6 @@ public class Empresa implements IGenericEntity<Empresa>{
 	private String email;
 	@Getter @Setter
 	private String telefone;
-	@OneToOne
-	@Getter @Setter
-	private Endereco endereco;
 	@Getter @Setter
 	private String supervisor;
 	@Getter @Setter
@@ -61,8 +58,21 @@ public class Empresa implements IGenericEntity<Empresa>{
 	@Getter @Setter
 	private List<VagaEstagio> vagaEstagios;
 	
-	public Empresa(){
-		endereco = new Endereco();
+	// Endereco
+	@Getter @Setter
+	private String endereco;
+	@Getter @Setter
+	private String bairro;
+	@Getter @Setter
+	private String cep;
+	@Getter @Setter
+	private String uf;
+	@Getter @Setter
+	private String cidade;
+	
+	@Override
+	public boolean isNew() {
+		return idEmpresa == null;
 	}
 	
 //## Builder
@@ -122,7 +132,7 @@ public class Empresa implements IGenericEntity<Empresa>{
 	
 	@Override
 	public Empresa save() throws DAOException{
-		return idEmpresa == null ? dao.add(this) : dao.update(this);
+		return isNew() ? dao.add(this) : dao.update(this);
 	}
 
 	@Override

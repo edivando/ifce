@@ -18,59 +18,14 @@
         <img src="resources/images/img/ifceLogo.png" alt="" width="30"/>
         <strong> Estágio </strong>
     </a>
-    <div class="sidebar-toggle-box">
-        <div class="fa fa-bars"></div>
-    </div>
 </div>
-<!--logo end-->
 
-<div class="nav notify-row" id="top_menu">
-    <!--  notification start -->
-    <ul class="nav top-menu">
-        <!-- settings start -->
-        <!-- inbox dropdown end -->
-        <!-- notification dropdown start-->
-        <li id="header_notification_bar" class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <i class="fa fa-bell-o"></i>
-                <span class="badge bg-warning">2</span>
-            </a>
-            <ul class="dropdown-menu extended notification">
-                <li>
-                    <p>Notifications</p>
-                </li>
-                <li>
-                    <div class="alert alert-info clearfix">
-                        <span class="alert-icon"><i class="fa fa-info"></i></span>
-                        <div class="noti-info">
-                            <a href="#"> Complete seu Cadastro!</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="alert alert-success clearfix">
-                        <span class="alert-icon"><i class="fa fa-calendar"></i></span>
-                        <div class="noti-info">
-                            <a href="#">Você foi selecionado <br/> para uma vaga!</a>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
-        </li>
-        <!-- notification dropdown end -->
-    </ul>
-    <!--  notification end -->
-</div>
 <div class="top-nav clearfix">
     <ul class="nav pull-right top-menu">
-        <!--li>
-            <input type="text" class="form-control search" placeholder="Pesquisar"/>
-        </li-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <!--img alt="" src="images/avatar1_small.jpg"/-->
-                <span class="username">#{loginBean.nome}</span>
+                <img alt="" src="images/avatar1_small.jpg"/>
+                <span class="username">#{loginBean.usuario.nome}</span>
                 <b class="caret"></b>
             </a>
 
@@ -78,11 +33,6 @@
                 <li><a href="perfil.html"><i class=" fa fa-user"> </i>Perfil</a></li>
                 <li><a href="javascript:logoff();"><i class="fa fa-key"></i>Sair</a></li>
             </ul>
-        </li>
-        <li>
-            <div class="toggle-right-box">
-                <div class="fa fa-bars"></div>
-            </div>
         </li>
     </ul>
 </div>

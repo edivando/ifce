@@ -10,16 +10,15 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import com.j7ss.entity.Aluno;
 import com.j7ss.entity.Empresa;
 import com.j7ss.entity.Instituicao;
 import com.j7ss.entity.TipoUsuario;
 import com.j7ss.entity.Usuario;
-import com.j7ss.util.DAOException;
 import com.j7ss.util.MD5;
-
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * 
@@ -51,9 +50,8 @@ public class LoginBean implements Serializable{
 				if(usuario.getTipoUsuario().equals(TipoUsuario.INSTITUICAO)){
 					instituicao = Instituicao.findByIdUsuario( usuario.getIdUsuario() );
 				}else if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
-					aluno = Aluno.findByIdUsuario( usuario.getIdUsuario() );
+					aluno = Aluno.findByUsuario( usuario );
 				}
-				
 				FacesContext.getCurrentInstance().getExternalContext().redirect("home.html");
 			}else{
 				usuario = new Usuario();
@@ -73,23 +71,6 @@ public class LoginBean implements Serializable{
 		}
 	}
 	
-	public String beginRegister(){
-		try {
-			usuario.setSenha(MD5.md5(usuario.getSenha()));
-			usuario.setEmailValido(false);
-			usuario.setAtivo(true);
-			usuario.save();
-			if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
-				aluno = new Aluno(usuario.getIdUsuario(), usuario.getNome());
-				aluno.save();
-			}
-			usuario = null;
-			return "login";
-		} catch (DAOException e) {
-			return "cadastro";
-		}
-	}
-	
 	public Usuario getUsuario() {
 		return usuario == null ? usuario = new Usuario() : usuario;
 	}
@@ -103,13 +84,4 @@ public class LoginBean implements Serializable{
 		return false;
 	}
 	
-	public String getNome(){
-//		if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO) && aluno != null){
-//			return aluno.getNome();
-//		}else{
-//			return usuario.getNome();
-//		}
-		
-		return usuario.getNome();
-	}
 }

@@ -45,6 +45,10 @@ public class Usuario implements IGenericEntity<Usuario>{
 	@Getter @Setter
 	private Boolean ativo;
 	
+	@Override
+	public boolean isNew() {
+		return idUsuario == null;
+	}
 	
 //## Builder
 	public Usuario idUsuario(Integer idUsuario){
@@ -87,7 +91,7 @@ public class Usuario implements IGenericEntity<Usuario>{
 	
 	@Override
 	public Usuario save() throws DAOException{
-		return idUsuario == null ? dao.add(this) : dao.update(this);
+		return isNew() ? dao.add(this) : dao.update(this);
 	}
 
 	@Override

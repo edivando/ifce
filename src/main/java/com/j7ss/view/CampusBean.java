@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.j7ss.entity.Campus;
+import com.j7ss.entity.Instituicao;
 import com.j7ss.util.BasicView;
 import com.j7ss.util.Messages;
 
@@ -29,6 +30,17 @@ public class CampusBean extends BasicView<Campus>{
 	@Override
 	public List<Campus> getEntitys() {
 		return entitys == null ? entitys = Campus.findAll() : entitys;
+	}
+	
+	public Campus getEntityByNome(String nome){
+		for (Campus campus : entitys) {
+			if(campus.getNome().equals(nome)) return campus;
+		}
+		return null;
+	}
+	
+	public List<Instituicao> getInstituicoes(){
+		return Instituicao.findAll();
 	}
 	
 	@Override

@@ -31,9 +31,7 @@ public class VagaEstagioAtividadeDiariaBean implements Serializable{
 	private List<VagaEstagioAtividadeDiaria> atividades;
 	@Getter
 	private boolean form = false;
-	
-//	private VagaEstagioAtividadeDiariaDAO atividadeDAO = new VagaEstagioAtividadeDiariaDAO();
-	
+
 	public void grid(){
 		atividade  = null;
 		atividades = null;

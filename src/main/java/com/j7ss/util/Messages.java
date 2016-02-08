@@ -37,11 +37,11 @@ public class Messages {
 	}
 	
 	private static void showMessage( Severity severity, String title, String key, String...param ){
-		WebContext.getCurrentInstance().addMessage("messages", new FacesMessage(severity, formatMessage(title), formatMessage(key, param)));
+		WebContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, formatMessage(title), formatMessage(key, param)));
 	}
 	
 	private static void showGrowl( Severity severity, String title, String key, String...param ){
-		WebContext.getCurrentInstance().addMessage("growl", new FacesMessage(severity, formatMessage(title), formatMessage(key, param)));
+		WebContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, formatMessage(title), formatMessage(key, param)));
 	}
 	
 	

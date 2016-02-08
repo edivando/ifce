@@ -41,14 +41,14 @@
 					
 						<p:column width="120" styleClass="text-center" rendered="#{btnEdit or btnRemove}" >
 							<f:facet name="header">
-								<p:commandLink update="@form" actionListener="#{view.form}" styleClass="btn btn-primary" rendered="#{!view.form and btnNew}">
+								<p:commandLink update="@all" actionListener="#{view.form}" styleClass="btn btn-primary" rendered="#{!view.form and btnNew}">
 									<f:setPropertyActionListener target="#{view.entity}" value=""/>
 									<i class="fa fa-plus" />
 						 			Novo
 								</p:commandLink>
 							</f:facet>
 						
-			 				<p:commandLink update=":formAll" actionListener="#{view.form}" styleClass="btn btn-outline" rendered="#{btnEdit}" >
+			 				<p:commandLink update="@all" actionListener="#{view.form}" styleClass="btn btn-outline" rendered="#{btnEdit}" >
 					 			<f:setPropertyActionListener target="#{view.entity}" value="#{entity}"/>
 					 			<i class="fa fa-edit text-info" />
 							</p:commandLink>
@@ -67,18 +67,18 @@
 						<ui:insert name="contentGrid" />
 					</p:dataTable>
 		
-					<p:panel rendered="#{view.form}" styleClass="form-horizontal">
+					<p:panel id="formPanel" rendered="#{view.form}" styleClass="form-horizontal">
 						<p:focus />
 						<f:facet name="header">
 							<span class="lead">
 								<i class="fa #{headerIcon}"/> #{formTitle}
 							</span>
-							<p:commandLink  action="#{view.grid}" update=":formAll" styleClass="pull-right btn btn-danger btn-sm" title="Back" immediate="true"
+							<p:commandLink  action="#{view.grid}" update=":formAll" styleClass="pull-right btn btn-danger btn-sm" immediate="true"
 								rendered="#{btnBack}" >
 								<i class="fa fa-reply-all" />
 								Back
 							</p:commandLink>
-							<p:commandLink  action="#{view.save}" update=":formAll" styleClass="pull-right btn btn-info btn-sm" title="Salvar"
+							<p:commandLink  action="#{view.save}" update=":formAll" styleClass="pull-right btn btn-info btn-sm"
 								style="margin-right: 10px;" rendered="#{btnSave}" >
 								<i class="fa fa-save" />
 								Salvar
@@ -86,56 +86,10 @@
 						</f:facet>
 						
 						<ui:insert name="contentForm" />
-							
 					</p:panel>
 				</h:form>
-
 	        </section>
 	    </section>
-	
-		<div class="right-sidebar">
-			<div class="search-row">
-			    <input type="text" placeholder="Pesquisar" class="form-control"/>
-			</div>
-		
-			<div class="right-stat-bar">
-				<ul class="right-side-accordion">
-		
-					<li class="widget-collapsible">
-					  	<a href="#" class="head widget-head red-bg active clearfix">
-					        <span class="pull-left">Novas Vagas</span>
-					        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
-					    </a>
-
-					</li>
-		
-					<li class="widget-collapsible">
-					    <a href="#" class="head widget-head purple-bg active">
-					        <span class="pull-left"> Top Mais </span>
-					        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
-					    </a>
-					    <ul class="widget-container">
-					        <li>                     
-					            <div class="prog-row">
-					                <div class="user-thumb rsn-activity">
-					                    <i class="fa  fa-thumbs-o-up"></i>
-					                </div>
-					                <div class="rsn-details ">
-					                    <p class="text-muted">
-					                        #5
-					                    </p>
-					                    <p>
-					                        <a href="#"> Programador Ruby </a>
-					                        40 candidatos se insteressaram nessa vaga
-					                    </p>
-					                </div>
-					            </div>            
-					        </li>
-					    </ul>
-					</li>
-				</ul>
-			</div>
-		</div>
 	</section>
 
 	<h:form>

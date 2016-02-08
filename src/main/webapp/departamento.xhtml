@@ -22,11 +22,39 @@
 	<ui:param name="btnRemove" value="true" />
 	
 	<ui:define name="contentGrid">
-		<p:column headerText="Instituição">
+		<p:column headerText="Instituicao">
+			#{entity.campus.instituicao.nome}
+		</p:column>
+		<p:column headerText="Campus">
+			#{entity.campus.nome}
+		</p:column>
+		<p:column headerText="Departamento">
 			#{entity.nome}
 		</p:column>
 	</ui:define>
 	<ui:define name="contentForm">
+		<div class="form-group">
+			<label for="inputInstituicao" class="col-sm-2 control-label">Instituição:</label>
+			<div class="col-sm-8">
+				 <p:selectOneButton id="inputInstituicao" value="#{departamentoBean.entity.campus.instituicao}" converter="#{instituicaoConverter}" >
+		            <f:selectItems value="#{instituicaoBean.entitys}" var="inst" itemLabel="#{inst.nome}" itemValue="#{inst}"/>
+		        </p:selectOneButton>
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputCampus"  />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputCampus" class="col-sm-2 control-label">Campus:</label>
+			<div class="col-sm-8">
+				 <p:selectOneButton id="inputCampus" value="#{departamentoBean.entity.campus}" converter="#{campusConverter}" >
+		            <f:selectItems value="#{campusBean.entitys}" var="campus" itemLabel="#{campus.nome}" itemValue="#{campus}"/>
+		        </p:selectOneButton>
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputCampus"  />
+			</div>
+		</div>
 		<div class="form-group">
 			<label for="inputNome" class="col-sm-2 control-label">Departamento:</label>
 			<div class="col-sm-8">

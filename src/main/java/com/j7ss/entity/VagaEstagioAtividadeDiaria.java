@@ -43,6 +43,10 @@ public class VagaEstagioAtividadeDiaria implements IGenericEntity<VagaEstagioAti
 	@Getter @Setter
 	private Integer quantidadeHoras;
 	
+	@Override
+	public boolean isNew() {
+		return idAtividade == null;
+	}
 	
 //## Builder
 	public VagaEstagioAtividadeDiaria idAtividade(Integer idAtividade){
@@ -70,7 +74,7 @@ public class VagaEstagioAtividadeDiaria implements IGenericEntity<VagaEstagioAti
 	
 	@Override
 	public VagaEstagioAtividadeDiaria save() throws DAOException{
-		return idAtividade == null ? dao.add(this) : dao.update(this);
+		return isNew() ? dao.add(this) : dao.update(this);
 	}
 
 	@Override

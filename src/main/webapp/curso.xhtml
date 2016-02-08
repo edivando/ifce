@@ -22,7 +22,16 @@
 	<ui:param name="btnRemove" value="true" />
 	
 	<ui:define name="contentGrid">
-		<p:column headerText="Instituição">
+		<p:column headerText="Campus">
+			#{entity.departamento.campus.instituicao.nome}
+		</p:column>
+		<p:column headerText="Campus">
+			#{entity.departamento.campus.nome}
+		</p:column>
+		<p:column headerText="Departamento">
+			#{entity.departamento.nome}
+		</p:column>
+		<p:column headerText="Curso">
 			#{entity.nome}
 		</p:column>
 	</ui:define>

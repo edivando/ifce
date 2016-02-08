@@ -3,6 +3,7 @@ package com.j7ss.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,10 +40,6 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@Getter @Setter
 	private Integer idAluno;
 	@Getter @Setter
-	private Integer idUsuario;
-//	@Getter @Setter
-//	private String nome;
-	@Getter @Setter
 	private String descricao;
 	@Getter @Setter
 	private String matricula;
@@ -63,16 +60,25 @@ public class Aluno implements IGenericEntity<Aluno>{
 	private Curso curso;
 	@OneToOne
 	@Getter @Setter
-	private Endereco endereco;
-	
-	public Aluno(){
-		endereco = new Endereco();
-	}
+	private Usuario usuario;
 
-	public Aluno(Integer idUsuario, String nome){
-		this.idUsuario = idUsuario;
-//		this.nome = nome;
-	}
+	// Endereco
+	@Getter @Setter
+	private String endereco;
+	@Getter @Setter
+	private String bairro;
+	@Getter @Setter
+	private String cep;
+	@Getter @Setter
+	private String cidade;
+	@Getter @Setter
+	private String uf;
+
+
+//	public Aluno(Integer idUsuario, String nome){
+//		this.idUsuario = idUsuario;
+////		this.nome = nome;
+//	}
 	
 	public String getDescricaoCurso(){
 		String cursoName = "";
@@ -94,6 +100,11 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return String.format("%s <br/> Departamento de  %s <br/> Campus %s <br/> %s", cursoName, departamentoName, campusName, instituicaoName);
 	}
 	
+	@Override
+	public boolean isNew() {
+		return idAluno == null;
+	}
+	
 	
 //## Builder
 	public Aluno idAluno(Integer idAluno){
@@ -101,10 +112,10 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return this;
 	}
 	
-	public Aluno idUsuario(Integer idUsuario){
-		this.idUsuario = idUsuario;
-		return this;
-	}
+//	public Aluno idUsuario(Integer idUsuario){
+//		this.idUsuario = idUsuario;
+//		return this;
+//	}
 	
 //	public Aluno nome(String nome){
 //		this.nome = nome;
@@ -151,7 +162,7 @@ public class Aluno implements IGenericEntity<Aluno>{
 	
 	@Override
 	public Aluno save() throws DAOException{
-		return idAluno == null ? dao.add(this) : dao.update(this);
+		return isNew() ? dao.add(this) : dao.update(this);
 	}
 
 	@Override
@@ -167,8 +178,8 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return dao.countAll();
 	}
 	
-	public static Aluno findByIdUsuario(Integer idUsuario){
-		return dao.findOneByQuery("SELECT a FROM Aluno a WHERE a.idUsuario = ?1" , idUsuario);
+	public static Aluno findByUsuario(Usuario usuario){
+		return dao.findOneByQuery("SELECT a FROM Aluno a WHERE a.usuario = ?1" , usuario);
 	}
 	
 }

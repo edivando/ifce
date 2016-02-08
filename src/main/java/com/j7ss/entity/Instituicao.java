@@ -1,8 +1,10 @@
 package com.j7ss.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,7 @@ import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.IGenericEntity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +28,7 @@ import lombok.Setter;
  */
 @Entity
 @Table(name = "instituicao")
+@EqualsAndHashCode
 public class Instituicao implements IGenericEntity<Instituicao>{
 
 	private static final long serialVersionUID = 1L;
@@ -42,9 +46,19 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 	@Getter @Setter
 	private String responsavel;
 	
-	@OneToMany(mappedBy="instituicao")
+	@OneToMany(mappedBy="instituicao", fetch=FetchType.EAGER)
 	@Getter @Setter
 	private List<Campus> campus;
+	
+	@Override
+	public String toString() {
+		return nome;
+	}
+	
+	@Override
+	public boolean isNew() {
+		return idInstiruicao == null;
+	}
 	
 	
 //## Builder
@@ -73,21 +87,40 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 		return this;
 	}
 	
+	public Instituicao addCampus(Campus campu){
+		if(campus == null){
+			campus = new  ArrayList<>();
+		}
+		campus.add(campu);
+		return this;
+	}
+	
+	public Instituicao removeCampus(Campus campu){
+		if(campus != null){
+			campus.remove(campu);
+		}
+		return this;
+	}
+	
 //## DAO
 	private static DAO<Instituicao> dao = new DAO<Instituicao>(Instituicao.class);
 	
 	@Override
 	public Instituicao save() throws DAOException{
-		return idInstiruicao == null ? dao.add(this) : dao.update(this);
+		return isNew() ? dao.add(this) : dao.update(this);
 	}
 
 	@Override
 	public boolean remove() throws DAOException {
-		return dao.remove(idInstiruicao);
+		return dao.remove(this);
 	}
 	
 	public static List<Instituicao> findAll(){
 		return dao.findAll();
+	}
+	
+	public static Instituicao findById(Integer idInstituicao){
+		return dao.findOne(idInstituicao);
 	}
 	
 	public static Long countAll(){

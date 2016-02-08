@@ -25,6 +25,12 @@
 		<p:column headerText="Instituição">
 			#{entity.nome}
 		</p:column>
+		<p:column headerText="Email">
+			#{entity.email}
+		</p:column>
+		<p:column headerText="Telefone">
+			#{entity.telefone}
+		</p:column>
 	</ui:define>
 	<ui:define name="contentForm">
 		<div class="form-group">
@@ -42,19 +48,186 @@
 			<div class="col-sm-8">
 				<p:inputText id="inputEmail" value="#{instituicaoBean.entity.email}" placeholder="Email" styleClass="form-control" />
 			</div>
-			<div class="col-sm-2">
-				<p:message for="inputEmail"  />
+		</div>
+		<div class="form-group">
+			<label for="inputTelefone" class="col-sm-2 control-label">Telefone:</label>
+			<div class="col-sm-8">
+				<p:inputText id="inputTelefone" value="#{instituicaoBean.entity.telefone}" placeholder="Telefone" styleClass="form-control" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputResponsavel" class="col-sm-2 control-label">Professor Responsável:</label>
+			<label for="inputResponsavel" class="col-sm-2 control-label">Responsável:</label>
 			<div class="col-sm-8">
 				<p:inputText id="inputResponsavel" value="#{instituicaoBean.entity.responsavel}" placeholder="Professor responsável" styleClass="form-control" />
 			</div>
-			<div class="col-sm-2">
-				<p:message for="inputResponsavel"  />
-			</div>
 		</div>
+		
+		<p:separator />
+		
+		<p:outputPanel rendered="#{!instituicaoBean.entity.isNew()}">
+		
+			<div class="row">
+				<div class="col-md-3">
+					<div class="text-center">
+						<p:commandLink update="@all" styleClass="btn btn-primary" actionListener="#{instituicaoBean.addCampus()}">
+							<i class="fa fa-plus-circle" /> Novo Campus
+						</p:commandLink>
+						&nbsp;
+						<p:commandLink update="@all" styleClass="btn btn-success" actionListener="#{instituicaoBean.addDepartamento()}" rendered="#{instituicaoBean.novoDepartamento}">
+							<i class="fa fa-plus-circle" /> Novo Departamento
+						</p:commandLink>
+						&nbsp;
+						<p:commandLink update="@all" styleClass="btn btn-warning" actionListener="#{instituicaoBean.addCurso()}" rendered="#{instituicaoBean.novoCurso}">
+							<i class="fa fa-plus-circle" /> Novo Curso
+						</p:commandLink>
+					</div>
+					
+					<p:tree id="instituicaoTree" value="#{instituicaoBean.root}" var="node" animate="true" dynamic="true" selectionMode="single" 
+						selection="#{instituicaoBean.selectedNode}" style="width:100%;">
+						<p:ajax event="expand" listener="#{instituicaoBean.onNodeExpand}" />
+			       		<p:ajax event="select" listener="#{instituicaoBean.onNodeSelect}" update="@all"/>
+	
+				        <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
+					        <h:outputText value="#{node.nome}"/>
+					    </p:treeNode>
+					    
+				        <p:treeNode type="campus" expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
+					        <h:outputText value="#{node.nome}" />
+					    </p:treeNode>
+					 
+					    <p:treeNode type="departamento" expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
+					        <h:outputText value="#{node.nome}" />
+					    </p:treeNode>
+					 
+					    <p:treeNode type="curso" expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
+					        <h:outputText value="#{node.nome}" />
+					    </p:treeNode>
+				    </p:tree>
+				</div>
+				<div class="col-md-9">
+					<p:panel id="formCampus" rendered="#{instituicaoBean.showCampus}">
+						<p:focus />
+						<f:facet name="header">
+							<span class="lead">
+								<i class="fa fa-user"/><h:outputFormat value=" Novo" rendered="#{!instituicaoBean.btnRemoveCampus}"/> Campus
+							</span>
+							<p:commandLink update="@all" styleClass="pull-right btn btn-danger btn-sm" actionListener="#{instituicaoBean.removeCampus}" 
+								rendered="#{instituicaoBean.btnRemoveCampus}" style="margin-left: 30px;">
+								<i class="fa fa-minus-circle" /> Remover Campus
+								<p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
+							</p:commandLink>
+							<p:commandLink action="#{instituicaoBean.back}" update="@all" styleClass="pull-right btn btn-danger btn-sm" immediate="true" >
+								<i class="fa fa-reply-all" />
+								Cancelar
+							</p:commandLink>
+							<p:commandLink  action="#{instituicaoBean.saveCampus}" update="@all" styleClass="pull-right btn btn-info btn-sm"
+								style="margin-right: 10px;" >
+								<i class="fa fa-save" />
+								Salvar
+							</p:commandLink>
+						</f:facet>
+						
+						<div class="form-group">
+							<label for="inputCampusNome" class="col-sm-2 control-label">Campus:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputCampusNome" value="#{instituicaoBean.campus.nome}" placeholder="Nome do Campus" styleClass="form-control" 
+									required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
+							</div>
+							<div class="col-sm-2">
+								<p:message for="inputCampusNome"  />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputCampusEmail" class="col-sm-2 control-label">Email:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputCampusEmail" value="#{instituicaoBean.campus.email}" placeholder="Email" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputCampusTelefone" class="col-sm-2 control-label">Telefone:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputCampusTelefone" value="#{instituicaoBean.campus.telefone}" placeholder="Telefone do Campus" styleClass="form-control" />
+							</div>
+						</div>
+					</p:panel>
+					<p:panel id="formDepartamento" rendered="#{instituicaoBean.showDepartamento}" header="Departamento">
+						<p:focus />
+						<f:facet name="header">
+							<span class="lead">
+								<i class="fa fa-user"/><h:outputFormat value=" Novo" rendered="#{!instituicaoBean.btnRemoveDepartamento}"/> Departamento
+							</span>
+							<p:commandLink update="@all" styleClass="pull-right btn btn-danger btn-sm" actionListener="#{instituicaoBean.removeDepartamento}"
+								rendered="#{instituicaoBean.btnRemoveDepartamento}" style="margin-left: 30px;">
+								<i class="fa fa-minus-circle" /> Remover Departamento
+								<p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
+							</p:commandLink>
+							<p:commandLink action="#{instituicaoBean.back}" update="@all" styleClass="pull-right btn btn-danger btn-sm" immediate="true">
+								<i class="fa fa-reply-all" />
+								Cancelar
+							</p:commandLink>
+							<p:commandLink  action="#{instituicaoBean.saveDepartamento}" update="@all" styleClass="pull-right btn btn-info btn-sm"
+								style="margin-right: 10px;" >
+								<i class="fa fa-save" />
+								Salvar
+							</p:commandLink>
+						</f:facet>
+					
+						<div class="form-group">
+							<label for="inputDepartamentoNome" class="col-sm-2 control-label">Departamento:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputDepartamentoNome" value="#{instituicaoBean.departamento.nome}" placeholder="Nome do departamento" styleClass="form-control" 
+									required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
+							</div>
+							<div class="col-sm-2">
+								<p:message for="inputDepartamentoNome"  />
+							</div>
+						</div>
+					</p:panel>
+					<p:panel id="formCurso" rendered="#{instituicaoBean.showCurso}" header="Curso">
+						<p:focus />
+						<f:facet name="header">
+							<span class="lead">
+								<i class="fa fa-user"/>
+								<h:outputFormat value=" Novo" rendered="#{!instituicaoBean.btnRemoveCurso}"/> Curso 
+							</span>
+							
+							<p:commandLink update="@all" styleClass="pull-right btn btn-danger btn-sm" actionListener="#{instituicaoBean.removeCurso}"
+								rendered="#{instituicaoBean.btnRemoveCurso}" style="margin-left: 30px;">
+								<i class="fa fa-minus-circle" /> Remover Curso
+								<p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
+							</p:commandLink>
+
+							<p:commandLink  action="#{instituicaoBean.back}" update="@all" styleClass="pull-right btn btn-danger btn-sm" immediate="true">
+								<i class="fa fa-reply-all" />
+								Cancelar
+							</p:commandLink>
+							<p:commandLink  action="#{instituicaoBean.saveCurso}" update="@all" styleClass="pull-right btn btn-info btn-sm"
+								style="margin-right: 10px;" >
+								<i class="fa fa-save" />
+								Salvar
+							</p:commandLink>
+						</f:facet>
+					
+						<div class="form-group">
+							<label for="inputCursoNome" class="col-sm-2 control-label">Curso:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputCursoNome" value="#{instituicaoBean.curso.nome}" placeholder="Nome do Curso" styleClass="form-control" 
+									required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
+							</div>
+							<div class="col-sm-2">
+								<p:message for="inputCursoNome"  />
+							</div>
+						</div>
+					</p:panel>
+				</div>
+			</div>	
+		</p:outputPanel>
+		
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+	        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+	    </p:confirmDialog>
+		
 	</ui:define>
 </ui:composition>
 </html>

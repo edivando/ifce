@@ -38,8 +38,6 @@ public class TermoCompromissoBean implements Serializable{
 	@ManagedProperty("#{loginBean}")
 	private LoginBean loginBean;
 	
-//	private EmpresaDAO empresaDAO = new EmpresaDAO();
-	
 	public Aluno getAluno(){
 		return loginBean.getAluno();
 	}
