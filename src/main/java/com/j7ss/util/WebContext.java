@@ -28,4 +28,8 @@ public class WebContext {
 	public static HttpSession getSession(){
 		return ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true));
 	}
+	
+	public static void invalidateSession(){
+		getSession().invalidate();
+	}
 }

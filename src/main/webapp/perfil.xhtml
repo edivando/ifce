@@ -9,11 +9,184 @@
 	<ui:define name="title">IFCE Estágios - Perfil</ui:define>
 	<ui:define name="container">
 	
-		<h1>#{loginBean.usuario.nome}</h1>
-		<h:outputFormat value="#{loginBean.aluno.descricaoCurso}" escape="false"/>
-		#{loginBean.aluno.descricao} 
-		#{loginBean.aluno.endereco.cidade}
+		<div class="row">
+	        <div class="col-md-12">
+	            <ul class="breadcrumb">
+	                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+	                <li class="active"><a href="perfil.html">Perfil</a></li>
+	            </ul>
+	        </div>
+	    </div>
+	
+		<p:panel id="formPanel" styleClass="form-horizontal">
+			<p:focus />
+			<f:facet name="header">
+				<span class="lead">
+					<i class="fa #{headerIcon}"/> Meu Perfil
+				</span>
+				<p:commandLink  action="#{loginBean.update}" update=":formAll" styleClass="pull-right btn btn-info btn-sm"  >
+					<i class="fa fa-save" />
+					Salvar
+				</p:commandLink>
+			</f:facet>
 
+			<section class="panel">
+		      	<header class="panel-heading tab-bg-dark-navy-blue ">
+		        	<ul class="nav nav-tabs">
+		            	<li class="active"><a data-toggle="tab" href="#usuario">Usuário</a></li>
+		            	<h:outputFormat rendered="#{loginBean.usuario.tipoUsuario eq 'ALUNO'}">
+		            		<li class=""> <a data-toggle="tab" href="#aluno">Aluno</a> </li>
+		                	<li class=""> <a data-toggle="tab" href="#curso">Curso</a> </li>
+		                	<li class=""> <a data-toggle="tab" href="#endereco">Endereço</a> </li>
+		            	</h:outputFormat>
+						
+		             </ul>
+		         </header>
+	     		<div class="panel-body">
+	            	<div class="tab-content">
+	            		<div id="usuario" class="tab-pane active">
+	            			<div class="form-group">
+								<label for="inputNome" class="col-sm-2 control-label">Nome:</label>
+								<div class="col-sm-8">
+									<p:inputText id="inputNome" value="#{loginBean.usuario.nome}" placeholder="Nome do Aluno" styleClass="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail" class="col-sm-2 control-label">Email:</label>
+								<div class="col-sm-8">
+									<p:inputText id="inputEmail" value="#{loginBean.usuario.email}" placeholder="Email do Aluno" styleClass="form-control"
+										readonly="true"/>
+								</div>
+							</div>
+							
+							<p:commandButton value="Mudar Senha"/>
+	            		</div>
+	            		
+	            		<h:outputFormat rendered="#{loginBean.usuario.tipoUsuario eq 'ALUNO'}">
+	            			<div id="aluno" class="tab-pane">
+	
+								<div class="form-group">
+									<label for="inputDescricao" class="col-sm-2 control-label">Descricao:</label>
+									<div class="col-sm-8">
+										<p:inputTextarea id="inputDescricao" value="#{loginBean.aluno.descricao}" placeholder="Fale sobre você!" styleClass="form-control"
+											rows="3"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputTelefone" class="col-sm-2 control-label">Telefone:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputTelefone" value="#{loginBean.aluno.telefone}" placeholder="Telefone do Aluno" styleClass="form-control" />
+									</div>
+								</div>
+						
+								<div class="form-group">
+									<label for="inputLattes" class="col-sm-2 control-label">Curriculum Lattes:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputLattes" value="#{loginBean.aluno.cvLattes}" placeholder="Curriculum Lattes" styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputDataNascimento" class="col-sm-2 control-label">Data de Nascimento:</label>
+									<div class="col-sm-8">
+										<p:inputMask id="inputDataNascimento" styleClass="form-control" value="#{loginBean.aluno.dataNascimento}" mask="99/99/9999"
+											placeholder="Data de Nascimento" >
+											<f:convertDateTime pattern="dd/MM/yyyy"/>
+										</p:inputMask>	
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputCPF" class="col-sm-2 control-label">CPF:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputCPF" value="#{loginBean.aluno.cpf}" placeholder="CPF" styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputRG" class="col-sm-2 control-label">RG:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputRG" value="#{loginBean.aluno.rg}" placeholder="RG" styleClass="form-control" />
+									</div>
+								</div>
+		                 	</div>
+		                 	<div id="curso" class="tab-pane">
+						    	<div class="form-group">
+									<label for="inputMatricula" class="col-sm-2 control-label">Matrícula:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputMatricula" value="#{loginBean.aluno.matricula}" placeholder="Matrícula do Aluno" styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputSemestreAtual" class="col-sm-2 control-label">Semestre Atual:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputSemestreAtual" value="#{loginBean.aluno.semestreAtual}" placeholder="Semestre Atual" styleClass="form-control" />
+									</div>
+								</div> 
+								<div class="form-group">
+									<label for="inputInstituicao" class="col-sm-2 control-label">Instituição:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputInstituicao" value="#{loginBean.aluno.curso.departamento.campus.instituicao.nome}" placeholder="Instituição de Ensino" styleClass="form-control"
+											readonly="true"/>
+									</div>
+								</div> 
+								<div class="form-group">
+									<label for="inputCampus" class="col-sm-2 control-label">Campus:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputCampus" value="#{loginBean.aluno.curso.departamento.campus.nome}" placeholder="Campus da Instituição" styleClass="form-control"
+											readonly="true"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputDepartamento" class="col-sm-2 control-label">Departamento:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputDepartamento" value="#{loginBean.aluno.curso.departamento.nome}" placeholder="Departamento" styleClass="form-control"
+											readonly="true"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputCurso" class="col-sm-2 control-label">Curso:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputCurso" value="#{loginBean.aluno.curso.nome}" placeholder="Seu curso!" styleClass="form-control"
+											readonly="true"/>
+									</div>
+								</div>          	
+		                 	</div>
+		                 	<div id="endereco" class="tab-pane">
+		                 		<div class="form-group">
+									<label for="inputEndereco" class="col-sm-2 control-label">Endereço:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputEndereco" value="#{loginBean.aluno.endereco}" placeholder="Rua..., Número" styleClass="form-control"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputBairro" class="col-sm-2 control-label">Bairro:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputBairro" value="#{loginBean.aluno.bairro}" placeholder="Bairro..." styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputCEP" class="col-sm-2 control-label">CEP:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputCEP" value="#{loginBean.aluno.cep}" placeholder="CEP" styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputCidade" class="col-sm-2 control-label">Cidade:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputCidade" value="#{loginBean.aluno.cidade}" placeholder="Cidade" styleClass="form-control"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputUF" class="col-sm-2 control-label">UF:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputUF" value="#{loginBean.aluno.uf}" placeholder="Cidade" styleClass="form-control" />
+									</div>
+								</div>
+		                 	</div>
+	            		</h:outputFormat>
+	            	</div>
+	        	</div>
+	   		</section>
+		</p:panel>
+		
 	</ui:define>
 </ui:composition>
 </html>

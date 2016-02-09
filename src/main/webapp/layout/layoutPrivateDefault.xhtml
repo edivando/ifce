@@ -18,10 +18,14 @@
 	
 	    <section id="main-content">
 	        <section class="wrapper">
-	       		<ui:insert name="container"/>
+		        <h:form id="formAll">
+		        	<p:growl id="growl" for="growl" showDetail="true" globalOnly="true" escape="false"/>
+					<p:messages id="messages" for="messages" showDetail="false" showSummary="true" closable="true" />
+		       		<ui:insert name="container"/>
+		       	</h:form>
 	        </section>
 	    </section>
-	
+		
 		<div class="right-sidebar">
 			<div class="search-row">
 			    <input type="text" placeholder="Pesquisar" class="form-control"/>

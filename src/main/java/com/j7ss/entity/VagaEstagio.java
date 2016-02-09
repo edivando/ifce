@@ -191,7 +191,7 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 
 	@Override
 	public boolean remove() throws DAOException {
-		return dao.remove(idVaga);
+		return dao.remove(this);
 	}
 	
 	public static List<VagaEstagio> findAll(){

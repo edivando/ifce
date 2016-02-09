@@ -85,7 +85,15 @@ public class Curso implements IGenericEntity<Curso>{
 		return dao.findAll();
 	}
 	
+	public static Curso findById(Integer idCurso){
+		return dao.findOne(idCurso);
+	}
+	
 	public static Long countAll(){
 		return dao.countAll();
+	}
+	
+	public static List<Curso> findByNomeLike(Departamento departamento, String nome){
+		return dao.findByQuery("SELECT i FROM Curso i WHERE i.departamento = ?1 AND lower(i.nome) like ?2" ,departamento, "%"+nome.toLowerCase()+"%");
 	}
 }

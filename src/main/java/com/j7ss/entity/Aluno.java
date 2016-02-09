@@ -3,7 +3,6 @@ package com.j7ss.entity;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,14 +11,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.j7ss.util.DAO;
-import com.j7ss.util.DAOException;
-import com.j7ss.util.IGenericEntity;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import com.j7ss.util.DAO;
+import com.j7ss.util.DAOException;
+import com.j7ss.util.IGenericEntity;
 
 /**
  * 
@@ -56,10 +55,10 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@Getter @Setter
 	private Date dataNascimento;
 	@ManyToOne
-	@Getter @Setter
+	@Setter
 	private Curso curso;
 	@OneToOne
-	@Getter @Setter
+	@Setter
 	private Usuario usuario;
 
 	// Endereco
@@ -74,12 +73,6 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@Getter @Setter
 	private String uf;
 
-
-//	public Aluno(Integer idUsuario, String nome){
-//		this.idUsuario = idUsuario;
-////		this.nome = nome;
-//	}
-	
 	public String getDescricaoCurso(){
 		String cursoName = "";
 		String departamentoName = "";
@@ -100,6 +93,14 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return String.format("%s <br/> Departamento de  %s <br/> Campus %s <br/> %s", cursoName, departamentoName, campusName, instituicaoName);
 	}
 	
+	public Curso getCurso() {
+		return curso == null ? curso = new Curso() : curso;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario == null ? usuario = new Usuario() : usuario;
+	}
+	
 	@Override
 	public boolean isNew() {
 		return idAluno == null;
@@ -112,16 +113,6 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return this;
 	}
 	
-//	public Aluno idUsuario(Integer idUsuario){
-//		this.idUsuario = idUsuario;
-//		return this;
-//	}
-	
-//	public Aluno nome(String nome){
-//		this.nome = nome;
-//		return this;
-//	}
-	
 	public Aluno descricao(String descricao){
 		this.descricao = descricao;
 		return this;
@@ -129,6 +120,11 @@ public class Aluno implements IGenericEntity<Aluno>{
 	
 	public Aluno matricula(String matricula){
 		this.matricula = matricula;
+		return this;
+	}
+	
+	public Aluno telefone(String telefone){
+		this.telefone = telefone;
 		return this;
 	}
 	
@@ -157,6 +153,42 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return this;
 	}
 	
+	public Aluno curso(Curso curso){
+		this.curso = curso;
+		return this;
+	}
+	
+	public Aluno usuario(Usuario usuario){
+		this.usuario = usuario;
+		return this;
+	}
+	
+	public Aluno endereco(String endereco){
+		this.endereco = endereco;
+		return this;
+	}
+	
+	public Aluno bairro(String bairro){
+		this.bairro = bairro;
+		return this;
+	}
+	
+	public Aluno cep(String cep){
+		this.cep = cep;
+		return this;
+	}
+	
+	public Aluno cidade(String cidade){
+		this.cidade = cidade;
+		return this;
+	}
+	
+	public Aluno uf(String uf){
+		this.uf = uf;
+		return this;
+	}
+
+	
 //## DAO
 	private static DAO<Aluno> dao = new DAO<Aluno>(Aluno.class);
 	
@@ -167,7 +199,7 @@ public class Aluno implements IGenericEntity<Aluno>{
 
 	@Override
 	public boolean remove() throws DAOException {
-		return dao.remove(idAluno);
+		return dao.remove(this);
 	}
 	
 	public static List<Aluno> findAll(){

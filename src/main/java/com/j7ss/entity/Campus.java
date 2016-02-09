@@ -38,14 +38,13 @@ public class Campus implements IGenericEntity<Campus>{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer idCampus;
-	@Getter @Setter
+	@Getter @Setter  
 	private String nome;
 	@Getter @Setter
 	private String telefone;
 	@Getter @Setter
 	private String email;
-	
-	// Endereco
+
 	@Getter @Setter
 	private String endereco;
 	@Getter @Setter
@@ -116,6 +115,31 @@ public class Campus implements IGenericEntity<Campus>{
 		return this;
 	}
 	
+	public Campus endereco(String endereco){
+		this.endereco = endereco;
+		return this;
+	}
+	
+	public Campus bairro(String bairro){
+		this.bairro = bairro;
+		return this;
+	}
+	
+	public Campus cep(String cep){
+		this.cep = cep;
+		return this;
+	}
+	
+	public Campus cidade(String cidade){
+		this.cidade = cidade;
+		return this;
+	}
+	
+	public Campus uf(String uf){
+		this.uf = uf;
+		return this;
+	}
+	
 //## DAO
 	private static DAO<Campus> dao = new DAO<Campus>(Campus.class);
 	
@@ -136,8 +160,8 @@ public class Campus implements IGenericEntity<Campus>{
 	public static Long countAll(){
 		return dao.countAll();
 	}
-	
-	public static List<Campus> findByInstituicao(Instituicao instituicao){
-		return dao.findByQuery("Select c From Campus c Where c.instituicao = ?1 ", instituicao);
+
+	public static List<Campus> findByNomeLike(Instituicao instituicao, String nome){
+		return dao.findByQuery("SELECT i FROM Campus i WHERE i.instituicao = ?1 AND lower(i.nome) like ?2" ,instituicao, "%"+nome.toLowerCase()+"%");
 	}
 }

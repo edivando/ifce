@@ -10,19 +10,19 @@ import javax.faces.convert.Converter;
 import lombok.Setter;
 
 import com.j7ss.entity.Campus;
-import com.j7ss.view.CampusBean;
+import com.j7ss.view.AlunoCadastroBean;
 
 @ManagedBean
 @ViewScoped
 public class CampusConverter implements Converter {
 
 	@Setter
-	@ManagedProperty(value="#{campusBean}")
-	private CampusBean campusBean;
+	@ManagedProperty(value="#{alunoCadastroBean}")
+	private AlunoCadastroBean alunoCadastroBean;
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		return campusBean.getEntityByNome(value);
+		return alunoCadastroBean.getCampusByNome(value);
 	}
 
 	@Override

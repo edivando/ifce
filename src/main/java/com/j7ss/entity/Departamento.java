@@ -110,4 +110,8 @@ public class Departamento implements IGenericEntity<Departamento> {
 	public static Long countAll(){
 		return dao.countAll();
 	}
+	
+	public static List<Departamento> findByNomeLike(Campus campus, String nome){
+		return dao.findByQuery("SELECT i FROM Departamento i WHERE i.campus = ?1 AND lower(i.nome) like ?2" , campus, "%"+nome.toLowerCase()+"%");
+	}
 }

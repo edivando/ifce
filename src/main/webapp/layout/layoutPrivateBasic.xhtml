@@ -39,7 +39,7 @@
 			            	<p:rowToggler/>
 			        	</p:column>
 					
-						<p:column width="120" styleClass="text-center" rendered="#{btnEdit or btnRemove}" >
+						<p:column width="100" styleClass="text-center" rendered="#{btnEdit or btnRemove}" >
 							<f:facet name="header">
 								<p:commandLink update="@all" actionListener="#{view.form}" styleClass="btn btn-primary" rendered="#{!view.form and btnNew}">
 									<f:setPropertyActionListener target="#{view.entity}" value=""/>

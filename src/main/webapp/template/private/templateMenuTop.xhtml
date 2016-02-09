@@ -25,13 +25,15 @@
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="images/avatar1_small.jpg"/>
-                <span class="username">#{loginBean.usuario.nome}</span>
+                <span class="username">
+                	#{loginBean.usuario.nome} <h:outputFormat value="/ #{loginBean.instituicao.nome}" rendered="#{loginBean.usuario.tipoUsuario eq 'INSTITUICAO'}"/> 
+                </span>
                 <b class="caret"></b>
             </a>
 
             <ul class="dropdown-menu extended logout">
                 <li><a href="perfil.html"><i class=" fa fa-user"> </i>Perfil</a></li>
-                <li><a href="javascript:logoff();"><i class="fa fa-key"></i>Sair</a></li>
+                <li><a href="javascript:logoff();"><i class="fa fa-sign-out"></i>Sair</a></li>
             </ul>
         </li>
     </ul>

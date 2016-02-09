@@ -25,67 +25,127 @@
 		<p:column headerText="Instituição">
 			#{entity.nome}
 		</p:column>
+		<p:column headerText="CNPJ">
+			#{entity.cnpj}
+		</p:column>
+		<p:column headerText="Email">
+			#{entity.email}
+		</p:column>
+		<p:column headerText="Cidade">
+			#{entity.cidade}
+		</p:column>
 	</ui:define>
 	<ui:define name="contentForm">
-		<div class="form-group">
-			<label for="inputNome" class="col-sm-2 control-label">Empresa:</label>
-			<div class="col-sm-8">
-				<p:inputText id="inputNome" value="#{empresaBean.entity.nome}" placeholder="Nome da Empresa" styleClass="form-control" 
-					required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
-			</div>
-			<div class="col-sm-2">
-				<p:message for="inputNome"  />
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="inputEmail" class="col-sm-2 control-label">Email:</label>
-			<div class="col-sm-8">
-				<p:inputText id="inputEmail" value="#{empresaBean.entity.email}" placeholder="Nome da Empresa" styleClass="form-control" />
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="inputTelefone" class="col-sm-2 control-label">Telefone:</label>
-			<div class="col-sm-8">
-				<p:inputText id="inputTelefone" value="#{empresaBean.entity.telefone}" placeholder="Telefone da Empresa" styleClass="form-control" />
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="inputSupervisor" class="col-sm-2 control-label">Supervisor:</label>
-			<div class="col-sm-8">
-				<p:inputText id="inputSupervisor" value="#{empresaBean.entity.supervisor}" placeholder="Supervisor" styleClass="form-control" />
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="inputCargoSupervisor" class="col-sm-2 control-label">Cargo do Supervisor:</label>
-			<div class="col-sm-8">
-				<p:inputText id="inputCargoSupervisor" value="#{empresaBean.entity.cargoSupervisor}" placeholder="Cargo do Supervisor" styleClass="form-control" />
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="inputCNPJ" class="col-sm-2 control-label">CNPJ:</label>
-			<div class="col-sm-8">
-				<p:inputText id="inputCNPJ" value="#{empresaBean.entity.cnpj}" placeholder="CNPJ" styleClass="form-control" />
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="inputSite" class="col-sm-2 control-label">Site:</label>
-			<div class="col-sm-8">
-				<p:inputText id="inputSite" value="#{empresaBean.entity.site}" placeholder="Site" styleClass="form-control" />
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="inputRamoAtividade" class="col-sm-2 control-label">Ramo de Atividade:</label>
-			<div class="col-sm-8">
-				<p:inputText id="inputRamoAtividade" value="#{empresaBean.entity.ramoAtividade}" placeholder="Ramo de Atividade" styleClass="form-control" />
-			</div>
-		</div>
+		<section class="panel">
+	         <header class="panel-heading tab-bg-dark-navy-blue ">
+	             <ul class="nav nav-tabs">
+	                 <li class="active"> <a data-toggle="tab" href="#empresa">Empresa</a> </li>
+	                 <li class=""> <a data-toggle="tab" href="#supervisor">Supervisor</a> </li>
+	                 <li class=""> <a data-toggle="tab" href="#endereco">Endereço</a> </li>
+	             </ul>
+	         </header>
+	         <div class="panel-body">
+	             <div class="tab-content">
+	                 <div id="empresa" class="tab-pane active">
+				 		<div class="form-group">
+							<label for="inputNome" class="col-sm-2 control-label">Empresa:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputNome" value="#{empresaBean.entity.nome}" placeholder="Nome da Empresa" styleClass="form-control" 
+									required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
+							</div>
+							<div class="col-sm-2">
+								<p:message for="inputNome"  />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail" class="col-sm-2 control-label">Email:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputEmail" value="#{empresaBean.entity.email}" placeholder="Nome da Empresa" styleClass="form-control" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="inputTelefone" class="col-sm-2 control-label">Telefone:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputTelefone" value="#{empresaBean.entity.telefone}" placeholder="Telefone da Empresa" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputCNPJ" class="col-sm-2 control-label">CNPJ:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputCNPJ" value="#{empresaBean.entity.cnpj}" placeholder="CNPJ" styleClass="form-control" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="inputSite" class="col-sm-2 control-label">Site:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputSite" value="#{empresaBean.entity.site}" placeholder="Site" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputRamoAtividade" class="col-sm-2 control-label">Ramo de Atividade:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputRamoAtividade" value="#{empresaBean.entity.ramoAtividade}" placeholder="Ramo de Atividade" styleClass="form-control" />
+							</div>
+						</div>
+	                 </div>
+	                 <div id="supervisor" class="tab-pane">
+						<div class="form-group">
+							<label for="inputSupervisor" class="col-sm-2 control-label">Supervisor:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputSupervisor" value="#{empresaBean.entity.supervisor}" placeholder="Supervisor" styleClass="form-control" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="inputCargoSupervisor" class="col-sm-2 control-label">Cargo do Supervisor:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputCargoSupervisor" value="#{empresaBean.entity.cargoSupervisor}" placeholder="Cargo do Supervisor" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputTelefoneSupervisor" class="col-sm-2 control-label">Telefone do Supervisor:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputTelefoneSupervisor" value="#{empresaBean.entity.telefoneSupervisor}" placeholder="Telefone do Supervisor" styleClass="form-control" />
+							</div>
+						</div>
+	                 </div>
+	                 <div id="endereco" class="tab-pane">
+	                	<div class="form-group">
+							<label for="inputEndereco" class="col-sm-2 control-label">Endereço:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputEndereco" value="#{empresaBean.entity.endereco}" placeholder="Rua..., Número" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputBairro" class="col-sm-2 control-label">Bairro:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputBairro" value="#{empresaBean.entity.bairro}" placeholder="Bairro" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputCEP" class="col-sm-2 control-label">CEP:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputCEP" value="#{empresaBean.entity.cep}" placeholder="CEP" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputUF" class="col-sm-2 control-label">UF:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputUF" value="#{empresaBean.entity.uf}" placeholder="UF" styleClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputCidade" class="col-sm-2 control-label">Cidade:</label>
+							<div class="col-sm-8">
+								<p:inputText id="inputCidade" value="#{empresaBean.entity.cidade}" placeholder="Cidade" styleClass="form-control" />
+							</div>
+						</div>
+	                 </div>
+	             </div>
+	         </div>
+	     </section>
 	</ui:define>
 </ui:composition>
 </html>

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.j7ss.util.DAO;
@@ -41,9 +42,12 @@ public class Usuario implements IGenericEntity<Usuario>{
 	@Getter @Setter
 	private TipoUsuario tipoUsuario;
 	@Getter @Setter
-	private Boolean emailValido;
+	private Boolean emailValido = false;
 	@Getter @Setter
-	private Boolean ativo;
+	private Boolean ativo = true;
+	
+	@Getter @Setter
+	private Integer idInstituicao;
 	
 	@Override
 	public boolean isNew() {
@@ -96,7 +100,7 @@ public class Usuario implements IGenericEntity<Usuario>{
 
 	@Override
 	public boolean remove() throws DAOException {
-		return dao.remove(idUsuario);
+		return dao.remove(this);
 	}
 	
 	public static List<Usuario> findAll(){
@@ -105,6 +109,10 @@ public class Usuario implements IGenericEntity<Usuario>{
 	
 	public static Long countAll(){
 		return dao.countAll();
+	}
+	
+	public static List<Usuario> findAllMinusAluno(){
+		return dao.findByQuery("SELECT u FROM Usuario u WHERE u.tipoUsuario != ?1", TipoUsuario.ALUNO);
 	}
 	
 	public static List<Usuario> findByEmailAndSenha(String email, String senha){

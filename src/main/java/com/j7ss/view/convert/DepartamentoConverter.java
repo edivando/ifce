@@ -9,12 +9,13 @@ import javax.faces.convert.Converter;
 
 import lombok.Setter;
 
-import com.j7ss.entity.Instituicao;
+import com.j7ss.entity.Departamento;
 import com.j7ss.view.AlunoCadastroBean;
+
 
 @ManagedBean
 @ViewScoped
-public class InstituicaoConverter implements Converter {
+public class DepartamentoConverter implements Converter {
 
 	@Setter
 	@ManagedProperty(value="#{alunoCadastroBean}")
@@ -22,12 +23,12 @@ public class InstituicaoConverter implements Converter {
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		return alunoCadastroBean.getInstituicaoByNome(value);
+		return alunoCadastroBean.getDepartamentoByNome(value);
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		return (value != null) ? ((Instituicao) value).getNome() : null;
+		return (value != null) ? ((Departamento) value).getNome() : null;
 	}
 
 }

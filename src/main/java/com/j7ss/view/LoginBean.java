@@ -8,17 +8,18 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import com.j7ss.entity.Aluno;
-import com.j7ss.entity.Empresa;
 import com.j7ss.entity.Instituicao;
 import com.j7ss.entity.TipoUsuario;
 import com.j7ss.entity.Usuario;
+import com.j7ss.util.DAOException;
 import com.j7ss.util.MD5;
+import com.j7ss.util.Messages;
+import com.j7ss.util.WebContext;
 
 /**
  * 
@@ -39,20 +40,18 @@ public class LoginBean implements Serializable{
 	private Aluno aluno;
 	@Getter
 	private Instituicao instituicao;
-	@Getter
-	private Empresa empresa;
 	
 	public void login(){	
 		try {
 			List<Usuario> usuarios = Usuario.findByEmailAndSenha(usuario.getEmail(), MD5.md5(usuario.getSenha()));
 			if(usuarios != null && usuarios.size() > 0 ){
 				usuario = usuarios.get(0);
-				if(usuario.getTipoUsuario().equals(TipoUsuario.INSTITUICAO)){
-					instituicao = Instituicao.findByIdUsuario( usuario.getIdUsuario() );
-				}else if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
+				if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
 					aluno = Aluno.findByUsuario( usuario );
+				}else if(usuario.getTipoUsuario().equals(TipoUsuario.INSTITUICAO)){
+					instituicao = Instituicao.findById(usuario.getIdInstituicao());
 				}
-				FacesContext.getCurrentInstance().getExternalContext().redirect("home.html");
+				WebContext.redirect("home.html");
 			}else{
 				usuario = new Usuario();
 				FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage(FacesMessage.SEVERITY_WARN, "Desculpe!", "Mas o email ou a senha informada não confere. Tente novamente!")));
@@ -63,9 +62,9 @@ public class LoginBean implements Serializable{
 	}
 	
 	public void logoff(){
-		((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
+		WebContext.invalidateSession();
 		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("index.html");
+			WebContext.redirect("index.html");
 		} catch (IOException e) {
 			
 		}
@@ -82,6 +81,22 @@ public class LoginBean implements Serializable{
 			}
 		}
 		return false;
+	}
+	
+	public void update(){
+		try {
+			usuario.save();
+			if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
+				aluno.usuario(usuario).save();
+			}
+			Messages.showGrowlInfo("Tdsfs", "sadasda");
+		} catch (DAOException e) {
+			Messages.showGrowlInfo("Tdsfs", "sadasda");
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 	
 }

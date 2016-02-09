@@ -79,7 +79,7 @@ public class VagaEstagioAtividadeDiaria implements IGenericEntity<VagaEstagioAti
 
 	@Override
 	public boolean remove() throws DAOException {
-		return dao.remove(idAtividade);
+		return dao.remove(this);
 	}
 	
 	public static List<VagaEstagioAtividadeDiaria> findAll(){

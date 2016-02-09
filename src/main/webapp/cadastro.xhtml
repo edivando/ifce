@@ -10,7 +10,6 @@
 		<ui:define name="menu">	
 		<div class="horizontal-menu navbar-collapse collapse ">
         	<ul class="nav navbar-nav">
-        	    <li><a href="index.html">Home</a></li>
             	<li class="active"><a href="cadastro.html">Cadastro</a></li>
             	<li><a href="login.html">Login</a></li>
            	</ul>
@@ -22,11 +21,6 @@
 	            <section class="panel">
 	                <header class="panel-heading">
 	                    Title
-	          		<span class="tools pull-right">
-	                	<a href="javascript:;" class="fa fa-chevron-down"></a>
-	                  	<a href="javascript:;" class="fa fa-cog"></a>
-	                  	<a href="javascript:;" class="fa fa-times"></a>
-	               	</span>
 	                </header>
 	                <div class="panel-body">
 	                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -37,59 +31,141 @@
 	         <div class="col-sm-5">
 	            <section class="panel">
 	                <header class="panel-heading">
-	                    Cadastro
-	          		<span class="tools pull-right">
-	                	<a href="javascript:;" class="fa fa-chevron-down"></a>
-	                  	<a href="javascript:;" class="fa fa-cog"></a>
-	                  	<a href="javascript:;" class="fa fa-times"></a>
-	               	</span>
+	                    Novo Aluno
 	                </header>
 	                <div class="panel-body">
 	                	<h:form>
+           			    	<div class="form-horizontal">
+	                			<div class="form-group">
+								    <label for="instituicao" class="col-sm-2 control-label"><strong>Instituição:</strong></label>
+								    <div class="col-sm-9">	
+								    	<p:autoComplete id="instituicao" value="#{alunoCadastroBean.instituicao}" minQueryLength="2" effect="fade" 
+								    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchInstituicao}" size="50" required="true"
+								    		requiredMessage="Você deve informar sua instituição de ensino!" placeholder="Qual sua Instituição de Ensino?"
+								    		var="inst" itemLabel="#{inst.nome}" itemValue="#{inst}" converter="#{instituicaoConverter}">
+								    		<p:ajax event="itemSelect" update="@all" />
+								    	</p:autoComplete>
+								    </div>
+								    <div class="col-sm-1">
+										<p:message for="instituicao" display="icon" />
+									</div>
+						    	</div>
+	                		</div>
+	                		<p:outputPanel id="campusPanel" rendered="#{alunoCadastroBean.instituicao.idInstituicao != null}">
+               					<div class="form-horizontal">
+		                			<div class="form-group">
+									    <label for="campus" class="col-sm-2 control-label"><strong>Campus:</strong></label>
+									    <div class="col-sm-9">	
+									    	<p:autoComplete id="campus" value="#{alunoCadastroBean.campus}" minQueryLength="2" effect="fade" 
+									    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchCampus}"  required="true"
+									    		size="50" placeholder="Qual seu Campus?"
+									    		var="item" itemLabel="#{item.nome}" itemValue="#{item}" converter="#{campusConverter}">
+									    		<p:ajax event="itemSelect" update="@all" />	  
+									    	</p:autoComplete>  
+									    </div>
+									    <div class="col-sm-1">
+											<p:message for="campus" display="icon"/>
+										</div>
+							    	</div>
+		                		</div>
+	                		</p:outputPanel>
+	                		<p:outputPanel id="departamentoPanel" rendered="#{alunoCadastroBean.campus.idCampus != null}">
+               					<div class="form-horizontal">
+		                			<div class="form-group">
+									    <label for="departamento" class="col-sm-2 control-label"><strong>Departamento:</strong></label>
+									    <div class="col-sm-9">	
+									    	<p:autoComplete id="departamento" value="#{alunoCadastroBean.departamento}" minQueryLength="2" effect="fade" 
+									    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchDepartamentos}"  required="true"
+									    		size="50" placeholder="Qual seu departamento?"
+									    		var="item" itemLabel="#{item.nome}" itemValue="#{item}" converter="#{departamentoConverter}" >
+									    		<p:ajax event="itemSelect" update="@all" />	  
+									    	</p:autoComplete> 
+									    </div>
+									    <div class="col-sm-1">
+											<p:message for="departamento" display="icon"/>
+										</div>
+							    	</div>
+		                		</div>
+	                		</p:outputPanel>
+							<p:outputPanel id="cursoPanel" rendered="#{alunoCadastroBean.departamento.idDepartamento != null}">
+               					<div class="form-horizontal">
+		                			<div class="form-group">
+									    <label for="curso" class="col-sm-2 control-label"><strong>Curso:</strong></label>
+									    <div class="col-sm-9">	
+									    	<p:autoComplete id="curso" value="#{alunoCadastroBean.aluno.curso}" minQueryLength="2" effect="fade" 
+									    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchCursos}"  required="true"
+									    		requiredMessage="Você deve informar o seu curso" size="50" placeholder="Qual seu Curso?"
+									    		var="item" itemLabel="#{item.nome}" itemValue="#{item}" converter="#{cursoConverter}" >
+									    		<p:ajax event="itemSelect" update="@all" />	  
+									    	</p:autoComplete> 
+									    </div>
+									    <div class="col-sm-1">
+											<p:message for="curso" display="icon"/>
+										</div>
+							    	</div>
+		                		</div>
+	                		</p:outputPanel>
+	                		
+	                		
 	                		<div class="form-horizontal">
 	                			<div class="form-group">
-								    <div class="col-sm-12 text-center">
-								    	<p:selectOneButton value="#{loginBean.usuario.tipoUsuario}">
-							            	<f:selectItem itemLabel="Aluno" itemValue="ALUNO"/>
-							            	<f:selectItem itemLabel="Instituição" itemValue="INSTITUICAO" />
-							            	<f:selectItem itemLabel="Empresa" itemValue="EMPRESA" />
-							        	</p:selectOneButton>		    
+								    <label for="matricula" class="col-sm-2 control-label"><strong>Matrícula:</strong></label>
+								    <div class="col-sm-9">
+								    	<p:inputText value="#{alunoCadastroBean.aluno.matricula}" placeholder="Sua matricula..." styleClass="form-control"
+								    		maxlength="80" required="true" requiredMessage="Você deve informar sua matrícula!" id="matricula"/>	
+								    	<p:message for="matricula" display="icon"/>  		    
 								    </div>
+								    <div class="col-sm-1">
+										<p:message for="matricula" display="icon"/>
+									</div>
+						    	</div>
+	                		</div>
+	                	
+	                		<div class="form-horizontal">
+	                			<div class="form-group">
+								    <label for="nome" class="col-sm-2 control-label"><strong>Nome:</strong></label>
+								    <div class="col-sm-9">
+								    	<p:inputText value="#{alunoCadastroBean.aluno.usuario.nome}" placeholder="Seu nome completo..." styleClass="form-control"
+								    		maxlength="80" required="true" requiredMessage="Você deve informar o seu nome completo!"
+								    		id="nome"/>	
+								    	<p:message for="nome" display="icon"/>  		    
+								    </div>
+								    <div class="col-sm-1">
+										<p:message for="nome" display="icon"/>
+									</div>
 						    	</div>
 	                		</div>
 	                		<div class="form-horizontal">
 	                			<div class="form-group">
-								    <label for="nome" class="col-sm-2 control-label">Nome:</label>
-								    <div class="col-sm-10">
-								    	<p:inputText value="#{loginBean.usuario.nome}" placeholder="Seu nome completo..." styleClass="form-control"
-								    		maxlength="80" rendered="true" requiredMessage="Você deve informar o seu nome completo!"
-								    		id="nome"/>			    
+								    <label for="email" class="col-sm-2 control-label"><strong>Email:</strong></label>
+								    <div class="col-sm-9">
+								    	<p:inputText value="#{alunoCadastroBean.aluno.usuario.email}" placeholder="Email..." styleClass="form-control"
+								    		maxlength="80" required="true" requiredMessage="Você deve informar o email!"
+								    		id="email" />	
+								    	<p:message for="email" display="icon"/>		    
 								    </div>
+								    <div class="col-sm-1">
+										<p:message for="email" display="icon"/>
+									</div>
 						    	</div>
 	                		</div>
 	                		<div class="form-horizontal">
 	                			<div class="form-group">
-								    <label for="email" class="col-sm-2 control-label">Email:</label>
-								    <div class="col-sm-10">
-								    	<p:inputText value="#{loginBean.usuario.email}" placeholder="Email..." styleClass="form-control"
-								    		maxlength="80" rendered="true" requiredMessage="Você deve informar o email!"
-								    		id="email"/>			    
+								    <label for="email" class="col-sm-2 control-label"><strong>Senha:</strong></label>
+								    <div class="col-sm-9">
+								    	<p:password value="#{alunoCadastroBean.aluno.usuario.senha}" placeholder="Senha" styleClass="form-control"
+								    		maxlength="20" required="true" requiredMessage="Você deve informar o sua senha!"
+								    		id="senha"/>
+								    	<p:message for="senha" display="icon"/>				    
 								    </div>
-						    	</div>
-	                		</div>
-	                		<div class="form-horizontal">
-	                			<div class="form-group">
-								    <label for="email" class="col-sm-2 control-label">Senha:</label>
-								    <div class="col-sm-10">
-								    	<p:password value="#{loginBean.usuario.senha}" placeholder="Senha" styleClass="form-control"
-								    		maxlength="20" rendered="true" requiredMessage="Você deve informar o sua senha!"
-								    		id="senha"/>			    
-								    </div>
+								    <div class="col-sm-1">
+										<p:message for="senha" display="icon"/>
+									</div>
 						    	</div>
 	                		</div>
 	                		<hr/>
 							<div class="text-center">
-								<p:commandLink action="#{loginBean.beginRegister}" styleClass="btn btn-info">
+								<p:commandLink action="#{alunoCadastroBean.save}" styleClass="btn btn-info">
 									Cadastre-se
 								</p:commandLink>
 							</div>

@@ -13,12 +13,12 @@
 	<ui:param name="headerIcon" value="fa-book" />
 	<ui:param name="headerTitle" value="Usuários" />
 	<ui:param name="headerLink" value="usuario.html" />
-	<ui:param name="formTitle" value="Usuário" />
+	<ui:param name="formTitle" value="Novo Usuário" />
 	<ui:param name="emptyMessage" value="Nenhum usuário cadastrado!" />
 	<ui:param name="btnNew" value="true" />
 	<ui:param name="btnBack" value="true" />
 	<ui:param name="btnSave" value="true" />
-	<ui:param name="btnEdit" value="true" />
+	<ui:param name="btnEdit" value="false" />
 	<ui:param name="btnRemove" value="true" />
 	
 	<ui:define name="contentGrid">
@@ -28,18 +28,65 @@
 		<p:column headerText="Email">
 			#{entity.email}
 		</p:column>
-		<p:column headerText="Tipo de Usuário">
-			<p:inplace id="tipoUsuario" label="#{entity.tipoUsuario}" effectSpeed="fast" editor="true">
-	            <h:selectOneMenu value="#{entity.tipoUsuario}">
-	                <f:selectItem itemLabel="Administrador" itemValue="ADMINISTRADOR" />
-	                <f:selectItem itemLabel="Instituíção" itemValue="INSTITUICAO" />
-	                <f:selectItem itemLabel="Aluno" itemValue="ALUNO" />
-	                <p:ajax listener="#{usuarioBean.save}"/>
-	            </h:selectOneMenu>
+		<p:column headerText="Tipo de Usuário" width="300" >
+			<p:inplace id="tipoUsuario" effectSpeed="fast" editor="true">
+				<f:facet name="output">
+	                #{entity.tipoUsuario} <h:outputFormat value="- #{usuarioBean.getInstituicaoNome(entity.idInstituicao)}" rendered="#{entity.tipoUsuario eq 'INSTITUICAO'}"></h:outputFormat> 
+	            </f:facet>
+	            <f:facet name="input">
+	                <h:selectOneMenu value="#{entity.tipoUsuario}">
+		                <f:selectItem itemLabel="Administrador" itemValue="ADMINISTRADOR" />
+		                <f:selectItem itemLabel="Instituíção" itemValue="INSTITUICAO" />
+		                <p:ajax listener="#{usuarioBean.save(entity)}" update="@form"/>
+		            </h:selectOneMenu>
+		            -
+		            <h:selectOneMenu id="selectOneInstituicao" value="#{entity.idInstituicao}" rendered="#{entity.tipoUsuario eq 'INSTITUICAO'}" >
+		                <f:selectItem itemLabel="Selecione..." itemValue="" />
+			            <f:selectItems value="#{usuarioBean.instituicaos}" var="item" itemLabel="#{item.nome}" itemValue="#{item.idInstituicao}"/>
+		                <p:ajax listener="#{usuarioBean.save(entity)}"/>
+		            </h:selectOneMenu>
+	            </f:facet>
+	        </p:inplace>
+		</p:column>
+		<p:column headerText="Email Válido" width="100" styleClass="text-center">
+			#{entity.emailValido ? "Sim" : "Não"}
+		</p:column>
+		<p:column headerText="Ativo" width="140" styleClass="text-center">
+			<p:inplace id="ativo" label="#{entity.ativo ? 'Sim' : 'Não'}" effectSpeed="fast" editor="true">
+	            <p:selectBooleanButton id="ativoSelect" value="#{entity.ativo}" onLabel="Sim" offLabel="Não" 
+					onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:60px" >
+					<p:ajax listener="#{usuarioBean.save(entity)}"/>
+				</p:selectBooleanButton>
 	        </p:inplace>
 		</p:column>
 	</ui:define>
 	<ui:define name="contentForm">
+		<div class="form-group">
+			<label for="inputTipoUsuario" class="col-sm-2 control-label">Tipo do Usuário:</label>
+			<div class="col-sm-6">
+				<h:selectOneMenu id="inputTipoUsuario"  value="#{usuarioBean.entity.tipoUsuario}" required="true" requiredMessage="Item obrigatório!"
+					styleClass="form-control" style="height: 34px;">
+					<p:ajax event="change" update="@form('panelInstituicao')"/>
+	                <f:selectItem itemLabel="Selecione..." itemValue="" />
+	                <f:selectItem itemLabel="Administrador" itemValue="ADMINISTRADOR" />
+	                <f:selectItem itemLabel="Instituíção" itemValue="INSTITUICAO" />
+	            </h:selectOneMenu>
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputTipoUsuario"  />
+			</div>
+		</div>
+		<p:outputPanel id="panelInstituicao" rendered="#{usuarioBean.entity.tipoUsuario eq 'INSTITUICAO'}">
+			<div class="form-group">
+				<label for="inputInstituicao" class="col-sm-2 control-label">Instituição</label>
+				<div class="col-sm-6">
+					<h:selectOneMenu id="inputInstituicao"  value="#{usuarioBean.entity.idInstituicao}" styleClass="form-control" style="height: 34px;">
+		                <f:selectItem itemLabel="Selecione..." itemValue="" />
+		                <f:selectItems value="#{usuarioBean.instituicaos}" var="item" itemLabel="#{item.nome}" itemValue="#{item.idInstituicao}"/>
+		            </h:selectOneMenu>
+				</div>
+			</div>
+		</p:outputPanel>
 		<div class="form-group">
 			<label for="inputNome" class="col-sm-2 control-label">Nome:</label>
 			<div class="col-sm-8">
@@ -52,7 +99,7 @@
 		</div>
 		<div class="form-group">
 			<label for="inputEmail" class="col-sm-2 control-label">Email:</label>
-			<div class="col-sm-8">
+			<div class="col-sm-6">
 				<p:inputText id="inputEmail" value="#{usuarioBean.entity.email}" placeholder="Email do usuário" styleClass="form-control" 
 					required="true" requiredMessage="Item obrigatório!" />
 			</div>
@@ -60,6 +107,27 @@
 				<p:message for="inputEmail"  />
 			</div>
 		</div>
+		<div class="form-group">
+			<label for="inputSenha" class="col-sm-2 control-label">Senha:</label>
+			<div class="col-sm-6">
+				<p:password id="inputSenha" value="#{usuarioBean.entity.senha}" placeholder="Senha do usuário" styleClass="form-control" 
+					required="true" requiredMessage="Item obrigatório!" />
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputSenha"  />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputAtivo" class="col-sm-2 control-label">Ativo:</label>
+			<div class="col-sm-8">
+				<p:selectBooleanButton id="inputAtivo" value="#{usuarioBean.entity.ativo}" onLabel="Sim" offLabel="Não" 
+					onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:60px" />
+			</div>
+			<div class="col-sm-2">
+				<p:message for="inputEmail"  />
+			</div>
+		</div>
+		
 	</ui:define>
 </ui:composition>
 </html>

@@ -270,15 +270,6 @@ public class InstituicaoBean extends BasicView<Instituicao>{
 		}
     }
 	
-
-	
-	public Instituicao getEntityByNome(String nome){
-		for (Instituicao instituicao : entitys) {
-			if(instituicao.getNome().equals(nome)) return instituicao;
-		}
-		return null;
-	}
-	
 	@Override
 	public void onSave() {
 		Messages.showGrowlInfo("Instituicao", "Instituicao <strong>{0}</strong> salvo com sucesso!", entity.getNome());

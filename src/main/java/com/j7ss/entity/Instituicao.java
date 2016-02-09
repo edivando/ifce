@@ -36,7 +36,7 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idInstiruicao;
+	private Integer idInstituicao;
 	@Getter @Setter
 	private String nome;
 	@Getter @Setter
@@ -57,13 +57,13 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 	
 	@Override
 	public boolean isNew() {
-		return idInstiruicao == null;
+		return idInstituicao == null;
 	}
 	
 	
 //## Builder
-	public Instituicao idInstiruicao(Integer idInstiruicao){
-		this.idInstiruicao = idInstiruicao;
+	public Instituicao idInstituicao(Integer idInstituicao){
+		this.idInstituicao = idInstituicao;
 		return this;
 	}
 	
@@ -125,6 +125,14 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 	
 	public static Long countAll(){
 		return dao.countAll();
+	}
+	
+	public static List<Instituicao> findByNomeLike(String nome){
+		return dao.findByQuery("SELECT i FROM Instituicao i WHERE lower(i.nome) like ?1" , "%"+nome.toLowerCase()+"%");
+	}
+	
+	public static List<Instituicao> findByNome(String nome){
+		return dao.findByQuery("SELECT i FROM Instituicao i WHERE i.nome = ?1" , nome);
 	}
 	
 	public static Instituicao findByIdUsuario(Integer idUsuario){
