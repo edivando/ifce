@@ -1,3 +1,11 @@
+/*
+ * @version     1.0.0
+ * @author      Edivando J. Alves
+ * @contact     edivando@j7ss.com ( http://www.j7ss.com )
+ * 
+ * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
+ * 
+ */
 package com.j7ss.view;
 
 import java.io.Serializable;
@@ -16,10 +24,17 @@ import com.j7ss.entity.Curso;
 import com.j7ss.entity.Departamento;
 import com.j7ss.entity.Instituicao;
 import com.j7ss.entity.TipoUsuario;
+import com.j7ss.entity.VagaEstagio;
 import com.j7ss.util.MD5;
 import com.j7ss.util.Messages;
 import com.j7ss.util.WebContext;
 
+/**
+ * 
+ * @author Edivando Alves
+ * @date  10/02/2016
+ * 
+ */
 @ManagedBean
 @ViewScoped
 public class AlunoCadastroBean implements Serializable {
@@ -39,9 +54,17 @@ public class AlunoCadastroBean implements Serializable {
 	
 	public void save(){
 		try {
-//			aluno.curso(Curso.findById(17)); // Remover
 			aluno.getUsuario().senha(MD5.md5(aluno.getUsuario().getSenha())).ativo(true).tipoUsuario(TipoUsuario.ALUNO).save();
 			aluno.save();
+			aluno.vagaEstagio(new VagaEstagio("Minha Vaga").save());
+			
+//			List<Documento> docs = aluno.getCurso().getDocumentos();
+//			for (int i = 0; i < docs.size(); i++) {
+//				aluno.addDocumento( new DocumentoAluno(aluno)
+//						.documento(docs.get(i))
+//						.ordem(i)
+//						.status((i == 0 || !docs.get(i).getObrigatorio()) ? DocumentoStatus.DISPONIVEL : DocumentoStatus.INDISPONIVEL));
+//			}
 			
 			instituicaos = new ArrayList<>();
 			instituicao = new Instituicao();
@@ -50,6 +73,7 @@ public class AlunoCadastroBean implements Serializable {
 			WebContext.redirect("login.html");
 			Messages.showGrowlInfo("Test", "Test");
 		} catch (Exception e) {
+			
 			Messages.showGrowlInfo("Test", "Test");
 		}
 	}

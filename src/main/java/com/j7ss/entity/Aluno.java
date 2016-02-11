@@ -1,14 +1,26 @@
+/*
+ * @version     1.0.0
+ * @author      Edivando J. Alves
+ * @contact     edivando@j7ss.com ( http://www.j7ss.com )
+ * 
+ * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
+ * 
+ */
 package com.j7ss.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -22,10 +34,9 @@ import com.j7ss.util.IGenericEntity;
 
 /**
  * 
+ * @author Edivando Alves
+ * @date  10/02/2016
  * 
- * 
- * @author edivandoalves
- *
  */
 @Entity
 @Table(name = "aluno")
@@ -60,6 +71,14 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@OneToOne
 	@Setter
 	private Usuario usuario;
+	@OneToOne
+	@Setter
+	private VagaEstagio vagaEstagio;
+	
+	@OneToMany(mappedBy="aluno", fetch=FetchType.EAGER)
+	@OrderBy("ordem")
+	@Setter
+	private List<DocumentoAluno> documentosAluno;
 
 	// Endereco
 	@Getter @Setter
@@ -101,9 +120,44 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return usuario == null ? usuario = new Usuario() : usuario;
 	}
 	
+	public VagaEstagio getVagaEstagio() {
+		return vagaEstagio == null ? vagaEstagio  = new VagaEstagio() : vagaEstagio;
+	}
+	
+	public List<Documento> getDocumentos(){
+		List<Documento> documentos = new ArrayList<>();
+		for (DocumentoAluno docA : documentosAluno) {
+			documentos.add(docA.getDocumento());
+		}
+		return documentos;
+	}
+	
+	public List<DocumentoAluno> getDocumentosAluno() {
+		return documentosAluno == null ? documentosAluno = new ArrayList<>() : documentosAluno;
+	}
+	
 	@Override
 	public boolean isNew() {
 		return idAluno == null;
+	}
+	
+	public boolean isCompleteCadastro(){
+		return (
+			descricao != null 		&& !descricao.equals("") &&
+			matricula != null 		&& !matricula.equals("") &&
+			telefone != null 		&& !telefone.equals("") &&
+			cvLattes != null 		&& !cvLattes.equals("") &&
+			semestreAtual != null 	&& !semestreAtual.equals("") &&
+			cpf != null				&& !cpf.equals("") &&
+			rg != null 				&& !rg.equals("") &&
+			dataNascimento != null 	&& !dataNascimento.equals("") &&
+			curso != null 			&& curso.getNome() != null && !curso.getNome().equals("") &&
+			endereco != null 		&& !endereco.equals("") &&
+			bairro != null 			&& !bairro.equals("") &&
+			cep != null 			&& !cep.equals("") &&
+			cidade != null 			&& !cidade.equals("") &&
+			uf != null 				&& !uf.equals("") 
+		);
 	}
 	
 	
@@ -185,6 +239,16 @@ public class Aluno implements IGenericEntity<Aluno>{
 	
 	public Aluno uf(String uf){
 		this.uf = uf;
+		return this;
+	}
+	
+	public Aluno addDocumento(DocumentoAluno docAluno) throws DAOException{
+		this.getDocumentosAluno().add(docAluno.save());
+		return this;
+	}
+	
+	public Aluno vagaEstagio(VagaEstagio vagaEstagio){
+		this.vagaEstagio = vagaEstagio;
 		return this;
 	}
 

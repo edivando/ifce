@@ -1,134 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	@version     1.0.0
+	@author      Edivando J. Alves
+	@contact     edivando@j7ss.com ( http://www.j7ss.com )
+	
+	@copyright Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved. 
+-->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-<ui:composition template="/layout/layoutPrivateDefault.xhtml">
-	<ui:define name="title">Turnos</ui:define>
-	<ui:define name="container">
-	    <h:form>
-			<p:dataTable id="vagaEstagioTable" var="vagaEstagio" value="#{vagaEstagioBean.vagaEstagios}" paginator="true"
-				emptyMessage="Nenhuma vaga encontrada!" rendered="#{!vagaEstagioBean.form}">
-				<p:column width="180" styleClass="text-center">
-					<f:facet name="header">
-						<p:commandLink action="#{vagaEstagioBean.form}" update="@form" title="Cadastrar nova vaga de estágio" styleClass="btn btn-primary btn-sm">
-							<i class="fa fa-plus-square"/>
-							Novo
-						</p:commandLink>
-					</f:facet>
-					<p:commandLink update="@form" actionListener="#{vagaEstagioBean.form}" styleClass="btn btn-primary btn-sm">
-			 			<f:setPropertyActionListener target="#{vagaEstagioBean.vagaEstagio}" value="#{vagaEstagio}"/>
-			 			<i class="fa fa-pencil"/>
-			 			Editar
-					</p:commandLink>&nbsp;
-					<p:commandLink action="#{vagaEstagioBean.excluir}" update="@form" styleClass="btn btn-danger btn-sm"> 
-						<f:setPropertyActionListener target="#{vagaEstagioBean.vagaEstagio}" value="#{vagaEstagio}"/>
-						<i class="fa fa-times-circle"/>  
-						Excluir
-						<p:confirm header="Excluir Usuário" message="Deseja realmente excluir esta empresa?" icon="ui-icon-alert" /> 
-				   	</p:commandLink>  
-				 	<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">  
-				        <p:commandButton value="Sim, Claro" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
-				        <p:commandButton value="Não, ainda não!" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
-				    </p:confirmDialog> 
-				</p:column>
-				<p:column headerText="Vaga de Estágio">
-					#{vagaEstagio.nome}
-				</p:column>
-				<p:column headerText="Turno">
-					#{vagaEstagio.turno}
-				</p:column>
-				<p:column headerText="Remuneração">
-					#{vagaEstagio.remuneracao}
-				</p:column>
-				<p:column headerText="Carga Horária">
-					#{vagaEstagio.cargaHoraria}
-				</p:column>
-			</p:dataTable>
-			<p:panel header="Vagas de Estágio" rendered="#{vagaEstagioBean.form}" styleClass="form-horizontal">
-				
-				<div class="form-group">
-				    <label for="nome" class="col-sm-2 control-label">Vaga de Estágio:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{vagaEstagioBean.vagaEstagio.nome}" maxlength="80"
-							rendered="true" requiredMessage="Você deve informar o nome da vaga!"/>				    
-				    </div>
-		    	</div>
-		    	
-		    	<div class="form-group">
-				    <label for="descricao" class="col-sm-2 control-label">Descrição:</label>
-				    <div class="col-sm-8">
-						<p:inputTextarea styleClass="form-control" value="#{vagaEstagioBean.vagaEstagio.descricao}" 
-							rendered="true" requiredMessage="Informe a Descrição!" rows="4"/>				    
-				    </div>
-		    	</div>
-		    	
-		    	<div class="form-group">
-				    <label for="requisitos" class="col-sm-2 control-label">Requisitos:</label>
-				    <div class="col-sm-8">
-						<p:inputTextarea styleClass="form-control" value="#{vagaEstagioBean.vagaEstagio.requisitos}" 
-							rows="4"/>				    
-				    </div>
-		    	</div>
-		    	
-		    	<div class="form-group">
-				    <label for="atividades" class="col-sm-2 control-label">Atividades:</label>
-				    <div class="col-sm-8">
-						<p:inputTextarea styleClass="form-control" value="#{vagaEstagioBean.vagaEstagio.atividades}" 
-							rows="4"/>				    
-				    </div>
-		    	</div>
-		    	
-		    	<div class="form-group">
-				    <label for="beneficios" class="col-sm-2 control-label">Benefícios:</label>
-				    <div class="col-sm-8">
-						<p:inputTextarea styleClass="form-control" value="#{vagaEstagioBean.vagaEstagio.beneficios}" 
-							rows="4"/>				    
-				    </div>
-		    	</div>
-		    	
-		    	<div class="form-group">
-				    <label for="cargaHoraria" class="col-sm-2 control-label">Carga Horária:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{vagaEstagioBean.vagaEstagio.cargaHoraria}" />				    
-				    </div>
-		    	</div>
-		    	
-		    	<div class="form-group">
-				    <label for="remuneracao" class="col-sm-2 control-label">Remuneração:</label>
-				    <div class="col-sm-8">
-						<p:inputText styleClass="form-control" value="#{vagaEstagioBean.vagaEstagio.remuneracao}" />				    
-				    </div>
-		    	</div>
-		    	
-		    	<div class="form-group">
-				    <label for="turno" class="col-sm-2 control-label">Turno:</label>
-				    <div class="col-sm-8">
-				    	<p:selectOneMenu id="turno" value="#{vagaEstagioBean.vagaEstagio.turno}" style="width:200px">
-            				<f:selectItem itemLabel="Selecione..." itemValue="" />
-            				<f:selectItem itemLabel="Manhã" itemValue="MANHA" />
-            				<f:selectItem itemLabel="Tarde" itemValue="TARDE" />
-            				<f:selectItem itemLabel="Noite" itemValue="NOITE" />
-        				</p:selectOneMenu>				    
-				    </div>
-		    	</div>
-		    	
-				<div class="text-center">
-					<p:commandLink action="#{vagaEstagioBean.salvar}" update="@form" styleClass="btn btn-primary btn-sm">
-						<i class="fa fa-save" />
-						Salvar
-					</p:commandLink>
-					&nbsp;
-					<p:commandLink  action="#{vagaEstagioBean.grid}" update="@form" styleClass="btn btn-danger btn-sm">
-						<i class="fa fa-reply-all" />
-						Cancelar
-					</p:commandLink>
-				</div>
-			</p:panel>
-		</h:form>
-	    
+<ui:composition template="/layout/layoutPrivateBasic.xhtml">
+	<ui:define name="title">IFCE Estágios - Empresas</ui:define>
+	
+	<ui:param name="id" value="vaga" />
+	<ui:param name="view" value="#{vagaEstagioBean}" />
+	<ui:param name="headerIcon" value="fa-book" />
+	<ui:param name="headerTitle" value="Vagas de Estagio" />
+	<ui:param name="headerLink" value="vaga_estagio.html" />
+	<ui:param name="formTitle" value="Vaga de Estágio" />
+	<ui:param name="emptyMessage" value="Nenhuma vaga cadastrada!" />
+	<ui:param name="btnNew" value="true" />
+	<ui:param name="btnBack" value="true" />
+	<ui:param name="btnSave" value="true" />
+	<ui:param name="btnEdit" value="true" />
+	<ui:param name="btnRemove" value="true" />
+	
+	<ui:define name="contentGrid">
+		<p:column headerText="Vaga de Estágio">
+			#{entity.nome}
+		</p:column>
+		<p:column headerText="Turno">
+			#{entity.turno}
+		</p:column>
+		<p:column headerText="Remuneração">
+			#{entity.remuneracao}
+		</p:column>
+		<p:column headerText="Carga Horária">
+			#{entity.cargaHoraria}
+		</p:column>
+	</ui:define>
+	<ui:define name="contentForm">
+		<div class="form-group">
+		    <label for="nome" class="col-sm-2 control-label">Vaga de Estágio:</label>
+		    <div class="col-sm-8">  
+				<p:inputText styleClass="form-control" value="#{vagaEstagioBean.entity.nome}" maxlength="80"
+					rendered="true" requiredMessage="Você deve informar o nome da vaga!"/>				    
+		    </div>  
+    	</div> 	
+    	<div class="form-group">
+		    <label for="descricao" class="col-sm-2 control-label">Descrição:</label>
+		    <div class="col-sm-8">
+				<p:inputTextarea styleClass="form-control" value="#{vagaEstagioBean.entity.descricao}" 
+					rendered="true" requiredMessage="Informe a Descrição!" rows="4"/>				    
+		    </div>
+    	</div>
+    	<div class="form-group">
+		    <label for="requisitos" class="col-sm-2 control-label">Requisitos:</label>
+		    <div class="col-sm-8">
+				<p:inputTextarea styleClass="form-control" value="#{vagaEstagioBean.entity.requisitos}" 
+					rows="4"/>				    
+		    </div>
+    	</div>
+    	<div class="form-group">
+		    <label for="atividades" class="col-sm-2 control-label">Atividades:</label>
+		    <div class="col-sm-8">
+				<p:inputTextarea styleClass="form-control" value="#{vagaEstagioBean.entity.atividades}" 
+					rows="4"/>				    
+		    </div>
+    	</div>
+    	<div class="form-group">
+		    <label for="beneficios" class="col-sm-2 control-label">Benefícios:</label>
+		    <div class="col-sm-8">
+				<p:inputTextarea styleClass="form-control" value="#{vagaEstagioBean.entity.beneficios}" 
+					rows="4"/>				    
+		    </div>
+    	</div>
+    	<div class="form-group">
+		    <label for="cargaHoraria" class="col-sm-2 control-label">Carga Horária:</label>
+		    <div class="col-sm-8">
+				<p:inputText styleClass="form-control" value="#{vagaEstagioBean.entity.cargaHoraria}" />				    
+		    </div>
+    	</div>
+    	<div class="form-group">
+		    <label for="remuneracao" class="col-sm-2 control-label">Remuneração:</label>
+		    <div class="col-sm-8">
+				<p:inputText styleClass="form-control" value="#{vagaEstagioBean.entity.remuneracao}" />				    
+		    </div>
+    	</div>
+    	<div class="form-group">
+		    <label for="turno" class="col-sm-2 control-label">Turno:</label>
+		    <div class="col-sm-8">
+		    	<p:selectOneMenu id="turno" value="#{vagaEstagioBean.entity.turno}" style="width:200px">
+         			<f:selectItem itemLabel="Selecione..." itemValue="" />
+         			<f:selectItem itemLabel="Manhã" itemValue="MANHA" />
+         			<f:selectItem itemLabel="Tarde" itemValue="TARDE" />
+         			<f:selectItem itemLabel="Noite" itemValue="NOITE" />
+     			</p:selectOneMenu>				    
+		    </div>
+    	</div>
 	</ui:define>
 </ui:composition>
 </html>

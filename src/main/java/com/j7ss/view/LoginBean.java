@@ -1,3 +1,11 @@
+/*
+ * @version     1.0.0
+ * @author      Edivando J. Alves
+ * @contact     edivando@j7ss.com ( http://www.j7ss.com )
+ * 
+ * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
+ * 
+ */
 package com.j7ss.view;
 
 import java.io.IOException;
@@ -23,10 +31,9 @@ import com.j7ss.util.WebContext;
 
 /**
  * 
- * 
- * 
  * @author Edivando Alves
- *
+ * @date  10/02/2016
+ * 
  */
 @ManagedBean
 @SessionScoped
@@ -45,13 +52,15 @@ public class LoginBean implements Serializable{
 		try {
 			List<Usuario> usuarios = Usuario.findByEmailAndSenha(usuario.getEmail(), MD5.md5(usuario.getSenha()));
 			if(usuarios != null && usuarios.size() > 0 ){
+				String homePage = "home.html";
 				usuario = usuarios.get(0);
 				if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
 					aluno = Aluno.findByUsuario( usuario );
+					homePage = aluno.isCompleteCadastro() ? "homeAluno.html" : "completeCadastro.html";
 				}else if(usuario.getTipoUsuario().equals(TipoUsuario.INSTITUICAO)){
 					instituicao = Instituicao.findById(usuario.getIdInstituicao());
 				}
-				WebContext.redirect("home.html");
+				WebContext.redirect(homePage);
 			}else{
 				usuario = new Usuario();
 				FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage(FacesMessage.SEVERITY_WARN, "Desculpe!", "Mas o email ou a senha informada não confere. Tente novamente!")));
@@ -89,14 +98,14 @@ public class LoginBean implements Serializable{
 			if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
 				aluno.usuario(usuario).save();
 			}
+			aluno.getVagaEstagio().save();
+			aluno.getVagaEstagio().getEmpresa().save();
 			Messages.showGrowlInfo("Tdsfs", "sadasda");
 		} catch (DAOException e) {
 			Messages.showGrowlInfo("Tdsfs", "sadasda");
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
 	
+
 }

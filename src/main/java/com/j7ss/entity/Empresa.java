@@ -1,8 +1,17 @@
+/*
+ * @version     1.0.0
+ * @author      Edivando J. Alves
+ * @contact     edivando@j7ss.com ( http://www.j7ss.com )
+ * 
+ * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
+ * 
+ */
 package com.j7ss.entity;
 
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,10 +27,9 @@ import com.j7ss.util.IGenericEntity;
 
 /**
  * 
+ * @author Edivando Alves
+ * @date  10/02/2016
  * 
- * 
- * @author edivandoalves
- *
  */
 @Entity
 @Table(name = "empresa")
@@ -39,12 +47,6 @@ public class Empresa implements IGenericEntity<Empresa>{
 	private String email;
 	@Getter @Setter
 	private String telefone;
-	@Getter @Setter
-	private String supervisor;
-	@Getter @Setter
-	private String cargoSupervisor;
-	@Getter @Setter
-	private String telefoneSupervisor;
 	@Getter @Setter
 	private String cnpj;
 	@Getter @Setter
@@ -66,6 +68,10 @@ public class Empresa implements IGenericEntity<Empresa>{
 	private String uf;
 	@Getter @Setter
 	private String cidade;
+	
+	@OneToMany(mappedBy="empresa", fetch=FetchType.EAGER)
+	@Getter @Setter
+	private List<EmpresaSupervisor> empresaSupervisors;
 	
 	@Override
 	public boolean isNew() {
@@ -90,21 +96,6 @@ public class Empresa implements IGenericEntity<Empresa>{
 	
 	public Empresa telefone(String telefone){
 		this.telefone = telefone;
-		return this;
-	}
-	
-	public Empresa supervisor(String supervisor){
-		this.supervisor = supervisor;
-		return this;
-	}
-	
-	public Empresa cargoSupervisor(String cargoSupervisor){
-		this.cargoSupervisor = cargoSupervisor;
-		return this;
-	}
-	
-	public Empresa telefoneSupervisor(String telefoneSupervisor){
-		this.telefoneSupervisor = telefoneSupervisor;
 		return this;
 	}
 	

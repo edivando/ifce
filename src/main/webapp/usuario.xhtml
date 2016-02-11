@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	@version     1.0.0
+	@author      Edivando J. Alves
+	@contact     edivando@j7ss.com ( http://www.j7ss.com )
+	
+	@copyright Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved. 
+-->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -22,6 +29,22 @@
 	<ui:param name="btnRemove" value="true" />
 	
 	<ui:define name="contentGrid">
+		<p:column headerText="Email Válido" width="100" styleClass="text-center">
+			<span class="label #{entity.emailValido ? 'label-primary' : 'label-danger'}">#{entity.emailValido ? "Sim" : "Não"}</span>
+		</p:column>  
+		<p:column headerText="Ativo" width="140" styleClass="text-center">
+			<p:inplace id="ativo" effectSpeed="fast" editor="true">
+				<f:facet name="output">
+					<span class="label #{entity.ativo ? 'label-primary' : 'label-danger'}">#{entity.ativo ? "Sim" : "Não"}</span>
+	            </f:facet>
+	            <f:facet name="input">
+	        		<p:selectBooleanButton id="ativoSelect" value="#{entity.ativo}" onLabel="Sim" offLabel="Não" 
+						onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:60px" >
+						<p:ajax listener="#{usuarioBean.save(entity)}"/>
+					</p:selectBooleanButton>
+	            </f:facet>
+	        </p:inplace>
+		</p:column>
 		<p:column headerText="Nome">
 			#{entity.nome}
 		</p:column>
@@ -46,17 +69,6 @@
 		                <p:ajax listener="#{usuarioBean.save(entity)}"/>
 		            </h:selectOneMenu>
 	            </f:facet>
-	        </p:inplace>
-		</p:column>
-		<p:column headerText="Email Válido" width="100" styleClass="text-center">
-			#{entity.emailValido ? "Sim" : "Não"}
-		</p:column>
-		<p:column headerText="Ativo" width="140" styleClass="text-center">
-			<p:inplace id="ativo" label="#{entity.ativo ? 'Sim' : 'Não'}" effectSpeed="fast" editor="true">
-	            <p:selectBooleanButton id="ativoSelect" value="#{entity.ativo}" onLabel="Sim" offLabel="Não" 
-					onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:60px" >
-					<p:ajax listener="#{usuarioBean.save(entity)}"/>
-				</p:selectBooleanButton>
 	        </p:inplace>
 		</p:column>
 	</ui:define>
@@ -124,7 +136,7 @@
 					onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:60px" />
 			</div>
 			<div class="col-sm-2">
-				<p:message for="inputEmail"  />
+				<p:message for="inputAtivo"  />
 			</div>
 		</div>
 		

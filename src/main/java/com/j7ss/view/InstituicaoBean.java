@@ -1,7 +1,17 @@
+/*
+ * @version     1.0.0
+ * @author      Edivando J. Alves
+ * @contact     edivando@j7ss.com ( http://www.j7ss.com )
+ * 
+ * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
+ * 
+ */
 package com.j7ss.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -12,12 +22,15 @@ import lombok.Setter;
 
 import org.primefaces.event.NodeExpandEvent;
 import org.primefaces.event.NodeSelectEvent;
+import org.primefaces.event.TransferEvent;
 import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.DualListModel;
 import org.primefaces.model.TreeNode;
 
 import com.j7ss.entity.Campus;
 import com.j7ss.entity.Curso;
 import com.j7ss.entity.Departamento;
+import com.j7ss.entity.Documento;
 import com.j7ss.entity.Instituicao;
 import com.j7ss.util.BasicView;
 import com.j7ss.util.DAOException;
@@ -25,10 +38,9 @@ import com.j7ss.util.Messages;
 
 /**
  * 
+ * @author Edivando Alves
+ * @date  10/02/2016
  * 
- * 
- * @author edivandoalves
- *
  */
 @ManagedBean
 @ViewScoped
@@ -40,7 +52,9 @@ public class InstituicaoBean extends BasicView<Instituicao>{
 	@Getter @Setter
 	private TreeNode selectedNode;
 
+	@Setter
 	private Campus campus;
+	@Setter
 	private Departamento departamento;
 	private Curso curso;
 	
@@ -50,6 +64,15 @@ public class InstituicaoBean extends BasicView<Instituicao>{
 	private boolean showDepartamento;
 	@Getter 
 	private boolean showCurso;
+	
+	private List<Documento> documentos;
+	@Getter @Setter
+	private DualListModel<Documento> pickListDocumentos;
+	
+	@PostConstruct
+	public void initPickListDocumentos(){
+		pickListDocumentos = new DualListModel<Documento>(getDocumentos(), new ArrayList<Documento>());
+	}
 	
 	@Override
 	public void grid() {
@@ -92,32 +115,6 @@ public class InstituicaoBean extends BasicView<Instituicao>{
 	}
     
     public void onNodeExpand(NodeExpandEvent event) {
-//    	if(event.getTreeNode().getType().equals("campus")){
-////    		TreeNode campusNode = event.getTreeNode();
-////			for (Departamento departamento : ((Campus)campusNode.getData()).getDepartamentos()) {
-////				DefaultTreeNode departamentoNode = new DefaultTreeNode("departamento", departamento, campusNode);
-////				for(Curso curso : departamento.getCursos()){
-////					new DefaultTreeNode("curso", curso, departamentoNode);
-////				}
-////			}
-//    		
-////			for (Departamento departamento : ((Campus)campusNode.getData()).getDepartamentos()) {
-////				new DefaultTreeNode("departamento", departamento, campusNode);
-////			}
-//    		
-//    		System.out.println("onNodeExpand - Campus");
-//    	}else if(event.getTreeNode().getType().equals("departamento")){
-////    		TreeNode departamentoNode = event.getTreeNode();
-////    		for(Curso curso : ((Departamento)departamentoNode.getData()).getCursos()){
-////				new DefaultTreeNode("curso", curso, departamentoNode);
-////			}
-//    		
-//    		
-//    		System.out.println("onNodeExpand - Departamento");
-//    	}else if(event.getTreeNode().getType().equals("curso")){
-//    		System.out.println("onNodeExpand - Curso");
-//    	}
-    	
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Expanded", event.getTreeNode().toString());
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
@@ -163,6 +160,7 @@ public class InstituicaoBean extends BasicView<Instituicao>{
     public void addCurso(){
     	curso = new Curso();
     	curso.setDepartamento(departamento);
+		initPickListDocumentos();
     	showCampus = false;
     	showDepartamento = false;
     	showCurso = true;
@@ -256,6 +254,8 @@ public class InstituicaoBean extends BasicView<Instituicao>{
     
     public void saveCurso() {
     	try {
+    		List<Documento> docs = pickListDocumentos.getTarget();
+    		curso.setDocumentos(docs);
     		if(curso.isNew()){
     			departamento.addCurso(curso.save());
     		}else{
@@ -289,25 +289,45 @@ public class InstituicaoBean extends BasicView<Instituicao>{
 	public List<Instituicao> getEntitys() {
 		return entitys == null ? entitys = Instituicao.findAll() : entitys;
 	}
+	
+	public List<Documento> getDocumentos() {
+		return documentos = documentos == null ? Documento.findAll() : documentos;
+	}
+	
+	public void onTransfer(TransferEvent event) {
+        StringBuilder builder = new StringBuilder();
+        for(Object item : event.getItems()) {
+            builder.append(((Documento) item).getNome()).append("<br />");
+        }
+         
+        FacesMessage msg = new FacesMessage();
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        msg.setSummary("Items Transferred");
+        msg.setDetail(builder.toString());
+         
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    } 
+	
+    public void onReorder() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "List Reordered", null));
+    } 
+	
+	public Documento getDocumentoByNome(String nome){
+		for(Documento documento : getDocumentos()){
+			if(documento.getNome().equals(nome)) return documento;
+		}
+		return null;
+	}
+
 
 	
 	public Campus getCampus() {
 		return campus == null ? campus = new Campus() : campus;
 	}
 	
-	public void setCampus(Campus campus) {
-		this.campus = campus;
-//		this.departamento = null;
-//		this.curso = null;
-	}
-	
 	public Departamento getDepartamento() {
 		return departamento == null ? departamento = new Departamento() : departamento;
-	}
-	
-	public void setDepartamento(Departamento departamento) {
-		this.departamento = departamento;
-//		this.curso = null;
 	}
 	
 	public Curso getCurso() {
@@ -316,6 +336,18 @@ public class InstituicaoBean extends BasicView<Instituicao>{
 	
 	public void setCurso(Curso curso) {
 		this.curso = curso;
+		List<Documento> docs = new ArrayList<>();
+		for(Documento docSource : getDocumentos()){
+			boolean exist = false;
+			for(Documento docTarget : curso.getDocumentos()){
+				if(docSource.getIdDocumento().equals(docTarget.getIdDocumento())) exist = true;
+			}
+			if(!exist){
+				docs.add(docSource);
+			}
+		}
+		this.pickListDocumentos.setSource(docs);
+		this.pickListDocumentos.setTarget(curso.getDocumentos());
 	}
 	
 	public boolean getNovoDepartamento(){

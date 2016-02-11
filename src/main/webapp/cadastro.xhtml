@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	@version     1.0.0
+	@author      Edivando J. Alves
+	@contact     edivando@j7ss.com ( http://www.j7ss.com )
+	
+	@copyright Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved. 
+-->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -16,19 +23,10 @@
     	</div>
 	</ui:define>
 	<ui:define name="container">
+		<br/><br/>
 		<div class="row">
-	        <div class="col-sm-7">
-	            <section class="panel">
-	                <header class="panel-heading">
-	                    Title
-	                </header>
-	                <div class="panel-body">
-	                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-	                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-	                </div>
-	            </section>
-	        </div>
-	         <div class="col-sm-5">
+	 		<div class="col-sm-4"></div>
+	       	<div class="col-sm-4">
 	            <section class="panel">
 	                <header class="panel-heading">
 	                    Novo Aluno
@@ -37,10 +35,10 @@
 	                	<h:form>
            			    	<div class="form-horizontal">
 	                			<div class="form-group">
-								    <label for="instituicao" class="col-sm-2 control-label"><strong>Instituição:</strong></label>
-								    <div class="col-sm-9">	
+								    <label for="instituicao" class="col-sm-3 control-label"><strong>Instituição:</strong></label>
+								    <div class="col-sm-8">	
 								    	<p:autoComplete id="instituicao" value="#{alunoCadastroBean.instituicao}" minQueryLength="2" effect="fade" 
-								    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchInstituicao}" size="50" required="true"
+								    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchInstituicao}" size="42" required="true"
 								    		requiredMessage="Você deve informar sua instituição de ensino!" placeholder="Qual sua Instituição de Ensino?"
 								    		var="inst" itemLabel="#{inst.nome}" itemValue="#{inst}" converter="#{instituicaoConverter}">
 								    		<p:ajax event="itemSelect" update="@all" />
@@ -54,11 +52,11 @@
 	                		<p:outputPanel id="campusPanel" rendered="#{alunoCadastroBean.instituicao.idInstituicao != null}">
                					<div class="form-horizontal">
 		                			<div class="form-group">
-									    <label for="campus" class="col-sm-2 control-label"><strong>Campus:</strong></label>
-									    <div class="col-sm-9">	
+									    <label for="campus" class="col-sm-3 control-label"><strong>Campus:</strong></label>
+									    <div class="col-sm-8">	
 									    	<p:autoComplete id="campus" value="#{alunoCadastroBean.campus}" minQueryLength="2" effect="fade" 
 									    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchCampus}"  required="true"
-									    		size="50" placeholder="Qual seu Campus?"
+									    		size="42" placeholder="Qual seu Campus?"
 									    		var="item" itemLabel="#{item.nome}" itemValue="#{item}" converter="#{campusConverter}">
 									    		<p:ajax event="itemSelect" update="@all" />	  
 									    	</p:autoComplete>  
@@ -72,11 +70,11 @@
 	                		<p:outputPanel id="departamentoPanel" rendered="#{alunoCadastroBean.campus.idCampus != null}">
                					<div class="form-horizontal">
 		                			<div class="form-group">
-									    <label for="departamento" class="col-sm-2 control-label"><strong>Departamento:</strong></label>
-									    <div class="col-sm-9">	
+									    <label for="departamento" class="col-sm-3 control-label"><strong>Departamento:</strong></label>
+									    <div class="col-sm-8">	
 									    	<p:autoComplete id="departamento" value="#{alunoCadastroBean.departamento}" minQueryLength="2" effect="fade" 
 									    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchDepartamentos}"  required="true"
-									    		size="50" placeholder="Qual seu departamento?"
+									    		size="42" placeholder="Qual seu departamento?"
 									    		var="item" itemLabel="#{item.nome}" itemValue="#{item}" converter="#{departamentoConverter}" >
 									    		<p:ajax event="itemSelect" update="@all" />	  
 									    	</p:autoComplete> 
@@ -90,11 +88,11 @@
 							<p:outputPanel id="cursoPanel" rendered="#{alunoCadastroBean.departamento.idDepartamento != null}">
                					<div class="form-horizontal">
 		                			<div class="form-group">
-									    <label for="curso" class="col-sm-2 control-label"><strong>Curso:</strong></label>
-									    <div class="col-sm-9">	
+									    <label for="curso" class="col-sm-3 control-label"><strong>Curso:</strong></label>
+									    <div class="col-sm-8">	
 									    	<p:autoComplete id="curso" value="#{alunoCadastroBean.aluno.curso}" minQueryLength="2" effect="fade" 
 									    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchCursos}"  required="true"
-									    		requiredMessage="Você deve informar o seu curso" size="50" placeholder="Qual seu Curso?"
+									    		requiredMessage="Você deve informar o seu curso" size="42" placeholder="Qual seu Curso?"
 									    		var="item" itemLabel="#{item.nome}" itemValue="#{item}" converter="#{cursoConverter}" >
 									    		<p:ajax event="itemSelect" update="@all" />	  
 									    	</p:autoComplete> 
@@ -105,12 +103,10 @@
 							    	</div>
 		                		</div>
 	                		</p:outputPanel>
-	                		
-	                		
 	                		<div class="form-horizontal">
 	                			<div class="form-group">
-								    <label for="matricula" class="col-sm-2 control-label"><strong>Matrícula:</strong></label>
-								    <div class="col-sm-9">
+								    <label for="matricula" class="col-sm-3 control-label"><strong>Matrícula:</strong></label>
+								    <div class="col-sm-8">
 								    	<p:inputText value="#{alunoCadastroBean.aluno.matricula}" placeholder="Sua matricula..." styleClass="form-control"
 								    		maxlength="80" required="true" requiredMessage="Você deve informar sua matrícula!" id="matricula"/>	
 								    	<p:message for="matricula" display="icon"/>  		    
@@ -123,8 +119,8 @@
 	                	
 	                		<div class="form-horizontal">
 	                			<div class="form-group">
-								    <label for="nome" class="col-sm-2 control-label"><strong>Nome:</strong></label>
-								    <div class="col-sm-9">
+								    <label for="nome" class="col-sm-3 control-label"><strong>Nome:</strong></label>
+								    <div class="col-sm-8">
 								    	<p:inputText value="#{alunoCadastroBean.aluno.usuario.nome}" placeholder="Seu nome completo..." styleClass="form-control"
 								    		maxlength="80" required="true" requiredMessage="Você deve informar o seu nome completo!"
 								    		id="nome"/>	
@@ -137,8 +133,8 @@
 	                		</div>
 	                		<div class="form-horizontal">
 	                			<div class="form-group">
-								    <label for="email" class="col-sm-2 control-label"><strong>Email:</strong></label>
-								    <div class="col-sm-9">
+								    <label for="email" class="col-sm-3 control-label"><strong>Email:</strong></label>
+								    <div class="col-sm-8">
 								    	<p:inputText value="#{alunoCadastroBean.aluno.usuario.email}" placeholder="Email..." styleClass="form-control"
 								    		maxlength="80" required="true" requiredMessage="Você deve informar o email!"
 								    		id="email" />	
@@ -151,8 +147,8 @@
 	                		</div>
 	                		<div class="form-horizontal">
 	                			<div class="form-group">
-								    <label for="email" class="col-sm-2 control-label"><strong>Senha:</strong></label>
-								    <div class="col-sm-9">
+								    <label for="email" class="col-sm-3 control-label"><strong>Senha:</strong></label>
+								    <div class="col-sm-8">
 								    	<p:password value="#{alunoCadastroBean.aluno.usuario.senha}" placeholder="Senha" styleClass="form-control"
 								    		maxlength="20" required="true" requiredMessage="Você deve informar o sua senha!"
 								    		id="senha"/>
@@ -164,15 +160,20 @@
 						    	</div>
 	                		</div>
 	                		<hr/>
-							<div class="text-center">
-								<p:commandLink action="#{alunoCadastroBean.save}" styleClass="btn btn-info">
-									Cadastre-se
-								</p:commandLink>
-							</div>
+	                		<div class="col-md-1"/>
+	                		<div class="col-md-10">
+	                			<div class="text-center">
+									<p:commandLink action="#{alunoCadastroBean.save}" styleClass="btn btn-info btn-block">
+										<strong>Finalizar Cadastro</strong>
+									</p:commandLink>
+								</div>
+	                		</div>
+							<div class="col-md-1"/>
 						</h:form>
 	                </div>
 	            </section>
 	        </div>
+	        <div class="col-sm-4"></div>
 	    </div>
 	</ui:define>
 </ui:composition>

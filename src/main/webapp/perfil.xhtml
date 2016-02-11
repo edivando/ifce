@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	@version     1.0.0
+	@author      Edivando J. Alves
+	@contact     edivando@j7ss.com ( http://www.j7ss.com )
+	
+	@copyright Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved. 
+-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -6,14 +13,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/layout/layoutPrivateDefault.xhtml">
-	<ui:define name="title">IFCE Estágios - Perfil</ui:define>
+	<ui:define name="title">IFCE Estágios - Meu Perfil</ui:define>
 	<ui:define name="container">
 	
 		<div class="row">
 	        <div class="col-md-12">
 	            <ul class="breadcrumb">
 	                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-	                <li class="active"><a href="perfil.html">Perfil</a></li>
+	                <li class="active"><a href="perfil.html">Meu Perfil</a></li>
 	            </ul>
 	        </div>
 	    </div>
@@ -35,11 +42,14 @@
 		        	<ul class="nav nav-tabs">
 		            	<li class="active"><a data-toggle="tab" href="#usuario">Usuário</a></li>
 		            	<h:outputFormat rendered="#{loginBean.usuario.tipoUsuario eq 'ALUNO'}">
-		            		<li class=""> <a data-toggle="tab" href="#aluno">Aluno</a> </li>
-		                	<li class=""> <a data-toggle="tab" href="#curso">Curso</a> </li>
-		                	<li class=""> <a data-toggle="tab" href="#endereco">Endereço</a> </li>
+		            		<li> <a data-toggle="tab" href="#aluno">Aluno</a></li>
+		            		<li> <a data-toggle="tab" href="#endereco">Endereço</a></li>
+		                	<li> <a data-toggle="tab" href="#curso">Curso</a></li>
+		                	<li> <a data-toggle="tab" href="#vagaEstagio">Vaga de Estágio</a></li>
+		                	<li> <a data-toggle="tab" href="#vagaEstagioAtividade">Atividade Diária</a></li>
+		                	<li> <a data-toggle="tab" href="#empresa">Empresa</a></li>
+		                	<li> <a data-toggle="tab" href="#empresaSupervisor">Empresa Supervisor</a></li>
 		            	</h:outputFormat>
-						
 		             </ul>
 		         </header>
 	     		<div class="panel-body">
@@ -107,6 +117,38 @@
 									</div>
 								</div>
 		                 	</div>
+		                 	<div id="endereco" class="tab-pane">
+		                 		<div class="form-group">
+									<label for="inputEndereco" class="col-sm-2 control-label">Endereço:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputEndereco" value="#{loginBean.aluno.endereco}" placeholder="Rua..., Número" styleClass="form-control"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputBairro" class="col-sm-2 control-label">Bairro:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputBairro" value="#{loginBean.aluno.bairro}" placeholder="Bairro..." styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputCEP" class="col-sm-2 control-label">CEP:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputCEP" value="#{loginBean.aluno.cep}" placeholder="CEP" styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputCidade" class="col-sm-2 control-label">Cidade:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputCidade" value="#{loginBean.aluno.cidade}" placeholder="Cidade" styleClass="form-control"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputUF" class="col-sm-2 control-label">UF:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputUF" value="#{loginBean.aluno.uf}" placeholder="Cidade" styleClass="form-control" />
+									</div>
+								</div>
+		                 	</div>
 		                 	<div id="curso" class="tab-pane">
 						    	<div class="form-group">
 									<label for="inputMatricula" class="col-sm-2 control-label">Matrícula:</label>
@@ -149,38 +191,178 @@
 									</div>
 								</div>          	
 		                 	</div>
-		                 	<div id="endereco" class="tab-pane">
+		                 	<div id="vagaEstagio" class="tab-pane">
 		                 		<div class="form-group">
-									<label for="inputEndereco" class="col-sm-2 control-label">Endereço:</label>
+								    <label for="inputVagaNome" class="col-sm-2 control-label">Nome:</label>
+								    <div class="col-sm-8">
+										<p:inputText id="inputVagaNome" styleClass="form-control" value="#{loginBean.aluno.vagaEstagio.nome}" placeholder="Nome..."/>			    
+								    </div>
+						   		</div>
+						   		<div class="form-group">
+								    <label for="inputVagaDescricao" class="col-sm-2 control-label">Descrição:</label>
+								    <div class="col-sm-8">
+										<p:inputTextarea id="inputVagaDescricao" styleClass="form-control" value="#{loginBean.aluno.vagaEstagio.descricao}" rows="2" 
+											placeholder="Descrição..."/>			    
+								    </div>
+						   		</div>
+						   		<div class="form-group">
+								    <label for="inputVagaRequisitos" class="col-sm-2 control-label">Requisitos:</label>
+								    <div class="col-sm-8">
+										<p:inputTextarea id="inputVagaRequisitos" styleClass="form-control" value="#{loginBean.aluno.vagaEstagio.requisitos}" rows="2" 
+											placeholder="Requisitos..."/>			    
+								    </div>
+						   		</div>
+						   		<div class="form-group">
+								    <label for="inputVagaAtividades" class="col-sm-2 control-label">Atividades:</label>
+								    <div class="col-sm-8">
+										<p:inputTextarea id="inputVagaAtividades" styleClass="form-control" value="#{loginBean.aluno.vagaEstagio.atividades}" rows="2" 
+											placeholder="Atividades..."/>			    
+								    </div>
+						   		</div>
+						   		<div class="form-group">
+								    <label for="inputVagaBeneficios" class="col-sm-2 control-label">Beneficios:</label>
+								    <div class="col-sm-8">
+										<p:inputText id="inputVagaBeneficios" styleClass="form-control" value="#{loginBean.aluno.vagaEstagio.beneficios}" placeholder="Beneficios"/>			    
+								    </div>
+						   		</div>
+						   		<div class="form-group">
+								    <label for="inputVagaTurno" class="col-sm-2 control-label">Turno:</label>
+								    <div class="col-sm-8">
+								    	<p:selectOneMenu id="inputVagaTurno" value="#{loginBean.aluno.vagaEstagio.turno}" style="width:125px">
+								            <f:selectItem itemLabel="Selecione..." itemValue="" />
+								            <f:selectItem itemLabel="Manhã" itemValue="MANHA" />
+								            <f:selectItem itemLabel="Tarde" itemValue="TARDE" />
+								            <f:selectItem itemLabel="Noite" itemValue="NOITE" />
+								        </p:selectOneMenu>			    
+								    </div>
+						   		</div>
+
+		              			<div class="form-group">
+								    <label for="inputVagaCargaHoraria" class="col-sm-2 control-label">Carga Horaria Semanal:</label>
+								    <div class="col-sm-8">
+										<p:inputText id="inputVagaCargaHoraria" styleClass="form-control" value="#{loginBean.aluno.vagaEstagio.cargaHoraria}" placeholder="Quantas horas de estágio por semana!"/>			    
+								    </div>
+						   		</div>
+						    	<div class="form-group">
+								    <label for="inputVagaBolsa" class="col-sm-2 control-label">Valor da Bolsa:</label>
+								    <div class="col-sm-8">
+										<p:inputText id="inputVagaBolsa" styleClass="form-control" value="#{loginBean.aluno.vagaEstagio.remuneracao}" placeholder="Valor da Bolsa" />			    
+								    </div>
+						    	</div>
+						    	<div class="form-group">
+								    <label for="inputVagaTransporte" class="col-sm-2 control-label">Valor auxilio transporte:</label>
+								    <div class="col-sm-8">
+										<p:inputText id="inputVagaTransporte" styleClass="form-control" value="#{loginBean.aluno.vagaEstagio.remuneracao}" placeholder="Valor da Auxilio Transporte"  />			    
+								    </div>
+						    	</div>
+						    	<div class="form-group">
+								    <label for="inputVagaApoliceNumero" class="col-sm-2 control-label">Apolice nº:</label>
+								    <div class="col-sm-8">
+										<p:inputText id="inputVagaApoliceNumero" styleClass="form-control" value="#{loginBean.aluno.vagaEstagio.apoliceNumero}" placeholder="Número da Apólice de Seguro"  />			    
+								    </div>
+						    	</div>
+						    	<div class="form-group">
+								    <label for="inputVagaApoliceEmpresa" class="col-sm-2 control-label">Apolice Empresa:</label>
+								    <div class="col-sm-8">
+										<p:inputText id="inputVagaApoliceEmpresa" styleClass="form-control" value="#{loginBean.aluno.vagaEstagio.apoliceEmpresa}" placeholder="Empresa da Apolice de Seguro"  />			    
+								    </div>
+						    	</div>
+
+	horaInicioEstagio;<br/>
+	horaFimOuIntervalo;<br/>
+	horaRetorno;<br/>
+	horaFimEstagio;<br/>
+	vigenciaInicio;<br/>
+	vigenciaFim;<br/>
+						    	
+
+		              		</div>
+		              		<div id="vagaEstagioAtividade" class="tab-pane">
+		              		
+		              		</div>
+		              		<div id="empresa" class="tab-pane">
+		              			<div class="form-group">
+									<label for="inputEmpresaNome" class="col-sm-2 control-label">Empresa:</label>
 									<div class="col-sm-8">
-										<p:inputText id="inputEndereco" value="#{loginBean.aluno.endereco}" placeholder="Rua..., Número" styleClass="form-control"/>
+										<p:inputText id="inputEmpresaNome" value="#{loginBean.aluno.vagaEstagio.empresa.nome}" placeholder="Nome da Empresa" styleClass="form-control" 
+											required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
+									</div>
+									<div class="col-sm-2">
+										<p:message for="inputEmpresaNome"  />
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputBairro" class="col-sm-2 control-label">Bairro:</label>
+									<label for="inputEmpresaEmail" class="col-sm-2 control-label">Email:</label>
 									<div class="col-sm-8">
-										<p:inputText id="inputBairro" value="#{loginBean.aluno.bairro}" placeholder="Bairro..." styleClass="form-control" />
+										<p:inputText id="inputEmpresaEmail" value="#{loginBean.aluno.vagaEstagio.empresa.email}" placeholder="Nome da Empresa" styleClass="form-control" />
+									</div>
+								</div>
+						
+								<div class="form-group">
+									<label for="inputEmpresaTelefone" class="col-sm-2 control-label">Telefone:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputEmpresaTelefone" value="#{loginBean.aluno.vagaEstagio.empresa.telefone}" placeholder="Telefone da Empresa" styleClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputCEP" class="col-sm-2 control-label">CEP:</label>
+									<label for="inputEmpresaCNPJ" class="col-sm-2 control-label">CNPJ:</label>
 									<div class="col-sm-8">
-										<p:inputText id="inputCEP" value="#{loginBean.aluno.cep}" placeholder="CEP" styleClass="form-control" />
+										<p:inputText id="inputEmpresaCNPJ" value="#{loginBean.aluno.vagaEstagio.empresa.cnpj}" placeholder="CNPJ" styleClass="form-control" />
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="inputEmpresaSite" class="col-sm-2 control-label">Site:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputEmpresaSite" value="#{loginBean.aluno.vagaEstagio.empresa.site}" placeholder="Site" styleClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputCidade" class="col-sm-2 control-label">Cidade:</label>
+									<label for="inputEmpresaRamoAtividade" class="col-sm-2 control-label">Ramo de Atividade:</label>
 									<div class="col-sm-8">
-										<p:inputText id="inputCidade" value="#{loginBean.aluno.cidade}" placeholder="Cidade" styleClass="form-control"/>
+										<p:inputText id="inputEmpresaRamoAtividade" value="#{loginBean.aluno.vagaEstagio.empresa.ramoAtividade}" placeholder="Ramo de Atividade" styleClass="form-control" />
+									</div>
+								</div>
+			   
+			                	<div class="form-group">
+									<label for="inputEmpresaEndereco" class="col-sm-2 control-label">Endereço:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputEmpresaEndereco" value="#{loginBean.aluno.vagaEstagio.empresa.endereco}" placeholder="Rua..., Número" styleClass="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputUF" class="col-sm-2 control-label">UF:</label>
+									<label for="inputEmpresaBairro" class="col-sm-2 control-label">Bairro:</label>
 									<div class="col-sm-8">
-										<p:inputText id="inputUF" value="#{loginBean.aluno.uf}" placeholder="Cidade" styleClass="form-control" />
+										<p:inputText id="inputEmpresaBairro" value="#{loginBean.aluno.vagaEstagio.empresa.bairro}" placeholder="Bairro" styleClass="form-control" />
 									</div>
 								</div>
-		                 	</div>
+								<div class="form-group">
+									<label for="inputEmpresaCEP" class="col-sm-2 control-label">CEP:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputEmpresaCEP" value="#{loginBean.aluno.vagaEstagio.empresa.cep}" placeholder="CEP" styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmpresaUF" class="col-sm-2 control-label">UF:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputEmpresaUF" value="#{loginBean.aluno.vagaEstagio.empresa.uf}" placeholder="UF" styleClass="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmpresaidade" class="col-sm-2 control-label">Cidade:</label>
+									<div class="col-sm-8">
+										<p:inputText id="inputEmpresaCidade" value="#{loginBean.aluno.vagaEstagio.empresa.cidade}" placeholder="Cidade" styleClass="form-control" />
+									</div>
+								</div>
+		              		
+		              		
+		              		
+		              		
+		              		
+		              		</div>
+		              		<div id="empresaSupervisor" class="tab-pane">
+		              		
+		              		</div>
 	            		</h:outputFormat>
 	            	</div>
 	        	</div>

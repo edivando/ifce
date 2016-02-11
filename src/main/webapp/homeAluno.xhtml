@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	@version     1.0.0
+	@author      Edivando J. Alves
+	@contact     edivando@j7ss.com ( http://www.j7ss.com )
+	
+	@copyright Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved. 
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/layout/layoutPrivateDefault.xhtml">
+	<ui:define name="title">Turnos</ui:define>
+	<ui:define name="container">
+	
+		<div class="timeline">
+	 		<article class="timeline-item alt">
+	             <div class="text-right">
+	                 <div class="time-show first">
+	                     <a href="#" class="btn btn-primary">Início</a>
+	                 </div>
+	             </div>
+	        </article>
+	        
+	        <ui:repeat var="doc" value="#{homeAlunoBean.documentoCursos}" varStatus="var">
+		      	<article class="timeline-item #{var.index % 2 == 0 ? 'alt' : ''}">
+					<div class="timeline-desk">
+		                 <div class="panel">
+		                     <div class="panel-body">
+		                         <span class="arrow-alt"></span>
+		                         <span class="timeline-icon #{doc.status.cor}">
+		                             <i class="fa #{doc.status.icon}"></i>
+		                         </span>
+		                         <h1 class="#{doc.status.cor}"><a href="#{doc.linkPagina}"> #{doc.documento.titulo}</a></h1>
+		                         <p> #{doc.documento.descricao} </p>
+		             		</div>
+		      			</div>
+		   			</div>
+				</article>
+	        </ui:repeat>
+	     </div>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,3 +1,11 @@
+/*
+ * @version     1.0.0
+ * @author      Edivando J. Alves
+ * @contact     edivando@j7ss.com ( http://www.j7ss.com )
+ * 
+ * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
+ * 
+ */
 package com.j7ss.entity;
 
 import java.util.Date;
@@ -7,21 +15,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.IGenericEntity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * 
+ * @author Edivando Alves
+ * @date  10/02/2016
  * 
- * 
- * @author edivandoalves
- *
  */
 @Entity
 @Table(name = "vaga_estagio")
@@ -69,14 +77,28 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
     private Integer apoliceNumero;
 	@Getter @Setter
 	private String apoliceEmpresa;
-	@Getter @Setter
-    private String supervisorEstagio;
-    @Getter @Setter
-    private String supervisorCargo;
     
+//	@OneToOne
+//	@Getter @Setter
+//	private Aluno aluno;
+	
+	@OneToOne
+	@Setter
+	private Empresa empresa;
+	
 	@Override
 	public boolean isNew() {
 		return idVaga == null;
+	}
+	
+	public VagaEstagio(){ }
+	
+	public VagaEstagio(String nome){
+		this.nome = nome;
+	}
+	
+	public Empresa getEmpresa() {
+		return empresa == null ? empresa  = new Empresa() : empresa;
 	}
     
 //## Builder
@@ -169,17 +191,6 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 		this.apoliceEmpresa = apoliceEmpresa;
 		return this;
 	}
-	
-	public VagaEstagio supervisorEstagio(String supervisorEstagio){
-		this.supervisorEstagio = supervisorEstagio;
-		return this;
-	}
-	
-	public VagaEstagio supervisorCargo(String supervisorCargo){
-		this.supervisorCargo = supervisorCargo;
-		return this;
-	}
-
 	
 //## DAO
 	private static DAO<VagaEstagio> dao = new DAO<VagaEstagio>(VagaEstagio.class);

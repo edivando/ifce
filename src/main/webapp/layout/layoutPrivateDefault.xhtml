@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	@version     1.0.0
+	@author      Edivando J. Alves
+	@contact     edivando@j7ss.com ( http://www.j7ss.com )
+	
+	@copyright Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved. 
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="#{localeBean.locale}" 
 	xmlns="http://www.w3.org/1999/xhtml"
@@ -11,11 +18,10 @@
 <h:head class="header fixed-top clearfix">
 	<ui:include src="/template/templatePageHeader.xhtml" />
 </h:head>
-<h:body>
+<h:body styleClass="full-width"> 
 	<section id="container" >
 		<ui:include src="/template/private/templateMenuTop.xhtml" /> 
-		<ui:include src="/template/private/templateMenuLateral.xhtml" />
-	
+		<!-- <ui:include src="/template/private/templateMenuLateral.xhtml" /> -->
 	    <section id="main-content">
 	        <section class="wrapper">
 		        <h:form id="formAll">
@@ -25,50 +31,7 @@
 		       	</h:form>
 	        </section>
 	    </section>
-		
-		<div class="right-sidebar">
-			<div class="search-row">
-			    <input type="text" placeholder="Pesquisar" class="form-control"/>
-			</div>
-		
-			<div class="right-stat-bar">
-				<ul class="right-side-accordion">
-		
-					<li class="widget-collapsible">
-					  	<a href="#" class="head widget-head red-bg active clearfix">
-					        <span class="pull-left">Novas Vagas</span>
-					        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
-					    </a>
-
-					</li>
-		
-					<li class="widget-collapsible">
-					    <a href="#" class="head widget-head purple-bg active">
-					        <span class="pull-left"> Top Mais </span>
-					        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
-					    </a>
-					    <ul class="widget-container">
-					        <li>                     
-					            <div class="prog-row">
-					                <div class="user-thumb rsn-activity">
-					                    <i class="fa  fa-thumbs-o-up"></i>
-					                </div>
-					                <div class="rsn-details ">
-					                    <p class="text-muted">
-					                        #5
-					                    </p>
-					                    <p>
-					                        <a href="#"> Programador Ruby </a>
-					                        40 candidatos se insteressaram nessa vaga
-					                    </p>
-					                </div>
-					            </div>            
-					        </li>
-					    </ul>
-					</li>
-				</ul>
-			</div>
-		</div>
+	
 	</section>
 
 	<h:form>

@@ -1,28 +1,39 @@
+/*
+ * @version     1.0.0
+ * @author      Edivando J. Alves
+ * @contact     edivando@j7ss.com ( http://www.j7ss.com )
+ * 
+ * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
+ * 
+ */
 package com.j7ss.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
-
-import com.j7ss.util.DAO;
-import com.j7ss.util.DAOException;
-import com.j7ss.util.IGenericEntity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import com.j7ss.util.DAO;
+import com.j7ss.util.DAOException;
+import com.j7ss.util.IGenericEntity;
+
 /**
  * 
+ * @author Edivando Alves
+ * @date  10/02/2016
  * 
- * 
- * @author edivandoalves
- *
  */
 @Entity
 @Table(name = "curso")
@@ -42,6 +53,11 @@ public class Curso implements IGenericEntity<Curso>{
 	@Getter @Setter
 	private Departamento departamento;
 	
+	@OneToMany(mappedBy="curso", fetch=FetchType.EAGER)
+	@OrderBy("ordem")
+	@Getter @Setter
+	private List<DocumentoCurso> documentoCursos;
+	
 	@Override
 	public String toString() {
 		return nome;
@@ -50,6 +66,26 @@ public class Curso implements IGenericEntity<Curso>{
 	@Override
 	public boolean isNew() {
 		return idCurso == null;
+	}
+	
+	public List<Documento> getDocumentos(){
+		List<Documento> documentos = new ArrayList<>();
+		for (DocumentoCurso dc : documentoCursos) {
+			documentos.add(dc.getDocumento());
+		}
+		return documentos;
+	}
+	
+	public void setDocumentos(List<Documento> documentos) throws DAOException{
+		if(documentoCursos != null){
+			for (DocumentoCurso dcs : documentoCursos) {
+				dcs.remove();
+			}
+		}
+		documentoCursos = new ArrayList<>();
+		for (int i = 0; i < documentos.size(); i++) {
+			documentoCursos.add( new DocumentoCurso(this).documento(documentos.get(i)).ordem(i).save() );
+		}
 	}
 	
 //## Builder
@@ -65,6 +101,11 @@ public class Curso implements IGenericEntity<Curso>{
 	
 	public Curso departamento(Departamento departamento){
 		this.departamento = departamento;
+		return this;
+	}
+	
+	public Curso documentoCursos(List<DocumentoCurso> documentoCursos){
+		this.documentoCursos = documentoCursos;
 		return this;
 	}
 	

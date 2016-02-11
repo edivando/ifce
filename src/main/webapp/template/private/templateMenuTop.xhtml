@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-	Copyright 2013-2014 J7 Soluções Inteligentes.
-	by Edivando Alves
+	@version     1.0.0
+	@author      Edivando J. Alves
+	@contact     edivando@j7ss.com ( http://www.j7ss.com )
+	
+	@copyright Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved. 
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -14,17 +17,35 @@
 <!--logo start-->
 <div class="brand">
 
-    <a href="home.html" class="logo">
+    <a href="#{loginBean.usuario.tipoUsuario eq 'ALUNO' ? 'homeAluno.html' : 'home.html'}" class="logo">
         <img src="resources/images/img/ifceLogo.png" alt="" width="30"/>
         <strong> Estágio </strong>
     </a>
 </div>
+<div class="horizontal-menu navbar-collapse collapse">
+	<!-- Menu Administrador -->
+    <p:outputPanel rendered="#{loginBean.usuario.tipoUsuario == 'ADMINISTRADOR'}">
+  		<ul class="nav navbar-nav">
+			<li><a href="aluno.html">Alunos</a></li>
+			<li><a href="documento.html">Documento</a></li>
+			<li><a href="empresa.html">Empresas</a></li>
+			<li><a href="instituicao.html">Instituíções</a></li>
+			<li><a href="usuario.html">Usuários</a></li>
+			<li><a href="vaga_estagio.html">Vagas de Estágio</a></li>
+      	</ul>
+ 	</p:outputPanel>
+	        	
+  	<!-- Menu Instituicao -->
+ 	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario == 'INSTITUICAO'}"> </p:outputPanel>
+	        
+</div>
+
 
 <div class="top-nav clearfix">
     <ul class="nav pull-right top-menu">
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="images/avatar1_small.jpg"/>
+                <img alt="" src="resources/images/avatar1_small.jpg"/>
                 <span class="username">
                 	#{loginBean.usuario.nome} <h:outputFormat value="/ #{loginBean.instituicao.nome}" rendered="#{loginBean.usuario.tipoUsuario eq 'INSTITUICAO'}"/> 
                 </span>
@@ -32,7 +53,7 @@
             </a>
 
             <ul class="dropdown-menu extended logout">
-                <li><a href="perfil.html"><i class=" fa fa-user"> </i>Perfil</a></li>
+                <li><a href="perfil.html"><i class=" fa fa-user"> </i>Meu Perfil</a></li>
                 <li><a href="javascript:logoff();"><i class="fa fa-sign-out"></i>Sair</a></li>
             </ul>
         </li>
