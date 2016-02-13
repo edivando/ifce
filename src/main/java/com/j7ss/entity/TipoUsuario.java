@@ -16,9 +16,29 @@ package com.j7ss.entity;
  */
 public enum TipoUsuario {
 
-	ADMINISTRADOR("home", "perfil", "aluno", "empresa", "instituicao", "vaga_estagio", "usuario", "documento"), 
+	ADMINISTRADOR("home", 
+				"perfil", 
+				"aluno", 
+				"empresa", 
+				"instituicao", 
+				"vaga_estagio", 
+				"usuario", 
+				"documento"), 
+				
 	INSTITUICAO("home", "perfil"), 
-	ALUNO("homeAluno", "perfil", "completeCadastro", "termoCompromisso");
+	
+	ALUNO(	"homeAluno", 
+			"perfil", 
+			"completeCadastro", 
+			"docFichaMatricula", 
+			"docRelatorioDiario", 
+			"docRelatorioFinalCursoSuperior", 
+			"docRelatorioFinalCursoTecnico", 
+			"docRelatorioPeriodicoAtividade", 
+			"docRequerimentoConclusao", 
+			"docTermoAditivo", 
+			"docTermoCompromisso",
+			"docTermoRealizacaoAvaliacaoEstagio");
 	
 	private String[] pages;
 	

@@ -8,14 +8,17 @@
  */
 package com.j7ss.view;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.j7ss.entity.Aluno;
+import com.j7ss.entity.Documento;
 import com.j7ss.util.BasicView;
 import com.j7ss.util.Messages;
+import com.j7ss.util.WebContext;
 
 /**
  * 
@@ -46,5 +49,15 @@ public class AlunoBean extends BasicView<Aluno>{
 	@Override
 	public void onRemove(Aluno aluno) {
 		Messages.showGrowlInfo("Aluno", "Aluno removido com sucesso!");
+	}
+	
+	public void openDocumento(Documento doc){
+		WebContext.setFlash("DocFichaMatricula", doc);
+		try {
+			WebContext.redirect("docFichaMatricula.html");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

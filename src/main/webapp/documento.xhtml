@@ -99,46 +99,43 @@
 	   		<div class="col-md-2">
 	   			<hr/>
 	   			<h4 class="text-center">Usuário</h4>
-	   			##USUARIO_NOME## <br/>
-	   			##USUARIO_EMAIL##
+	   			<h:outputFormat value="#{documentoKeyBean.usuario}"  escape="false"/>
 	   			<hr/>
 	   			<h4 class="text-center">Aluno</h4>
-	   			##ALUNO_DESCRICAO##<br/>
-	   			##ALUNO_MATRICULA##<br/>
-	   			##ALUNO_TELEFONE##<br/>
-	   			##ALUNO_CV_LATTES##<br/>
-	   			##ALUNO_CPF##<br/>
-	   			##ALUNO_RG##<br/>
-	   			##ALUNO_DATA_NASCIMENTO##<br/>
-	   			##ALUNO_ENDERECO_ENDERECO##<br/>
-	   			##ALUNO_ENDERECO_BAIRRO##<br/> 
-	   			##ALUNO_ENDERECO_CEP##<br/>
-	   			##ALUNO_ENDERECO_CIDADE##<br/>
-	   			##ALUNO_ENDERECO_UF##
-	   			<hr/>
-	   			<h4 class="text-center">Curso</h4>
-	   			##ALUNO_CURSO_SEMESTRE_ATUAL##<br/> 
-	   			##ALUNO_CURSO_NOME##
+	   			<h:outputFormat value="#{documentoKeyBean.aluno}"  escape="false"/>
 	   			<hr/>
 	   			<h4 class="text-center">Empresa</h4>
-	   			##EMPRESA_NOME##<br/>
-	   			##EMPRESA_EMAIL##<br/>
-	   			##EMPRESA_TELEFONE##<br/>
-	   			##EMPRESA_SUPERVISOR##<br/>
-	   			##EMPRESA_CARGO_SUPERVISOR##<br/>
-	   			##EMPRESA_TELEFONE_SUPERVISOR##<br/>
-	   			##EMPRESA_CNPJ##<br/>
-	   			##EMPRESA_SITE##<br/>
-	   			##EMPRESA_RAMO_ATIVIDADE##<br/>
-	   			##EMPRESA_ENDERECO_ENDERECO##<br/>
-	   			##EMPRESA_ENDERECO_BAIRRO##<br/>
-	   			##EMPRESA_ENDERECO_CEP##<br/>
-	   			##EMPRESA_ENDERECO_UF##<br/>
-	   			##EMPRESA_ENDERECO_CIDADE##<br/>
-
+	   			<h:outputFormat value="#{documentoKeyBean.empresa}"  escape="false"/>
 	   		</div>
-	   		<p:editor id="inputHtmlPage" value="#{documentoBean.entity.htmlPage}" height="1200" styleClass="col-md-8"/>
-	   		<div class="col-md-2"/>
+	   		<div class="col-md-8">
+	   			 <p:tabView id="tabView" scrollable="true">
+	   			 	<p:ajax event="tabChange" process="inputHtmlPage" update="pageHtmlOutput"/>
+			        <p:tab title="Edit">
+			        	<h:panelGrid columns="1" width="100%">
+			           		<p:inputTextarea id="inputHtmlPage" value="#{documentoBean.entity.htmlPage}" rows="40" styleClass="col-md-12"/>
+			           	</h:panelGrid>
+			        </p:tab>
+			        <p:tab title="Preview">
+			        	<h:panelGrid columns="1" width="100%" border="1">
+			            	<h:outputFormat id="pageHtmlOutput" value="#{documentoBean.htmlPage}" escape="false" />
+			            </h:panelGrid>
+			        </p:tab>
+			    </p:tabView>
+	   		</div>
+	   		<div class="col-md-2">
+	   			<hr/>
+	   			<h4 class="text-center">Instituição</h4>
+	   			<h:outputFormat value="#{documentoKeyBean.instituicao}"  escape="false"/>
+	   			<hr/>
+	   			<h4 class="text-center">Campus</h4>
+	   			<h:outputFormat value="#{documentoKeyBean.campus}"  escape="false"/>
+	   			<hr/>
+	   			<h4 class="text-center">Departamento</h4>
+	   			<h:outputFormat value="#{documentoKeyBean.departamento}"  escape="false"/>
+	   			<hr/>
+	   			<h4 class="text-center">Curso</h4>
+	   			<h:outputFormat value="#{documentoKeyBean.curso}"  escape="false"/>
+	   		</div>
 	   	</div>
 	   	
 		

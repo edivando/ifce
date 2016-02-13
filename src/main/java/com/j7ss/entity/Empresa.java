@@ -48,6 +48,8 @@ public class Empresa implements IGenericEntity<Empresa>{
 	@Getter @Setter
 	private String telefone;
 	@Getter @Setter
+	private String fax;
+	@Getter @Setter
 	private String cnpj;
 	@Getter @Setter
 	private String site;
@@ -60,6 +62,8 @@ public class Empresa implements IGenericEntity<Empresa>{
 	// Endereco
 	@Getter @Setter
 	private String endereco;
+	@Getter @Setter
+	private String numero;
 	@Getter @Setter
 	private String bairro;
 	@Getter @Setter

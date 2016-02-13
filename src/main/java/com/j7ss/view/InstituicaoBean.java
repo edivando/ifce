@@ -20,7 +20,6 @@ import javax.faces.context.FacesContext;
 import lombok.Getter;
 import lombok.Setter;
 
-import org.primefaces.event.NodeExpandEvent;
 import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.event.TransferEvent;
 import org.primefaces.model.DefaultTreeNode;
@@ -113,11 +112,6 @@ public class InstituicaoBean extends BasicView<Instituicao>{
 			}
 		}
 	}
-    
-    public void onNodeExpand(NodeExpandEvent event) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Expanded", event.getTreeNode().toString());
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
  
     public void onNodeSelect(NodeSelectEvent event) {
     	if(event.getTreeNode().getType().equals("campus")){
@@ -136,9 +130,6 @@ public class InstituicaoBean extends BasicView<Instituicao>{
     			setCurso( (Curso)event.getTreeNode().getData() );
     		}
     	}
-    	
-    	System.out.println("Type: "+event.getTreeNode().getType());
-    	System.out.println(event.getTreeNode().getData());
     }
     
     public void addCampus(){
@@ -224,9 +215,8 @@ public class InstituicaoBean extends BasicView<Instituicao>{
     	try {
     		if(campus.isNew()){
     			entity.addCampus(campus.save());
-    		}else{
-    			campus.save();
-    		}
+    		} 
+    		campus.save();
     		reloadTree();
     		back();
     		Messages.showGrowlInfo("Test", "test");
@@ -240,9 +230,8 @@ public class InstituicaoBean extends BasicView<Instituicao>{
     	try {
     		if(departamento.isNew()){
     			campus.addDepartamento(departamento.save());
-    		}else{
-    			departamento.save();
     		}
+    		departamento.save();
     		reloadTree();
     		back();
     		Messages.showGrowlInfo("Test", "test");
@@ -254,13 +243,11 @@ public class InstituicaoBean extends BasicView<Instituicao>{
     
     public void saveCurso() {
     	try {
-    		List<Documento> docs = pickListDocumentos.getTarget();
-    		curso.setDocumentos(docs);
     		if(curso.isNew()){
     			departamento.addCurso(curso.save());
-    		}else{
-    			curso.save();
     		}
+			curso.save();
+			curso.setDocumentos(pickListDocumentos.getTarget());
     		reloadTree();
     		back();
     		Messages.showGrowlInfo("Test", "test");
@@ -358,6 +345,8 @@ public class InstituicaoBean extends BasicView<Instituicao>{
 		return departamento == null ? false : showDepartamento && !departamento.isNew();
 	}
 	
+	
+//## Button Remove Rendered	
 	public boolean isBtnRemoveCampus(){
 		return campus == null ? false : !campus.isNew(); 
 	}

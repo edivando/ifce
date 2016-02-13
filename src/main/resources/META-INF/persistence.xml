@@ -42,7 +42,7 @@
 			<property name="javax.persistence.jdbc.password" value="3-bU-QdK-Qx5" />
 
 			<!-- Local -->
-		<!-- 	<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/ifce" />
+			<!-- <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/ifce" />
 			<property name="hibernate.connection.username" value="postgres" />
 			<property name="hibernate.connection.password" value="123" /> -->
 			
@@ -51,6 +51,16 @@
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />  
             <property name="hibernate.format_sql" value="false" />  
+            
+            <!-- POOL -->  
+<!--             <property name="connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider"/>
+            <property name="hibernate.c3p0.min_size" value="3"/>
+            <property name="hibernate.c3p0.max_size" value="20"/>
+            <property name="hibernate.c3p0.acquire_increment" value="1"/>
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+            <property name="hibernate.c3p0.timeout" value="14400"/>
+            <property name="hibernate.c3p0.idle_test_period" value="3600"/> -->
+            
 		</properties>
 	</persistence-unit>
 	

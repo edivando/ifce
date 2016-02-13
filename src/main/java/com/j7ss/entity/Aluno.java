@@ -56,6 +56,8 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@Getter @Setter
 	private String telefone;
 	@Getter @Setter
+	private String celular;
+	@Getter @Setter
 	private String cvLattes;
 	@Getter @Setter
 	private Integer semestreAtual;
@@ -83,6 +85,8 @@ public class Aluno implements IGenericEntity<Aluno>{
 	// Endereco
 	@Getter @Setter
 	private String endereco;
+	@Getter @Setter
+	private String numero;
 	@Getter @Setter
 	private String bairro;
 	@Getter @Setter

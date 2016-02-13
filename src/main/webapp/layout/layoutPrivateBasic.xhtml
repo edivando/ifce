@@ -55,12 +55,12 @@
 								</p:commandLink>
 							</f:facet>
 						
-			 				<p:commandLink update="@all" actionListener="#{view.form}" styleClass="btn btn-outline" rendered="#{btnEdit}" >
+			 				<p:commandLink update="@all" actionListener="#{view.form}" styleClass="btn btn-white" rendered="#{btnEdit}" >
 					 			<f:setPropertyActionListener target="#{view.entity}" value="#{entity}"/>
 					 			<i class="fa fa-edit text-info" />
 							</p:commandLink>
 							&nbsp;
-							<p:commandLink actionListener="#{view.remove(entity)}" update=":formAll" styleClass="btn btn-outline" rendered="#{btnRemove}" >
+							<p:commandLink actionListener="#{view.remove(entity)}" update=":formAll" styleClass="btn btn-white" rendered="#{btnRemove}" >
 								<i class="fa fa-trash-o text-danger" />
 						        <p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
 						    </p:commandLink>

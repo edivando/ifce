@@ -25,10 +25,8 @@ import javax.persistence.Query;
 public class DAO<T extends IGenericEntity<T>>{
 
 	private final Class<T> clazz;
-	private GenericJPA jpa;
 	
 	public DAO(Class<T> clazz) {
-		this.jpa = GenericJPA.getInstance();
 		this.clazz = clazz;   //(Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 
@@ -216,7 +214,7 @@ public class DAO<T extends IGenericEntity<T>>{
 	}
 	
 	public EntityManager createEntityManager() {
-		return jpa.getEntityManagerFactory().createEntityManager();
+		return GenericJPA.getInstance().getEntityManagerFactory().createEntityManager();
 	}
 	
 //	static class DAOBuilder {

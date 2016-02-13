@@ -56,6 +56,9 @@ public class Documento implements IGenericEntity<Documento> {
 	private String htmlPage;
 	@Getter @Setter
 	private Boolean obrigatorio = true;
+	@Column(columnDefinition="text")
+	@Getter @Setter
+	private String keys;
 	
 	@Override
 	public String toString() {

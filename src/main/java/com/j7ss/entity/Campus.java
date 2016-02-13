@@ -55,6 +55,8 @@ public class Campus implements IGenericEntity<Campus>{
 	@Getter @Setter
 	private String endereco;
 	@Getter @Setter
+	private String numero;
+	@Getter @Setter
 	private String bairro;
 	@Getter @Setter
 	private String cep;
