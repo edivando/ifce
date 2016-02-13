@@ -28,7 +28,7 @@ import com.j7ss.util.WebContext;
  */
 @ManagedBean
 @ViewScoped
-public class AlunoBean extends BasicView<Aluno>{
+public class AdminAlunoBean extends BasicView<Aluno>{
 	private static final long serialVersionUID = 1L;
 	
 	@Override

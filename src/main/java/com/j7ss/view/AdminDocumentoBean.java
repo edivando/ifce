@@ -21,6 +21,7 @@ import com.github.rjeschke.txtmark.Processor;
 import com.j7ss.entity.Documento;
 import com.j7ss.entity.DocumentoKey;
 import com.j7ss.util.BasicView;
+import com.j7ss.util.DAOException;
 
 /**
  * 
@@ -30,7 +31,7 @@ import com.j7ss.util.BasicView;
  */
 @ManagedBean
 @ViewScoped
-public class DocumentoBean extends BasicView<Documento>{
+public class AdminDocumentoBean extends BasicView<Documento>{
 	private static final long serialVersionUID = 1L;
 
 	private String htmlPage = "";
@@ -47,6 +48,11 @@ public class DocumentoBean extends BasicView<Documento>{
 	
 	@Override
 	public void save() {
+		setKeys();
+		super.save();
+	}
+	
+	private void setKeys(){
 		StringBuilder builder = new StringBuilder();
 		Set<String> keys = new HashSet<>();
 
@@ -62,14 +68,20 @@ public class DocumentoBean extends BasicView<Documento>{
 			builder.append(key).append(",");
 		}
 		entity.setKeys(builder.toString());
-		super.save();
-	}
+	}	
 	
     public void onTabChange(TabChangeEvent event) {
     	getHtmlPage();
     }
     
     public String getHtmlPage() {
+    	if(!htmlPage.equals("")){
+    		setKeys();
+        	try {
+        		entity.save();
+        	} catch (DAOException e) {
+        	}
+    	}
 		return htmlPage = Processor.process(getEntity().getHtmlPage());
 	}
 }

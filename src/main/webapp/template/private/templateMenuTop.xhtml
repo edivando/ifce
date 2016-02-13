@@ -17,7 +17,7 @@
 <!--logo start-->
 <div class="brand">
 
-    <a href="#{loginBean.usuario.tipoUsuario eq 'ALUNO' ? 'homeAluno.html' : 'home.html'}" class="logo">
+    <a href="#{loginBean.usuario.tipoUsuario eq 'ALUNO' ? 'alunoHome.html' : loginBean.usuario.tipoUsuario eq 'INSTITUICAO' ? 'instituicaoHome.html' : 'adminHome.html'}" class="logo">
         <img src="resources/images/img/ifceLogo.png" alt="" width="30"/>
         <strong> Estágio </strong>
     </a>
@@ -26,17 +26,27 @@
 	<!-- Menu Administrador -->
     <p:outputPanel rendered="#{loginBean.usuario.tipoUsuario == 'ADMINISTRADOR'}">
   		<ul class="nav navbar-nav">
-			<li><a href="aluno.html">Alunos</a></li>
-			<li><a href="documento.html">Documento</a></li>
+			<li><a href="adminAluno.html">Alunos</a></li>
+			<li><a href="adminDocumento.html">Documento</a></li>
 			<!-- <li><a href="empresa.html">Empresas</a></li> -->
-			<li><a href="instituicao.html">Instituíções</a></li>
-			<li><a href="usuario.html">Usuários</a></li>
+			<li><a href="adminInstituicao.html">Instituíções</a></li>
+			<li><a href="adminUsuario.html">Usuários</a></li>
 			<!-- <li><a href="vaga_estagio.html">Vagas de Estágio</a></li> -->
       	</ul>
  	</p:outputPanel>
 	        	
   	<!-- Menu Instituicao -->
  	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario == 'INSTITUICAO'}"> </p:outputPanel>
+ 	
+ 	<!-- Menu Aluno -->
+ 	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario == 'ALUNO'}"> 
+ 		<ul class="nav navbar-nav">
+ 			<li><a href="alunoHome.html">Documentos</a></li>
+ 			<li><a href="alunoVagaEstagio.html">Vaga Estágio</a></li>
+ 			<li><a href="alunoAtividadeDiaria.html">Atividade Diária</a></li>
+ 		</ul>
+ 		
+ 	</p:outputPanel>
 	        
 </div>
 

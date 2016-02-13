@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	@version     1.0.0
+	@author      Edivando J. Alves
+	@contact     edivando@j7ss.com ( http://www.j7ss.com )
+	
+	@copyright Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved. 
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/layout/layoutPrivateDefault.xhtml">
+
+	<ui:param name="headerTitle" value="Vaga de Estágio" />
+	<ui:param name="headerLink" value="alunoVagaEstagio.html" />
+	
+	<ui:define name="title">Vaga Estágio</ui:define>
+	<ui:define name="container">
+		
+		<p:panel id="formPanel" styleClass="form-horizontal">
+			<p:focus />
+			<f:facet name="header">
+				<span class="lead">
+					<i class="fa #{headerIcon}"/> Meu Perfil
+				</span>
+				<p:commandLink  action="#{loginBean.update}" update="@form" styleClass="pull-right btn btn-info btn-sm">
+					<i class="fa fa-save" />
+					Salvar
+				</p:commandLink>
+			</f:facet>
+			<section class="panel">
+		      	<header class="panel-heading tab-bg-dark-navy-blue ">
+		        	<ul class="nav nav-tabs">
+		            	<li class="active"><a data-toggle="tab" href="#vagaEstagio">Vaga Estágio</a></li>
+		            	<li> <a data-toggle="tab" href="#empresa">Empresa</a></li>
+		             </ul>
+		         </header>
+	     		<div class="panel-body">
+	            	<div class="tab-content">
+	            		<div id="vagaEstagio" class="tab-pane active">
+							<ui:include src="/module/moduleAlunoVagaEstagio.xhtml" >
+								<ui:param name="bean" value="#{loginBean}"/>
+							</ui:include>
+	            		</div>
+	            		<div id="empresa" class="tab-pane">
+							<ui:include src="/module/moduleAlunoVagaEstagioEmpresa.xhtml">
+								<ui:param name="bean" value="#{loginBean}"/>
+							</ui:include>
+	            		</div>
+	            	</div>
+	        	</div>
+	   		</section>
+   		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

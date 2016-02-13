@@ -61,7 +61,7 @@ public class DocFichaMatriculaBean implements Serializable{
 		docPage = documentoAluno.getDocumento().getHtmlPage();
 		if(documentoAluno.getDocumento().getKeys() != null){
 			for (String key : documentoAluno.getDocumento().getKeys().split(",")) {
-				replace(DocumentoKey.valueOf(key.replaceAll("&", "")));
+				replace(DocumentoKey.valueOf(key.replaceAll("&", "").replaceAll("`", "")));
 			}
 		}
 	}
@@ -85,7 +85,7 @@ public class DocFichaMatriculaBean implements Serializable{
 	private DocumentoAluno getAlunoFichaMatricula(){
 		if(loginBean.getAluno().getDocumentosAluno().size() != 0){
 			for (DocumentoAluno doc : loginBean.getAluno().getDocumentosAluno()) {
-				if(doc.getDocumento().getPagina().equals("docFichaMatricula.html")) return doc;
+//				if(doc.getDocumento().getPagina().equals("alunoDocFichaMatricula.html")) return doc;
 			}
 		}
 		return null;

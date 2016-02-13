@@ -13,13 +13,20 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/layout/layoutPrivateDefault.xhtml">
+	
+	<ui:param name="headerTitle" value="Documento" />
+	<ui:param name="headerLink" value="alunoDocFichaMatricula.html" />
+
+
 	<ui:define name="title">Turnos</ui:define>
 	<ui:define name="container">
-	
-	    <!-- Conteudo da página aqui -->
-		<p:calendar/>
 
-		
+		<ui:include src="/module/moduleDocPrint.xhtml" >
+      		<ui:param name="htmlPage" value="#{docFichaMatriculaBean.docPage}" />
+      		<ui:param name="btnPrint" value="true"/>
+      		<ui:param name="btnSubmeter" value="true"/>
+      	</ui:include> 
+	    
 	</ui:define>
 </ui:composition>
 </html>

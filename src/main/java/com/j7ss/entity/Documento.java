@@ -45,8 +45,6 @@ public class Documento implements IGenericEntity<Documento> {
 	@Getter @Setter
 	private String nome;
 	@Getter @Setter
-	private String pagina;
-	@Getter @Setter
 	private String titulo;
 	@Column(columnDefinition="text")
 	@Getter @Setter
@@ -78,11 +76,6 @@ public class Documento implements IGenericEntity<Documento> {
 	
 	public Documento nome(String nome){
 		this.nome = nome;
-		return this;
-	}
-	
-	public Documento pagina(String pagina){
-		this.pagina = pagina;
 		return this;
 	}
 	

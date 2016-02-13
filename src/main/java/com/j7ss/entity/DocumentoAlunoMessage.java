@@ -50,7 +50,7 @@ public class DocumentoAlunoMessage implements IGenericEntity<DocumentoAlunoMessa
 	@Getter @Setter
 	private Date date;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne
 	@Getter @Setter
 	private Usuario usuario;
 

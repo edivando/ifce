@@ -52,13 +52,16 @@ public class LoginBean implements Serializable{
 		try {
 			List<Usuario> usuarios = Usuario.findByEmailAndSenha(usuario.getEmail(), MD5.md5(usuario.getSenha()));
 			if(usuarios != null && usuarios.size() > 0 ){
-				String homePage = "home.html";
+				String homePage = "";
 				usuario = usuarios.get(0);
 				if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
 					aluno = Aluno.findByUsuario( usuario );
-					homePage = aluno.isCompleteCadastro() ? "homeAluno.html" : "completeCadastro.html";
+					homePage = aluno.isCompleteCadastro() ? "alunoHome.html" : "completeCadastro.html";
 				}else if(usuario.getTipoUsuario().equals(TipoUsuario.INSTITUICAO)){
 					instituicao = Instituicao.findById(usuario.getIdInstituicao());
+					homePage = "instituicaoHome.html";
+				}else if(usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)){
+					homePage = "adminHome.html";
 				}
 				WebContext.redirect(homePage);
 			}else{

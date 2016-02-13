@@ -43,7 +43,7 @@ import com.j7ss.util.Messages;
  */
 @ManagedBean
 @ViewScoped
-public class InstituicaoBean extends BasicView<Instituicao>{
+public class AdminInstituicaoBean extends BasicView<Instituicao>{
 	private static final long serialVersionUID = 1L;
 	
 	@Getter

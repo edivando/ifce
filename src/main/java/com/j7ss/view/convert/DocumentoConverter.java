@@ -18,7 +18,7 @@ import javax.faces.convert.Converter;
 import lombok.Setter;
 
 import com.j7ss.entity.Documento;
-import com.j7ss.view.InstituicaoBean;
+import com.j7ss.view.AdminInstituicaoBean;
 
 /**
  * 
@@ -32,7 +32,7 @@ public class DocumentoConverter implements Converter {
 
 	@Setter
 	@ManagedProperty(value="#{instituicaoBean}")
-	private InstituicaoBean instituicaoBean;
+	private AdminInstituicaoBean instituicaoBean;
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {

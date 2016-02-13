@@ -28,7 +28,7 @@ import com.j7ss.util.Messages;
  */
 @ManagedBean
 @ViewScoped
-public class UsuarioBean extends BasicView<Usuario>{
+public class AdminUsuarioBean extends BasicView<Usuario>{
 	private static final long serialVersionUID = 1L;
 	
 	private List<Instituicao> instituicaos;
@@ -71,7 +71,7 @@ public class UsuarioBean extends BasicView<Usuario>{
 	}
 	
 	public List<Instituicao> getInstituicaos() {
-		return instituicaos = Instituicao.findAll();
+		return instituicaos == null ? Instituicao.findAll() : instituicaos;
 	}
 	
 	public String getInstituicaoNome(Integer id){

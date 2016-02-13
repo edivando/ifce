@@ -65,7 +65,7 @@ public class Campus implements IGenericEntity<Campus>{
 	@Getter @Setter
 	private String cidade;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne
 	@Getter @Setter
 	private Instituicao instituicao = new Instituicao();
 	

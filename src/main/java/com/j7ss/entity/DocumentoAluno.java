@@ -66,10 +66,10 @@ public class DocumentoAluno implements IGenericEntity<DocumentoAluno> {
 	
 	
 	public String getLinkPagina(){
-		if(status == DocumentoStatus.INDISPONIVEL){
+		if(documento == null || status == DocumentoStatus.INDISPONIVEL){
 			return "";
 		}
-		return documento.getPagina();
+		return "alunoDocumento.html?id="+documento.getIdDocumento();
 	}
 	
 	@Override

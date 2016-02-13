@@ -13,11 +13,19 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/layout/layoutPrivateDefault.xhtml">
-	<ui:define name="title">Turnos</ui:define>
-	<ui:define name="container">
 	
-	    Documento - Relatorio Final Curso Superior
-		
+	<ui:param name="headerTitle" value="Documento" />
+	<ui:param name="headerLink" value="alunoDocumento.html" />
+
+	<ui:define name="title">Documento</ui:define>
+	<ui:define name="container">
+
+		<ui:include src="/module/moduleDocPrint.xhtml" >
+      		<ui:param name="htmlPage" value="#{alunoDocumentoBean.docPage}" />
+      		<ui:param name="btnPrint" value="true"/>
+      		<ui:param name="btnSubmeter" value="true"/>
+      	</ui:include> 
+	    
 	</ui:define>
 </ui:composition>
 </html>

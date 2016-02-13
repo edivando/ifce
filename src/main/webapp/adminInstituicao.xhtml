@@ -16,10 +16,10 @@
 	<ui:define name="title">IFCE Estágios - Instituições</ui:define>
 	
 	<ui:param name="id" value="instituicao" />
-	<ui:param name="view" value="#{instituicaoBean}" />
+	<ui:param name="view" value="#{adminInstituicaoBean}" />
 	<ui:param name="headerIcon" value="fa-book" />
 	<ui:param name="headerTitle" value="Instituiçoes" />
-	<ui:param name="headerLink" value="instituicao.html" />
+	<ui:param name="headerLink" value="adminInstituicao.html" />
 	<ui:param name="formTitle" value="Instituíção" />
 	<ui:param name="emptyMessage" value="Nenhuma instituição cadastrada!" />
 	<ui:param name="btnNew" value="true" />
@@ -43,7 +43,7 @@
 		<div class="form-group">
 			<label for="inputNome" class="col-sm-2 control-label">Nome:</label>
 			<div class="col-sm-8">
-				<p:inputText id="inputNome" value="#{instituicaoBean.entity.nome}" placeholder="Nome da Institição" styleClass="form-control" 
+				<p:inputText id="inputNome" value="#{adminInstituicaoBean.entity.nome}" placeholder="Nome da Institição" styleClass="form-control" 
 					required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
 			</div>
 			<div class="col-sm-2">
@@ -53,46 +53,46 @@
 		<div class="form-group">
 			<label for="inputEmail" class="col-sm-2 control-label">Email:</label>
 			<div class="col-sm-8">
-				<p:inputText id="inputEmail" value="#{instituicaoBean.entity.email}" placeholder="Email" styleClass="form-control" />
+				<p:inputText id="inputEmail" value="#{adminInstituicaoBean.entity.email}" placeholder="Email" styleClass="form-control" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputTelefone" class="col-sm-2 control-label">Telefone:</label>
 			<div class="col-sm-8">
-				<p:inputText id="inputTelefone" value="#{instituicaoBean.entity.telefone}" placeholder="Telefone" styleClass="form-control" />
+				<p:inputText id="inputTelefone" value="#{adminInstituicaoBean.entity.telefone}" placeholder="Telefone" styleClass="form-control" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputResponsavel" class="col-sm-2 control-label">Responsável:</label>
 			<div class="col-sm-8">
-				<p:inputText id="inputResponsavel" value="#{instituicaoBean.entity.responsavel}" placeholder="Professor responsável" styleClass="form-control" />
+				<p:inputText id="inputResponsavel" value="#{adminInstituicaoBean.entity.responsavel}" placeholder="Professor responsável" styleClass="form-control" />
 			</div>
 		</div>
 		
 		<p:separator />
 		
-		<p:outputPanel rendered="#{!instituicaoBean.entity.isNew()}">
+		<p:outputPanel rendered="#{!adminInstituicaoBean.entity.isNew()}">
 		
 			<div class="row">
 				<div class="col-md-3">
 					<section class="panel" style="margin-bottom: 0px;" >
 	                    <div class="panel-body btn-gap text-center">
-	               			<p:commandLink update="@all" styleClass="btn btn-success btn-xs" actionListener="#{instituicaoBean.addCampus()}">
+	               			<p:commandLink update="@all" styleClass="btn btn-success btn-xs" actionListener="#{adminInstituicaoBean.addCampus()}">
 								<i class="fa fa-plus-circle" /> Novo Campus
 							</p:commandLink>
 							&nbsp;
-							<p:commandLink update="@all" styleClass="btn btn-success btn-xs" actionListener="#{instituicaoBean.addDepartamento()}" rendered="#{instituicaoBean.novoDepartamento}">
+							<p:commandLink update="@all" styleClass="btn btn-success btn-xs" actionListener="#{adminInstituicaoBean.addDepartamento()}" rendered="#{adminInstituicaoBean.novoDepartamento}">
 								<i class="fa fa-plus-circle" /> Novo Departamento
 							</p:commandLink>
 							&nbsp;
-							<p:commandLink update="@all" styleClass="btn btn-success btn-xs" actionListener="#{instituicaoBean.addCurso()}" rendered="#{instituicaoBean.novoCurso}">
+							<p:commandLink update="@all" styleClass="btn btn-success btn-xs" actionListener="#{adminInstituicaoBean.addCurso()}" rendered="#{adminInstituicaoBean.novoCurso}">
 								<i class="fa fa-plus-circle" /> Novo Curso
 							</p:commandLink>
 	                    </div>
 	                </section>
-					<p:tree id="instituicaoTree" value="#{instituicaoBean.root}" var="node" animate="true" dynamic="true" selectionMode="single" 
-						selection="#{instituicaoBean.selectedNode}" style="width:100%;">
-			       		<p:ajax event="select" listener="#{instituicaoBean.onNodeSelect}" update="@all"/>
+					<p:tree id="instituicaoTree" value="#{adminInstituicaoBean.root}" var="node" animate="true" dynamic="true" selectionMode="single" 
+						selection="#{adminInstituicaoBean.selectedNode}" style="width:100%;">
+			       		<p:ajax event="select" listener="#{adminInstituicaoBean.onNodeSelect}" update="@all"/>
 	
 				        <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
 					        <h:outputText value="#{node.nome}"/>
@@ -112,22 +112,22 @@
 				    </p:tree>
 				</div>
 				<div class="col-md-9">
-					<p:panel id="formCampus" rendered="#{instituicaoBean.showCampus}">
+					<p:panel id="formCampus" rendered="#{adminInstituicaoBean.showCampus}">
 						<p:focus />
 						<f:facet name="header">
 							<span class="lead">
-								<i class="fa fa-user"/><h:outputFormat value=" Novo" rendered="#{!instituicaoBean.btnRemoveCampus}"/> Campus
+								<i class="fa fa-user"/><h:outputFormat value=" Novo" rendered="#{!adminInstituicaoBean.btnRemoveCampus}"/> Campus
 							</span>
-							<p:commandLink update="@all" styleClass="pull-right btn btn-danger btn-xs" actionListener="#{instituicaoBean.removeCampus}" 
-								rendered="#{instituicaoBean.btnRemoveCampus}" style="margin-left: 30px;">
+							<p:commandLink update="@all" styleClass="pull-right btn btn-danger btn-xs" actionListener="#{adminInstituicaoBean.removeCampus}" 
+								rendered="#{adminInstituicaoBean.btnRemoveCampus}" style="margin-left: 30px;">
 								<i class="fa fa-minus-circle" /> Remover Campus
 								<p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
 							</p:commandLink>
-							<p:commandLink action="#{instituicaoBean.back}" update="@all" styleClass="pull-right btn btn-danger btn-xs" immediate="true" >
+							<p:commandLink action="#{adminInstituicaoBean.back}" update="@all" styleClass="pull-right btn btn-danger btn-xs" immediate="true" >
 								<i class="fa fa-reply-all" />
 								Cancelar
 							</p:commandLink>
-							<p:commandLink  action="#{instituicaoBean.saveCampus}" update="@all" styleClass="pull-right btn btn-info btn-xs"
+							<p:commandLink  action="#{adminInstituicaoBean.saveCampus}" update="@all" styleClass="pull-right btn btn-info btn-xs"
 								style="margin-right: 10px;" >
 								<i class="fa fa-save" />
 								Salvar
@@ -137,7 +137,7 @@
 						<div class="form-group">
 							<label for="inputCampusNome" class="col-sm-2 control-label">Campus:</label>
 							<div class="col-sm-8">
-								<p:inputText id="inputCampusNome" value="#{instituicaoBean.campus.nome}" placeholder="Nome do Campus" styleClass="form-control" 
+								<p:inputText id="inputCampusNome" value="#{adminInstituicaoBean.campus.nome}" placeholder="Nome do Campus" styleClass="form-control" 
 									required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
 							</div>
 							<div class="col-sm-2">
@@ -147,68 +147,68 @@
 						<div class="form-group">
 							<label for="inputCampusEmail" class="col-sm-2 control-label">Email:</label>
 							<div class="col-sm-8">
-								<p:inputText id="inputCampusEmail" value="#{instituicaoBean.campus.email}" placeholder="Email" styleClass="form-control" />
+								<p:inputText id="inputCampusEmail" value="#{adminInstituicaoBean.campus.email}" placeholder="Email" styleClass="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputCampusTelefone" class="col-sm-2 control-label">Telefone:</label>
 							<div class="col-sm-8">
-								<p:inputText id="inputCampusTelefone" value="#{instituicaoBean.campus.telefone}" placeholder="Telefone do Campus" styleClass="form-control" />
+								<p:inputText id="inputCampusTelefone" value="#{adminInstituicaoBean.campus.telefone}" placeholder="Telefone do Campus" styleClass="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputCampusEndereco" class="col-sm-2 control-label">Endereço:</label>
 							<div class="col-sm-8">
-								<p:inputText id="inputCampusEndereco" value="#{instituicaoBean.campus.endereco}" placeholder="Endereço do Campus" styleClass="form-control" />
+								<p:inputText id="inputCampusEndereco" value="#{adminInstituicaoBean.campus.endereco}" placeholder="Endereço do Campus" styleClass="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputCampusNumero" class="col-sm-2 control-label">Número:</label>
 							<div class="col-sm-8">
-								<p:inputText id="inputCampusNumero" value="#{instituicaoBean.campus.numero}" placeholder="Número do Campus" styleClass="form-control" />
+								<p:inputText id="inputCampusNumero" value="#{adminInstituicaoBean.campus.numero}" placeholder="Número do Campus" styleClass="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputCampusBairro" class="col-sm-2 control-label">Bairro:</label>
 							<div class="col-sm-8">
-								<p:inputText id="inputCampusBairro" value="#{instituicaoBean.campus.bairro}" placeholder="Bairro do Campus" styleClass="form-control" />
+								<p:inputText id="inputCampusBairro" value="#{adminInstituicaoBean.campus.bairro}" placeholder="Bairro do Campus" styleClass="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputCampusCep" class="col-sm-2 control-label">Cep:</label>
 							<div class="col-sm-8">
-								<p:inputText id="inputCampusCep" value="#{instituicaoBean.campus.cep}" placeholder="Cep do Campus" styleClass="form-control" />
+								<p:inputText id="inputCampusCep" value="#{adminInstituicaoBean.campus.cep}" placeholder="Cep do Campus" styleClass="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputCampusUF" class="col-sm-2 control-label">UF:</label>
 							<div class="col-sm-8">
-								<p:inputText id="inputCampusUF" value="#{instituicaoBean.campus.uf}" placeholder="UF do Campus" styleClass="form-control" />
+								<p:inputText id="inputCampusUF" value="#{adminInstituicaoBean.campus.uf}" placeholder="UF do Campus" styleClass="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputCampusCidade" class="col-sm-2 control-label">Cidade:</label>
 							<div class="col-sm-8">
-								<p:inputText id="inputCampusCidade" value="#{instituicaoBean.campus.cidade}" placeholder="Cidade do Campus" styleClass="form-control" />
+								<p:inputText id="inputCampusCidade" value="#{adminInstituicaoBean.campus.cidade}" placeholder="Cidade do Campus" styleClass="form-control" />
 							</div>
 						</div>
 					</p:panel>
-					<p:panel id="formDepartamento" rendered="#{instituicaoBean.showDepartamento}" header="Departamento">
+					<p:panel id="formDepartamento" rendered="#{adminInstituicaoBean.showDepartamento}" header="Departamento">
 						<p:focus />
 						<f:facet name="header">
 							<span class="lead">
-								<i class="fa fa-user"/><h:outputFormat value=" Novo" rendered="#{!instituicaoBean.btnRemoveDepartamento}"/> Departamento
+								<i class="fa fa-user"/><h:outputFormat value=" Novo" rendered="#{!adminInstituicaoBean.btnRemoveDepartamento}"/> Departamento
 							</span>
-							<p:commandLink update="@all" styleClass="pull-right btn btn-danger btn-xs" actionListener="#{instituicaoBean.removeDepartamento}"
-								rendered="#{instituicaoBean.btnRemoveDepartamento}" style="margin-left: 30px;">
+							<p:commandLink update="@all" styleClass="pull-right btn btn-danger btn-xs" actionListener="#{adminInstituicaoBean.removeDepartamento}"
+								rendered="#{adminInstituicaoBean.btnRemoveDepartamento}" style="margin-left: 30px;">
 								<i class="fa fa-minus-circle" /> Remover Departamento
 								<p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
 							</p:commandLink>
-							<p:commandLink action="#{instituicaoBean.back}" update="@all" styleClass="pull-right btn btn-danger btn-xs" immediate="true">
+							<p:commandLink action="#{adminInstituicaoBean.back}" update="@all" styleClass="pull-right btn btn-danger btn-xs" immediate="true">
 								<i class="fa fa-reply-all" />
 								Cancelar
 							</p:commandLink>
-							<p:commandLink  action="#{instituicaoBean.saveDepartamento}" update="@all" styleClass="pull-right btn btn-info btn-xs"
+							<p:commandLink  action="#{adminInstituicaoBean.saveDepartamento}" update="@all" styleClass="pull-right btn btn-info btn-xs"
 								style="margin-right: 10px;" >
 								<i class="fa fa-save" />
 								Salvar
@@ -218,7 +218,7 @@
 						<div class="form-group">
 							<label for="inputDepartamentoNome" class="col-sm-2 control-label">Departamento:</label>
 							<div class="col-sm-8">
-								<p:inputText id="inputDepartamentoNome" value="#{instituicaoBean.departamento.nome}" placeholder="Nome do departamento" styleClass="form-control" 
+								<p:inputText id="inputDepartamentoNome" value="#{adminInstituicaoBean.departamento.nome}" placeholder="Nome do departamento" styleClass="form-control" 
 									required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
 							</div>
 							<div class="col-sm-2">
@@ -226,25 +226,25 @@
 							</div>
 						</div>
 					</p:panel>
-					<p:panel id="formCurso" rendered="#{instituicaoBean.showCurso}" header="Curso">
+					<p:panel id="formCurso" rendered="#{adminInstituicaoBean.showCurso}" header="Curso">
 						<p:focus />
 						<f:facet name="header">
 							<span class="lead">
 								<i class="fa fa-user"/>
-								<h:outputFormat value=" Novo" rendered="#{!instituicaoBean.btnRemoveCurso}"/> Curso 
+								<h:outputFormat value=" Novo" rendered="#{!adminInstituicaoBean.btnRemoveCurso}"/> Curso 
 							</span>
 							
-							<p:commandLink update="@all" styleClass="pull-right btn btn-danger btn-xs" actionListener="#{instituicaoBean.removeCurso}"
-								rendered="#{instituicaoBean.btnRemoveCurso}" style="margin-left: 30px;">
+							<p:commandLink update="@all" styleClass="pull-right btn btn-danger btn-xs" actionListener="#{adminInstituicaoBean.removeCurso}"
+								rendered="#{adminInstituicaoBean.btnRemoveCurso}" style="margin-left: 30px;">
 								<i class="fa fa-minus-circle" /> Remover Curso
 								<p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
 							</p:commandLink>
 
-							<p:commandLink  action="#{instituicaoBean.back}" update="@all" styleClass="pull-right btn btn-danger btn-xs" immediate="true">
+							<p:commandLink  action="#{adminInstituicaoBean.back}" update="@all" styleClass="pull-right btn btn-danger btn-xs" immediate="true">
 								<i class="fa fa-reply-all" />
 								Cancelar
 							</p:commandLink>
-							<p:commandLink  action="#{instituicaoBean.saveCurso}" update="@all" styleClass="pull-right btn btn-info btn-xs"
+							<p:commandLink  action="#{adminInstituicaoBean.saveCurso}" update="@all" styleClass="pull-right btn btn-info btn-xs"
 								style="margin-right: 10px;" >
 								<i class="fa fa-save" />
 								Salvar
@@ -254,7 +254,7 @@
 						<div class="form-group">
 							<label for="inputCursoNome" class="col-sm-2 control-label">Curso:</label>
 							<div class="col-sm-8">
-								<p:inputText id="inputCursoNome" value="#{instituicaoBean.curso.nome}" placeholder="Nome do Curso" styleClass="form-control" 
+								<p:inputText id="inputCursoNome" value="#{adminInstituicaoBean.curso.nome}" placeholder="Nome do Curso" styleClass="form-control" 
 									required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
 							</div>
 							<div class="col-sm-2">
@@ -262,14 +262,14 @@
 							</div>
 						</div>
 						<p:separator title="AAAAA"/>
-						<p:pickList id="pickList" value="#{instituicaoBean.pickListDocumentos}" var="doc" itemLabel="#{doc.nome}" itemValue="#{doc}" 
+						<p:pickList id="pickList" value="#{adminInstituicaoBean.pickListDocumentos}" var="doc" itemLabel="#{doc.nome}" itemValue="#{doc}" 
 							responsive="true" effect="bounce" converter="#{documentoConverter}">
 							
 							<f:facet name="sourceCaption">Disponível</f:facet>
         					<f:facet name="targetCaption">Selecionado para este curso</f:facet>
         					
-        					<p:ajax event="transfer" listener="#{instituicaoBean.onTransfer}"/>
-        					<p:ajax event="reorder" listener="#{instituicaoBean.onReorder}"/>
+        					<p:ajax event="transfer" listener="#{adminInstituicaoBean.onTransfer}"/>
+        					<p:ajax event="reorder" listener="#{adminInstituicaoBean.onReorder}"/>
         					
 						</p:pickList>
 					</p:panel>

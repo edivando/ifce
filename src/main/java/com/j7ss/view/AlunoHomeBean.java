@@ -8,6 +8,7 @@
  */
 package com.j7ss.view;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,9 +19,11 @@ import javax.faces.bean.ViewScoped;
 import lombok.Setter;
 
 import com.j7ss.entity.Aluno;
+import com.j7ss.entity.Documento;
 import com.j7ss.entity.DocumentoAluno;
 import com.j7ss.entity.DocumentoCurso;
 import com.j7ss.entity.DocumentoStatus;
+import com.j7ss.util.WebContext;
 
 /**
  * 
@@ -30,7 +33,7 @@ import com.j7ss.entity.DocumentoStatus;
  */
 @ManagedBean
 @ViewScoped
-public class HomeAlunoBean implements Serializable{
+public class AlunoHomeBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -91,5 +94,15 @@ public class HomeAlunoBean implements Serializable{
 	private Aluno getAluno(){
 		return loginBean.getAluno();
 	}
+	
+//	public void showDocumento(Documento doc){
+//		WebContext.setFlash("DOCUMENTO", doc);
+//		try {
+//			WebContext.redirect("alunoDocumento.html");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 }

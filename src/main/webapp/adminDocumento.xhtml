@@ -17,10 +17,10 @@
 	<ui:define name="title">IFCE Estágios - Documentos</ui:define>
 	
 	<ui:param name="id" value="documento" />
-	<ui:param name="view" value="#{documentoBean}" />
+	<ui:param name="view" value="#{adminDocumentoBean}" />
 	<ui:param name="headerIcon" value="fa-book" />
 	<ui:param name="headerTitle" value="Documentos" />
-	<ui:param name="headerLink" value="documento.html" />
+	<ui:param name="headerLink" value="adminDocumento.html" />
 	<ui:param name="formTitle" value="Documento" />
 	<ui:param name="emptyMessage" value="Nenhum documento cadastrado!" />
 	<ui:param name="btnNew" value="true" />
@@ -33,9 +33,6 @@
 		<p:column headerText="Obrigatório" width="100" styleClass="text-center">
 			<span class="label #{entity.obrigatorio ? 'label-primary' : 'label-danger'}">#{entity.obrigatorio ? "Sim" : "Não"}</span>
 		</p:column>
-		<p:column headerText="Página" width="280">
-			#{entity.pagina}
-		</p:column>
 		<p:column headerText="Nome">
 			#{entity.nome}
 		</p:column>
@@ -47,7 +44,7 @@
 		<div class="form-group">
 			<label for="inputNome" class="col-sm-2 control-label">Nome:</label>
 			<div class="col-sm-8">
-				<p:inputText id="inputNome" value="#{documentoBean.entity.nome}" placeholder="Nome que identifique esse documento." styleClass="form-control" 
+				<p:inputText id="inputNome" value="#{adminDocumentoBean.entity.nome}" placeholder="Nome que identifique esse documento." styleClass="form-control" 
 					required="true" requiredMessage="Item obrigatório!" />
 			</div>
 			<div class="col-sm-2">
@@ -57,17 +54,7 @@
 		<div class="form-group">
 			<label for="inputTitulo" class="col-sm-2 control-label">Título:</label>
 			<div class="col-sm-8">
-				<p:inputText id="inputTitulo" value="#{documentoBean.entity.titulo}" placeholder="Este item será exibido para o aluno." styleClass="form-control" 
-					required="true" requiredMessage="Item obrigatório!" />
-			</div>
-			<div class="col-sm-2">
-				<p:message for="inputTitulo"  />
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputPagina" class="col-sm-2 control-label">Página:</label>
-			<div class="col-sm-8">
-				<p:inputText id="inputPagina" value="#{documentoBean.entity.pagina}" placeholder="Nome da página deste documento.." styleClass="form-control" 
+				<p:inputText id="inputTitulo" value="#{adminDocumentoBean.entity.titulo}" placeholder="Este item será exibido para o aluno." styleClass="form-control" 
 					required="true" requiredMessage="Item obrigatório!" />
 			</div>
 			<div class="col-sm-2">
@@ -77,7 +64,7 @@
 		<div class="form-group">
 			<label for="inputDescricao" class="col-sm-2 control-label">Descrição:</label>
 			<div class="col-sm-8">
-				<p:inputTextarea id="inputDescricao" value="#{documentoBean.entity.descricao}" placeholder="Descreva o porque, e para que server este documento." styleClass="form-control" 
+				<p:inputTextarea id="inputDescricao" value="#{adminDocumentoBean.entity.descricao}" placeholder="Descreva o porque, e para que server este documento." styleClass="form-control" 
 					required="true" requiredMessage="Item obrigatório!" rows="3"/>
 			</div>
 			<div class="col-sm-2">
@@ -87,7 +74,7 @@
 		<div class="form-group">
 			<label for="inputObrigatorio" class="col-sm-2 control-label">Obrigatório:</label>
 			<div class="col-sm-8">
-				<p:selectBooleanButton id="inputObrigatorio" value="#{documentoBean.entity.obrigatorio}" onLabel="Sim" offLabel="Não" 
+				<p:selectBooleanButton id="inputObrigatorio" value="#{adminDocumentoBean.entity.obrigatorio}" onLabel="Sim" offLabel="Não" 
 					onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:60px" />
 			</div>
 			<div class="col-sm-2">
@@ -97,7 +84,6 @@
 	
 	   	<div class="form-group">  <!-- 2480x3508 --> 
 	   		<div class="col-md-2">
-	   			<hr/>
 	   			<h4 class="text-center">Usuário</h4>
 	   			<h:outputFormat value="#{documentoKeyBean.usuario}"  escape="false"/>
 	   			<hr/>
@@ -106,23 +92,6 @@
 	   			<hr/>
 	   			<h4 class="text-center">Empresa</h4>
 	   			<h:outputFormat value="#{documentoKeyBean.empresa}"  escape="false"/>
-	   		</div>
-	   		<div class="col-md-8">
-	   			 <p:tabView id="tabView" scrollable="true">
-	   			 	<p:ajax event="tabChange" process="inputHtmlPage" update="pageHtmlOutput"/>
-			        <p:tab title="Edit">
-			        	<h:panelGrid columns="1" width="100%">
-			           		<p:inputTextarea id="inputHtmlPage" value="#{documentoBean.entity.htmlPage}" rows="40" styleClass="col-md-12"/>
-			           	</h:panelGrid>
-			        </p:tab>
-			        <p:tab title="Preview">
-			        	<h:panelGrid columns="1" width="100%" border="1">
-			            	<h:outputFormat id="pageHtmlOutput" value="#{documentoBean.htmlPage}" escape="false" />
-			            </h:panelGrid>
-			        </p:tab>
-			    </p:tabView>
-	   		</div>
-	   		<div class="col-md-2">
 	   			<hr/>
 	   			<h4 class="text-center">Instituição</h4>
 	   			<h:outputFormat value="#{documentoKeyBean.instituicao}"  escape="false"/>
@@ -135,6 +104,81 @@
 	   			<hr/>
 	   			<h4 class="text-center">Curso</h4>
 	   			<h:outputFormat value="#{documentoKeyBean.curso}"  escape="false"/>
+	   		</div>
+	   		<div class="col-md-8">
+	   			 <p:tabView id="tabView" scrollable="true">
+	   			 	<p:ajax event="tabChange" process="inputHtmlPage" update="pageHtmlOutput"/>
+			        <p:tab title="&nbsp;&nbsp;Editar Documento" titleStyle="width:200px;">
+			        	<h:panelGrid columns="1" width="100%">
+			           		<p:inputTextarea id="inputHtmlPage" value="#{adminDocumentoBean.entity.htmlPage}" rows="60" styleClass="col-md-12"/>
+			           	</h:panelGrid>
+			        </p:tab>
+			        <p:tab title="&nbsp;&nbsp;Preview" titleStyle="width:200px;">
+			        	<ui:include src="/module/moduleDocPrint.xhtml" >
+			        		<ui:param name="htmlPage" value="#{adminDocumentoBean.htmlPage}" />
+			        		<ui:param name="btnPrint" value="true"/>
+			        		<ui:param name="btnSubmeter" value="false"/>
+			        	</ui:include> 
+			        </p:tab>
+			    </p:tabView>
+	   		</div>
+	   		<div class="col-md-2">
+	   			<table class="table table-bordered">
+                	<thead>
+	                    <tr>
+	                        <th>Option</th>
+	                        <th>Result</th>
+	                    </tr>
+      				</thead>
+                   	<tbody>
+                          <tr>
+                              <td>#</td>
+                              <td>H1</td>
+                          </tr>
+                          <tr>
+                              <td>##</td>
+                              <td>H2</td>
+                          </tr>
+                          <tr>
+                              <td>###</td>
+                              <td>H3</td>
+                          </tr>
+                          <tr>
+                              <td>####</td>
+                              <td>H3</td>
+                          </tr>
+                          <tr>
+                              <td>#####</td>
+                              <td>H4</td>
+                          </tr>
+                          <tr>
+                              <td>######</td>
+                              <td>H5</td>
+                          </tr>
+                          <tr>
+                              <td>#######</td>
+                              <td>H6</td>
+                          </tr>
+                          <tr>
+                              <td>*Italico*</td>
+                              <td><i>Italico</i></td>
+                          </tr>
+                          <tr>
+                              <td>`Destaque`</td>
+                              <td><code>Destaque</code></td>
+                          </tr>
+                          <tr>
+                              <td>**Negrito**</td>
+                              <td><strong>Negrito</strong></td>
+                          </tr>
+                          
+            		</tbody>
+         		</table>
+
+	   			
+	   			
+	   			&lt;
+	   			
 	   		</div>
 	   	</div>
 	   	
