@@ -56,7 +56,7 @@ public class LoginBean implements Serializable{
 				usuario = usuarios.get(0);
 				if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
 					aluno = Aluno.findByUsuario( usuario );
-					homePage = aluno.isCompleteCadastro() ? "alunoHome.html" : "completeCadastro.html";
+					homePage = aluno.isCompleteCadastro() ? "alunoHome.html" : "alunoCompleteCadastro.html";
 				}else if(usuario.getTipoUsuario().equals(TipoUsuario.INSTITUICAO)){
 					instituicao = Instituicao.findById(usuario.getIdInstituicao());
 					homePage = "instituicaoHome.html";
