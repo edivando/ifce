@@ -40,6 +40,7 @@
 		</p:column>
 	</ui:define>
 	<ui:define name="contentForm">
+		
 		<div class="form-group">
 			<label for="inputNome" class="col-sm-2 control-label">Nome:</label>
 			<div class="col-sm-8">
@@ -77,22 +78,22 @@
 				<div class="col-md-3">
 					<section class="panel" style="margin-bottom: 0px;" >
 	                    <div class="panel-body btn-gap text-center">
-	               			<p:commandLink update="@all" styleClass="btn btn-success btn-xs" actionListener="#{adminInstituicaoBean.addCampus()}">
+	               			<p:commandLink update="@form" styleClass="btn btn-success btn-xs" actionListener="#{adminInstituicaoBean.addCampus()}">
 								<i class="fa fa-plus-circle" /> Novo Campus
 							</p:commandLink>
 							&nbsp;
-							<p:commandLink update="@all" styleClass="btn btn-success btn-xs" actionListener="#{adminInstituicaoBean.addDepartamento()}" rendered="#{adminInstituicaoBean.novoDepartamento}">
+							<p:commandLink update="@form" styleClass="btn btn-success btn-xs" actionListener="#{adminInstituicaoBean.addDepartamento()}" rendered="#{adminInstituicaoBean.novoDepartamento}">
 								<i class="fa fa-plus-circle" /> Novo Departamento
 							</p:commandLink>
 							&nbsp;
-							<p:commandLink update="@all" styleClass="btn btn-success btn-xs" actionListener="#{adminInstituicaoBean.addCurso()}" rendered="#{adminInstituicaoBean.novoCurso}">
+							<p:commandLink update="@form" styleClass="btn btn-success btn-xs" actionListener="#{adminInstituicaoBean.addCurso()}" rendered="#{adminInstituicaoBean.novoCurso}">
 								<i class="fa fa-plus-circle" /> Novo Curso
 							</p:commandLink>
 	                    </div>
 	                </section>
 					<p:tree id="instituicaoTree" value="#{adminInstituicaoBean.root}" var="node" animate="true" dynamic="true" selectionMode="single" 
 						selection="#{adminInstituicaoBean.selectedNode}" style="width:100%;">
-			       		<p:ajax event="select" listener="#{adminInstituicaoBean.onNodeSelect}" update="@all"/>
+			       		<p:ajax event="select" listener="#{adminInstituicaoBean.onNodeSelect}" update="@parent"/>
 	
 				        <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
 					        <h:outputText value="#{node.nome}"/>
@@ -118,16 +119,16 @@
 							<span class="lead">
 								<i class="fa fa-user"/><h:outputFormat value=" Novo" rendered="#{!adminInstituicaoBean.btnRemoveCampus}"/> Campus
 							</span>
-							<p:commandLink update="@all" styleClass="pull-right btn btn-danger btn-xs" actionListener="#{adminInstituicaoBean.removeCampus}" 
+							<p:commandLink update="@form" styleClass="pull-right btn btn-danger btn-xs" actionListener="#{adminInstituicaoBean.removeCampus}" 
 								rendered="#{adminInstituicaoBean.btnRemoveCampus}" style="margin-left: 30px;">
 								<i class="fa fa-minus-circle" /> Remover Campus
 								<p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
 							</p:commandLink>
-							<p:commandLink action="#{adminInstituicaoBean.back}" update="@all" styleClass="pull-right btn btn-danger btn-xs" immediate="true" >
+							<p:commandLink actionListener="#{adminInstituicaoBean.back}" update="@form" styleClass="pull-right btn btn-danger btn-xs" immediate="true" >
 								<i class="fa fa-reply-all" />
 								Cancelar
 							</p:commandLink>
-							<p:commandLink  action="#{adminInstituicaoBean.saveCampus}" update="@all" styleClass="pull-right btn btn-info btn-xs"
+							<p:commandLink  actionListener="#{adminInstituicaoBean.saveCampus}" update="@form" styleClass="pull-right btn btn-info btn-xs"
 								style="margin-right: 10px;" >
 								<i class="fa fa-save" />
 								Salvar
@@ -193,22 +194,22 @@
 							</div>
 						</div>
 					</p:panel>
-					<p:panel id="formDepartamento" rendered="#{adminInstituicaoBean.showDepartamento}" header="Departamento">
+					<p:panel id="formDepartamento" rendered="#{adminInstituicaoBean.showDepartamento}">
 						<p:focus />
 						<f:facet name="header">
 							<span class="lead">
 								<i class="fa fa-user"/><h:outputFormat value=" Novo" rendered="#{!adminInstituicaoBean.btnRemoveDepartamento}"/> Departamento
 							</span>
-							<p:commandLink update="@all" styleClass="pull-right btn btn-danger btn-xs" actionListener="#{adminInstituicaoBean.removeDepartamento}"
+							<p:commandLink update="@form" styleClass="pull-right btn btn-danger btn-xs" actionListener="#{adminInstituicaoBean.removeDepartamento}"
 								rendered="#{adminInstituicaoBean.btnRemoveDepartamento}" style="margin-left: 30px;">
 								<i class="fa fa-minus-circle" /> Remover Departamento
 								<p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
 							</p:commandLink>
-							<p:commandLink action="#{adminInstituicaoBean.back}" update="@all" styleClass="pull-right btn btn-danger btn-xs" immediate="true">
+							<p:commandLink actionListener="#{adminInstituicaoBean.back}" update="@form" styleClass="pull-right btn btn-danger btn-xs" immediate="true">
 								<i class="fa fa-reply-all" />
 								Cancelar
 							</p:commandLink>
-							<p:commandLink  action="#{adminInstituicaoBean.saveDepartamento}" update="@all" styleClass="pull-right btn btn-info btn-xs"
+							<p:commandLink  actionListener="#{adminInstituicaoBean.saveDepartamento}" update="@form" styleClass="pull-right btn btn-info btn-xs"
 								style="margin-right: 10px;" >
 								<i class="fa fa-save" />
 								Salvar
@@ -226,7 +227,7 @@
 							</div>
 						</div>
 					</p:panel>
-					<p:panel id="formCurso" rendered="#{adminInstituicaoBean.showCurso}" header="Curso">
+					<p:panel id="formCurso" rendered="#{adminInstituicaoBean.showCurso}">
 						<p:focus />
 						<f:facet name="header">
 							<span class="lead">
@@ -234,18 +235,18 @@
 								<h:outputFormat value=" Novo" rendered="#{!adminInstituicaoBean.btnRemoveCurso}"/> Curso 
 							</span>
 							
-							<p:commandLink update="@all" styleClass="pull-right btn btn-danger btn-xs" actionListener="#{adminInstituicaoBean.removeCurso}"
-								rendered="#{adminInstituicaoBean.btnRemoveCurso}" style="margin-left: 30px;">
+							<p:commandLink update="@form" styleClass="pull-right btn btn-danger btn-xs" actionListener="#{adminInstituicaoBean.removeCurso}"
+								rendered="#{adminInstituicaoBean.btnRemoveCurso}" style="margin-left: 30px;" process="@this inputCursoNome">
 								<i class="fa fa-minus-circle" /> Remover Curso
 								<p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
 							</p:commandLink>
 
-							<p:commandLink  action="#{adminInstituicaoBean.back}" update="@all" styleClass="pull-right btn btn-danger btn-xs" immediate="true">
+							<p:commandLink  actionListener="#{adminInstituicaoBean.back}" update="@form" styleClass="pull-right btn btn-danger btn-xs" immediate="true">
 								<i class="fa fa-reply-all" />
 								Cancelar
 							</p:commandLink>
-							<p:commandLink  action="#{adminInstituicaoBean.saveCurso}" update="@all" styleClass="pull-right btn btn-info btn-xs"
-								style="margin-right: 10px;" >
+							<p:commandLink  actionListener="#{adminInstituicaoBean.saveCurso}" update="@form" styleClass="pull-right btn btn-info btn-xs"
+								style="margin-right: 10px;" process="@this inputCursoNome" >
 								<i class="fa fa-save" />
 								Salvar
 							</p:commandLink>
@@ -261,17 +262,19 @@
 								<p:message for="inputCursoNome"  />
 							</div>
 						</div>
-						<p:separator title="AAAAA"/>
+						
 						<p:pickList id="pickList" value="#{adminInstituicaoBean.pickListDocumentos}" var="doc" itemLabel="#{doc.nome}" itemValue="#{doc}" 
-							responsive="true" effect="bounce" converter="#{documentoConverter}">
+							effect="bounce" converter="#{documentoConverter}" responsive="true">
 							
+							<p:ajax event="transfer" listener="#{adminInstituicaoBean.onTransfer}" />
+	       					<p:ajax event="reorder" listener="#{adminInstituicaoBean.onReorder}" />	
+								
 							<f:facet name="sourceCaption">Disponível</f:facet>
-        					<f:facet name="targetCaption">Selecionado para este curso</f:facet>
-        					
-        					<p:ajax event="transfer" listener="#{adminInstituicaoBean.onTransfer}"/>
-        					<p:ajax event="reorder" listener="#{adminInstituicaoBean.onReorder}"/>
-        					
+	       					<f:facet name="targetCaption">Selecionado para este curso</f:facet>
+
 						</p:pickList>
+
+				
 					</p:panel>
 				</div>
 			</div>	

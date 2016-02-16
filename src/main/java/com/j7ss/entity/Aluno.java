@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -71,6 +72,7 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@Setter
 	private Curso curso;
 	@OneToOne
+	@PrimaryKeyJoinColumn
 	@Setter
 	private Usuario usuario;
 	@OneToOne

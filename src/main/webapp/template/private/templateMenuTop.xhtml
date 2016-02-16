@@ -57,7 +57,7 @@
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="resources/images/avatar1_small.jpg"/>
                 <span class="username">
-                	#{loginBean.usuario.nome} <h:outputFormat value="/ #{loginBean.instituicao.nome}" rendered="#{loginBean.usuario.tipoUsuario eq 'INSTITUICAO'}"/> 
+                	#{loginBean.usuario.nome} <h:outputFormat value="/ #{loginBean.usuario.instituicao.nome}" rendered="#{loginBean.usuario.tipoUsuario eq 'INSTITUICAO'}"/> 
                 </span>
                 <b class="caret"></b>
             </a>

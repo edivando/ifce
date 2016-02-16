@@ -11,6 +11,7 @@ package com.j7ss.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -52,7 +53,7 @@ public class Departamento implements IGenericEntity<Departamento> {
 	@Getter @Setter
 	private Campus campus;
 	
-	@OneToMany(mappedBy="departamento", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="departamento", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
 	@Getter @Setter
 	private List<Curso> cursos;
 	

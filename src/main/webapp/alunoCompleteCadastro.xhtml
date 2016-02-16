@@ -38,142 +38,30 @@
     	<p:wizard flowListener="#{alunoCompleteCadastroBean.onFlowProcess}" backLabel="Voltar" nextLabel="Próximo" showNavBar="true" showStepStatus="true"  >
 	        <p:tab id="aluno" title="Informações do Aluno">
 	            <p:panel styleClass="form-horizontal">
-	                <div class="form-group">
-						<label for="inputNome" class="col-sm-2 control-label">Nome:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputNome" value="#{alunoCompleteCadastroBean.usuario.nome}" placeholder="Nome do Aluno" styleClass="form-control"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputDescricao" class="col-sm-2 control-label">Descricao:</label>
-						<div class="col-sm-8">
-							<p:inputTextarea id="inputDescricao" value="#{alunoCompleteCadastroBean.aluno.descricao}" placeholder="Fale sobre você!" styleClass="form-control"
-								rows="3"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputTelefone" class="col-sm-2 control-label">Telefone:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputTelefone" value="#{alunoCompleteCadastroBean.aluno.telefone}" placeholder="Telefone do Aluno" styleClass="form-control" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputCelular" class="col-sm-2 control-label">Celular:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputCelular" value="#{alunoCompleteCadastroBean.aluno.celular}" placeholder="Celular do Aluno" styleClass="form-control" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputLattes" class="col-sm-2 control-label">Curriculum Lattes:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputLattes" value="#{alunoCompleteCadastroBean.aluno.cvLattes}" placeholder="Curriculum Lattes" styleClass="form-control" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputDataNascimento" class="col-sm-2 control-label">Data de Nascimento:</label>
-						<div class="col-sm-8">
-							<p:inputMask id="inputDataNascimento" styleClass="form-control" value="#{alunoCompleteCadastroBean.aluno.dataNascimento}" mask="99/99/9999"
-								placeholder="Data de Nascimento" >
-								<f:convertDateTime pattern="dd/MM/yyyy"/>
-							</p:inputMask>	
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputCPF" class="col-sm-2 control-label">CPF:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputCPF" value="#{alunoCompleteCadastroBean.aluno.cpf}" placeholder="CPF" styleClass="form-control" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputRG" class="col-sm-2 control-label">RG:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputRG" value="#{alunoCompleteCadastroBean.aluno.rg}" placeholder="RG" styleClass="form-control" />
-						</div>
-					</div>
+	            	<div id="usuario" class="tab-pane active">
+            			<ui:include src="/module/moduleUsuario.xhtml">
+							<ui:param name="usuario" value="#{alunoCompleteCadastroBean.usuario}"/>
+						</ui:include>
+            		</div>
+            		<div id="aluno" class="tab-pane">
+						<ui:include src="/module/moduleAluno.xhtml">
+							<ui:param name="aluno" value="#{alunoCompleteCadastroBean.aluno}"/>
+						</ui:include>
+                 	</div>
 	            </p:panel>
 	        </p:tab>
 	     	<p:tab id="endereco" title="Seu endereço">
 	            <p:panel styleClass="form-horizontal">
-					<div class="form-group">
-						<label for="inputEndereco" class="col-sm-2 control-label">Endereço:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputEndereco" value="#{alunoCompleteCadastroBean.aluno.endereco}" placeholder="Rua..." styleClass="form-control"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputNumero" class="col-sm-2 control-label">Número:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputNumero" value="#{alunoCompleteCadastroBean.aluno.numero}" placeholder="Número" styleClass="form-control"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputBairro" class="col-sm-2 control-label">Bairro:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputBairro" value="#{alunoCompleteCadastroBean.aluno.bairro}" placeholder="Bairro..." styleClass="form-control" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputCEP" class="col-sm-2 control-label">CEP:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputCEP" value="#{alunoCompleteCadastroBean.aluno.cep}" placeholder="CEP" styleClass="form-control" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputCidade" class="col-sm-2 control-label">Cidade:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputCidade" value="#{alunoCompleteCadastroBean.aluno.cidade}" placeholder="Cidade" styleClass="form-control"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputUF" class="col-sm-2 control-label">UF:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputUF" value="#{alunoCompleteCadastroBean.aluno.uf}" placeholder="Cidade" styleClass="form-control" />
-						</div>
-					</div>
+	            	<ui:include src="/module/moduleAlunoEndereco.xhtml">
+						<ui:param name="aluno" value="#{alunoCompleteCadastroBean.aluno}"/>
+					</ui:include>
 	            </p:panel>
 	        </p:tab>
 	        <p:tab id="curso" title="Sobre seu curso">
 	            <p:panel styleClass="form-horizontal">
-					<div class="form-group">
-						<label for="inputMatricula" class="col-sm-2 control-label">Matrícula:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputMatricula" value="#{alunoCompleteCadastroBean.aluno.matricula}" placeholder="Matrícula do Aluno" styleClass="form-control" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputSemestreAtual" class="col-sm-2 control-label">Semestre Atual:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputSemestreAtual" value="#{alunoCompleteCadastroBean.aluno.semestreAtual}" placeholder="Semestre Atual" styleClass="form-control" />
-						</div>
-					</div> 
-					<div class="form-group">
-						<label for="inputInstituicao" class="col-sm-2 control-label">Instituição:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputInstituicao" value="#{alunoCompleteCadastroBean.aluno.curso.departamento.campus.instituicao.nome}" placeholder="Instituição de Ensino" styleClass="form-control"
-								readonly="true"/>
-						</div>
-					</div> 
-					<div class="form-group">
-						<label for="inputCampus" class="col-sm-2 control-label">Campus:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputCampus" value="#{alunoCompleteCadastroBean.aluno.curso.departamento.campus.nome}" placeholder="Campus da Instituição" styleClass="form-control"
-								readonly="true"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputDepartamento" class="col-sm-2 control-label">Departamento:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputDepartamento" value="#{alunoCompleteCadastroBean.aluno.curso.departamento.nome}" placeholder="Departamento" styleClass="form-control"
-								readonly="true"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputCurso" class="col-sm-2 control-label">Curso:</label>
-						<div class="col-sm-8">
-							<p:inputText id="inputCurso" value="#{alunoCompleteCadastroBean.aluno.curso.nome}" placeholder="Seu curso!" styleClass="form-control"
-								readonly="true"/>
-						</div>
-					</div>  
+	            	<ui:include src="/module/moduleAlunoCurso.xhtml">
+						<ui:param name="aluno" value="#{alunoCompleteCadastroBean.aluno}"/>
+					</ui:include>
 					<div class="text-right">
 						<p:commandLink action="#{alunoCompleteCadastroBean.save}" styleClass="btn btn-info">
 							<i class="fa fa-save" />

@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -52,12 +54,25 @@ public class Usuario implements IGenericEntity<Usuario>{
 	@Getter @Setter
 	private Boolean ativo = true;
 	
-	@Getter @Setter
-	private Integer idInstituicao;
+	@OneToOne
+	@Setter
+	private Instituicao instituicao;
+	
+	@OneToOne
+	@Setter
+	private Aluno aluno;
 	
 	@Override
 	public boolean isNew() {
 		return idUsuario == null;
+	}
+	
+	public Aluno getAluno() {
+		return aluno == null ? aluno = new Aluno() : aluno;
+	}
+	
+	public Instituicao getInstituicao() {
+		return instituicao == null ? instituicao = new Instituicao() : instituicao;
 	}
 	
 //## Builder

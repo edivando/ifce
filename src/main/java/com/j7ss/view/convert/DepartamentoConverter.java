@@ -8,6 +8,8 @@
  */
 package com.j7ss.view.convert;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -28,7 +30,9 @@ import com.j7ss.view.AlunoCadastroBean;
  */
 @ManagedBean
 @ViewScoped
-public class DepartamentoConverter implements Converter {
+public class DepartamentoConverter implements Converter, Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Setter
 	@ManagedProperty(value="#{alunoCadastroBean}")

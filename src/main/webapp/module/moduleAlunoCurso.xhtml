@@ -17,42 +17,42 @@
 	<div class="form-group">
 		<label for="inputMatricula" class="col-sm-2 control-label">Matrícula:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputMatricula" value="#{loginBean.aluno.matricula}" placeholder="Matrícula do Aluno" styleClass="form-control" 
+			<p:inputText id="inputMatricula" value="#{aluno.matricula}" placeholder="Matrícula do Aluno" styleClass="form-control" 
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputSemestreAtual" class="col-sm-2 control-label">Semestre Atual:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputSemestreAtual" value="#{loginBean.aluno.semestreAtual}" placeholder="Semestre Atual" styleClass="form-control" 
+			<p:inputText id="inputSemestreAtual" value="#{aluno.semestreAtual}" placeholder="Semestre Atual" styleClass="form-control" 
 				disabled="#{disabled}"/>
 		</div>
 	</div> 
 	<div class="form-group">
 		<label for="inputInstituicao" class="col-sm-2 control-label">Instituição:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputInstituicao" value="#{loginBean.aluno.curso.departamento.campus.instituicao.nome}" placeholder="Instituição de Ensino" 
+			<p:inputText id="inputInstituicao" value="#{aluno.curso.departamento.campus.instituicao.nome}" placeholder="Instituição de Ensino" 
 				styleClass="form-control" disabled="true" />
 		</div>
 	</div> 
 	<div class="form-group">
 		<label for="inputCampus" class="col-sm-2 control-label">Campus:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputCampus" value="#{loginBean.aluno.curso.departamento.campus.nome}" placeholder="Campus da Instituição" styleClass="form-control"
+			<p:inputText id="inputCampus" value="#{aluno.curso.departamento.campus.nome}" placeholder="Campus da Instituição" styleClass="form-control"
 				disabled="true"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputDepartamento" class="col-sm-2 control-label">Departamento:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputDepartamento" value="#{loginBean.aluno.curso.departamento.nome}" placeholder="Departamento" styleClass="form-control"
+			<p:inputText id="inputDepartamento" value="#{aluno.curso.departamento.nome}" placeholder="Departamento" styleClass="form-control"
 				disabled="true"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputCurso" class="col-sm-2 control-label">Curso:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputCurso" value="#{loginBean.aluno.curso.nome}" placeholder="Seu curso!" styleClass="form-control"
+			<p:inputText id="inputCurso" value="#{aluno.curso.nome}" placeholder="Seu curso!" styleClass="form-control"
 				disabled="true"/>
 		</div>
 	</div>    

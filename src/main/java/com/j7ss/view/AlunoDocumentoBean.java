@@ -69,14 +69,14 @@ public class AlunoDocumentoBean extends BasicView<Aluno>{
 	private void setDocumentoAluno(){
 		documentoAluno = getAlunoFichaMatricula();
 		if(documentoAluno == null){
-			for (Documento doc : loginBean.getAluno().getCurso().getDocumentos()) {
+			for (Documento doc : loginBean.getUsuario().getAluno().getCurso().getDocumentos()) {
 				if(doc.getIdDocumento().equals(id)){
-					documentoAluno = new DocumentoAluno(loginBean.getAluno())
+					documentoAluno = new DocumentoAluno(loginBean.getUsuario().getAluno())
 										.documento(doc)
-										.ordem(loginBean.getAluno().getDocumentos().size())
+										.ordem(loginBean.getUsuario().getAluno().getDocumentos().size())
 										.status(DocumentoStatus.DISPONIVEL);
 					try {
-						loginBean.getAluno().addDocumento(documentoAluno);
+						loginBean.getUsuario().getAluno().addDocumento(documentoAluno);
 					} catch (DAOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -87,8 +87,8 @@ public class AlunoDocumentoBean extends BasicView<Aluno>{
 	}
 	
 	private DocumentoAluno getAlunoFichaMatricula(){
-		if(loginBean.getAluno().getDocumentosAluno().size() != 0){
-			for (DocumentoAluno doc : loginBean.getAluno().getDocumentosAluno()) {
+		if(loginBean.getUsuario().getAluno().getDocumentosAluno().size() != 0){
+			for (DocumentoAluno doc : loginBean.getUsuario().getAluno().getDocumentosAluno()) {
 				if(doc.getDocumento() != null &&  doc.getDocumento().getIdDocumento().equals(id)){
 					return doc;
 				}	
@@ -101,154 +101,154 @@ public class AlunoDocumentoBean extends BasicView<Aluno>{
 		switch (key) {
 		// Usuario
 		case USUARIO_NOME:
-			replace(DocumentoKey.USUARIO_NOME, loginBean.getAluno().getUsuario().getNome());
+			replace(DocumentoKey.USUARIO_NOME, loginBean.getUsuario().getNome());
 			break;
 		case USUARIO_EMAIL:
-			replace(DocumentoKey.USUARIO_EMAIL, loginBean.getAluno().getUsuario().getEmail());
+			replace(DocumentoKey.USUARIO_EMAIL, loginBean.getUsuario().getEmail());
 			break;
 			
 		// Aluno
 		case ALUNO_DESCRICAO:
-			replace(DocumentoKey.ALUNO_DESCRICAO, loginBean.getAluno().getDescricao());
+			replace(DocumentoKey.ALUNO_DESCRICAO, loginBean.getUsuario().getAluno().getDescricao());
 			break;
 		case ALUNO_MATRICULA:	
-			replace(DocumentoKey.ALUNO_MATRICULA, loginBean.getAluno().getMatricula());
+			replace(DocumentoKey.ALUNO_MATRICULA, loginBean.getUsuario().getAluno().getMatricula());
 			break;
 		case ALUNO_TELEFONE:
-			replace(DocumentoKey.ALUNO_TELEFONE, loginBean.getAluno().getTelefone());
+			replace(DocumentoKey.ALUNO_TELEFONE, loginBean.getUsuario().getAluno().getTelefone());
 			break;
 		case ALUNO_CELULAR:	
-			replace(DocumentoKey.ALUNO_CELULAR, loginBean.getAluno().getCelular());
+			replace(DocumentoKey.ALUNO_CELULAR, loginBean.getUsuario().getAluno().getCelular());
 			break;
 		case ALUNO_CV_LATTES:
-			replace(DocumentoKey.ALUNO_CV_LATTES, loginBean.getAluno().getCvLattes());
+			replace(DocumentoKey.ALUNO_CV_LATTES, loginBean.getUsuario().getAluno().getCvLattes());
 			break;
 		case ALUNO_CPF:
-			replace(DocumentoKey.ALUNO_CPF, loginBean.getAluno().getCpf());
+			replace(DocumentoKey.ALUNO_CPF, loginBean.getUsuario().getAluno().getCpf());
 			break;
 		case ALUNO_RG:
-			replace(DocumentoKey.ALUNO_RG, loginBean.getAluno().getRg());
+			replace(DocumentoKey.ALUNO_RG, loginBean.getUsuario().getAluno().getRg());
 			break;
 		case ALUNO_DATA_NASCIMENTO:
-			replace(DocumentoKey.ALUNO_DATA_NASCIMENTO, loginBean.getAluno().getDataNascimento());
+			replace(DocumentoKey.ALUNO_DATA_NASCIMENTO, loginBean.getUsuario().getAluno().getDataNascimento());
 			break;
 		case ALUNO_ENDERECO_ENDERECO:
-			replace(DocumentoKey.ALUNO_ENDERECO_ENDERECO, loginBean.getAluno().getEndereco());
+			replace(DocumentoKey.ALUNO_ENDERECO_ENDERECO, loginBean.getUsuario().getAluno().getEndereco());
 			break;
 		case ALUNO_ENDERECO_NUMERO:
-			replace(DocumentoKey.ALUNO_ENDERECO_NUMERO, loginBean.getAluno().getNumero());
+			replace(DocumentoKey.ALUNO_ENDERECO_NUMERO, loginBean.getUsuario().getAluno().getNumero());
 			break;
 		case ALUNO_ENDERECO_BAIRRO:
-			replace(DocumentoKey.ALUNO_ENDERECO_BAIRRO, loginBean.getAluno().getBairro());
+			replace(DocumentoKey.ALUNO_ENDERECO_BAIRRO, loginBean.getUsuario().getAluno().getBairro());
 			break;
 		case ALUNO_ENDERECO_CEP:
-			replace(DocumentoKey.ALUNO_ENDERECO_CEP, loginBean.getAluno().getCep());
+			replace(DocumentoKey.ALUNO_ENDERECO_CEP, loginBean.getUsuario().getAluno().getCep());
 			break;
 		case ALUNO_ENDERECO_CIDADE:
-			replace(DocumentoKey.ALUNO_ENDERECO_CIDADE, loginBean.getAluno().getCidade());
+			replace(DocumentoKey.ALUNO_ENDERECO_CIDADE, loginBean.getUsuario().getAluno().getCidade());
 			break;
 		case ALUNO_ENDERECO_UF:
-			replace(DocumentoKey.ALUNO_ENDERECO_UF, loginBean.getAluno().getUf());
+			replace(DocumentoKey.ALUNO_ENDERECO_UF, loginBean.getUsuario().getAluno().getUf());
 			break;
 		
 		// Empresa
 		case EMPRESA_NOME:
-			replace(DocumentoKey.EMPRESA_NOME, loginBean.getAluno().getVagaEstagio().getEmpresa().getNome());
+			replace(DocumentoKey.EMPRESA_NOME, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getNome());
 			break;
 		case EMPRESA_EMAIL:
-			replace(DocumentoKey.EMPRESA_EMAIL, loginBean.getAluno().getVagaEstagio().getEmpresa().getEmail());
+			replace(DocumentoKey.EMPRESA_EMAIL, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getEmail());
 			break;
 		case EMPRESA_TELEFONE:
-			replace(DocumentoKey.EMPRESA_TELEFONE, loginBean.getAluno().getVagaEstagio().getEmpresa().getTelefone());
+			replace(DocumentoKey.EMPRESA_TELEFONE, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getTelefone());
 			break;
 		case EMPRESA_FAX:
-			replace(DocumentoKey.EMPRESA_FAX, loginBean.getAluno().getVagaEstagio().getEmpresa().getFax());
+			replace(DocumentoKey.EMPRESA_FAX, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getFax());
 			break;
 		case EMPRESA_SUPERVISOR:
 			// TODO: Empresa Supervisor
-//			replace(DocumentoKey.EMPRESA_SUPERVISOR, loginBean.getAluno().getVagaEstagio().getEmpresa());
+//			replace(DocumentoKey.EMPRESA_SUPERVISOR, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa());
 			break;
 		case EMPRESA_CARGO_SUPERVISOR:
 			// TODO: Empresa Supervisor
-//			replace(DocumentoKey.EMPRESA_CARGO_SUPERVISOR, loginBean.getAluno().getVagaEstagio().getEmpresa());
+//			replace(DocumentoKey.EMPRESA_CARGO_SUPERVISOR, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa());
 			break;
 		case EMPRESA_TELEFONE_SUPERVISOR:
 			// TODO: Empresa Supervisor
-//			replace(DocumentoKey.EMPRESA_TELEFONE_SUPERVISOR, loginBean.getAluno().getVagaEstagio().getEmpresa());
+//			replace(DocumentoKey.EMPRESA_TELEFONE_SUPERVISOR, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa());
 			break;
 		case EMPRESA_CNPJ:
-			replace(DocumentoKey.EMPRESA_CNPJ, loginBean.getAluno().getVagaEstagio().getEmpresa().getCnpj());
+			replace(DocumentoKey.EMPRESA_CNPJ, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getCnpj());
 			break;
 		case EMPRESA_SITE:
-			replace(DocumentoKey.EMPRESA_SITE, loginBean.getAluno().getVagaEstagio().getEmpresa().getSite());
+			replace(DocumentoKey.EMPRESA_SITE, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getSite());
 			break;
 		case EMPRESA_RAMO_ATIVIDADE:
-			replace(DocumentoKey.EMPRESA_RAMO_ATIVIDADE, loginBean.getAluno().getVagaEstagio().getEmpresa().getRamoAtividade());
+			replace(DocumentoKey.EMPRESA_RAMO_ATIVIDADE, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getRamoAtividade());
 			break;
 		case EMPRESA_ENDERECO_ENDERECO:
-			replace(DocumentoKey.EMPRESA_ENDERECO_ENDERECO, loginBean.getAluno().getVagaEstagio().getEmpresa().getEndereco());
+			replace(DocumentoKey.EMPRESA_ENDERECO_ENDERECO, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getEndereco());
 			break;
 		case EMPRESA_ENDERECO_NUMERO:
-			replace(DocumentoKey.EMPRESA_ENDERECO_NUMERO, loginBean.getAluno().getVagaEstagio().getEmpresa().getNumero());
+			replace(DocumentoKey.EMPRESA_ENDERECO_NUMERO, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getNumero());
 			break;
 		case EMPRESA_ENDERECO_BAIRRO:
-			replace(DocumentoKey.EMPRESA_ENDERECO_BAIRRO, loginBean.getAluno().getVagaEstagio().getEmpresa().getBairro());
+			replace(DocumentoKey.EMPRESA_ENDERECO_BAIRRO, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getBairro());
 			break;
 		case EMPRESA_ENDERECO_CEP:
-			replace(DocumentoKey.EMPRESA_ENDERECO_CEP, loginBean.getAluno().getVagaEstagio().getEmpresa().getCep());
+			replace(DocumentoKey.EMPRESA_ENDERECO_CEP, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getCep());
 			break;
 		case EMPRESA_ENDERECO_UF:
-			replace(DocumentoKey.EMPRESA_ENDERECO_UF, loginBean.getAluno().getVagaEstagio().getEmpresa().getUf());
+			replace(DocumentoKey.EMPRESA_ENDERECO_UF, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getUf());
 			break;
 		case EMPRESA_ENDERECO_CIDADE:
-			replace(DocumentoKey.EMPRESA_ENDERECO_CIDADE, loginBean.getAluno().getVagaEstagio().getEmpresa().getCidade());
+			replace(DocumentoKey.EMPRESA_ENDERECO_CIDADE, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getCidade());
 			break;
 			
 		// Instituicao
 		case INSTITUICAO_NOME:
-			replace(DocumentoKey.INSTITUICAO_NOME, loginBean.getAluno().getCurso().getDepartamento().getCampus().getInstituicao().getNome());
+			replace(DocumentoKey.INSTITUICAO_NOME, loginBean.getUsuario().getAluno().getCurso().getDepartamento().getCampus().getInstituicao().getNome());
 			break;
 			
 		// Campus
 		case CAMPUS_NOME:
-			replace(DocumentoKey.CAMPUS_NOME, loginBean.getAluno().getCurso().getDepartamento().getCampus().getNome());
+			replace(DocumentoKey.CAMPUS_NOME, loginBean.getUsuario().getAluno().getCurso().getDepartamento().getCampus().getNome());
 			break;
 		case CAMPUS_EMAIL:
-			replace(DocumentoKey.CAMPUS_EMAIL, loginBean.getAluno().getCurso().getDepartamento().getCampus().getEmail());
+			replace(DocumentoKey.CAMPUS_EMAIL, loginBean.getUsuario().getAluno().getCurso().getDepartamento().getCampus().getEmail());
 			break;
 		case CAMPUS_TELEFONE:
-			replace(DocumentoKey.CAMPUS_TELEFONE, loginBean.getAluno().getCurso().getDepartamento().getCampus().getTelefone());
+			replace(DocumentoKey.CAMPUS_TELEFONE, loginBean.getUsuario().getAluno().getCurso().getDepartamento().getCampus().getTelefone());
 			break;
 		case CAMPUS_ENDERECO_ENDERECO:
-			replace(DocumentoKey.CAMPUS_ENDERECO_ENDERECO, loginBean.getAluno().getCurso().getDepartamento().getCampus().getEndereco());
+			replace(DocumentoKey.CAMPUS_ENDERECO_ENDERECO, loginBean.getUsuario().getAluno().getCurso().getDepartamento().getCampus().getEndereco());
 			break;
 		case CAMPUS_ENDERECO_NUMERO:
-			replace(DocumentoKey.CAMPUS_ENDERECO_NUMERO, loginBean.getAluno().getCurso().getDepartamento().getCampus().getNumero());
+			replace(DocumentoKey.CAMPUS_ENDERECO_NUMERO, loginBean.getUsuario().getAluno().getCurso().getDepartamento().getCampus().getNumero());
 			break;
 		case CAMPUS_ENDERECO_BAIRRO:
-			replace(DocumentoKey.CAMPUS_ENDERECO_BAIRRO, loginBean.getAluno().getCurso().getDepartamento().getCampus().getBairro());
+			replace(DocumentoKey.CAMPUS_ENDERECO_BAIRRO, loginBean.getUsuario().getAluno().getCurso().getDepartamento().getCampus().getBairro());
 			break;
 		case CAMPUS_ENDERECO_CEP:
-			replace(DocumentoKey.CAMPUS_ENDERECO_CEP, loginBean.getAluno().getCurso().getDepartamento().getCampus().getCep());
+			replace(DocumentoKey.CAMPUS_ENDERECO_CEP, loginBean.getUsuario().getAluno().getCurso().getDepartamento().getCampus().getCep());
 			break;
 		case CAMPUS_ENDERECO_UF:
-			replace(DocumentoKey.CAMPUS_ENDERECO_UF, loginBean.getAluno().getCurso().getDepartamento().getCampus().getUf());
+			replace(DocumentoKey.CAMPUS_ENDERECO_UF, loginBean.getUsuario().getAluno().getCurso().getDepartamento().getCampus().getUf());
 			break;
 		case CAMPUS_ENDERECO_CIDADE:
-			replace(DocumentoKey.CAMPUS_ENDERECO_CIDADE, loginBean.getAluno().getCurso().getDepartamento().getCampus().getCidade());
+			replace(DocumentoKey.CAMPUS_ENDERECO_CIDADE, loginBean.getUsuario().getAluno().getCurso().getDepartamento().getCampus().getCidade());
 			break;
 	
 		// Departamento
 		case DEPARTAMENTO_NOME:
-			replace(DocumentoKey.DEPARTAMENTO_NOME, loginBean.getAluno().getCurso().getDepartamento().getNome());
+			replace(DocumentoKey.DEPARTAMENTO_NOME, loginBean.getUsuario().getAluno().getCurso().getDepartamento().getNome());
 			break;
 			
 		// Curso
 		case ALUNO_CURSO_SEMESTRE_ATUAL:
-			replace(DocumentoKey.ALUNO_CURSO_SEMESTRE_ATUAL, loginBean.getAluno().getSemestreAtual().toString());
+			replace(DocumentoKey.ALUNO_CURSO_SEMESTRE_ATUAL, loginBean.getUsuario().getAluno().getSemestreAtual().toString());
 			break;
 		case ALUNO_CURSO_NOME:
-			replace(DocumentoKey.ALUNO_CURSO_NOME, loginBean.getAluno().getCurso().getNome());
+			replace(DocumentoKey.ALUNO_CURSO_NOME, loginBean.getUsuario().getAluno().getCurso().getNome());
 			break;
 		}
 	}

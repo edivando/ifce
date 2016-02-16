@@ -48,14 +48,14 @@
 					
 						<p:column width="100" styleClass="text-center" rendered="#{btnEdit or btnRemove}" >
 							<f:facet name="header">
-								<p:commandLink update="@all" actionListener="#{view.form}" styleClass="btn btn-primary" rendered="#{!view.form and btnNew}">
+								<p:commandLink update="@form" actionListener="#{view.form}" styleClass="btn btn-primary" rendered="#{!view.form and btnNew}">
 									<f:setPropertyActionListener target="#{view.entity}" value=""/>
 									<i class="fa fa-plus" />
 						 			Novo
 								</p:commandLink>
 							</f:facet>
 						
-			 				<p:commandLink update="@all" actionListener="#{view.form}" styleClass="btn btn-white" rendered="#{btnEdit}" >
+			 				<p:commandLink update="@form" actionListener="#{view.form}" styleClass="btn btn-white" rendered="#{btnEdit}" >
 					 			<f:setPropertyActionListener target="#{view.entity}" value="#{entity}"/>
 					 			<i class="fa fa-edit text-info" />
 							</p:commandLink>

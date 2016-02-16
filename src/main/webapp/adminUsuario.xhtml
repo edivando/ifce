@@ -54,7 +54,7 @@
 		<p:column headerText="Tipo de Usuário" width="300" >
 			<p:inplace id="tipoUsuario" effectSpeed="fast" editor="true">
 				<f:facet name="output">
-	                #{entity.tipoUsuario} <h:outputFormat value="- #{adminUsuarioBean.getInstituicaoNome(entity.idInstituicao)}" rendered="#{entity.tipoUsuario eq 'INSTITUICAO'}"></h:outputFormat> 
+	                #{entity.tipoUsuario} <h:outputFormat value="- #{entity.instituicao.nome}" rendered="#{entity.tipoUsuario eq 'INSTITUICAO'}"></h:outputFormat> 
 	            </f:facet>
 	            <f:facet name="input">
 	                <h:selectOneMenu value="#{entity.tipoUsuario}">
@@ -63,9 +63,9 @@
 		                <p:ajax listener="#{adminUsuarioBean.save(entity)}" update="@form"/>
 		            </h:selectOneMenu>
 		            -
-		            <h:selectOneMenu id="selectOneInstituicao" value="#{entity.idInstituicao}" rendered="#{entity.tipoUsuario eq 'INSTITUICAO'}" >
+		            <h:selectOneMenu id="selectOneInstituicao" value="#{entity.instituicao}" rendered="#{entity.tipoUsuario eq 'INSTITUICAO'}" >
 		                <f:selectItem itemLabel="Selecione..." itemValue="" />
-			            <f:selectItems value="#{adminUsuarioBean.instituicaos}" var="item" itemLabel="#{item.nome}" itemValue="#{item.idInstituicao}"/>
+			            <f:selectItems value="#{adminUsuarioBean.instituicaos}" var="item" itemLabel="#{item.nome}" itemValue="#{item}"/>
 		                <p:ajax listener="#{adminUsuarioBean.save(entity)}"/>
 		            </h:selectOneMenu>
 	            </f:facet>
@@ -92,9 +92,9 @@
 			<div class="form-group">
 				<label for="inputInstituicao" class="col-sm-2 control-label">Instituição</label>
 				<div class="col-sm-6">
-					<h:selectOneMenu id="inputInstituicao"  value="#{adminUsuarioBean.entity.idInstituicao}" styleClass="form-control" style="height: 34px;">
+					<h:selectOneMenu id="inputInstituicao"  value="#{adminUsuarioBean.entity.instituicao}" styleClass="form-control" style="height: 34px;">
 		                <f:selectItem itemLabel="Selecione..." itemValue="" />
-		                <f:selectItems value="#{adminUsuarioBean.instituicaos}" var="item" itemLabel="#{item.nome}" itemValue="#{item.idInstituicao}"/>
+		                <f:selectItems value="#{adminUsuarioBean.instituicaos}" var="item" itemLabel="#{item.nome}" itemValue="#{item}"/>
 		            </h:selectOneMenu>
 				</div>
 			</div>

@@ -8,6 +8,8 @@
  */
 package com.j7ss.view.convert;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -28,15 +30,17 @@ import com.j7ss.view.AdminInstituicaoBean;
  */
 @ManagedBean
 @ViewScoped
-public class DocumentoConverter implements Converter {
+public class DocumentoConverter implements Converter, Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Setter
-	@ManagedProperty(value="#{instituicaoBean}")
-	private AdminInstituicaoBean instituicaoBean;
+	@ManagedProperty(value="#{adminInstituicaoBean}")
+	private AdminInstituicaoBean adminInstituicaoBean;
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		return instituicaoBean.getDocumentoByNome(value);
+		return adminInstituicaoBean.getDocumentoByNome(value);
 	}
 
 	@Override

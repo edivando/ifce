@@ -67,7 +67,7 @@ public class AlunoHomeBean implements Serializable{
 //	}
 	
 	private DocumentoAluno getDocumentoAluno(Integer id){
-		for(DocumentoAluno docAluno : loginBean.getAluno().getDocumentosAluno()){
+		for(DocumentoAluno docAluno : loginBean.getUsuario().getAluno().getDocumentosAluno()){
 			if(id.equals(docAluno.getDocumento().getIdDocumento())){
 				return docAluno;
 			}
@@ -84,15 +84,15 @@ public class AlunoHomeBean implements Serializable{
 	
 	
 	private List<DocumentoAluno> getDocAlunos(){
-		return loginBean.getAluno().getDocumentosAluno();
+		return loginBean.getUsuario().getAluno().getDocumentosAluno();
 	}
 	
 	private List<DocumentoCurso> getDocCursos(){
-		return loginBean.getAluno().getCurso().getDocumentoCursos();
+		return loginBean.getUsuario().getAluno().getCurso().getDocumentoCursos();
 	}
 	
 	private Aluno getAluno(){
-		return loginBean.getAluno();
+		return loginBean.getUsuario().getAluno();
 	}
 	
 //	public void showDocumento(Documento doc){

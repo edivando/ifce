@@ -46,7 +46,7 @@ public class TermoCompromissoBean implements Serializable{
 	private LoginBean loginBean;
 	
 	public Aluno getAluno(){
-		return loginBean.getAluno();
+		return loginBean.getUsuario().getAluno();
 	}
 	
 	public Usuario getUsuario(){

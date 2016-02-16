@@ -17,35 +17,35 @@
 	<div class="form-group">
 		<label for="inputEndereco" class="col-sm-2 control-label">Endereço:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputEndereco" value="#{bean.aluno.endereco}" placeholder="Rua..." styleClass="form-control"
+			<p:inputText id="inputEndereco" value="#{aluno.endereco}" placeholder="Rua..." styleClass="form-control"
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputNumero" class="col-sm-2 control-label">Número:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputNumero" value="#{bean.aluno.numero}" placeholder="Número" styleClass="form-control"
+			<p:inputText id="inputNumero" value="#{aluno.numero}" placeholder="Número" styleClass="form-control"
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputBairro" class="col-sm-2 control-label">Bairro:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputBairro" value="#{bean.aluno.bairro}" placeholder="Bairro..." styleClass="form-control" 
+			<p:inputText id="inputBairro" value="#{aluno.bairro}" placeholder="Bairro..." styleClass="form-control" 
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputCEP" class="col-sm-2 control-label">CEP:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputCEP" value="#{bean.aluno.cep}" placeholder="CEP" styleClass="form-control" 
+			<p:inputText id="inputCEP" value="#{aluno.cep}" placeholder="CEP" styleClass="form-control" 
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputCidade" class="col-sm-2 control-label">Cidade:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputCidade" value="#{bean.aluno.cidade}" placeholder="Cidade" styleClass="form-control"
+			<p:inputText id="inputCidade" value="#{aluno.cidade}" placeholder="Cidade" styleClass="form-control"
 				 disabled="#{disabled}"/>
 		</div>
 	</div>
@@ -53,7 +53,7 @@
 		<label for="inputUF" class="col-sm-2 control-label">UF:</label>
 		<div class="col-sm-8">
 			<ui:include src="/module/moduleSelectOneEstadosBrasil.xhtml">
-				<ui:param name="value" value="#{loginBean.aluno.uf}"/>
+				<ui:param name="value" value="#{aluno.uf}"/>
 				<ui:param name="disabled" value="#{disabled}"/>
 			</ui:include>
 		</div>

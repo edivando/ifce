@@ -256,7 +256,7 @@ public class AdminInstituicaoBean extends BasicView<Instituicao>{
 			e.printStackTrace();
 		}
     }
-	
+    
 	@Override
 	public void onSave() {
 		Messages.showGrowlInfo("Instituicao", "Instituicao <strong>{0}</strong> salvo com sucesso!", entity.getNome());

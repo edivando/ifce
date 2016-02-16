@@ -11,6 +11,7 @@ package com.j7ss.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -53,7 +54,7 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 	@Getter @Setter
 	private String responsavel;
 	
-	@OneToMany(mappedBy="instituicao", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="instituicao", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
 	@Getter @Setter
 	private List<Campus> campus;
 	

@@ -42,12 +42,12 @@
 	            	<div class="tab-content">
 	            		<div id="vagaEstagio" class="tab-pane active">
 							<ui:include src="/module/moduleAlunoVagaEstagio.xhtml" >
-								<ui:param name="bean" value="#{loginBean}"/>
+								<ui:param name="vagaEstagio" value="#{loginBean.usuario.aluno.vagaEstagio}"/>
 							</ui:include>
 	            		</div>
 	            		<div id="empresa" class="tab-pane">
 							<ui:include src="/module/moduleAlunoVagaEstagioEmpresa.xhtml">
-								<ui:param name="bean" value="#{loginBean}"/>
+								<ui:param name="vagaEstagio" value="#{loginBean.usuario.aluno.vagaEstagio}"/>
 							</ui:include>
 	            		</div>
 	            	</div>

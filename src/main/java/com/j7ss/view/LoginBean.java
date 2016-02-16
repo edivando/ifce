@@ -17,11 +17,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import lombok.Getter;
 import lombok.Setter;
 
-import com.j7ss.entity.Aluno;
-import com.j7ss.entity.Instituicao;
 import com.j7ss.entity.TipoUsuario;
 import com.j7ss.entity.Usuario;
 import com.j7ss.util.DAOException;
@@ -43,11 +40,7 @@ public class LoginBean implements Serializable{
 
 	@Setter
 	private Usuario usuario;
-	@Getter
-	private Aluno aluno;
-	@Getter
-	private Instituicao instituicao;
-	
+
 	public void login(){	
 		try {
 			List<Usuario> usuarios = Usuario.findByEmailAndSenha(usuario.getEmail(), MD5.md5(usuario.getSenha()));
@@ -55,10 +48,8 @@ public class LoginBean implements Serializable{
 				String homePage = "";
 				usuario = usuarios.get(0);
 				if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
-					aluno = Aluno.findByUsuario( usuario );
-					homePage = aluno.isCompleteCadastro() ? "alunoHome.html" : "alunoCompleteCadastro.html";
+					homePage = usuario.getAluno().isCompleteCadastro() ? "alunoHome.html" : "alunoCompleteCadastro.html";
 				}else if(usuario.getTipoUsuario().equals(TipoUsuario.INSTITUICAO)){
-					instituicao = Instituicao.findById(usuario.getIdInstituicao());
 					homePage = "instituicaoHome.html";
 				}else if(usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)){
 					homePage = "adminHome.html";
@@ -97,12 +88,13 @@ public class LoginBean implements Serializable{
 	
 	public void update(){
 		try {
-			usuario.save();
 			if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
-				aluno.usuario(usuario).save();
+				usuario.getAluno().save();
+				getUsuario().getAluno().getVagaEstagio().save();
+				getUsuario().getAluno().getVagaEstagio().getEmpresa().save();
 			}
-			aluno.getVagaEstagio().save();
-			aluno.getVagaEstagio().getEmpresa().save();
+			usuario.save();
+		
 			Messages.showGrowlInfo("Tdsfs", "sadasda");
 		} catch (DAOException e) {
 			Messages.showGrowlInfo("Tdsfs", "sadasda");

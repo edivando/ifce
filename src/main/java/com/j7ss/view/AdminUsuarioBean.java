@@ -56,7 +56,7 @@ public class AdminUsuarioBean extends BasicView<Usuario>{
 	@Override
 	public void save() {
 		if(entity.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)){
-			entity.setIdInstituicao(null);
+			entity.setInstituicao(null);
 		}
 		entity.senha(MD5.md5(entity.getSenha()));
 		super.save();
@@ -64,7 +64,7 @@ public class AdminUsuarioBean extends BasicView<Usuario>{
 	
 	public void save(Usuario usuario) {
 		if(usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)){
-			usuario.setIdInstituicao(null);
+			usuario.setInstituicao(null);
 		}
 		entity = usuario;
 		super.save();
@@ -74,10 +74,10 @@ public class AdminUsuarioBean extends BasicView<Usuario>{
 		return instituicaos == null ? Instituicao.findAll() : instituicaos;
 	}
 	
-	public String getInstituicaoNome(Integer id){
-		for(Instituicao instituicao : getInstituicaos()){
-			if(instituicao.getIdInstituicao().equals(id)) return instituicao.getNome();
-		}
-		return "";
-	}
+//	public String getInstituicaoNome(Integer id){
+//		for(Instituicao instituicao : getInstituicaos()){
+//			if(instituicao.getIdInstituicao().equals(id)) return instituicao.getNome();
+//		}
+//		return "";
+//	}
 }

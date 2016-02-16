@@ -75,88 +75,16 @@
 						
                  	</div>
                  	<div id="curso" class="tab-pane">
-				    	<div class="form-group">
-							<label for="inputMatricula" class="col-sm-2 control-label">Matrícula:</label>
-							<div class="col-sm-8">
-								<p:inputText id="inputMatricula" value="#{adminAlunoBean.entity.matricula}" placeholder="Matrícula do Aluno" styleClass="form-control"
-									readonly="true"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputSemestreAtual" class="col-sm-2 control-label">Semestre Atual:</label>
-							<div class="col-sm-8">
-								<p:inputText id="inputSemestreAtual" value="#{adminAlunoBean.entity.semestreAtual}" placeholder="Semestre Atual" styleClass="form-control"
-									readonly="true"/>
-							</div>
-						</div> 
-						<div class="form-group">
-							<label for="inputInstituicao" class="col-sm-2 control-label">Instituição:</label>
-							<div class="col-sm-8">
-								<p:inputText id="inputInstituicao" value="#{adminAlunoBean.entity.curso.departamento.campus.instituicao.nome}" placeholder="Instituição de Ensino" styleClass="form-control"
-									readonly="true"/>
-							</div>
-						</div> 
-						<div class="form-group">
-							<label for="inputCampus" class="col-sm-2 control-label">Campus:</label>
-							<div class="col-sm-8">
-								<p:inputText id="inputCampus" value="#{adminAlunoBean.entity.curso.departamento.campus.nome}" placeholder="Campus da Instituição" styleClass="form-control"
-									readonly="true"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputDepartamento" class="col-sm-2 control-label">Departamento:</label>
-							<div class="col-sm-8">
-								<p:inputText id="inputDepartamento" value="#{adminAlunoBean.entity.curso.departamento.nome}" placeholder="Departamento" styleClass="form-control"
-									readonly="true"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputCurso" class="col-sm-2 control-label">Curso:</label>
-							<div class="col-sm-8">
-								<p:inputText id="inputCurso" value="#{adminAlunoBean.entity.curso.nome}" placeholder="Seu curso!" styleClass="form-control"
-									readonly="true"/>
-							</div>
-						</div>          	
+                 		<ui:include src="/module/moduleAlunoCurso.xhtml">
+							<ui:param name="aluno" value="#{adminAlunoBean.entity}"/>
+							<ui:param name="disabled" value="true"/>
+						</ui:include> 	
                  	</div>
                  	<div id="endereco" class="tab-pane">
-                 		<div class="form-group">
-							<label for="inputEndereco" class="col-sm-2 control-label">Endereço:</label>
-							<div class="col-sm-8">
-								<p:inputText id="inputEndereco" value="#{adminAlunoBean.entity.endereco}" placeholder="Rua..." styleClass="form-control"
-									readonly="true"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputNumero" class="col-sm-2 control-label">Número:</label>
-							<div class="col-sm-8">
-								<p:inputText id="inputNumero" value="#{adminAlunoBean.entity.numero}" placeholder="Número" styleClass="form-control"
-									readonly="true"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputBairro" class="col-sm-2 control-label">Bairro:</label>
-							<div class="col-sm-8">
-								<p:inputText id="inputBairro" value="#{adminAlunoBean.entity.bairro}" placeholder="Bairro..." styleClass="form-control" readonly="true"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputCEP" class="col-sm-2 control-label">CEP:</label>
-							<div class="col-sm-8">
-								<p:inputText id="inputCEP" value="#{adminAlunoBean.entity.cep}" placeholder="CEP" styleClass="form-control" readonly="true"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputCidade" class="col-sm-2 control-label">Cidade:</label>
-							<div class="col-sm-8">
-								<p:inputText id="inputCidade" value="#{adminAlunoBean.entity.cidade}" placeholder="Cidade" styleClass="form-control" readonly="true"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputUF" class="col-sm-2 control-label">UF:</label>
-							<div class="col-sm-8">
-								<p:inputText id="inputUF" value="#{adminAlunoBean.entity.uf}" placeholder="Cidade" styleClass="form-control" readonly="true"/>
-							</div>
-						</div>
+                 		<ui:include src="/module/moduleAlunoEndereco.xhtml">
+							<ui:param name="aluno" value="#{adminAlunoBean.entity}"/>
+							<ui:param name="disabled" value="true"/>
+						</ui:include> 
                  	</div>
                  	<div id="documentos" class="tab-pane">
                  		<p:dataList value="#{adminAlunoBean.entity.documentos}" var="doc" type="ordered">

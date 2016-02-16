@@ -39,7 +39,7 @@ public class AlunoCompleteCadastroBean implements Serializable{
 	private LoginBean loginBean;
 	
 	public Aluno getAluno(){
-		return loginBean.getAluno();
+		return loginBean.getUsuario().getAluno();
 	}
 	
 	public Usuario getUsuario(){
@@ -49,8 +49,8 @@ public class AlunoCompleteCadastroBean implements Serializable{
 	public void save(){
 		try {
 			loginBean.getUsuario().save();
-			loginBean.getAluno().usuario(loginBean.getUsuario()).save();
-			WebContext.redirect("homeAluno.html");
+			loginBean.getUsuario().getAluno().usuario(loginBean.getUsuario()).save();
+			WebContext.redirect("alunoHome.html");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -53,17 +53,17 @@
 	            		<h:outputFormat rendered="#{loginBean.usuario.tipoUsuario eq 'ALUNO'}">
 	            			<div id="aluno" class="tab-pane">
 								<ui:include src="/module/moduleAluno.xhtml">
-									<ui:param name="aluno" value="#{loginBean.aluno}"/>
+									<ui:param name="aluno" value="#{loginBean.usuario.aluno}"/>
 								</ui:include>
 		                 	</div>
 		                 	<div id="endereco" class="tab-pane">
 		                 		<ui:include src="/module/moduleAlunoEndereco.xhtml">
-		                 			<ui:param name="bean" value="#{loginBean}"/>
+		                 			<ui:param name="aluno" value="#{loginBean.usuario.aluno}"/>
 		                 		</ui:include>
 		                 	</div>
 		                 	<div id="curso" class="tab-pane">
 						   		<ui:include src="/module/moduleAlunoCurso.xhtml">
-		                 			<ui:param name="bean" value="#{loginBean}"/>
+		                 			<ui:param name="aluno" value="#{loginBean.usuario.aluno}"/>
 		                 		</ui:include>
 		                 	</div>
 	            		</h:outputFormat>
