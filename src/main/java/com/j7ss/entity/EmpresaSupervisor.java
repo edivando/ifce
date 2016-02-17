@@ -53,13 +53,8 @@ public class EmpresaSupervisor implements IGenericEntity<EmpresaSupervisor> {
 	@Setter
 	private Empresa empresa;
 		
-	@Override
-	public boolean isNew() {
-		return idEmpresaSupervisor == null;
-	}
-		
-
-		
+	
+//******************************************************************************************************************************	
 //## Builder
 	public EmpresaSupervisor idEmpresaSupervisor(Integer idEmpresaSupervisor){
 		this.idEmpresaSupervisor = idEmpresaSupervisor;
@@ -80,8 +75,16 @@ public class EmpresaSupervisor implements IGenericEntity<EmpresaSupervisor> {
 		this.telefoneSupervisor = telefoneSupervisor;
 		return this;
 	}
+
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idEmpresaSupervisor == null;
+	}
 	
 	
+//******************************************************************************************************************************
 //## DAO
 	private static DAO<EmpresaSupervisor> dao = new DAO<EmpresaSupervisor>(EmpresaSupervisor.class);
 	
@@ -97,9 +100,5 @@ public class EmpresaSupervisor implements IGenericEntity<EmpresaSupervisor> {
 	
 	public static List<EmpresaSupervisor> findAll(){
 		return dao.findAll();
-	}
-	
-	public static Long countAll(){
-		return dao.countAll();
 	}
 }

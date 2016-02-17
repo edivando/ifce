@@ -11,7 +11,6 @@ package com.j7ss.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,6 +24,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import com.j7ss.entity.constraint.DocumentoStatus;
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.IGenericEntity;
@@ -59,23 +59,10 @@ public class DocumentoAluno implements IGenericEntity<DocumentoAluno> {
 	@Getter @Setter
 	private Documento documento = new Documento();
 	
-	@OneToMany(mappedBy="documentoAluno", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="documentoAluno")
 	@OrderBy("date")
 	@Setter
 	private List<DocumentoAlunoMessage> documentoAlunoMessages;
-	
-	
-	public String getLinkPagina(){
-		if(documento == null || status == DocumentoStatus.INDISPONIVEL){
-			return "";
-		}
-		return "alunoDocumento.html?id="+documento.getIdDocumento();
-	}
-	
-	@Override
-	public boolean isNew() {
-		return idDocumentoAluno == null;
-	}
 	
 	public DocumentoAluno() { }
 	
@@ -83,7 +70,7 @@ public class DocumentoAluno implements IGenericEntity<DocumentoAluno> {
 		this.aluno = aluno;
 	}
 
-	
+//******************************************************************************************************************************
 //## Builder
 	public DocumentoAluno idDocumentoAluno(Integer idDocumentoAluno){
 		this.idDocumentoAluno = idDocumentoAluno;
@@ -109,8 +96,24 @@ public class DocumentoAluno implements IGenericEntity<DocumentoAluno> {
 		this.documento = documento;
 		return this;
 	}
-
 	
+	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idDocumentoAluno == null;
+	}
+	
+	public String getLinkPagina(){
+		if(documento == null || status == DocumentoStatus.INDISPONIVEL){
+			return "";
+		}
+		return "alunoDocumento.html?id="+documento.getIdDocumento();
+	}
+	
+	
+//******************************************************************************************************************************
 //## DAO
 	private static DAO<DocumentoAluno> dao = new DAO<DocumentoAluno>(DocumentoAluno.class);
 	
@@ -124,11 +127,8 @@ public class DocumentoAluno implements IGenericEntity<DocumentoAluno> {
 		return dao.remove(this);
 	}
 	
-	public static List<DocumentoAluno> findAll(){
-		return dao.findAll();
+	public static List<DocumentoAluno> findByAluno(Aluno aluno){
+		return dao.findByQuery("Select d From DocumentoAluno d Where d.aluno = ?1", aluno);
 	}
 	
-	public static Long countAll(){
-		return dao.countAll();
-	}
 }

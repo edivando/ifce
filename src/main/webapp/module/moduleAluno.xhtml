@@ -23,28 +23,28 @@
 	</div>
 	<div class="form-group">
 		<label for="inputTelefone" class="col-sm-2 control-label">Telefone:</label>
-		<div class="col-sm-8">
-			<p:inputText id="inputTelefone" value="#{aluno.telefone}" placeholder="Telefone do Aluno" styleClass="form-control" 
+		<div class="col-sm-3">
+			<p:inputMask id="inputTelefone" value="#{aluno.telefone}" placeholder="Telefone do Aluno" styleClass="form-control" mask="(99) 9999-9999"
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputCelular" class="col-sm-2 control-label">Celular:</label>
-		<div class="col-sm-8">
-			<p:inputText id="inputCelular" value="#{aluno.celular}" placeholder="Celular do Aluno" styleClass="form-control" 
+		<div class="col-sm-3">
+			<p:inputMask id="inputCelular" value="#{aluno.celular}" placeholder="Celular do Aluno" styleClass="form-control" mask="(99) 9 9999-9999"
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputLattes" class="col-sm-2 control-label">Curriculum Lattes:</label>
-		<div class="col-sm-8">
+		<div class="col-sm-4">
 			<p:inputText id="inputLattes" value="#{aluno.cvLattes}" placeholder="Curriculum Lattes" styleClass="form-control" 
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputDataNascimento" class="col-sm-2 control-label">Data de Nascimento:</label>
-		<div class="col-sm-8">
+		<div class="col-sm-3">
 			<p:inputMask id="inputDataNascimento" styleClass="form-control" value="#{aluno.dataNascimento}" mask="99/99/9999"
 				placeholder="Data de Nascimento" disabled="#{disabled}">
 				<f:convertDateTime pattern="dd/MM/yyyy"/>
@@ -53,14 +53,14 @@
 	</div>
 	<div class="form-group">
 		<label for="inputCPF" class="col-sm-2 control-label">CPF:</label>
-		<div class="col-sm-8">
-			<p:inputText id="inputCPF" value="#{aluno.cpf}" placeholder="CPF" styleClass="form-control" 
+		<div class="col-sm-3">
+			<p:inputMask id="inputCPF" value="#{aluno.cpf}" placeholder="CPF" styleClass="form-control" mask="999.999.999-99"
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputRG" class="col-sm-2 control-label">RG:</label>
-		<div class="col-sm-8">
+		<div class="col-sm-3">
 			<p:inputText id="inputRG" value="#{aluno.rg}" placeholder="RG" styleClass="form-control" 
 				disabled="#{disabled}"/>
 		</div>

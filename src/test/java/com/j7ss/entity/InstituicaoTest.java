@@ -1,7 +1,5 @@
 package com.j7ss.entity;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.Test;
@@ -18,11 +16,13 @@ public class InstituicaoTest {
 		 // TODO
 	}
 
-	@Test
+//	@Test
 	public final void testFindAll() {
 		List<Instituicao> instituicoes = Instituicao.findAll();
-		System.out.println(instituicoes.get(0).getCampus());
+		System.out.println(instituicoes);
 	}
+	
+	
 
 	@Test
 	public final void testCountAll() {

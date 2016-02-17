@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -86,21 +88,18 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	@Setter
 	private Empresa empresa;
 	
-	@Override
-	public boolean isNew() {
-		return idVaga == null;
-	}
+	@OneToMany(mappedBy="vagaEstagio")
+	@Getter @Setter
+	private List<VagaEstagioAtividadeDiaria> atividadesDiaria;
 	
 	public VagaEstagio(){ }
 	
 	public VagaEstagio(String nome){
 		this.nome = nome;
 	}
+
 	
-	public Empresa getEmpresa() {
-		return empresa == null ? empresa  = new Empresa() : empresa;
-	}
-    
+//******************************************************************************************************************************
 //## Builder
 	public VagaEstagio idVaga(Integer idVaga){
 		this.idVaga = idVaga;
@@ -191,7 +190,21 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 		this.apoliceEmpresa = apoliceEmpresa;
 		return this;
 	}
+
 	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idVaga == null;
+	}
+	
+	public Empresa getEmpresa() {
+		return empresa == null ? empresa  = new Empresa() : empresa;
+	}
+	
+	
+//******************************************************************************************************************************
 //## DAO
 	private static DAO<VagaEstagio> dao = new DAO<VagaEstagio>(VagaEstagio.class);
 	
@@ -208,9 +221,4 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	public static List<VagaEstagio> findAll(){
 		return dao.findAll();
 	}
-	
-	public static Long countAll(){
-		return dao.countAll();
-	}
-
 }

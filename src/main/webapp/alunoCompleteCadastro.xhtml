@@ -16,14 +16,9 @@
 	<ui:define name="title">IFCE Estágios - Complete o Cadastro</ui:define>
 	<ui:define name="container">
 	
-		<div class="row">
-	        <div class="col-md-12">
-	            <ul class="breadcrumb">
-	                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-	                <li class="active"><a href="perfil.html">Complete o seu cadastro</a></li>
-	            </ul>
-	        </div>
-	    </div>
+		<ui:param name="headerTitle" value="Complete o seu cadastro" />
+		<ui:param name="headerLink" value="perfil.html" />
+	
 	    <div class="alert alert-warning alert-block fade in">
 	        <button data-dismiss="alert" class="close close-sm" type="button">
 	            <i class="fa fa-times"></i>
@@ -62,14 +57,28 @@
 	            	<ui:include src="/module/moduleAlunoCurso.xhtml">
 						<ui:param name="aluno" value="#{alunoCompleteCadastroBean.aluno}"/>
 					</ui:include>
-					<div class="text-right">
+	            </p:panel>
+	        </p:tab>
+	        <p:tab id="vagaEstagio" title="Seu Estágio">
+	            <p:panel styleClass="form-horizontal">
+	            	<ui:include src="/module/moduleAlunoVagaEstagio.xhtml">
+						<ui:param name="vagaEstagio" value="#{alunoCompleteCadastroBean.aluno.vagaEstagio}"/>
+					</ui:include>
+	            </p:panel>
+	    	</p:tab>
+	    	<p:tab id="empresa" title="Empresa">
+	            <p:panel styleClass="form-horizontal">
+	            	<ui:include src="/module/moduleAlunoVagaEstagioEmpresa.xhtml">
+						<ui:param name="vagaEstagio" value="#{alunoCompleteCadastroBean.aluno.vagaEstagio}"/>
+					</ui:include>
+	            	<div class="text-right">
 						<p:commandLink action="#{alunoCompleteCadastroBean.save}" styleClass="btn btn-info">
 							<i class="fa fa-save" />
 							<strong>Salvar</strong>
 						</p:commandLink>
 					</div>  
 	            </p:panel>
-	        </p:tab>
+	    	</p:tab>
     	</p:wizard>	
 	</ui:define>
 </ui:composition>

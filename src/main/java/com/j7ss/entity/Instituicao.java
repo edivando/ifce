@@ -62,13 +62,9 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 	public String toString() {
 		return nome;
 	}
+
 	
-	@Override
-	public boolean isNew() {
-		return idInstituicao == null;
-	}
-	
-	
+//******************************************************************************************************************************
 //## Builder
 	public Instituicao idInstituicao(Integer idInstituicao){
 		this.idInstituicao = idInstituicao;
@@ -110,6 +106,15 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 		return this;
 	}
 	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idInstituicao == null;
+	}
+
+	
+//******************************************************************************************************************************
 //## DAO
 	private static DAO<Instituicao> dao = new DAO<Instituicao>(Instituicao.class);
 	
@@ -129,10 +134,6 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 	
 	public static Instituicao findById(Integer idInstituicao){
 		return dao.findOne(idInstituicao);
-	}
-	
-	public static Long countAll(){
-		return dao.countAll();
 	}
 	
 	public static List<Instituicao> findByNomeLike(String nome){

@@ -18,8 +18,9 @@ import com.github.rjeschke.txtmark.Processor;
 import com.j7ss.entity.Aluno;
 import com.j7ss.entity.Documento;
 import com.j7ss.entity.DocumentoAluno;
-import com.j7ss.entity.DocumentoKey;
-import com.j7ss.entity.DocumentoStatus;
+import com.j7ss.entity.constraint.DocumentoKey;
+import com.j7ss.entity.constraint.DocumentoStatus;
+import com.j7ss.entity.constraint.TipoUsuario;
 import com.j7ss.util.BasicView;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.WebContext;
@@ -35,8 +36,6 @@ import com.j7ss.util.WebContext;
 public class AlunoDocumentoBean extends BasicView<Aluno>{
 	private static final long serialVersionUID = 1L;
 	
-//	@Setter
-//	@ManagedProperty("#{param.id}")
 	private Integer id;
 	
 	private DocumentoAluno documentoAluno;
@@ -46,6 +45,16 @@ public class AlunoDocumentoBean extends BasicView<Aluno>{
 	private LoginBean loginBean;
 	
 	private String docPage;
+	
+	
+	public void saveDocumento(DocumentoStatus status){
+		try {
+			documentoAluno.status(status).save();
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public String getDocPage() {
 		if(docPage == null){

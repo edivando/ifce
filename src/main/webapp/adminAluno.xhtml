@@ -59,6 +59,8 @@
 	                 <li class=""> <a data-toggle="tab" href="#curso">Curso</a> </li>
 	                 <li class=""> <a data-toggle="tab" href="#endereco">Endereço</a> </li>
 	                 <li class=""> <a data-toggle="tab" href="#documentos">Documentos</a> </li>
+	                 <li class=""> <a data-toggle="tab" href="#vagaEstagio">Vaga de Estágio</a> </li>
+	                 <li class=""> <a data-toggle="tab" href="#empresa">Empresa</a> </li>
 	             </ul>
 	  		</header>
      		<div class="panel-body">
@@ -96,6 +98,18 @@
 					        </p:commandLink>
 					        
 					    </p:dataList>
+                 	</div>
+                 	<div id="vagaEstagio" class="tab-pane">
+                 		<ui:include src="/module/moduleAlunoVagaEstagio.xhtml">
+							<ui:param name="vagaEstagio" value="#{adminAlunoBean.entity.vagaEstagio}"/>
+							<ui:param name="disabled" value="true"/>
+						</ui:include> 
+                 	</div>
+                 	<div id="empresa" class="tab-pane">
+                 		<ui:include src="/module/moduleAlunoVagaEstagioEmpresa.xhtml">
+							<ui:param name="vagaEstagio" value="#{adminAlunoBean.entity.vagaEstagio}"/>
+							<ui:param name="disabled" value="true"/>
+						</ui:include> 
                  	</div>
             	</div>
         	</div>

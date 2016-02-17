@@ -15,12 +15,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
 
+import com.j7ss.entity.constraint.TipoUsuario;
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.IGenericEntity;
@@ -62,19 +62,8 @@ public class Usuario implements IGenericEntity<Usuario>{
 	@Setter
 	private Aluno aluno;
 	
-	@Override
-	public boolean isNew() {
-		return idUsuario == null;
-	}
 	
-	public Aluno getAluno() {
-		return aluno == null ? aluno = new Aluno() : aluno;
-	}
-	
-	public Instituicao getInstituicao() {
-		return instituicao == null ? instituicao = new Instituicao() : instituicao;
-	}
-	
+//******************************************************************************************************************************
 //## Builder
 	public Usuario idUsuario(Integer idUsuario){
 		this.idUsuario = idUsuario;
@@ -110,7 +99,25 @@ public class Usuario implements IGenericEntity<Usuario>{
 		this.ativo = ativo;
 		return this;
 	}
+
 	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idUsuario == null;
+	}
+	
+	public Aluno getAluno() {
+		return aluno == null ? aluno = new Aluno() : aluno;
+	}
+	
+	public Instituicao getInstituicao() {
+		return instituicao == null ? instituicao = new Instituicao() : instituicao;
+	}
+	
+	
+//******************************************************************************************************************************
 //## DAO
 	private static DAO<Usuario> dao = new DAO<Usuario>(Usuario.class);
 	
@@ -122,14 +129,6 @@ public class Usuario implements IGenericEntity<Usuario>{
 	@Override
 	public boolean remove() throws DAOException {
 		return dao.remove(this);
-	}
-	
-	public static List<Usuario> findAll(){
-		return dao.findAll();
-	}
-	
-	public static Long countAll(){
-		return dao.countAll();
 	}
 	
 	public static List<Usuario> findAllMinusAluno(){

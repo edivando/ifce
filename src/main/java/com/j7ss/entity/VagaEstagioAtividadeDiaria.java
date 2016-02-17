@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -40,29 +41,29 @@ public class VagaEstagioAtividadeDiaria implements IGenericEntity<VagaEstagioAti
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer idAtividade;
-	
 	@Getter @Setter
-	private Date data;
-	
+	private Date date;
 	@Getter @Setter
 	private String descricao;
-	
 	@Getter @Setter
 	private Integer quantidadeHoras;
 	
-	@Override
-	public boolean isNew() {
-		return idAtividade == null;
-	}
+	@ManyToOne
+	@Getter @Setter
+	private VagaEstagio vagaEstagio;
 	
+	
+	
+	
+//******************************************************************************************************************************
 //## Builder
 	public VagaEstagioAtividadeDiaria idAtividade(Integer idAtividade){
 		this.idAtividade = idAtividade;
 		return this;
 	}
 	
-	public VagaEstagioAtividadeDiaria data(Date data){
-		this.data = data;
+	public VagaEstagioAtividadeDiaria date(Date date){
+		this.date = date;
 		return this;
 	}
 	
@@ -76,6 +77,16 @@ public class VagaEstagioAtividadeDiaria implements IGenericEntity<VagaEstagioAti
 		return this;
 	}
 	
+	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idAtividade == null;
+	}
+	
+	
+//******************************************************************************************************************************
 //## DAO
 	private static DAO<VagaEstagioAtividadeDiaria> dao = new DAO<VagaEstagioAtividadeDiaria>(VagaEstagioAtividadeDiaria.class);
 	
@@ -89,11 +100,7 @@ public class VagaEstagioAtividadeDiaria implements IGenericEntity<VagaEstagioAti
 		return dao.remove(this);
 	}
 	
-	public static List<VagaEstagioAtividadeDiaria> findAll(){
-		return dao.findAll();
-	}
-	
-	public static Long countAll(){
-		return dao.countAll();
+	public static List<VagaEstagioAtividadeDiaria> findByVagaEstagio(VagaEstagio vagaEstagio){
+		return dao.findByQuery("Select v From VagaEstagioAtividadeDiaria v Where v.vagaEstagio = ?1", vagaEstagio);
 	}
 }

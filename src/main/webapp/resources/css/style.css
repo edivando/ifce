@@ -3032,7 +3032,7 @@ ul.amounts li {
     -webkit-border-radius:500px;
 }
 .m-bot15 {
-    margin-bottom:15px;
+  /*   margin-bottom:15px; */
 }
 .form-horizontal.bucket-form .checkbox-inline>input {
     margin-top:1px;

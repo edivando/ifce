@@ -79,11 +79,8 @@ public class Campus implements IGenericEntity<Campus>{
 		return nome;
 	}
 	
-	@Override
-	public boolean isNew() {
-		return idCampus == null;
-	}
 	
+//******************************************************************************************************************************
 //## Builder
 	public Campus idCampus(Integer idCampus){
 		this.idCampus = idCampus;
@@ -150,6 +147,16 @@ public class Campus implements IGenericEntity<Campus>{
 		return this;
 	}
 	
+	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idCampus == null;
+	}
+	
+	
+//******************************************************************************************************************************
 //## DAO
 	private static DAO<Campus> dao = new DAO<Campus>(Campus.class);
 	
@@ -161,14 +168,6 @@ public class Campus implements IGenericEntity<Campus>{
 	@Override
 	public boolean remove() throws DAOException {
 		return dao.remove(this);
-	}
-	
-	public static List<Campus> findAll(){
-		return dao.findAll();
-	}
-	
-	public static Long countAll(){
-		return dao.countAll();
 	}
 
 	public static List<Campus> findByNomeLike(Instituicao instituicao, String nome){

@@ -61,12 +61,9 @@ public class Departamento implements IGenericEntity<Departamento> {
 	public String toString() {
 		return nome;
 	}
+
 	
-	@Override
-	public boolean isNew() {
-		return idDepartamento == null;
-	}
-	
+//******************************************************************************************************************************
 //## Builder
 	public Departamento nome(Integer idDepartamento){
 		this.idDepartamento = idDepartamento;
@@ -98,6 +95,16 @@ public class Departamento implements IGenericEntity<Departamento> {
 		return this;
 	}
 	
+	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idDepartamento == null;
+	}
+	
+	
+//******************************************************************************************************************************
 //## DAO
 	private static DAO<Departamento> dao = new DAO<Departamento>(Departamento.class);
 	
@@ -109,14 +116,6 @@ public class Departamento implements IGenericEntity<Departamento> {
 	@Override
 	public boolean remove() throws DAOException {
 		return dao.remove(this);
-	}
-	
-	public static List<Departamento> findAll(){
-		return dao.findAll();
-	}
-	
-	public static Long countAll(){
-		return dao.countAll();
 	}
 	
 	public static List<Departamento> findByNomeLike(Campus campus, String nome){

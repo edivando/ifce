@@ -17,86 +17,97 @@
 	<div class="form-group">
 		<label for="inputEmpresaNome" class="col-sm-2 control-label">Empresa:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaNome" value="#{vagaEstagio.empresa.nome}" placeholder="Nome da Empresa" styleClass="form-control" 
-				required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
-		</div>
-		<div class="col-sm-2">
-			<p:message for="inputEmpresaNome"  />
+			<p:inputText id="inputEmpresaNome" value="#{vagaEstagio.empresa.nome}" placeholder="Nome da Empresa" styleClass="form-control" maxlength="80"
+				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputEmpresaEmail" class="col-sm-2 control-label">Email:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaEmail" value="#{vagaEstagio.empresa.email}" placeholder="Nome da Empresa" styleClass="form-control" />
+			<p:inputText id="inputEmpresaEmail" value="#{vagaEstagio.empresa.email}" placeholder="Nome da Empresa" styleClass="form-control" 
+				disabled="#{disabled}"/>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label for="inputEmpresaTelefone" class="col-sm-2 control-label">Telefone:</label>
-		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaTelefone" value="#{vagaEstagio.empresa.telefone}" placeholder="Telefone da Empresa" styleClass="form-control" />
+		<div class="col-sm-3">
+			<p:inputMask id="inputEmpresaTelefone" value="#{vagaEstagio.empresa.telefone}" placeholder="Telefone da Empresa" styleClass="form-control" mask="(99) 9999-9999"
+				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputEmpresaFax" class="col-sm-2 control-label">Fax:</label>
-		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaFax" value="#{vagaEstagio.empresa.fax}" placeholder="Fax da Empresa" styleClass="form-control" />
+		<div class="col-sm-3">
+			<p:inputMask id="inputEmpresaFax" value="#{vagaEstagio.empresa.fax}" placeholder="Fax da Empresa" styleClass="form-control" mask="(99) 9999-9999"
+				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputEmpresaCNPJ" class="col-sm-2 control-label">CNPJ:</label>
-		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaCNPJ" value="#{vagaEstagio.empresa.cnpj}" placeholder="CNPJ" styleClass="form-control" />
+		<div class="col-sm-3">
+			<p:inputMask id="inputEmpresaCNPJ" value="#{vagaEstagio.empresa.cnpj}" placeholder="CNPJ" styleClass="form-control" mask="99.999.999/9999-99"
+				disabled="#{disabled}"/>
 		</div>
 	</div>
 	
 	<div class="form-group">
 		<label for="inputEmpresaSite" class="col-sm-2 control-label">Site:</label>
-		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaSite" value="#{vagaEstagio.empresa.site}" placeholder="Site" styleClass="form-control" />
+		<div class="col-sm-5">
+			<p:inputText id="inputEmpresaSite" value="#{vagaEstagio.empresa.site}" placeholder="Site" styleClass="form-control" 
+				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputEmpresaRamoAtividade" class="col-sm-2 control-label">Ramo de Atividade:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaRamoAtividade" value="#{vagaEstagio.empresa.ramoAtividade}" placeholder="Ramo de Atividade" styleClass="form-control" />
+			<p:inputText id="inputEmpresaRamoAtividade" value="#{vagaEstagio.empresa.ramoAtividade}" placeholder="Ramo de Atividade" styleClass="form-control" 
+				disabled="#{disabled}"/>
 		</div>
 	</div>
 
-            	<div class="form-group">
+  	<div class="form-group">
 		<label for="inputEmpresaEndereco" class="col-sm-2 control-label">Endereço:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaEndereco" value="#{vagaEstagio.empresa.endereco}" placeholder="Rua..." styleClass="form-control" />
+			<p:inputText id="inputEmpresaEndereco" value="#{vagaEstagio.empresa.endereco}" placeholder="Rua..." styleClass="form-control" 
+				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputEmpresaNumero" class="col-sm-2 control-label">Número:</label>
-		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaNumero" value="#{vagaEstagio.empresa.numero}" placeholder="Número" styleClass="form-control" />
+		<div class="col-sm-2">
+			<p:inputText id="inputEmpresaNumero" value="#{vagaEstagio.empresa.numero}" placeholder="Número" styleClass="form-control" 
+				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputEmpresaBairro" class="col-sm-2 control-label">Bairro:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaBairro" value="#{vagaEstagio.empresa.bairro}" placeholder="Bairro" styleClass="form-control" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="inputEmpresaCEP" class="col-sm-2 control-label">CEP:</label>
-		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaCEP" value="#{vagaEstagio.empresa.cep}" placeholder="CEP" styleClass="form-control" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="inputEmpresaUF" class="col-sm-2 control-label">UF:</label>
-		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaUF" value="#{vagaEstagio.empresa.uf}" placeholder="UF" styleClass="form-control" />
+			<p:inputText id="inputEmpresaBairro" value="#{vagaEstagio.empresa.bairro}" placeholder="Bairro" styleClass="form-control" 
+				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputEmpresaidade" class="col-sm-2 control-label">Cidade:</label>
 		<div class="col-sm-8">
-			<p:inputText id="inputEmpresaCidade" value="#{vagaEstagio.empresa.cidade}" placeholder="Cidade" styleClass="form-control" />
+			<p:inputText id="inputEmpresaCidade" value="#{vagaEstagio.empresa.cidade}" placeholder="Cidade" styleClass="form-control" 
+				disabled="#{disabled}"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputEmpresaUF" class="col-sm-2 control-label">UF:</label>
+		<div class="col-sm-8">
+			<ui:include id="inputEmpresaUF"  src="/module/moduleSelectOneEstadosBrasil.xhtml">
+				<ui:param name="value" value="#{vagaEstagio.empresa.uf}"/>
+				<ui:param name="disabled" value="#{disabled}"/>
+			</ui:include>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputEmpresaCEP" class="col-sm-2 control-label">CEP:</label>
+		<div class="col-sm-3">
+			<p:inputMask id="inputEmpresaCEP" value="#{vagaEstagio.empresa.cep}" placeholder="CEP" styleClass="form-control" mask="99.999-999"
+				disabled="#{disabled}"/>
 		</div>
 	</div>
 

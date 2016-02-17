@@ -8,8 +8,6 @@
  */
 package com.j7ss.entity;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -54,18 +52,14 @@ public class DocumentoCurso implements IGenericEntity<DocumentoCurso> {
 	@Getter @Setter
 	private Documento documento = new Documento();
 	
-	
-	@Override
-	public boolean isNew() {
-		return idDocumentoCurso == null;
-	}
-	
 	public DocumentoCurso() { }
 	
 	public DocumentoCurso(Curso curso) {
 		this.curso = curso;
 	}
+
 	
+//******************************************************************************************************************************
 //## Builder
 	public DocumentoCurso idDocumentoCurso(Integer idDocumentoCurso){
 		this.idDocumentoCurso = idDocumentoCurso;
@@ -86,8 +80,16 @@ public class DocumentoCurso implements IGenericEntity<DocumentoCurso> {
 		this.documento = documento;
 		return this;
 	}
-
 	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idDocumentoCurso == null;
+	}
+	
+
+//******************************************************************************************************************************
 //## DAO
 	private static DAO<DocumentoCurso> dao = new DAO<DocumentoCurso>(DocumentoCurso.class);
 	
@@ -101,11 +103,4 @@ public class DocumentoCurso implements IGenericEntity<DocumentoCurso> {
 		return dao.remove(this);
 	}
 	
-	public static List<DocumentoCurso> findAll(){
-		return dao.findAll();
-	}
-	
-	public static Long countAll(){
-		return dao.countAll();
-	}
 }

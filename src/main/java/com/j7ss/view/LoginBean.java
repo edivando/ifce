@@ -19,8 +19,8 @@ import javax.faces.context.FacesContext;
 
 import lombok.Setter;
 
-import com.j7ss.entity.TipoUsuario;
 import com.j7ss.entity.Usuario;
+import com.j7ss.entity.constraint.TipoUsuario;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.MD5;
 import com.j7ss.util.Messages;

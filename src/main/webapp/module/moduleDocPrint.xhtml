@@ -15,10 +15,9 @@
 <ui:composition>
 
 	<div class="text-left">
-		<p:commandLink type="button" styleClass="btn btn-primary" rendered="#{btnSubmeter}">
+		<p:commandLink type="button" actionListener="#{bean.saveDocumento('AGUARDANDO_VERIFICACAO')}" styleClass="btn btn-primary" rendered="#{btnSubmeter}" >
 	   		<i class="fa fa-send"/>
 	    	Submeter para Avaliação
-	   		<p:printer target="documentPreview" />
 		</p:commandLink>
 		<p:commandLink type="button" styleClass="btn btn-warning" rendered="#{btnPrint}">
 	   		<i class="fa fa-print"/>

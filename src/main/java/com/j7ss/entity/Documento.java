@@ -63,11 +63,8 @@ public class Documento implements IGenericEntity<Documento> {
 		return nome;
 	}
 	
-	@Override
-	public boolean isNew() {
-		return idDocumento == null;
-	}
 	
+//******************************************************************************************************************************
 //## Builder
 	public Documento idDocumento(Integer idDocumento){
 		this.idDocumento = idDocumento;
@@ -100,6 +97,15 @@ public class Documento implements IGenericEntity<Documento> {
 	}
 	
 	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idDocumento == null;
+	}
+	
+	
+//******************************************************************************************************************************	
 //## DAO
 	private static DAO<Documento> dao = new DAO<Documento>(Documento.class);
 	
@@ -117,7 +123,4 @@ public class Documento implements IGenericEntity<Documento> {
 		return dao.findAll();
 	}
 	
-	public static Long countAll(){
-		return dao.countAll();
-	}
 }

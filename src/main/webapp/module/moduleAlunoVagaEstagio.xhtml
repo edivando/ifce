@@ -45,14 +45,14 @@
    	<div class="form-group">
 	    <label for="inputVagaBeneficios" class="col-sm-2 control-label">Beneficios:</label>
 	    <div class="col-sm-8">
-			<p:inputText id="inputVagaBeneficios" styleClass="form-control" value="#{vagaEstagio.beneficios}" 
-				placeholder="Beneficios" disabled="#{disabled}"/>			    
-	    </div>
+     		<p:inputText id="inputVagaBeneficios" styleClass="form-control" value="#{vagaEstagio.beneficios}" 
+				placeholder="Beneficios" disabled="#{disabled}"/>	    
+		</div>
   	</div>
-   	<div class="form-group">
+  	<div class="form-group">
 	    <label for="inputVagaTurno" class="col-sm-2 control-label">Turno:</label>
 	    <div class="col-sm-8">
-	    	<p:selectOneMenu id="inputVagaTurno" value="#{vagaEstagio.turno}" style="width:125px" disabled="#{disabled}">
+	    	<p:selectOneMenu id="inputVagaTurno" value="#{vagaEstagio.turno}" style="width:200px" disabled="#{disabled}">
 	            <f:selectItem itemLabel="Selecione..." itemValue="" />
 	            <f:selectItem itemLabel="Manhã" itemValue="MANHA" />
 	            <f:selectItem itemLabel="Tarde" itemValue="TARDE" />
@@ -60,49 +60,100 @@
 	        </p:selectOneMenu>			    
 	    </div>
   	</div>
-
+  	<div class="form-group">
+	    <label for="inputVagaBolsa" class="col-sm-2 control-label">Valor da Bolsa:</label>
+	    <div class="col-sm-3">
+	    	<div class="input-group m-bot15">
+               	<span class="input-group-addon btn-primary"> R$ </span>
+          		<p:inputText id="inputVagaBolsa" styleClass="form-control" value="#{vagaEstagio.remuneracao}" 
+					placeholder="Valor da Bolsa" disabled="#{disabled}" />
+           </div>				    
+	    </div>
+   	</div>
+  	<div class="form-group">
+	    <label for="inputVagaTransporte" class="col-sm-2 control-label">Valor auxilio transporte:</label>
+	    <div class="col-sm-3">
+	    	<div class="input-group m-bot15">
+               	<span class="input-group-addon btn-primary"> R$ </span>
+          		<p:inputText id="inputVagaTransporte" styleClass="form-control" value="#{vagaEstagio.valorTransporte}" 
+					placeholder="Valor da Auxilio Transporte" disabled="#{disabled}" />	
+           </div>		    
+	    </div>
+   	</div>
   	<div class="form-group">
 	    <label for="inputVagaCargaHoraria" class="col-sm-2 control-label">Carga Horaria Semanal:</label>
-	    <div class="col-sm-8">
+	    <div class="col-sm-3">
 			<p:inputText id="inputVagaCargaHoraria" styleClass="form-control" value="#{vagaEstagio.cargaHoraria}" 
 				placeholder="Quantas horas de estágio por semana!" disabled="#{disabled}"/>			    
 	    </div>
   	</div>
    	<div class="form-group">
-	    <label for="inputVagaBolsa" class="col-sm-2 control-label">Valor da Bolsa:</label>
-	    <div class="col-sm-8">
-			<p:inputText id="inputVagaBolsa" styleClass="form-control" value="#{vagaEstagio.remuneracao}" 
-				placeholder="Valor da Bolsa" disabled="#{disabled}" />			    
-	    </div>
-   	</div>
-   	<div class="form-group">
-	    <label for="inputVagaTransporte" class="col-sm-2 control-label">Valor auxilio transporte:</label>
-	    <div class="col-sm-8">
-			<p:inputText id="inputVagaTransporte" styleClass="form-control" value="#{vagaEstagio.remuneracao}" 
-				placeholder="Valor da Auxilio Transporte" disabled="#{disabled}" />			    
-	    </div>
-   	</div>
-   	<div class="form-group">
 	    <label for="inputVagaApoliceNumero" class="col-sm-2 control-label">Apolice nº:</label>
-	    <div class="col-sm-8">
+	    <div class="col-sm-4">
 			<p:inputText id="inputVagaApoliceNumero" styleClass="form-control" value="#{vagaEstagio.apoliceNumero}" 
 				placeholder="Número da Apólice de Seguro" disabled="#{disabled}" />			    
 	    </div>
    	</div>
    	<div class="form-group">
 	    <label for="inputVagaApoliceEmpresa" class="col-sm-2 control-label">Apolice Empresa:</label>
-	    <div class="col-sm-8">
+	    <div class="col-sm-4">
 			<p:inputText id="inputVagaApoliceEmpresa" styleClass="form-control" value="#{vagaEstagio.apoliceEmpresa}" 
 				placeholder="Empresa da Apolice de Seguro"  disabled="#{disabled}" />			    
 	    </div>
    	</div>
-
-	horaInicioEstagio;<br/>
-	horaFimOuIntervalo;<br/>
-	horaRetorno;<br/>
-	horaFimEstagio;<br/>
-	vigenciaInicio;<br/>
-	vigenciaFim;<br/>
-
+  	<div class="form-group">
+	    <label for="inputVagaVigenciaInicio" class="col-sm-2 control-label">Vigencia - Início:</label>
+	    <div class="col-sm-2">
+			<p:inputMask id="inputVagaVigenciaInicio" styleClass="form-control" value="#{vagaEstagio.vigenciaInicio}" mask="99/99/9999"
+				placeholder="Data início do estágio"  disabled="#{disabled}" >
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
+			</p:inputMask>			    
+	    </div>
+   	</div>
+   	<div class="form-group">
+	    <label for="inputVagaVigenciaFim" class="col-sm-2 control-label">Vigencia - Fim:</label>
+	    <div class="col-sm-2">
+			<p:inputMask id="inputVagaVigenciaFim" styleClass="form-control" value="#{vagaEstagio.vigenciaFim}" mask="99/99/9999"
+				placeholder="Data final do estágio"  disabled="#{disabled}" >
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
+			</p:inputMask>			    
+	    </div>
+   	</div>
+  	<div class="form-group">
+	    <label for="inputVagaHoraInicio" class="col-sm-2 control-label">Hora Início do Estágio:</label>
+	    <div class="col-sm-2">
+			<p:inputMask id="inputVagaHoraInicio" styleClass="form-control" value="#{vagaEstagio.horaInicioEstagio}" mask="99:99"
+				placeholder="Hora em que inicia seu estágio"  disabled="#{disabled}" >
+				<f:convertDateTime pattern="HH:mm"/>
+			</p:inputMask>			    
+	    </div>
+   	</div>
+   	<div class="form-group">
+	    <label for="inputVagaHoraIntervalo" class="col-sm-2 control-label">Hora do Intervalo:</label>
+	    <div class="col-sm-2">
+			<p:inputMask id="inputVagaHoraIntervalo" styleClass="form-control" value="#{vagaEstagio.horaFimOuIntervalo}" mask="99:99"
+				placeholder="Hora do intervalo"  disabled="#{disabled}" >
+				<f:convertDateTime pattern="HH:mm"/>
+			</p:inputMask>			    
+	    </div>
+   	</div>
+   	<div class="form-group">
+	    <label for="inputVagaHoraRetornoIntervalo" class="col-sm-2 control-label">Retorno do Intervalo:</label>
+	    <div class="col-sm-2">
+			<p:inputMask id="inputVagaHoraRetornoIntervalo" styleClass="form-control" value="#{vagaEstagio.horaRetorno}" mask="99:99"
+				placeholder="Hora em que você retorna do intervalo"  disabled="#{disabled}" >
+				<f:convertDateTime pattern="HH:mm"/>
+			</p:inputMask>			    
+	    </div>
+   	</div>
+   	<div class="form-group">
+	    <label for="inputVagaHoraFim" class="col-sm-2 control-label">Hora Fim do Estágio:</label>
+	    <div class="col-sm-2">
+			<p:inputMask id="inputVagaHoraFim" styleClass="form-control" value="#{vagaEstagio.horaFimEstagio}" mask="99:99"
+				placeholder="Hora em que termina seu estágio"  disabled="#{disabled}" >
+				<f:convertDateTime pattern="HH:mm"/>
+			</p:inputMask>			    
+	    </div>
+   	</div>
 </ui:composition>
 </html>

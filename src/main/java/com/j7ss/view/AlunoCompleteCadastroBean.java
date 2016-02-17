@@ -48,8 +48,8 @@ public class AlunoCompleteCadastroBean implements Serializable{
 	
 	public void save(){
 		try {
-			loginBean.getUsuario().save();
-			loginBean.getUsuario().getAluno().usuario(loginBean.getUsuario()).save();
+			loginBean.getUsuario().save().getAluno().usuario(loginBean.getUsuario()).save().getVagaEstagio().save().getEmpresa().save();
+//			loginBean.getUsuario().getAluno().usuario(loginBean.getUsuario()).save();
 			WebContext.redirect("alunoHome.html");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

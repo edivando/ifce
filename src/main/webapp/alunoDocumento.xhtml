@@ -21,6 +21,7 @@
 	<ui:define name="container">
 
 		<ui:include src="/module/moduleDocPrint.xhtml" >
+			<ui:param name="bean" value="#{alunoDocumentoBean}"/>
       		<ui:param name="htmlPage" value="#{alunoDocumentoBean.docPage}" />
       		<ui:param name="btnPrint" value="true"/>
       		<ui:param name="btnSubmeter" value="true"/>

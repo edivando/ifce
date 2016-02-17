@@ -16,6 +16,8 @@ import javax.faces.bean.ViewScoped;
 
 import lombok.Setter;
 
+import com.j7ss.util.DAOException;
+
 /**
  * 
  * @author Edivando Alves
@@ -30,4 +32,13 @@ public class AlunoVagaEstagioBean implements Serializable{
 	@Setter
 	@ManagedProperty(value="#{loginBean}")
 	private LoginBean loginBean;
+	
+	public void save(){
+		try {
+			loginBean.getUsuario().getAluno().getVagaEstagio().save().getEmpresa().save();
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

@@ -21,8 +21,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -72,7 +74,6 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@Setter
 	private Curso curso;
 	@OneToOne
-	@PrimaryKeyJoinColumn
 	@Setter
 	private Usuario usuario;
 	@OneToOne
@@ -80,6 +81,7 @@ public class Aluno implements IGenericEntity<Aluno>{
 	private VagaEstagio vagaEstagio;
 	
 	@OneToMany(mappedBy="aluno", fetch=FetchType.EAGER)
+	@Fetch(FetchMode.SELECT)
 	@OrderBy("ordem")
 	@Setter
 	private List<DocumentoAluno> documentosAluno;
@@ -97,76 +99,9 @@ public class Aluno implements IGenericEntity<Aluno>{
 	private String cidade;
 	@Getter @Setter
 	private String uf;
-
-	public String getDescricaoCurso(){
-		String cursoName = "";
-		String departamentoName = "";
-		String campusName = "";
-		String instituicaoName = "";
-		if(curso != null){
-			cursoName = curso.getNome();
-			if(curso.getDepartamento() != null){
-				departamentoName = curso.getDepartamento().getNome();
-				if(curso.getDepartamento().getCampus() != null){
-					campusName = curso.getDepartamento().getCampus().getNome();
-					if(curso.getDepartamento().getCampus().getInstituicao() != null){
-						instituicaoName = curso.getDepartamento().getCampus().getInstituicao().getNome();
-					}
-				}
-			}
-		}
-		return String.format("%s <br/> Departamento de  %s <br/> Campus %s <br/> %s", cursoName, departamentoName, campusName, instituicaoName);
-	}
-	
-	public Curso getCurso() {
-		return curso == null ? curso = new Curso() : curso;
-	}
-	
-	public Usuario getUsuario() {
-		return usuario == null ? usuario = new Usuario() : usuario;
-	}
-	
-	public VagaEstagio getVagaEstagio() {
-		return vagaEstagio == null ? vagaEstagio  = new VagaEstagio() : vagaEstagio;
-	}
-	
-	public List<Documento> getDocumentos(){
-		List<Documento> documentos = new ArrayList<>();
-		for (DocumentoAluno docA : documentosAluno) {
-			documentos.add(docA.getDocumento());
-		}
-		return documentos;
-	}
-	
-	public List<DocumentoAluno> getDocumentosAluno() {
-		return documentosAluno == null ? documentosAluno = new ArrayList<>() : documentosAluno;
-	}
-	
-	@Override
-	public boolean isNew() {
-		return idAluno == null;
-	}
-	
-	public boolean isCompleteCadastro(){
-		return (
-			descricao != null 		&& !descricao.equals("") &&
-			matricula != null 		&& !matricula.equals("") &&
-			telefone != null 		&& !telefone.equals("") &&
-			cvLattes != null 		&& !cvLattes.equals("") &&
-			semestreAtual != null 	&& !semestreAtual.equals("") &&
-			cpf != null				&& !cpf.equals("") &&
-			rg != null 				&& !rg.equals("") &&
-			dataNascimento != null 	&& !dataNascimento.equals("") &&
-			curso != null 			&& curso.getNome() != null && !curso.getNome().equals("") &&
-			endereco != null 		&& !endereco.equals("") &&
-			bairro != null 			&& !bairro.equals("") &&
-			cep != null 			&& !cep.equals("") &&
-			cidade != null 			&& !cidade.equals("") &&
-			uf != null 				&& !uf.equals("") 
-		);
-	}
 	
 	
+//******************************************************************************************************************************	
 //## Builder
 	public Aluno idAluno(Integer idAluno){
 		this.idAluno = idAluno;
@@ -257,8 +192,80 @@ public class Aluno implements IGenericEntity<Aluno>{
 		this.vagaEstagio = vagaEstagio;
 		return this;
 	}
-
 	
+	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idAluno == null;
+	}
+	
+	public boolean isCompleteCadastro(){
+		return (
+			descricao != null 		&& !descricao.equals("") &&
+			matricula != null 		&& !matricula.equals("") &&
+			telefone != null 		&& !telefone.equals("") &&
+			cvLattes != null 		&& !cvLattes.equals("") &&
+			semestreAtual != null 	&& !semestreAtual.equals("") &&
+			cpf != null				&& !cpf.equals("") &&
+			rg != null 				&& !rg.equals("") &&
+			dataNascimento != null 	&& !dataNascimento.equals("") &&
+			curso != null 			&& curso.getNome() != null && !curso.getNome().equals("") &&
+			endereco != null 		&& !endereco.equals("") &&
+			bairro != null 			&& !bairro.equals("") &&
+			cep != null 			&& !cep.equals("") &&
+			cidade != null 			&& !cidade.equals("") &&
+			uf != null 				&& !uf.equals("") 
+		);
+	}
+	
+	public String getDescricaoCurso(){
+		String cursoName = "";
+		String departamentoName = "";
+		String campusName = "";
+		String instituicaoName = "";
+		if(curso != null){
+			cursoName = curso.getNome();
+			if(curso.getDepartamento() != null){
+				departamentoName = curso.getDepartamento().getNome();
+				if(curso.getDepartamento().getCampus() != null){
+					campusName = curso.getDepartamento().getCampus().getNome();
+					if(curso.getDepartamento().getCampus().getInstituicao() != null){
+						instituicaoName = curso.getDepartamento().getCampus().getInstituicao().getNome();
+					}
+				}
+			}
+		}
+		return String.format("%s <br/> Departamento de  %s <br/> Campus %s <br/> %s", cursoName, departamentoName, campusName, instituicaoName);
+	}
+	
+	public Curso getCurso() {
+		return curso == null ? curso = new Curso() : curso;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario == null ? usuario = new Usuario() : usuario;
+	}
+	
+	public VagaEstagio getVagaEstagio() {
+		return vagaEstagio == null ? vagaEstagio  = new VagaEstagio() : vagaEstagio;
+	}
+	
+	public List<Documento> getDocumentos(){
+		List<Documento> documentos = new ArrayList<>();
+		for (DocumentoAluno docA : documentosAluno) {
+			documentos.add(docA.getDocumento());
+		}
+		return documentos;
+	}
+	
+	public List<DocumentoAluno> getDocumentosAluno() {
+		return documentosAluno == null ? documentosAluno = DocumentoAluno.findByAluno(this) : documentosAluno;
+	}
+	
+	
+//******************************************************************************************************************************
 //## DAO
 	private static DAO<Aluno> dao = new DAO<Aluno>(Aluno.class);
 	
@@ -273,11 +280,7 @@ public class Aluno implements IGenericEntity<Aluno>{
 	}
 	
 	public static List<Aluno> findAll(){
-		return dao.findAll();
-	}
-	
-	public static Long countAll(){
-		return dao.countAll();
+		return dao.findByQuery("SELECT a FROM Aluno a "); //LEFT JOIN FETCH a.documentosAluno da
 	}
 	
 	public static Aluno findByUsuario(Usuario usuario){

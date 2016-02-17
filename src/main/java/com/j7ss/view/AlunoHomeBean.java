@@ -22,7 +22,7 @@ import com.j7ss.entity.Aluno;
 import com.j7ss.entity.Documento;
 import com.j7ss.entity.DocumentoAluno;
 import com.j7ss.entity.DocumentoCurso;
-import com.j7ss.entity.DocumentoStatus;
+import com.j7ss.entity.constraint.DocumentoStatus;
 import com.j7ss.util.WebContext;
 
 /**

@@ -14,8 +14,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.j7ss.entity.Instituicao;
-import com.j7ss.entity.TipoUsuario;
 import com.j7ss.entity.Usuario;
+import com.j7ss.entity.constraint.TipoUsuario;
 import com.j7ss.util.BasicView;
 import com.j7ss.util.MD5;
 import com.j7ss.util.Messages;
@@ -74,10 +74,11 @@ public class AdminUsuarioBean extends BasicView<Usuario>{
 		return instituicaos == null ? Instituicao.findAll() : instituicaos;
 	}
 	
-//	public String getInstituicaoNome(Integer id){
-//		for(Instituicao instituicao : getInstituicaos()){
-//			if(instituicao.getIdInstituicao().equals(id)) return instituicao.getNome();
-//		}
-//		return "";
-//	}
+	public Instituicao getInstituicaoByNome(String nome){
+		for (Instituicao instituicao : getInstituicaos()) {
+			if(instituicao.getNome().equals(nome)) return instituicao;
+		}
+		return null;
+	}
+
 }

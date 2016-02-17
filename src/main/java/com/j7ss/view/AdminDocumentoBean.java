@@ -19,7 +19,7 @@ import org.primefaces.event.TabChangeEvent;
 
 import com.github.rjeschke.txtmark.Processor;
 import com.j7ss.entity.Documento;
-import com.j7ss.entity.DocumentoKey;
+import com.j7ss.entity.constraint.DocumentoKey;
 import com.j7ss.util.BasicView;
 import com.j7ss.util.DAOException;
 

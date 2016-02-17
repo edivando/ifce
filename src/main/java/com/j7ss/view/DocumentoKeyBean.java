@@ -11,7 +11,7 @@ package com.j7ss.view;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import com.j7ss.entity.DocumentoKey;
+import com.j7ss.entity.constraint.DocumentoKey;
 
 /**
  * 

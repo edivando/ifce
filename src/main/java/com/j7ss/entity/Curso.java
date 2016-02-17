@@ -63,7 +63,33 @@ public class Curso implements IGenericEntity<Curso>{
 	public String toString() {
 		return nome;
 	}
+		
 	
+//******************************************************************************************************************************
+//## Builder
+	public Curso idCurso(Integer idCurso){
+		this.idCurso = idCurso;
+		return this;
+	}
+	
+	public Curso nome(String nome){
+		this.nome = nome;
+		return this;
+	}
+	
+	public Curso departamento(Departamento departamento){
+		this.departamento = departamento;
+		return this;
+	}
+	
+	public Curso documentoCursos(List<DocumentoCurso> documentoCursos){
+		this.documentoCursos = documentoCursos;
+		return this;
+	}
+	
+	
+//******************************************************************************************************************************
+//## Getters Setters
 	@Override
 	public boolean isNew() {
 		return idCurso == null;
@@ -89,27 +115,8 @@ public class Curso implements IGenericEntity<Curso>{
 		}
 	}
 	
-//## Builder
-	public Curso idCurso(Integer idCurso){
-		this.idCurso = idCurso;
-		return this;
-	}
 	
-	public Curso nome(String nome){
-		this.nome = nome;
-		return this;
-	}
-	
-	public Curso departamento(Departamento departamento){
-		this.departamento = departamento;
-		return this;
-	}
-	
-	public Curso documentoCursos(List<DocumentoCurso> documentoCursos){
-		this.documentoCursos = documentoCursos;
-		return this;
-	}
-	
+//******************************************************************************************************************************
 //## DAO
 	private static DAO<Curso> dao = new DAO<Curso>(Curso.class);
 	
@@ -123,16 +130,8 @@ public class Curso implements IGenericEntity<Curso>{
 		return dao.remove(this);
 	}
 	
-	public static List<Curso> findAll(){
-		return dao.findAll();
-	}
-	
 	public static Curso findById(Integer idCurso){
 		return dao.findOne(idCurso);
-	}
-	
-	public static Long countAll(){
-		return dao.countAll();
 	}
 	
 	public static List<Curso> findByNomeLike(Departamento departamento, String nome){

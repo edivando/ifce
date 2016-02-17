@@ -9,10 +9,8 @@
 package com.j7ss.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -58,14 +56,9 @@ public class DocumentoAlunoMessage implements IGenericEntity<DocumentoAlunoMessa
 	@Getter @Setter
 	private DocumentoAluno documentoAluno = new DocumentoAluno();
 		
-		
-	@Override
-	public boolean isNew() {
-		return idDocumentoAlunoMessage == null;
-	}
 
-		
-	//## Builder
+//******************************************************************************************************************************		
+//## Builder
 	public DocumentoAlunoMessage idDocumentoAlunoMessage(Integer idDocumentoAlunoMessage){
 		this.idDocumentoAlunoMessage = idDocumentoAlunoMessage;
 		return this;
@@ -85,9 +78,18 @@ public class DocumentoAlunoMessage implements IGenericEntity<DocumentoAlunoMessa
 		this.documentoAluno = documentoAluno;
 		return this;
 	}
+	
+	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idDocumentoAlunoMessage == null;
+	}
+	
 
-		
-	//## DAO
+//******************************************************************************************************************************		
+//## DAO
 	private static DAO<DocumentoAlunoMessage> dao = new DAO<DocumentoAlunoMessage>(DocumentoAlunoMessage.class);
 	
 	@Override
@@ -100,11 +102,4 @@ public class DocumentoAlunoMessage implements IGenericEntity<DocumentoAlunoMessa
 		return dao.remove(this);
 	}
 	
-	public static List<DocumentoAlunoMessage> findAll(){
-		return dao.findAll();
-	}
-	
-	public static Long countAll(){
-		return dao.countAll();
-	}
 }

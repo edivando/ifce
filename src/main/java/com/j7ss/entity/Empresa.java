@@ -11,7 +11,6 @@ package com.j7ss.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -73,15 +72,12 @@ public class Empresa implements IGenericEntity<Empresa>{
 	@Getter @Setter
 	private String cidade;
 	
-	@OneToMany(mappedBy="empresa", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="empresa")
 	@Getter @Setter
 	private List<EmpresaSupervisor> empresaSupervisors;
+
 	
-	@Override
-	public boolean isNew() {
-		return idEmpresa == null;
-	}
-	
+//******************************************************************************************************************************
 //## Builder
 	public Empresa idEmpresa(Integer idEmpresa){
 		this.idEmpresa = idEmpresa;
@@ -143,6 +139,15 @@ public class Empresa implements IGenericEntity<Empresa>{
 		return this;
 	}
 	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public boolean isNew() {
+		return idEmpresa == null;
+	}
+	
+	
+//******************************************************************************************************************************
 //## DAO
 	private static DAO<Empresa> dao = new DAO<Empresa>(Empresa.class);
 	
@@ -158,10 +163,6 @@ public class Empresa implements IGenericEntity<Empresa>{
 	
 	public static List<Empresa> findAll(){
 		return dao.findAll();
-	}
-	
-	public static Long countAll(){
-		return dao.countAll();
 	}
 	
 	public static Empresa findByIdUsuario(Integer idUsuario){

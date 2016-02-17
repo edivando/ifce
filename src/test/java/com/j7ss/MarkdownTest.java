@@ -1,4 +1,4 @@
-package com.j7ss.entity;
+package com.j7ss;
 
 import com.github.rjeschke.txtmark.Processor;
 

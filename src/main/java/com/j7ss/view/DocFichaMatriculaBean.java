@@ -19,8 +19,8 @@ import lombok.Setter;
 import com.github.rjeschke.txtmark.Processor;
 import com.j7ss.entity.Documento;
 import com.j7ss.entity.DocumentoAluno;
-import com.j7ss.entity.DocumentoKey;
-import com.j7ss.entity.DocumentoStatus;
+import com.j7ss.entity.constraint.DocumentoKey;
+import com.j7ss.entity.constraint.DocumentoStatus;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.WebContext;
 

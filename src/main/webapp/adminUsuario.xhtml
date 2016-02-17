@@ -63,11 +63,12 @@
 		                <p:ajax listener="#{adminUsuarioBean.save(entity)}" update="@form"/>
 		            </h:selectOneMenu>
 		            -
-		            <h:selectOneMenu id="selectOneInstituicao" value="#{entity.instituicao}" rendered="#{entity.tipoUsuario eq 'INSTITUICAO'}" >
-		                <f:selectItem itemLabel="Selecione..." itemValue="" />
+		            <p:selectOneMenu id="selectOneInstituicao" value="#{entity.instituicao}" rendered="#{entity.tipoUsuario eq 'INSTITUICAO'}" 
+		            	converter="#{instituicaoUsuarioConverter}">
+		                <f:selectItem itemLabel="Selecione..." />
 			            <f:selectItems value="#{adminUsuarioBean.instituicaos}" var="item" itemLabel="#{item.nome}" itemValue="#{item}"/>
 		                <p:ajax listener="#{adminUsuarioBean.save(entity)}"/>
-		            </h:selectOneMenu>
+		            </p:selectOneMenu>
 	            </f:facet>
 	        </p:inplace>
 		</p:column>

@@ -23,28 +23,21 @@
 	</div>
 	<div class="form-group">
 		<label for="inputNumero" class="col-sm-2 control-label">Número:</label>
-		<div class="col-sm-8">
+		<div class="col-sm-2">
 			<p:inputText id="inputNumero" value="#{aluno.numero}" placeholder="Número" styleClass="form-control"
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputBairro" class="col-sm-2 control-label">Bairro:</label>
-		<div class="col-sm-8">
+		<div class="col-sm-4">
 			<p:inputText id="inputBairro" value="#{aluno.bairro}" placeholder="Bairro..." styleClass="form-control" 
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputCEP" class="col-sm-2 control-label">CEP:</label>
-		<div class="col-sm-8">
-			<p:inputText id="inputCEP" value="#{aluno.cep}" placeholder="CEP" styleClass="form-control" 
-				disabled="#{disabled}"/>
-		</div>
-	</div>
-	<div class="form-group">
 		<label for="inputCidade" class="col-sm-2 control-label">Cidade:</label>
-		<div class="col-sm-8">
+		<div class="col-sm-4">
 			<p:inputText id="inputCidade" value="#{aluno.cidade}" placeholder="Cidade" styleClass="form-control"
 				 disabled="#{disabled}"/>
 		</div>
@@ -56,6 +49,13 @@
 				<ui:param name="value" value="#{aluno.uf}"/>
 				<ui:param name="disabled" value="#{disabled}"/>
 			</ui:include>
+		</div>
+	</div>
+		<div class="form-group">
+		<label for="inputCEP" class="col-sm-2 control-label">CEP:</label>
+		<div class="col-sm-3">
+			<p:inputMask id="inputCEP" value="#{aluno.cep}" placeholder="CEP" styleClass="form-control" mask="99.999-999"
+				disabled="#{disabled}"/>
 		</div>
 	</div>
 
