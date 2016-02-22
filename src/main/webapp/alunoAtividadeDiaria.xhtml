@@ -44,7 +44,7 @@
 	</ui:define>
 	<ui:define name="contentForm">
 		<div class="form-group">
-			<label for="inputDate" class="col-sm-2 control-label">Data:</label>
+			<label for="inputDate" class="col-sm-2 control-label"><strong>Data:</strong></label>
 			<div class="col-sm-3">
 				<p:inputMask id="inputDate" styleClass="form-control" value="#{alunoAtividadeDiariaBean.entity.date}" mask="99/99/9999" 
 					required="true" requiredMessage="Item obrigatório!">
@@ -56,7 +56,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputQuantHoras" class="col-sm-2 control-label">Quantidade de horas:</label>
+			<label for="inputQuantHoras" class="col-sm-2 control-label"><strong>Quantidade de horas:</strong></label>
 			<div class="col-sm-3">
 				<p:inputText id="inputQuantHoras" value="#{alunoAtividadeDiariaBean.entity.quantidadeHoras}" placeholder="Quantidade de horas estagiado." styleClass="form-control" 
 					required="true" requiredMessage="Item obrigatório!" />
@@ -67,7 +67,7 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="inputDescricao" class="col-sm-2 control-label">Descrição :</label>
+			<label for="inputDescricao" class="col-sm-2 control-label"><strong>Descrição:</strong></label>
 			<div class="col-sm-8">
 				<p:inputTextarea id="inputDescricao" value="#{alunoAtividadeDiariaBean.entity.descricao}" placeholder="Dscrição das atividades diárias" styleClass="form-control" 
 					required="true" requiredMessage="Item obrigatório!" rows="3"/>

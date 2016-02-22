@@ -14,6 +14,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import com.j7ss.entity.Usuario;
+import com.j7ss.entity.constraint.UsuarioType;
+import com.j7ss.util.DAOException;
+import com.j7ss.util.Messages;
+
 import lombok.Setter;
 
 /**
@@ -24,20 +29,29 @@ import lombok.Setter;
  */
 @ManagedBean
 @ViewScoped
-public class AlunoVagaEstagioBean implements Serializable{
+public class PerfilBean implements Serializable{
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Setter
 	@ManagedProperty(value="#{loginBean}")
 	private LoginBean loginBean;
 	
-	public void save(){
-		//TODO: AlunoVagaEstagioBean + AlunoHomeBean + AlunoDocumentoBean + AlunoAtividadeDiaria
-//		try {
-//			loginBean.getUsuario().getAluno().getVagaEstagio().save().getEmpresa().save();
-//		} catch (DAOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+	public void update(){
+		try {
+			if(getUsuario().getTipoUsuario().equals(UsuarioType.ALUNO)){
+				getUsuario().getAluno().save();
+			}
+			loginBean.getUsuario().save();
+			Messages.showGrowlInfo("Tdsfs", "sadasda");
+		} catch (DAOException e) {
+			Messages.showGrowlInfo("Tdsfs", "sadasda");
+			e.printStackTrace();
+		}
 	}
+	
+	public Usuario getUsuario(){
+		return loginBean.getUsuario();
+	}
+	
 }

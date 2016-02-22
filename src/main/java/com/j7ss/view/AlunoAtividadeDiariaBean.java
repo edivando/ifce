@@ -35,23 +35,23 @@ public class AlunoAtividadeDiariaBean extends BasicView<VagaEstagioAtividadeDiar
 	@ManagedProperty(value="#{loginBean}")
 	private LoginBean loginBean;
 	
-	@Override
-	public VagaEstagioAtividadeDiaria getEntity() {
-		if(entity == null){
-			entity = new VagaEstagioAtividadeDiaria();
-			if(loginBean != null && loginBean.getUsuario() != null && loginBean.getUsuario().getAluno() != null){
-				entity.setVagaEstagio(loginBean.getUsuario().getAluno().getVagaEstagio());
-			}
-		}
-		return entity;
-	}
-	
-	@Override
-	public List<VagaEstagioAtividadeDiaria> getEntitys() {
-		if(loginBean == null || loginBean.getUsuario() == null || loginBean.getUsuario().getAluno() == null || loginBean.getUsuario().getAluno().getVagaEstagio() == null){
-			return new ArrayList<VagaEstagioAtividadeDiaria>();
-		}
-		return entitys == null ? entitys = VagaEstagioAtividadeDiaria.findByVagaEstagio(loginBean.getUsuario().getAluno().getVagaEstagio()) : entitys;
-	}
+//	@Override
+//	public VagaEstagioAtividadeDiaria getEntity() {
+//		if(entity == null){
+//			entity = new VagaEstagioAtividadeDiaria();
+//			if(loginBean != null && loginBean.getUsuario() != null && loginBean.getUsuario().getAluno() != null){
+//				entity.setVagaEstagio(loginBean.getUsuario().getAluno().getVagaEstagio());
+//			}
+//		}
+//		return entity;
+//	}
+//	
+//	@Override
+//	public List<VagaEstagioAtividadeDiaria> getEntitys() {
+//		if(loginBean == null || loginBean.getUsuario() == null || loginBean.getUsuario().getAluno() == null || loginBean.getUsuario().getAluno().getVagaEstagio() == null){
+//			return new ArrayList<VagaEstagioAtividadeDiaria>();
+//		}
+//		return entitys == null ? entitys = VagaEstagioAtividadeDiaria.findByVagaEstagio(loginBean.getUsuario().getAluno().getVagaEstagio()) : entitys;
+//	}
 	
 }

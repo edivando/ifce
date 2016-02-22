@@ -13,7 +13,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,6 +24,10 @@ import javax.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
@@ -38,7 +41,7 @@ import com.j7ss.util.IGenericEntity;
  */
 @Entity
 @Table(name = "curso")
-@EqualsAndHashCode
+@ToString(of={"nome"}) @EqualsAndHashCode(of={"id"})
 public class Curso implements IGenericEntity<Curso>{
 
 	private static final long serialVersionUID = 1L;
@@ -46,29 +49,31 @@ public class Curso implements IGenericEntity<Curso>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idCurso;
+	private Integer id;
 	@Getter @Setter
 	private String nome;
+	@Getter @Setter
+	private Integer duracaoEstagio;
 	
 	@ManyToOne
 	@Getter @Setter
 	private Departamento departamento;
 	
-	@OneToMany(mappedBy="curso", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy="curso", cascade=CascadeType.REMOVE)
+	@Fetch(FetchMode.JOIN)
 	@OrderBy("ordem")
 	@Getter @Setter
 	private List<DocumentoCurso> documentoCursos;
 	
-	@Override
-	public String toString() {
-		return nome;
-	}
+	@OneToMany(mappedBy="curso")
+	@Getter @Setter
+	private List<Aluno> alunos;
 		
 	
 //******************************************************************************************************************************
 //## Builder
-	public Curso idCurso(Integer idCurso){
-		this.idCurso = idCurso;
+	public Curso id(Integer id){
+		this.id = id;
 		return this;
 	}
 	
@@ -92,7 +97,7 @@ public class Curso implements IGenericEntity<Curso>{
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idCurso == null;
+		return id == null;
 	}
 	
 	public List<Documento> getDocumentos(){

@@ -75,7 +75,7 @@
 	</ui:define>
 	<ui:define name="contentForm">
 		<div class="form-group">
-			<label for="inputTipoUsuario" class="col-sm-2 control-label">Tipo do Usuário:</label>
+			<label for="inputTipoUsuario" class="col-sm-2 control-label"><strong>Tipo do Usuário:</strong></label>
 			<div class="col-sm-6">
 				<h:selectOneMenu id="inputTipoUsuario"  value="#{adminUsuarioBean.entity.tipoUsuario}" required="true" requiredMessage="Item obrigatório!"
 					styleClass="form-control" style="height: 34px;">
@@ -91,7 +91,7 @@
 		</div>
 		<p:outputPanel id="panelInstituicao" rendered="#{adminUsuarioBean.entity.tipoUsuario eq 'INSTITUICAO'}">
 			<div class="form-group">
-				<label for="inputInstituicao" class="col-sm-2 control-label">Instituição</label>
+				<label for="inputInstituicao" class="col-sm-2 control-label"><strong>Instituição</strong></label>
 				<div class="col-sm-6">
 					<h:selectOneMenu id="inputInstituicao"  value="#{adminUsuarioBean.entity.instituicao}" styleClass="form-control" style="height: 34px;">
 		                <f:selectItem itemLabel="Selecione..." itemValue="" />
@@ -101,7 +101,7 @@
 			</div>
 		</p:outputPanel>
 		<div class="form-group">
-			<label for="inputNome" class="col-sm-2 control-label">Nome:</label>
+			<label for="inputNome" class="col-sm-2 control-label"><strong>Nome:</strong></label>
 			<div class="col-sm-8">
 				<p:inputText id="inputNome" value="#{adminUsuarioBean.entity.nome}" placeholder="Nome do usuário" styleClass="form-control" 
 					required="true" requiredMessage="Item obrigatório!" />
@@ -111,7 +111,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputEmail" class="col-sm-2 control-label">Email:</label>
+			<label for="inputEmail" class="col-sm-2 control-label"><strong>Email:</strong></label>
 			<div class="col-sm-6">
 				<p:inputText id="inputEmail" value="#{adminUsuarioBean.entity.email}" placeholder="Email do usuário" styleClass="form-control" 
 					required="true" requiredMessage="Item obrigatório!" />
@@ -121,7 +121,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputSenha" class="col-sm-2 control-label">Senha:</label>
+			<label for="inputSenha" class="col-sm-2 control-label"><strong>Senha:</strong></label>
 			<div class="col-sm-6">
 				<p:password id="inputSenha" value="#{adminUsuarioBean.entity.senha}" placeholder="Senha do usuário" styleClass="form-control" 
 					required="true" requiredMessage="Item obrigatório!" />
@@ -131,7 +131,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputAtivo" class="col-sm-2 control-label">Ativo:</label>
+			<label for="inputAtivo" class="col-sm-2 control-label"><strong>Ativo:</strong></label>
 			<div class="col-sm-8">
 				<p:selectBooleanButton id="inputAtivo" value="#{adminUsuarioBean.entity.ativo}" onLabel="Sim" offLabel="Não" 
 					onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:60px" />

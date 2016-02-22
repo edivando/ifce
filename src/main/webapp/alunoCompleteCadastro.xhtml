@@ -30,55 +30,538 @@
 	        <p>Após concluir seu cadastro, você terá acesso as outras páginas!</p>
 	    </div>
 	    
-    	<p:wizard flowListener="#{alunoCompleteCadastroBean.onFlowProcess}" backLabel="Voltar" nextLabel="Próximo" showNavBar="true" showStepStatus="true"  >
-	        <p:tab id="aluno" title="Informações do Aluno">
+    	<p:wizard flowListener="#{alunoCompleteCadastroBean.onFlowProcess}" backLabel="Voltar" nextLabel="Próximo" showStepStatus="false"  step="#{alunoCompleteCadastroBean.aluno.wizardStep}">
+	        
+	        <p:tab id="aluno" >
 	            <p:panel styleClass="form-horizontal">
-	            	<div id="usuario" class="tab-pane active">
-            			<ui:include src="/module/moduleUsuario.xhtml">
-							<ui:param name="usuario" value="#{alunoCompleteCadastroBean.usuario}"/>
-						</ui:include>
-            		</div>
-            		<div id="aluno" class="tab-pane">
-						<ui:include src="/module/moduleAluno.xhtml">
-							<ui:param name="aluno" value="#{alunoCompleteCadastroBean.aluno}"/>
-						</ui:include>
-                 	</div>
+	            	<p:focus />
+	            	<div class="alert alert-info fade in">
+                     	<button data-dismiss="alert" class="close close-sm" type="button">
+                        	<i class="fa fa-times"></i>
+                     	</button>
+                     	<strong>Informações Pessoais</strong> Suas informações são importantes para preencher os formulários.
+                	</div>
+                	
+               		<div class="form-group">
+						<label for="inputSemestreAtual" class="col-sm-2 control-label"><strong>Semestre Atual:</strong></label>
+						<div class="col-sm-2">
+							<p:inputText id="inputSemestreAtual" value="#{alunoCompleteCadastroBean.aluno.semestreAtual}" placeholder="Semestre Atual" styleClass="form-control" 
+								disabled="#{disabled}"/>
+						</div>
+					</div> 
+					<div class="form-group">
+						<label for="inputTelefone" class="col-sm-2 control-label"><strong>Telefone:</strong></label>
+						<div class="col-sm-3">
+							<p:inputMask id="inputTelefone" value="#{alunoCompleteCadastroBean.aluno.telefone}" placeholder="Telefone do Aluno" 
+								styleClass="form-control" mask="(99) 9999-9999" required="true" requiredMessage="Item Obrigatório!"/>
+						</div>
+						<div class="col-md-2">
+							<p:message for="inputTelefone" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputCelular" class="col-sm-2 control-label"><strong>Celular:</strong></label>
+						<div class="col-sm-3">
+							<p:inputMask id="inputCelular" value="#{alunoCompleteCadastroBean.aluno.celular}" placeholder="Celular do Aluno" 
+								styleClass="form-control" mask="(99) 9 9999-9999" required="true" requiredMessage="Item Obrigatório!"/>
+						</div>
+						<div class="col-md-2">
+							<p:message for="inputCelular"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputLattes" class="col-sm-2 control-label"><strong>Curriculum Lattes:</strong></label>
+						<div class="col-sm-4">
+							<p:inputText id="inputLattes" value="#{alunoCompleteCadastroBean.aluno.cvLattes}" placeholder="Curriculum Lattes" 
+								styleClass="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputDataNascimento" class="col-sm-2 control-label"><strong>Data de Nascimento:</strong></label>
+						<div class="col-sm-3">
+							<p:inputMask id="inputDataNascimento" styleClass="form-control" value="#{alunoCompleteCadastroBean.aluno.dataNascimento}" 
+								mask="99/99/9999" placeholder="Data de Nascimento" required="true" requiredMessage="Item Obrigatório!">
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</p:inputMask>	
+						</div>
+						<div class="col-md-2">
+							<p:message for="inputDataNascimento"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputCPF" class="col-sm-2 control-label"><strong>CPF:</strong></label>
+						<div class="col-sm-3">
+							<p:inputMask id="inputCPF" value="#{alunoCompleteCadastroBean.aluno.cpf}" placeholder="CPF" styleClass="form-control" 
+								mask="999.999.999-99" required="true" requiredMessage="Item Obrigatório!"/>
+						</div>
+						<div class="col-md-2">
+							<p:message for="inputCPF"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputRG" class="col-sm-2 control-label"><strong>RG:</strong></label>
+						<div class="col-sm-3">
+							<p:inputText id="inputRG" value="#{alunoCompleteCadastroBean.aluno.rg}" placeholder="RG" styleClass="form-control" 
+								required="true" requiredMessage="Item Obrigatório!" />
+						</div>
+						<div class="col-md-2">
+							<p:message for="inputRG"/>
+						</div>
+					</div>
 	            </p:panel>
 	        </p:tab>
-	     	<p:tab id="endereco" title="Seu endereço">
+	        
+	     	<p:tab id="endereco">
 	            <p:panel styleClass="form-horizontal">
-	            	<ui:include src="/module/moduleAlunoEndereco.xhtml">
-						<ui:param name="aluno" value="#{alunoCompleteCadastroBean.aluno}"/>
-					</ui:include>
+	            	<p:focus />
+	            	<div class="alert alert-info fade in">
+                     	<button data-dismiss="alert" class="close close-sm" type="button">
+                        	<i class="fa fa-times"></i>
+                     	</button>
+                     	<strong>Seu endereço </strong> Suas informações são importantes para preencher os formulários.
+                	</div>
+                	
+				 	<div class="form-group">
+						<label for="inputEndereco" class="col-sm-2 control-label"><strong>Endereço:</strong></label>
+						<div class="col-sm-8">
+							<p:inputText id="inputEndereco" value="#{alunoCompleteCadastroBean.aluno.endereco}" placeholder="Rua..." 
+								styleClass="form-control" required="true" requiredMessage="Item obrigatório!" />
+						</div>
+						<div class="col-md-2">
+							<p:message for="inputEndereco"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputNumero" class="col-sm-2 control-label"><strong>Número:</strong></label>
+						<div class="col-sm-2">
+							<p:inputText id="inputNumero" value="#{alunoCompleteCadastroBean.aluno.numero}" placeholder="Número" 
+								styleClass="form-control" required="true" requiredMessage="Item obrigatório!" />
+						</div>
+						<div class="col-md-2">
+							<p:message for="inputNumero"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputBairro" class="col-sm-2 control-label"><strong>Bairro:</strong></label>
+						<div class="col-sm-4">
+							<p:inputText id="inputBairro" value="#{alunoCompleteCadastroBean.aluno.bairro}" placeholder="Bairro..." 
+								styleClass="form-control" required="true" requiredMessage="Item obrigatório!"/>
+						</div>
+						<div class="col-md-2">
+							<p:message for="inputBairro"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputCidade" class="col-sm-2 control-label"><strong>Cidade:</strong></label>
+						<div class="col-sm-4">
+							<p:inputText id="inputCidade" value="#{alunoCompleteCadastroBean.aluno.cidade}" placeholder="Cidade" 
+								styleClass="form-control" required="true" requiredMessage="Item obrigatório!"/>
+						</div>
+						<div class="col-md-2">
+							<p:message for="inputCidade"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="selectUfAlunoUF" class="col-sm-2 control-label"><strong>UF:</strong></label>
+						<div class="col-sm-5">
+							<ui:include src="/module/moduleSelectOneEstadosBrasil.xhtml">
+								<ui:param name="value" value="#{alunoCompleteCadastroBean.aluno.uf}"/>
+								<ui:param name="required" value="true" />
+								<ui:param name="id" value="AlunoUF"/>
+							</ui:include>
+						</div>
+						<div class="col-md-2">
+							<p:message for="selectUfAlunoUF"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputCEP" class="col-sm-2 control-label"><strong>CEP:</strong></label>
+						<div class="col-sm-3">
+							<p:inputMask id="inputCEP" value="#{alunoCompleteCadastroBean.aluno.cep}" placeholder="CEP" styleClass="form-control" 
+								mask="99.999-999" required="true" requiredMessage="Item obrigatório!"/>
+						</div>
+						<div class="col-md-2">
+							<p:message for="inputCEP"/>
+						</div>
+					</div>
 	            </p:panel>
 	        </p:tab>
-	        <p:tab id="curso" title="Sobre seu curso">
+	        
+	        <p:tab id="vagaEstagio">
 	            <p:panel styleClass="form-horizontal">
-	            	<ui:include src="/module/moduleAlunoCurso.xhtml">
-						<ui:param name="aluno" value="#{alunoCompleteCadastroBean.aluno}"/>
-					</ui:include>
+	            	<p:focus />
+	            	<div class="alert alert-info fade in">
+                     	<button data-dismiss="alert" class="close close-sm" type="button">
+                        	<i class="fa fa-times"></i>
+                     	</button>
+                     	<strong>Dados do Estágio </strong> XXXXX.
+                	</div>
+                	
+				  	<div class="form-group">
+					    <label for="inputVagaTurno" class="col-sm-2 control-label"><strong>Turno:</strong></label>
+					    <div class="col-sm-8">
+					    	<p:selectOneMenu id="inputVagaTurno" value="#{alunoCompleteCadastroBean.vagaEstagio.turno}" style="width:200px" 
+					    		required="true" requiredMessage="Item obrigatório!" >
+					            <f:selectItem itemLabel="Selecione..." itemValue="" />
+					            <f:selectItem itemLabel="Manhã" itemValue="MANHA" />
+					            <f:selectItem itemLabel="Tarde" itemValue="TARDE" />
+					            <f:selectItem itemLabel="Noite" itemValue="NOITE" />
+					        </p:selectOneMenu>			    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaTurno"/>
+						</div>
+				  	</div>
+					<div class="form-group">
+					    <label for="inputVagaBolsa" class="col-sm-2 control-label"><strong>Valor da Bolsa:</strong></label>
+					    <div class="col-sm-3">
+					    	<div class="input-group m-bot15">
+				               	<span class="input-group-addon btn-primary"> R$ </span>
+				          		<p:inputText id="inputVagaBolsa" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.remuneracao}"
+									placeholder="Valor da Bolsa" required="true" requiredMessage="Item obrigatório!" />
+				           </div>				    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaBolsa" />
+						</div>
+				   	</div>
+				  	<div class="form-group">
+					    <label for="inputVagaTransporte" class="col-sm-2 control-label"><strong>Valor auxilio transporte:</strong></label>
+					    <div class="col-sm-3">
+					    	<div class="input-group m-bot15">
+				               	<span class="input-group-addon btn-primary"> R$ </span>
+				          		<p:inputText id="inputVagaTransporte" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.valorTransporte}" 
+									placeholder="Valor da Auxilio Transporte" required="true" requiredMessage="Item obrigatório!" />	
+				           </div>		    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaTransporte"/>
+						</div>
+				   	</div>
+				  	<div class="form-group">
+					    <label for="inputVagaCargaHoraria" class="col-sm-2 control-label"><strong>Carga Horaria Semanal:</strong></label>
+					    <div class="col-sm-3">
+							<p:inputText id="inputVagaCargaHoraria" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.cargaHoraria}" 
+								placeholder="Quantas horas de estágio por semana!" required="true" requiredMessage="Item obrigatório!" />			    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaCargaHoraria"/>
+						</div>
+				  	</div>
+					<div class="form-group">
+					    <label for="inputVagaVigenciaInicio" class="col-sm-2 control-label"><strong>Vigencia - Início:</strong></label>
+					    <div class="col-sm-2">
+							<p:inputMask id="inputVagaVigenciaInicio" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.vigenciaInicio}" 
+								mask="99/99/9999" placeholder="Data início do estágio" required="true" requiredMessage="Item obrigatório!" >
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</p:inputMask>			    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaCargaHoraria"/>
+						</div>
+				   	</div>
+				   	<div class="form-group">
+					    <label for="inputVagaVigenciaFim" class="col-sm-2 control-label"><strong>Vigencia - Fim:</strong></label>
+					    <div class="col-sm-2">
+							<p:inputMask id="inputVagaVigenciaFim" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.vigenciaFim}" 
+								mask="99/99/9999" placeholder="Data final do estágio" required="true" requiredMessage="Item obrigatório!">
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</p:inputMask>			    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaCargaHoraria"/>
+						</div>
+				   	</div>
+				   	<div class="form-group">
+					    <label for="inputVagaHoraInicio" class="col-sm-2 control-label"><strong>Hora Início do Estágio:</strong></label>
+					    <div class="col-sm-2">
+							<p:inputMask id="inputVagaHoraInicio" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.horaInicioEstagio}" 
+								mask="99:99" placeholder="Hora em que inicia seu estágio" required="true" requiredMessage="Item obrigatório!" >
+								<f:convertDateTime pattern="HH:mm"/>
+							</p:inputMask>			    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaCargaHoraria"/>
+						</div>
+				   	</div>
+				   	<div class="form-group">
+					    <label for="inputVagaHoraIntervalo" class="col-sm-2 control-label"><strong>Hora do Intervalo:</strong></label>
+					    <div class="col-sm-2">
+							<p:inputMask id="inputVagaHoraIntervalo" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.horaFimOuIntervalo}" 
+								mask="99:99" placeholder="Hora do intervalo" >
+								<f:convertDateTime pattern="HH:mm"/>
+							</p:inputMask>	
+							<span class="help-inline">Caso não tenha intervalo deixar em branco</span>		    
+					    </div>
+				   	</div>
+				   	<div class="form-group">
+					    <label for="inputVagaHoraRetornoIntervalo" class="col-sm-2 control-label"><strong>Retorno do Intervalo:</strong></label>
+					    <div class="col-sm-2">
+							<p:inputMask id="inputVagaHoraRetornoIntervalo" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.horaRetorno}" 
+								mask="99:99" placeholder="Hora em que você retorna do intervalo" >
+								<f:convertDateTime pattern="HH:mm"/>
+							</p:inputMask>	
+							<span class="help-inline">Caso não tenha intervalo deixar em branco</span>		    
+					    </div>
+				   	</div>
+				   	<div class="form-group">
+					    <label for="inputVagaHoraFim" class="col-sm-2 control-label"><strong>Hora Fim do Estágio:</strong></label>
+					    <div class="col-sm-2">
+							<p:inputMask id="inputVagaHoraFim" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.horaFimEstagio}" 
+								mask="99:99" placeholder="Hora em que termina seu estágio" required="true" requiredMessage="Item obrigatório!" >
+								<f:convertDateTime pattern="HH:mm"/>
+							</p:inputMask>			    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaCargaHoraria"/>
+						</div>
+				   	</div>
 	            </p:panel>
+	
 	        </p:tab>
-	        <p:tab id="vagaEstagio" title="Seu Estágio">
-	            <p:panel styleClass="form-horizontal">
-	            	<ui:include src="/module/moduleAlunoVagaEstagio.xhtml">
-						<ui:param name="vagaEstagio" value="#{alunoCompleteCadastroBean.aluno.vagaEstagio}"/>
-					</ui:include>
-	            </p:panel>
-	    	</p:tab>
-	    	<p:tab id="empresa" title="Empresa">
-	            <p:panel styleClass="form-horizontal">
-	            	<ui:include src="/module/moduleAlunoVagaEstagioEmpresa.xhtml">
-						<ui:param name="vagaEstagio" value="#{alunoCompleteCadastroBean.aluno.vagaEstagio}"/>
-					</ui:include>
-	            	<div class="text-right">
-						<p:commandLink action="#{alunoCompleteCadastroBean.save}" styleClass="btn btn-info">
-							<i class="fa fa-save" />
-							<strong>Salvar</strong>
-						</p:commandLink>
-					</div>  
-	            </p:panel>
-	    	</p:tab>
+	        
+	        <p:tab id="vagaEstagioConcluir">
+	        	 <p:panel styleClass="form-horizontal">
+	            	<p:focus />
+	            	<div class="alert alert-info fade in">
+                     	<button data-dismiss="alert" class="close close-sm" type="button">
+                        	<i class="fa fa-times"></i>
+                     	</button>
+                     	<strong>Dados do Estágio </strong> XXXXX.
+                	</div>
+                	
+				   	<div class="form-group">
+					    <label for="inputVagaApoliceNumero" class="col-sm-2 control-label"><strong>Apolice nº:</strong></label>
+					    <div class="col-sm-4">
+							<p:inputText id="inputVagaApoliceNumero" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.apoliceNumero}" 
+								placeholder="Número da Apólice de Seguro" required="true" requiredMessage="Item obrigatório!" />			    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaCargaHoraria"/>
+						</div>
+				   	</div>
+				   	<div class="form-group">
+					    <label for="inputVagaApoliceEmpresa" class="col-sm-2 control-label"><strong>Apolice Empresa:</strong></label>
+					    <div class="col-sm-4">
+							<p:inputText id="inputVagaApoliceEmpresa" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.apoliceEmpresa}" 
+								placeholder="Empresa da Apolice de Seguro"  required="true" requiredMessage="Item obrigatório!" />			    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaCargaHoraria"/>
+						</div>
+				   	</div>
+				</p:panel>
+	        </p:tab>
+	        <p:tab id="empresa">
+	        	 <p:panel styleClass="form-horizontal">
+	            	<p:focus />
+	            	<div class="alert alert-info fade in">
+                     	<button data-dismiss="alert" class="close close-sm" type="button">
+                        	<i class="fa fa-times"></i>
+                     	</button>
+                     	<strong>Empresa </strong> XXXXXXX
+                	</div>
+                	
+               		<div class="form-group">
+						<label for="inputEmpresaNome" class="col-sm-2 control-label"><strong>Empresa:</strong></label>
+						<div class="col-sm-8">
+							<p:inputText id="inputEmpresaNome" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.nome}" placeholder="Nome da Empresa" 
+								styleClass="form-control" maxlength="80" required="true" requiredMessage="Item obrigatório!" />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaNome"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmpresaEmail" class="col-sm-2 control-label"><strong>Email:</strong></label>
+						<div class="col-sm-8">
+							<p:inputText id="inputEmpresaEmail" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.email}" placeholder="Nome da Empresa" 
+								styleClass="form-control" required="true" requiredMessage="Item obrigatório!" />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaEmail"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="inputEmpresaTelefone" class="col-sm-2 control-label"><strong>Telefone:</strong></label>
+						<div class="col-sm-3">
+							<p:inputMask id="inputEmpresaTelefone" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.telefone}" 
+								placeholder="Telefone da Empresa" styleClass="form-control" mask="(99) 9999-9999" 
+								required="true" requiredMessage="Item obrigatório!" />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaTelefone"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmpresaFax" class="col-sm-2 control-label"><strong>Fax:</strong></label>
+						<div class="col-sm-3">
+							<p:inputMask id="inputEmpresaFax" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.fax}" placeholder="Fax da Empresa" 
+								styleClass="form-control" mask="(99) 9999-9999" />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputVagaCargaHoraria"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmpresaCNPJ" class="col-sm-2 control-label"><strong>CNPJ:</strong></label>
+						<div class="col-sm-3">
+							<p:inputMask id="inputEmpresaCNPJ" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.cnpj}" placeholder="CNPJ" 
+								styleClass="form-control" mask="99.999.999/9999-99" required="true" requiredMessage="Item obrigatório!" />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaCNPJ"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="inputEmpresaSite" class="col-sm-2 control-label"><strong>Site:</strong></label>
+						<div class="col-sm-5">
+							<p:inputText id="inputEmpresaSite" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.site}" placeholder="Site" 
+								styleClass="form-control"/>
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaSite"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmpresaRamoAtividade" class="col-sm-2 control-label"><strong>Ramo de Atividade:</strong></label>
+						<div class="col-sm-8">
+							<p:inputText id="inputEmpresaRamoAtividade" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.ramoAtividade}" 
+								placeholder="Ramo de Atividade" styleClass="form-control" required="true" requiredMessage="Item obrigatório!" />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaRamoAtividade"/>
+						</div>
+					</div>
+				
+				  	<div class="form-group">
+						<label for="inputEmpresaEndereco" class="col-sm-2 control-label"><strong>Endereço:</strong></label>
+						<div class="col-sm-8">
+							<p:inputText id="inputEmpresaEndereco" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.endereco}" placeholder="Rua..." 
+								styleClass="form-control" required="true" requiredMessage="Item obrigatório!"  />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaEndereco"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmpresaNumero" class="col-sm-2 control-label"><strong>Número:</strong></label>
+						<div class="col-sm-2">
+							<p:inputText id="inputEmpresaNumero" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.numero}" placeholder="Número" 
+								styleClass="form-control" required="true" requiredMessage="Item obrigatório!"  />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaNumero"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmpresaBairro" class="col-sm-2 control-label"><strong>Bairro:</strong></label>
+						<div class="col-sm-8">
+							<p:inputText id="inputEmpresaBairro" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.bairro}" placeholder="Bairro" 
+								styleClass="form-control" required="true" requiredMessage="Item obrigatório!"  />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaBairro"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmpresaCidade" class="col-sm-2 control-label"><strong>Cidade:</strong></label>
+						<div class="col-sm-8">
+							<p:inputText id="inputEmpresaCidade" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.cidade}" placeholder="Cidade" 
+								styleClass="form-control" required="true" requiredMessage="Item obrigatório!"  />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaCidade"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="selectUfEmpresaUF" class="col-sm-2 control-label"><strong>UF:</strong></label>
+						<div class="col-sm-8">
+							<ui:include src="/module/moduleSelectOneEstadosBrasil.xhtml">
+								<ui:param name="value" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.uf}"/>
+								<ui:param name="required" value="true"/>
+								<ui:param name="id" value="EmpresaUF"/>
+							</ui:include>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmpresaCEP" class="col-sm-2 control-label"><strong>CEP:</strong></label>
+						<div class="col-sm-3">
+							<p:inputMask id="inputEmpresaCEP" value="#{alunoCompleteCadastroBean.vagaEstagio.empresa.cep}" placeholder="CEP" 
+								styleClass="form-control" mask="99.999-999" required="true" requiredMessage="Item obrigatório!"  />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaCEP"/>
+						</div>
+					</div>
+	        	</p:panel>
+	        </p:tab>
+	       
+	        <p:tab id="empresaSupervisor">
+	         	<p:panel styleClass="form-horizontal">
+	            	<p:focus />
+	            	<div class="alert alert-info fade in">
+                     	<button data-dismiss="alert" class="close close-sm" type="button">
+                        	<i class="fa fa-times"></i>
+                     	</button>
+                     	<strong>Supervisor da Empresa </strong> XXXXX.
+                	</div>
+                	
+              		<div class="form-group">
+						<label for="inputEmpresaSupervisor" class="col-sm-2 control-label"><strong>Supervisor:</strong></label>
+						<div class="col-sm-3">
+							<p:inputText id="inputEmpresaSupervisor" value="#{alunoCompleteCadastroBean.vagaEstagio.empresaSupervisor.supervisor}" 
+								placeholder="Supervisor da Empresa" styleClass="form-control" required="true" requiredMessage="Item obrigatório!"  />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaSupervisor"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmpresaSupervisorCargo" class="col-sm-2 control-label"><strong>Cargo do Supervisor:</strong></label>
+						<div class="col-sm-3">
+							<p:inputText id="inputEmpresaSupervisorCargo" value="#{alunoCompleteCadastroBean.vagaEstagio.empresaSupervisor.cargoSupervisor}" 
+								placeholder="Cargo do Supervisor" styleClass="form-control" required="true" requiredMessage="Item obrigatório!"  />
+						</div>
+						<div class="col-md-2">
+							<p:message for="inputEmpresaSupervisorCargo"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmpresaSupervisorTelefone" class="col-sm-2 control-label"><strong>Telefone do Supervisor:</strong></label>
+						<div class="col-sm-3">
+							<p:inputText id="inputEmpresaSupervisorTelefone" value="#{alunoCompleteCadastroBean.vagaEstagio.empresaSupervisor.telefoneSupervisor}" 
+								placeholder="Cargo do Supervisor" styleClass="form-control" required="true" requiredMessage="Item obrigatório!"  />
+						</div>
+						 <div class="col-md-2">
+							<p:message for="inputEmpresaSupervisorTelefone"/>
+						</div>
+					</div>
+                	
+                	
+                </p:panel>
+
+	        </p:tab>
+
+	        <p:tab>
+	        	<p:panel>
+	        		<p:commandLink action="#{alunoCompleteCadastroBean.concluir}" styleClass="btn btn-info btn-sm">
+						<i class="fa fa-save" />
+						<strong>Concluir</strong>
+					</p:commandLink>
+				</p:panel>
+	        
+	        </p:tab>
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
     	</p:wizard>	
 	</ui:define>
 </ui:composition>

@@ -14,43 +14,43 @@
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition>
 
-	<div class="form-group">
-	    <label for="inputVagaNome" class="col-sm-2 control-label">Nome:</label>
+<!-- 	<div class="form-group">
+	    <label for="inputVagaNome" class="col-sm-2 control-label"><strong>Nome:</strong></label>
 	    <div class="col-sm-8">
 			<p:inputText id="inputVagaNome" styleClass="form-control" value="#{vagaEstagio.nome}" placeholder="Nome..."
-				disabled="#{disabled}"/>			    
+				disabled="#{disabled}" rendered="false" />			    
 	    </div>
    	</div>
   	<div class="form-group">
-	    <label for="inputVagaDescricao" class="col-sm-2 control-label">Descrição:</label>
+	    <label for="inputVagaDescricao" class="col-sm-2 control-label"><strong>Descrição:</strong></label>
 	    <div class="col-sm-8">
 			<p:inputTextarea id="inputVagaDescricao" styleClass="form-control" value="#{vagaEstagio.descricao}" rows="2" 
-				placeholder="Descrição..." disabled="#{disabled}"/>			    
+				placeholder="Descrição..." disabled="#{disabled}" rendered="false" />			    
 	    </div>
   	</div>
    	<div class="form-group">
-	    <label for="inputVagaRequisitos" class="col-sm-2 control-label">Requisitos:</label>
+	    <label for="inputVagaRequisitos" class="col-sm-2 control-label"><strong>Requisitos:</strong></label>
 	    <div class="col-sm-8">
 			<p:inputTextarea id="inputVagaRequisitos" styleClass="form-control" value="#{vagaEstagio.requisitos}" rows="2" 
-				placeholder="Requisitos..." disabled="#{disabled}"/>			    
+				placeholder="Requisitos..." disabled="#{disabled}" rendered="false"/>			    
 	    </div>
    	</div>
    	<div class="form-group">
-	    <label for="inputVagaAtividades" class="col-sm-2 control-label">Atividades:</label>
+	    <label for="inputVagaAtividades" class="col-sm-2 control-label"><strong>Atividades:</strong></label>
 	    <div class="col-sm-8">
 			<p:inputTextarea id="inputVagaAtividades" styleClass="form-control" value="#{vagaEstagio.atividades}" rows="2" 
-				placeholder="Atividades..." disabled="#{disabled}"/>			    
+				placeholder="Atividades..." disabled="#{disabled}" rendered="false" />			    
 	    </div>
    	</div>
    	<div class="form-group">
-	    <label for="inputVagaBeneficios" class="col-sm-2 control-label">Beneficios:</label>
+	    <label for="inputVagaBeneficios" class="col-sm-2 control-label"><strong>Beneficios:</strong></label>
 	    <div class="col-sm-8">
      		<p:inputText id="inputVagaBeneficios" styleClass="form-control" value="#{vagaEstagio.beneficios}" 
-				placeholder="Beneficios" disabled="#{disabled}"/>	    
+				placeholder="Beneficios" disabled="#{disabled}" rendered="false" />	    
 		</div>
-  	</div>
+  	</div> -->
   	<div class="form-group">
-	    <label for="inputVagaTurno" class="col-sm-2 control-label">Turno:</label>
+	    <label for="inputVagaTurno" class="col-sm-2 control-label"><strong>Turno:</strong></label>
 	    <div class="col-sm-8">
 	    	<p:selectOneMenu id="inputVagaTurno" value="#{vagaEstagio.turno}" style="width:200px" disabled="#{disabled}">
 	            <f:selectItem itemLabel="Selecione..." itemValue="" />
@@ -61,7 +61,7 @@
 	    </div>
   	</div>
   	<div class="form-group">
-	    <label for="inputVagaBolsa" class="col-sm-2 control-label">Valor da Bolsa:</label>
+	    <label for="inputVagaBolsa" class="col-sm-2 control-label"><strong>Valor da Bolsa:</strong></label>
 	    <div class="col-sm-3">
 	    	<div class="input-group m-bot15">
                	<span class="input-group-addon btn-primary"> R$ </span>
@@ -71,7 +71,7 @@
 	    </div>
    	</div>
   	<div class="form-group">
-	    <label for="inputVagaTransporte" class="col-sm-2 control-label">Valor auxilio transporte:</label>
+	    <label for="inputVagaTransporte" class="col-sm-2 control-label"><strong>Valor auxilio transporte:</strong></label>
 	    <div class="col-sm-3">
 	    	<div class="input-group m-bot15">
                	<span class="input-group-addon btn-primary"> R$ </span>
@@ -81,28 +81,28 @@
 	    </div>
    	</div>
   	<div class="form-group">
-	    <label for="inputVagaCargaHoraria" class="col-sm-2 control-label">Carga Horaria Semanal:</label>
+	    <label for="inputVagaCargaHoraria" class="col-sm-2 control-label"><strong>Carga Horaria Semanal:</strong></label>
 	    <div class="col-sm-3">
 			<p:inputText id="inputVagaCargaHoraria" styleClass="form-control" value="#{vagaEstagio.cargaHoraria}" 
 				placeholder="Quantas horas de estágio por semana!" disabled="#{disabled}"/>			    
 	    </div>
   	</div>
    	<div class="form-group">
-	    <label for="inputVagaApoliceNumero" class="col-sm-2 control-label">Apolice nº:</label>
+	    <label for="inputVagaApoliceNumero" class="col-sm-2 control-label"><strong>Apolice nº:</strong></label>
 	    <div class="col-sm-4">
 			<p:inputText id="inputVagaApoliceNumero" styleClass="form-control" value="#{vagaEstagio.apoliceNumero}" 
 				placeholder="Número da Apólice de Seguro" disabled="#{disabled}" />			    
 	    </div>
    	</div>
    	<div class="form-group">
-	    <label for="inputVagaApoliceEmpresa" class="col-sm-2 control-label">Apolice Empresa:</label>
+	    <label for="inputVagaApoliceEmpresa" class="col-sm-2 control-label"><strong>Apolice Empresa:</strong></label>
 	    <div class="col-sm-4">
 			<p:inputText id="inputVagaApoliceEmpresa" styleClass="form-control" value="#{vagaEstagio.apoliceEmpresa}" 
 				placeholder="Empresa da Apolice de Seguro"  disabled="#{disabled}" />			    
 	    </div>
    	</div>
   	<div class="form-group">
-	    <label for="inputVagaVigenciaInicio" class="col-sm-2 control-label">Vigencia - Início:</label>
+	    <label for="inputVagaVigenciaInicio" class="col-sm-2 control-label"><strong>Vigencia - Início:</strong></label>
 	    <div class="col-sm-2">
 			<p:inputMask id="inputVagaVigenciaInicio" styleClass="form-control" value="#{vagaEstagio.vigenciaInicio}" mask="99/99/9999"
 				placeholder="Data início do estágio"  disabled="#{disabled}" >
@@ -111,7 +111,7 @@
 	    </div>
    	</div>
    	<div class="form-group">
-	    <label for="inputVagaVigenciaFim" class="col-sm-2 control-label">Vigencia - Fim:</label>
+	    <label for="inputVagaVigenciaFim" class="col-sm-2 control-label"><strong>Vigencia - Fim:</strong></label>
 	    <div class="col-sm-2">
 			<p:inputMask id="inputVagaVigenciaFim" styleClass="form-control" value="#{vagaEstagio.vigenciaFim}" mask="99/99/9999"
 				placeholder="Data final do estágio"  disabled="#{disabled}" >
@@ -120,7 +120,7 @@
 	    </div>
    	</div>
   	<div class="form-group">
-	    <label for="inputVagaHoraInicio" class="col-sm-2 control-label">Hora Início do Estágio:</label>
+	    <label for="inputVagaHoraInicio" class="col-sm-2 control-label"><strong>Hora Início do Estágio:</strong></label>
 	    <div class="col-sm-2">
 			<p:inputMask id="inputVagaHoraInicio" styleClass="form-control" value="#{vagaEstagio.horaInicioEstagio}" mask="99:99"
 				placeholder="Hora em que inicia seu estágio"  disabled="#{disabled}" >
@@ -129,7 +129,7 @@
 	    </div>
    	</div>
    	<div class="form-group">
-	    <label for="inputVagaHoraIntervalo" class="col-sm-2 control-label">Hora do Intervalo:</label>
+	    <label for="inputVagaHoraIntervalo" class="col-sm-2 control-label"><strong>Hora do Intervalo:</strong></label>
 	    <div class="col-sm-2">
 			<p:inputMask id="inputVagaHoraIntervalo" styleClass="form-control" value="#{vagaEstagio.horaFimOuIntervalo}" mask="99:99"
 				placeholder="Hora do intervalo"  disabled="#{disabled}" >
@@ -138,7 +138,7 @@
 	    </div>
    	</div>
    	<div class="form-group">
-	    <label for="inputVagaHoraRetornoIntervalo" class="col-sm-2 control-label">Retorno do Intervalo:</label>
+	    <label for="inputVagaHoraRetornoIntervalo" class="col-sm-2 control-label"><strong>Retorno do Intervalo:</strong></label>
 	    <div class="col-sm-2">
 			<p:inputMask id="inputVagaHoraRetornoIntervalo" styleClass="form-control" value="#{vagaEstagio.horaRetorno}" mask="99:99"
 				placeholder="Hora em que você retorna do intervalo"  disabled="#{disabled}" >
@@ -147,7 +147,7 @@
 	    </div>
    	</div>
    	<div class="form-group">
-	    <label for="inputVagaHoraFim" class="col-sm-2 control-label">Hora Fim do Estágio:</label>
+	    <label for="inputVagaHoraFim" class="col-sm-2 control-label"><strong>Hora Fim do Estágio:</strong></label>
 	    <div class="col-sm-2">
 			<p:inputMask id="inputVagaHoraFim" styleClass="form-control" value="#{vagaEstagio.horaFimEstagio}" mask="99:99"
 				placeholder="Hora em que termina seu estágio"  disabled="#{disabled}" >

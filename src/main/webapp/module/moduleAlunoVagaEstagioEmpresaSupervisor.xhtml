@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	@version     1.0.0
+	@author      Edivando J. Alves
+	@contact     edivando@j7ss.com ( http://www.j7ss.com )
+	
+	@copyright Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved. 
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+
+	<div class="form-group">
+		<label for="inputEmpresaSupervisor" class="col-sm-2 control-label"><strong>Supervisor:</strong></label>
+		<div class="col-sm-3">
+			<p:inputText id="inputEmpresaSupervisor" value="#{vagaEstagio.empresaSupervisor.supervisor}" 
+				placeholder="Supervisor da Empresa" styleClass="form-control" required="true" requiredMessage="Item obrigatório!"  />
+		</div>
+		 <div class="col-md-2">
+			<p:message for="inputEmpresaSupervisor"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputEmpresaSupervisorCargo" class="col-sm-2 control-label"><strong>Cargo do Supervisor:</strong></label>
+		<div class="col-sm-3">
+			<p:inputText id="inputEmpresaSupervisorCargo" value="#{vagaEstagio.empresaSupervisor.cargoSupervisor}" 
+				placeholder="Cargo do Supervisor" styleClass="form-control" required="true" requiredMessage="Item obrigatório!"  />
+		</div>
+		<div class="col-md-2">
+			<p:message for="inputEmpresaSupervisorCargo"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputEmpresaSupervisorTelefone" class="col-sm-2 control-label"><strong>Telefone do Supervisor:</strong></label>
+		<div class="col-sm-3">
+			<p:inputText id="inputEmpresaSupervisorTelefone" value="#{vagaEstagio.empresaSupervisor.telefoneSupervisor}" 
+				placeholder="Cargo do Supervisor" styleClass="form-control" required="true" requiredMessage="Item obrigatório!"  />
+		</div>
+		 <div class="col-md-2">
+			<p:message for="inputEmpresaSupervisorTelefone"/>
+		</div>
+	</div>
+
+</ui:composition>
+</html>

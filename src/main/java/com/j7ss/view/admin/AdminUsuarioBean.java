@@ -6,7 +6,7 @@
  * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
  * 
  */
-package com.j7ss.view;
+package com.j7ss.view.admin;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import javax.faces.bean.ViewScoped;
 
 import com.j7ss.entity.Instituicao;
 import com.j7ss.entity.Usuario;
-import com.j7ss.entity.constraint.TipoUsuario;
+import com.j7ss.entity.constraint.UsuarioType;
 import com.j7ss.util.BasicView;
 import com.j7ss.util.MD5;
 import com.j7ss.util.Messages;
@@ -55,7 +55,7 @@ public class AdminUsuarioBean extends BasicView<Usuario>{
 	
 	@Override
 	public void save() {
-		if(entity.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)){
+		if(entity.getTipoUsuario().equals(UsuarioType.ADMINISTRADOR)){
 			entity.setInstituicao(null);
 		}
 		entity.senha(MD5.md5(entity.getSenha()));
@@ -63,7 +63,7 @@ public class AdminUsuarioBean extends BasicView<Usuario>{
 	}
 	
 	public void save(Usuario usuario) {
-		if(usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)){
+		if(usuario.getTipoUsuario().equals(UsuarioType.ADMINISTRADOR)){
 			usuario.setInstituicao(null);
 		}
 		entity = usuario;

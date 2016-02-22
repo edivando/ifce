@@ -17,8 +17,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
@@ -32,6 +34,7 @@ import com.j7ss.util.IGenericEntity;
  */
 @Entity
 @Table(name = "empresa")
+@ToString(of={"nome"}) @EqualsAndHashCode(of={"id"})
 public class Empresa implements IGenericEntity<Empresa>{
 
 	private static final long serialVersionUID = 1L;
@@ -39,7 +42,7 @@ public class Empresa implements IGenericEntity<Empresa>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idEmpresa;
+	private Integer id;
 	@Getter @Setter
 	private String nome;
 	@Getter @Setter
@@ -54,11 +57,6 @@ public class Empresa implements IGenericEntity<Empresa>{
 	private String site;
 	@Getter @Setter
 	private String ramoAtividade;
-	@OneToMany
-	@Getter @Setter
-	private List<VagaEstagio> vagaEstagios;
-	
-	// Endereco
 	@Getter @Setter
 	private String endereco;
 	@Getter @Setter
@@ -74,13 +72,17 @@ public class Empresa implements IGenericEntity<Empresa>{
 	
 	@OneToMany(mappedBy="empresa")
 	@Getter @Setter
+	private List<VagaEstagio> vagaEstagios;
+	
+	@OneToMany(mappedBy="empresa")
+	@Getter @Setter
 	private List<EmpresaSupervisor> empresaSupervisors;
 
 	
 //******************************************************************************************************************************
 //## Builder
-	public Empresa idEmpresa(Integer idEmpresa){
-		this.idEmpresa = idEmpresa;
+	public Empresa id(Integer id){
+		this.id = id;
 		return this;
 	}
 	
@@ -143,7 +145,7 @@ public class Empresa implements IGenericEntity<Empresa>{
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idEmpresa == null;
+		return id == null;
 	}
 	
 	

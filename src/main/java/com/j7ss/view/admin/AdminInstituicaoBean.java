@@ -6,7 +6,7 @@
  * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
  * 
  */
-package com.j7ss.view;
+package com.j7ss.view.admin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -327,7 +327,7 @@ public class AdminInstituicaoBean extends BasicView<Instituicao>{
 		for(Documento docSource : getDocumentos()){
 			boolean exist = false;
 			for(Documento docTarget : curso.getDocumentos()){
-				if(docSource.getIdDocumento().equals(docTarget.getIdDocumento())) exist = true;
+				if(docSource.getId().equals(docTarget.getId())) exist = true;
 			}
 			if(!exist){
 				docs.add(docSource);

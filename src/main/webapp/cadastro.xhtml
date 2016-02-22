@@ -49,7 +49,7 @@
 									</div>
 						    	</div>
 	                		</div>
-	                		<p:outputPanel id="campusPanel" rendered="#{alunoCadastroBean.instituicao.idInstituicao != null}">
+	                		<p:outputPanel id="campusPanel" rendered="#{!alunoCadastroBean.instituicao.isNew()}">
                					<div class="form-horizontal">
 		                			<div class="form-group">
 									    <label for="campus" class="col-sm-3 control-label"><strong>Campus:</strong></label>
@@ -67,7 +67,7 @@
 							    	</div>
 		                		</div>
 	                		</p:outputPanel>
-	                		<p:outputPanel id="departamentoPanel" rendered="#{alunoCadastroBean.campus.idCampus != null}">
+	                		<p:outputPanel id="departamentoPanel" rendered="#{!alunoCadastroBean.campus.isNew()}">
                					<div class="form-horizontal">
 		                			<div class="form-group">
 									    <label for="departamento" class="col-sm-3 control-label"><strong>Departamento:</strong></label>
@@ -85,7 +85,7 @@
 							    	</div>
 		                		</div>
 	                		</p:outputPanel>
-							<p:outputPanel id="cursoPanel" rendered="#{alunoCadastroBean.departamento.idDepartamento != null}">
+							<p:outputPanel id="cursoPanel" rendered="#{!alunoCadastroBean.departamento.isNew()}">
                					<div class="form-horizontal">
 		                			<div class="form-group">
 									    <label for="curso" class="col-sm-3 control-label"><strong>Curso:</strong></label>

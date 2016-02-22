@@ -17,10 +17,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-import com.j7ss.entity.constraint.TipoUsuario;
+import com.j7ss.entity.constraint.UsuarioType;
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.IGenericEntity;
@@ -33,6 +35,7 @@ import com.j7ss.util.IGenericEntity;
  */
 @Entity
 @Table(name = "usuario")
+@ToString(of={"nome", "email"}) @EqualsAndHashCode(of={"id"})
 public class Usuario implements IGenericEntity<Usuario>{
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +43,7 @@ public class Usuario implements IGenericEntity<Usuario>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idUsuario;
+	private Integer id;
 	@Getter @Setter
 	private String nome;
 	@Getter @Setter
@@ -48,7 +51,7 @@ public class Usuario implements IGenericEntity<Usuario>{
 	@Getter @Setter
 	private String senha;
 	@Getter @Setter
-	private TipoUsuario tipoUsuario;
+	private UsuarioType tipoUsuario;
 	@Getter @Setter
 	private Boolean emailValido = false;
 	@Getter @Setter
@@ -65,8 +68,8 @@ public class Usuario implements IGenericEntity<Usuario>{
 	
 //******************************************************************************************************************************
 //## Builder
-	public Usuario idUsuario(Integer idUsuario){
-		this.idUsuario = idUsuario;
+	public Usuario id(Integer id){
+		this.id = id;
 		return this;
 	}
 	
@@ -85,7 +88,7 @@ public class Usuario implements IGenericEntity<Usuario>{
 		return this;
 	}
 	
-	public Usuario tipoUsuario(TipoUsuario tipoUsuario){
+	public Usuario tipoUsuario(UsuarioType tipoUsuario){
 		this.tipoUsuario = tipoUsuario;
 		return this;
 	}
@@ -99,13 +102,23 @@ public class Usuario implements IGenericEntity<Usuario>{
 		this.ativo = ativo;
 		return this;
 	}
+	
+	public Usuario aluno(Aluno aluno){
+		this.aluno = aluno;
+		return this;
+	}
+	
+	public Usuario instituicao(Instituicao instituicao){
+		this.instituicao = instituicao;
+		return this;
+	}
 
 	
 //******************************************************************************************************************************
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idUsuario == null;
+		return id == null;
 	}
 	
 	public Aluno getAluno() {
@@ -132,7 +145,7 @@ public class Usuario implements IGenericEntity<Usuario>{
 	}
 	
 	public static List<Usuario> findAllMinusAluno(){
-		return dao.findByQuery("SELECT u FROM Usuario u WHERE u.tipoUsuario != ?1", TipoUsuario.ALUNO);
+		return dao.findByQuery("SELECT u FROM Usuario u WHERE u.tipoUsuario != ?1", UsuarioType.ALUNO);
 	}
 	
 	public static List<Usuario> findByEmailAndSenha(String email, String senha){

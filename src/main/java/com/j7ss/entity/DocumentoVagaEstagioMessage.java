@@ -10,6 +10,7 @@ package com.j7ss.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import com.j7ss.entity.constraint.DocumentoStatus;
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.IGenericEntity;
@@ -33,49 +35,62 @@ import com.j7ss.util.IGenericEntity;
  * 
  */
 @Entity
-@Table(name = "documentoAlunoMessage")
-@EqualsAndHashCode @ToString
-public class DocumentoAlunoMessage implements IGenericEntity<DocumentoAlunoMessage> {
+@Table(name = "documento_vaga_estagio_message")
+@ToString @EqualsAndHashCode(of={"id"})
+public class DocumentoVagaEstagioMessage implements IGenericEntity<DocumentoVagaEstagioMessage> {
 
 	private static final long serialVersionUID = 1L;
 		
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idDocumentoAlunoMessage;
+	private Integer id;
+	@Column(columnDefinition="text")
 	@Getter @Setter
 	private String message;
 	@Getter @Setter
 	private Date date;
+	@Getter @Setter
+	private DocumentoStatus status;
 	
 	@ManyToOne
 	@Getter @Setter
 	private Usuario usuario;
-
+	
 	@ManyToOne
-	@Getter @Setter
-	private DocumentoAluno documentoAluno = new DocumentoAluno();
+	@Setter
+	private DocumentoVagaEstagio documentoVagaEstagio;
 		
 
 //******************************************************************************************************************************		
 //## Builder
-	public DocumentoAlunoMessage idDocumentoAlunoMessage(Integer idDocumentoAlunoMessage){
-		this.idDocumentoAlunoMessage = idDocumentoAlunoMessage;
+	public DocumentoVagaEstagioMessage id(Integer id){
+		this.id = id;
 		return this;
 	}
 	
-	public DocumentoAlunoMessage message(String message){
+	public DocumentoVagaEstagioMessage message(String message){
 		this.message = message;
 		return this;
 	}
 	
-	public DocumentoAlunoMessage date(Date date){
+	public DocumentoVagaEstagioMessage date(Date date){
 		this.date = date;
 		return this;
 	}
 	
-	public DocumentoAlunoMessage documentoAluno(DocumentoAluno documentoAluno){
-		this.documentoAluno = documentoAluno;
+	public DocumentoVagaEstagioMessage documentoVagaEstagio(DocumentoVagaEstagio documentoVagaEstagio){
+		this.documentoVagaEstagio = documentoVagaEstagio;
+		return this;
+	}
+	
+	public DocumentoVagaEstagioMessage usuario(Usuario usuario){
+		this.usuario = usuario;
+		return this;
+	}
+	
+	public DocumentoVagaEstagioMessage status(DocumentoStatus status){
+		this.status = status;
 		return this;
 	}
 	
@@ -84,16 +99,20 @@ public class DocumentoAlunoMessage implements IGenericEntity<DocumentoAlunoMessa
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idDocumentoAlunoMessage == null;
+		return id == null;
+	}
+	
+	public DocumentoVagaEstagio getDocumentoVagaEstagio() {
+		return documentoVagaEstagio == null ? documentoVagaEstagio = new DocumentoVagaEstagio() : documentoVagaEstagio;
 	}
 	
 
 //******************************************************************************************************************************		
 //## DAO
-	private static DAO<DocumentoAlunoMessage> dao = new DAO<DocumentoAlunoMessage>(DocumentoAlunoMessage.class);
+	private static DAO<DocumentoVagaEstagioMessage> dao = new DAO<DocumentoVagaEstagioMessage>(DocumentoVagaEstagioMessage.class);
 	
 	@Override
-	public DocumentoAlunoMessage save() throws DAOException{
+	public DocumentoVagaEstagioMessage save() throws DAOException{
 		return isNew() ? dao.add(this) : dao.update(this);
 	}
 

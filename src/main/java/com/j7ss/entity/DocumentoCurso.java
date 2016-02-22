@@ -31,8 +31,8 @@ import com.j7ss.util.IGenericEntity;
  * 
  */
 @Entity
-@Table(name = "documentoCurso")
-@EqualsAndHashCode @ToString
+@Table(name = "documento_curso")
+@ToString @EqualsAndHashCode(of={"id"})
 public class DocumentoCurso implements IGenericEntity<DocumentoCurso> {
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +40,7 @@ public class DocumentoCurso implements IGenericEntity<DocumentoCurso> {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idDocumentoCurso;
+	private Integer id;
 	@Getter @Setter
 	private Integer ordem;
 
@@ -61,8 +61,8 @@ public class DocumentoCurso implements IGenericEntity<DocumentoCurso> {
 	
 //******************************************************************************************************************************
 //## Builder
-	public DocumentoCurso idDocumentoCurso(Integer idDocumentoCurso){
-		this.idDocumentoCurso = idDocumentoCurso;
+	public DocumentoCurso id(Integer id){
+		this.id = id;
 		return this;
 	}
 	
@@ -85,7 +85,7 @@ public class DocumentoCurso implements IGenericEntity<DocumentoCurso> {
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idDocumentoCurso == null;
+		return id == null;
 	}
 	
 

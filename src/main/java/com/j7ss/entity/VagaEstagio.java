@@ -8,21 +8,31 @@
  */
 package com.j7ss.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.j7ss.entity.constraint.VagaEstagioStatus;
+import com.j7ss.entity.constraint.VagaEstagioTurno;
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.IGenericEntity;
@@ -35,16 +45,15 @@ import com.j7ss.util.IGenericEntity;
  */
 @Entity
 @Table(name = "vaga_estagio")
+@ToString(of={"nome"}) @EqualsAndHashCode(of={"id"})
 public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	
 	private static final long serialVersionUID = 1L;
-	
-	enum Turno{ MANHA, TARDE, NOITE} 
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idVaga;
+	private Integer id;
 	@Getter @Setter
 	private String nome;
 	@Getter @Setter
@@ -60,7 +69,7 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	@Getter @Setter
 	private Double remuneracao;
 	@Getter @Setter
-	private Turno turno;
+	private VagaEstagioTurno turno;
 	@Getter @Setter
 	private Date horaInicioEstagio;
 	@Getter @Setter
@@ -79,18 +88,32 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
     private Integer apoliceNumero;
 	@Getter @Setter
 	private String apoliceEmpresa;
+	@Getter @Setter
+	private VagaEstagioStatus status = VagaEstagioStatus.NOVA;
     
-//	@OneToOne
-//	@Getter @Setter
-//	private Aluno aluno;
+	@ManyToOne
+	@Getter @Setter
+	private Aluno aluno;
 	
-	@OneToOne
+	@ManyToOne
 	@Setter
 	private Empresa empresa;
 	
-	@OneToMany(mappedBy="vagaEstagio")
-	@Getter @Setter
+	@ManyToOne
+	@Setter
+	private EmpresaSupervisor empresaSupervisor;
+	
+	@OneToMany(mappedBy="vagaEstagio", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+	@Fetch(FetchMode.SUBSELECT)  
+	@OrderBy("date")
+	@Setter
 	private List<VagaEstagioAtividadeDiaria> atividadesDiaria;
+	
+	@OneToMany(mappedBy="vagaEstagio", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+	@Fetch(FetchMode.SUBSELECT)  
+	@OrderBy("ordem")
+	@Setter
+	private List<DocumentoVagaEstagio> documentosVagaEstagio;
 	
 	public VagaEstagio(){ }
 	
@@ -101,8 +124,8 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	
 //******************************************************************************************************************************
 //## Builder
-	public VagaEstagio idVaga(Integer idVaga){
-		this.idVaga = idVaga;
+	public VagaEstagio idVaga(Integer id){
+		this.id = id;
 		return this;
 	}
 	
@@ -141,7 +164,7 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 		return this;
 	}
 	
-	public VagaEstagio turno(Turno turno){
+	public VagaEstagio turno(VagaEstagioTurno turno){
 		this.turno = turno;
 		return this;
 	}
@@ -190,17 +213,61 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 		this.apoliceEmpresa = apoliceEmpresa;
 		return this;
 	}
+	
+	public VagaEstagio aluno(Aluno aluno){
+		this.aluno = aluno;
+		return this;
+	}
+	
+	public VagaEstagio empresa(Empresa empresa){
+		this.empresa = empresa;
+		return this;
+	}
+	
+	public VagaEstagio empresaSupervisor(EmpresaSupervisor empresaSupervisor){
+		this.empresaSupervisor = empresaSupervisor;
+		return this;
+	}
 
+	public VagaEstagio addDocumento(DocumentoVagaEstagio docAluno) throws DAOException{
+		this.getDocumentosVagaEstagio().add(docAluno.vagaEstagio(this).save());
+		return this;
+	}
+	
+	public VagaEstagio addAtividadeDiaria(VagaEstagioAtividadeDiaria atividadeDiaria) throws DAOException{
+		this.getAtividadesDiaria().add(atividadeDiaria.vagaEstagio(this).save());
+		return this;
+	}
 	
 //******************************************************************************************************************************
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idVaga == null;
+		return id == null;
 	}
 	
 	public Empresa getEmpresa() {
 		return empresa == null ? empresa  = new Empresa() : empresa;
+	}
+	
+	public EmpresaSupervisor getEmpresaSupervisor() {
+		return empresaSupervisor == null ? empresaSupervisor = new EmpresaSupervisor() : empresaSupervisor;
+	}
+	
+	public List<Documento> getDocumentos(){
+		List<Documento> documentos = new ArrayList<>();
+		for (DocumentoVagaEstagio docA : documentosVagaEstagio) {
+			documentos.add(docA.getDocumento());
+		}
+		return documentos;
+	}
+	
+	public List<DocumentoVagaEstagio> getDocumentosVagaEstagio() {
+		return documentosVagaEstagio; // == null && !isNew() ? documentosVagaEstagio = DocumentoVagaEstagio.findByVagaEstagio(this) : documentosVagaEstagio;
+	}
+	
+	public List<VagaEstagioAtividadeDiaria> getAtividadesDiaria() {
+		return atividadesDiaria;  //== null && !isNew() ? atividadesDiaria = VagaEstagioAtividadeDiaria.findByVagaEstagio(this) : atividadesDiaria;
 	}
 	
 	
@@ -220,5 +287,9 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	
 	public static List<VagaEstagio> findAll(){
 		return dao.findAll();
+	}
+	
+	public static List<VagaEstagio> findByAluno(Aluno aluno){
+		return dao.findByQuery("Select v From VagaEstagio v Where v.aluno = ?1", aluno);
 	}
 }

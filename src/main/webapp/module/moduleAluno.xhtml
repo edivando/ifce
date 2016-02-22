@@ -15,54 +15,47 @@
 <ui:composition>
 
 	<div class="form-group">
-		<label for="inputDescricao" class="col-sm-2 control-label">Descricao:</label>
-		<div class="col-sm-8">
-			<p:inputTextarea id="inputDescricao" value="#{aluno.descricao}" placeholder="Fale sobre você!" styleClass="form-control" rows="3" 
-				disabled="#{disabled}"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="inputTelefone" class="col-sm-2 control-label">Telefone:</label>
+		<label for="inputTelefone" class="col-sm-2 control-label"><strong>Telefone:</strong></label>
 		<div class="col-sm-3">
 			<p:inputMask id="inputTelefone" value="#{aluno.telefone}" placeholder="Telefone do Aluno" styleClass="form-control" mask="(99) 9999-9999"
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputCelular" class="col-sm-2 control-label">Celular:</label>
+		<label for="inputCelular" class="col-sm-2 control-label"><strong>Celular:</strong></label>
 		<div class="col-sm-3">
 			<p:inputMask id="inputCelular" value="#{aluno.celular}" placeholder="Celular do Aluno" styleClass="form-control" mask="(99) 9 9999-9999"
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputLattes" class="col-sm-2 control-label">Curriculum Lattes:</label>
+		<label for="inputLattes" class="col-sm-2 control-label"><strong>Curriculum Lattes:</strong></label>
 		<div class="col-sm-4">
 			<p:inputText id="inputLattes" value="#{aluno.cvLattes}" placeholder="Curriculum Lattes" styleClass="form-control" 
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputDataNascimento" class="col-sm-2 control-label">Data de Nascimento:</label>
+		<label for="inputDataNascimento" class="col-sm-2 control-label"><strong>Data de Nascimento:</strong></label>
 		<div class="col-sm-3">
 			<p:inputMask id="inputDataNascimento" styleClass="form-control" value="#{aluno.dataNascimento}" mask="99/99/9999"
-				placeholder="Data de Nascimento" disabled="#{disabled}">
+				placeholder="Data de Nascimento" disabled="#{disabled or aluno.valido}">
 				<f:convertDateTime pattern="dd/MM/yyyy"/>
 			</p:inputMask>	
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputCPF" class="col-sm-2 control-label">CPF:</label>
+		<label for="inputCPF" class="col-sm-2 control-label"><strong>CPF:</strong></label>
 		<div class="col-sm-3">
 			<p:inputMask id="inputCPF" value="#{aluno.cpf}" placeholder="CPF" styleClass="form-control" mask="999.999.999-99"
-				disabled="#{disabled}"/>
+				disabled="#{disabled or aluno.valido}"/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputRG" class="col-sm-2 control-label">RG:</label>
+		<label for="inputRG" class="col-sm-2 control-label"><strong>RG:</strong></label>
 		<div class="col-sm-3">
 			<p:inputText id="inputRG" value="#{aluno.rg}" placeholder="RG" styleClass="form-control" 
-				disabled="#{disabled}"/>
+				disabled="#{disabled or aluno.valido}"/>
 		</div>
 	</div>
 

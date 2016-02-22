@@ -20,10 +20,8 @@ import javax.faces.context.FacesContext;
 import lombok.Setter;
 
 import com.j7ss.entity.Usuario;
-import com.j7ss.entity.constraint.TipoUsuario;
-import com.j7ss.util.DAOException;
+import com.j7ss.entity.constraint.UsuarioType;
 import com.j7ss.util.MD5;
-import com.j7ss.util.Messages;
 import com.j7ss.util.WebContext;
 
 /**
@@ -47,11 +45,12 @@ public class LoginBean implements Serializable{
 			if(usuarios != null && usuarios.size() > 0 ){
 				String homePage = "";
 				usuario = usuarios.get(0);
-				if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
-					homePage = usuario.getAluno().isCompleteCadastro() ? "alunoHome.html" : "alunoCompleteCadastro.html";
-				}else if(usuario.getTipoUsuario().equals(TipoUsuario.INSTITUICAO)){
+				if(usuario.getTipoUsuario().equals(UsuarioType.ALUNO)){
+//					usuario.getAluno().setVagasEstagio(VagaEstagio.findByAluno(usuario.getAluno()));
+					homePage = usuario.getAluno().isWizardCompleted() ? "alunoHome.html" : "alunoCompleteCadastro.html";
+				}else if(usuario.getTipoUsuario().equals(UsuarioType.INSTITUICAO)){
 					homePage = "instituicaoHome.html";
-				}else if(usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)){
+				}else if(usuario.getTipoUsuario().equals(UsuarioType.ADMINISTRADOR)){
 					homePage = "adminHome.html";
 				}
 				WebContext.redirect(homePage);
@@ -86,21 +85,4 @@ public class LoginBean implements Serializable{
 		return false;
 	}
 	
-	public void update(){
-		try {
-			if(usuario.getTipoUsuario().equals(TipoUsuario.ALUNO)){
-				usuario.getAluno().save();
-				getUsuario().getAluno().getVagaEstagio().save();
-				getUsuario().getAluno().getVagaEstagio().getEmpresa().save();
-			}
-			usuario.save();
-		
-			Messages.showGrowlInfo("Tdsfs", "sadasda");
-		} catch (DAOException e) {
-			Messages.showGrowlInfo("Tdsfs", "sadasda");
-			e.printStackTrace();
-		}
-	}
-	
-
 }

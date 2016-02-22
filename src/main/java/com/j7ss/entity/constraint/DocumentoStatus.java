@@ -23,7 +23,8 @@ public enum DocumentoStatus {
 	AGUARDANDO_VERIFICACAO("fa-clock-o", "yellow", "Aguardando verificação da instituição"), 
 	VERIFICANDO("fa-play-circle-o", "purple", "Verificando"), 
 	VERIFICADO_COM_ERRO("fa-warning", "red", "Verificado com erros"), 
-	DISPONIVEL_DOWNNLOAD("fa-download", "green", "Disponível para Download");
+	DISPONIVEL_DOWNLOAD("fa-download", "green", "Disponível para Download"),
+	CONCLUIDO("fa-times", "", "Concluído");
 
 	@Getter
 	private String icon;

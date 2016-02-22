@@ -17,12 +17,8 @@ import javax.faces.bean.ViewScoped;
 import lombok.Setter;
 
 import com.github.rjeschke.txtmark.Processor;
-import com.j7ss.entity.Documento;
-import com.j7ss.entity.DocumentoAluno;
+import com.j7ss.entity.DocumentoVagaEstagio;
 import com.j7ss.entity.constraint.DocumentoKey;
-import com.j7ss.entity.constraint.DocumentoStatus;
-import com.j7ss.util.DAOException;
-import com.j7ss.util.WebContext;
 
 /**
  * 
@@ -36,7 +32,7 @@ public class DocFichaMatriculaBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private DocumentoAluno documentoAluno;
+	private DocumentoVagaEstagio documentoAluno;
 	
 	@Setter
 	@ManagedProperty(value="#{loginBean}")
@@ -46,7 +42,7 @@ public class DocFichaMatriculaBean implements Serializable{
 	
 	public String getDocPage() {
 		if(docPage == null){
-			setDocumentoAluno();
+//			setDocumentoAluno();
 			parse();
 			docPage = Processor.process(docPage, true);
 		}
@@ -62,30 +58,30 @@ public class DocFichaMatriculaBean implements Serializable{
 		}
 	}
 	
-	private void setDocumentoAluno(){
-		documentoAluno = getAlunoFichaMatricula();
-		if(documentoAluno == null){
-			documentoAluno = new DocumentoAluno(loginBean.getUsuario().getAluno())
-									.documento((Documento)WebContext.getFlash("DocFichaMatricula"))
-									.ordem(loginBean.getUsuario().getAluno().getDocumentos().size())
-									.status(DocumentoStatus.DISPONIVEL);
-			try {
-				loginBean.getUsuario().getAluno().addDocumento(documentoAluno);
-			} catch (DAOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	private DocumentoAluno getAlunoFichaMatricula(){
-		if(loginBean.getUsuario().getAluno().getDocumentosAluno().size() != 0){
-			for (DocumentoAluno doc : loginBean.getUsuario().getAluno().getDocumentosAluno()) {
-//				if(doc.getDocumento().getPagina().equals("alunoDocFichaMatricula.html")) return doc;
-			}
-		}
-		return null;
-	}
+//	private void setDocumentoAluno(){
+//		documentoAluno = getAlunoFichaMatricula();
+//		if(documentoAluno == null){
+//			documentoAluno = new DocumentoVagaEstagio(loginBean.getUsuario().getAluno())
+//									.documento((Documento)WebContext.getFlash("DocFichaMatricula"))
+//									.ordem(loginBean.getUsuario().getAluno().getDocumentos().size())
+//									.status(DocumentoStatus.DISPONIVEL);
+//			try {
+//				loginBean.getUsuario().getAluno().addDocumento(documentoAluno);
+//			} catch (DAOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//	}
+//	
+//	private DocumentoVagaEstagio getAlunoFichaMatricula(){
+//		if(loginBean.getUsuario().getAluno().getDocumentosAluno().size() != 0){
+//			for (DocumentoVagaEstagio doc : loginBean.getUsuario().getAluno().getDocumentosAluno()) {
+////				if(doc.getDocumento().getPagina().equals("alunoDocFichaMatricula.html")) return doc;
+//			}
+//		}
+//		return null;
+//	}
 	
 	private void replace(DocumentoKey key){
 		switch (key) {
@@ -98,9 +94,6 @@ public class DocFichaMatriculaBean implements Serializable{
 			break;
 			
 		// Aluno
-		case ALUNO_DESCRICAO:
-			replace(DocumentoKey.ALUNO_DESCRICAO, loginBean.getUsuario().getAluno().getDescricao());
-			break;
 		case ALUNO_MATRICULA:	
 			replace(DocumentoKey.ALUNO_MATRICULA, loginBean.getUsuario().getAluno().getMatricula());
 			break;
@@ -141,58 +134,58 @@ public class DocFichaMatriculaBean implements Serializable{
 			replace(DocumentoKey.ALUNO_ENDERECO_UF, loginBean.getUsuario().getAluno().getUf());
 			break;
 		
-		// Empresa
-		case EMPRESA_NOME:
-			replace(DocumentoKey.EMPRESA_NOME, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getNome());
-			break;
-		case EMPRESA_EMAIL:
-			replace(DocumentoKey.EMPRESA_EMAIL, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getEmail());
-			break;
-		case EMPRESA_TELEFONE:
-			replace(DocumentoKey.EMPRESA_TELEFONE, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getTelefone());
-			break;
-		case EMPRESA_FAX:
-			replace(DocumentoKey.EMPRESA_FAX, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getFax());
-			break;
-		case EMPRESA_SUPERVISOR:
-			// TODO: Empresa Supervisor
-//			replace(DocumentoKey.EMPRESA_SUPERVISOR, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa());
-			break;
-		case EMPRESA_CARGO_SUPERVISOR:
-			// TODO: Empresa Supervisor
-//			replace(DocumentoKey.EMPRESA_CARGO_SUPERVISOR, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa());
-			break;
-		case EMPRESA_TELEFONE_SUPERVISOR:
-			// TODO: Empresa Supervisor
-//			replace(DocumentoKey.EMPRESA_TELEFONE_SUPERVISOR, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa());
-			break;
-		case EMPRESA_CNPJ:
-			replace(DocumentoKey.EMPRESA_CNPJ, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getCnpj());
-			break;
-		case EMPRESA_SITE:
-			replace(DocumentoKey.EMPRESA_SITE, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getSite());
-			break;
-		case EMPRESA_RAMO_ATIVIDADE:
-			replace(DocumentoKey.EMPRESA_RAMO_ATIVIDADE, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getRamoAtividade());
-			break;
-		case EMPRESA_ENDERECO_ENDERECO:
-			replace(DocumentoKey.EMPRESA_ENDERECO_ENDERECO, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getEndereco());
-			break;
-		case EMPRESA_ENDERECO_NUMERO:
-			replace(DocumentoKey.EMPRESA_ENDERECO_NUMERO, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getNumero());
-			break;
-		case EMPRESA_ENDERECO_BAIRRO:
-			replace(DocumentoKey.EMPRESA_ENDERECO_BAIRRO, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getBairro());
-			break;
-		case EMPRESA_ENDERECO_CEP:
-			replace(DocumentoKey.EMPRESA_ENDERECO_CEP, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getCep());
-			break;
-		case EMPRESA_ENDERECO_UF:
-			replace(DocumentoKey.EMPRESA_ENDERECO_UF, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getUf());
-			break;
-		case EMPRESA_ENDERECO_CIDADE:
-			replace(DocumentoKey.EMPRESA_ENDERECO_CIDADE, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getCidade());
-			break;
+//		// Empresa
+//		case EMPRESA_NOME:
+//			replace(DocumentoKey.EMPRESA_NOME, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getNome());
+//			break;
+//		case EMPRESA_EMAIL:
+//			replace(DocumentoKey.EMPRESA_EMAIL, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getEmail());
+//			break;
+//		case EMPRESA_TELEFONE:
+//			replace(DocumentoKey.EMPRESA_TELEFONE, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getTelefone());
+//			break;
+//		case EMPRESA_FAX:
+//			replace(DocumentoKey.EMPRESA_FAX, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getFax());
+//			break;
+//		case EMPRESA_SUPERVISOR:
+//			// TODO: Empresa Supervisor
+////			replace(DocumentoKey.EMPRESA_SUPERVISOR, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa());
+//			break;
+//		case EMPRESA_CARGO_SUPERVISOR:
+//			// TODO: Empresa Supervisor
+////			replace(DocumentoKey.EMPRESA_CARGO_SUPERVISOR, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa());
+//			break;
+//		case EMPRESA_TELEFONE_SUPERVISOR:
+//			// TODO: Empresa Supervisor
+////			replace(DocumentoKey.EMPRESA_TELEFONE_SUPERVISOR, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa());
+//			break;
+//		case EMPRESA_CNPJ:
+//			replace(DocumentoKey.EMPRESA_CNPJ, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getCnpj());
+//			break;
+//		case EMPRESA_SITE:
+//			replace(DocumentoKey.EMPRESA_SITE, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getSite());
+//			break;
+//		case EMPRESA_RAMO_ATIVIDADE:
+//			replace(DocumentoKey.EMPRESA_RAMO_ATIVIDADE, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getRamoAtividade());
+//			break;
+//		case EMPRESA_ENDERECO_ENDERECO:
+//			replace(DocumentoKey.EMPRESA_ENDERECO_ENDERECO, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getEndereco());
+//			break;
+//		case EMPRESA_ENDERECO_NUMERO:
+//			replace(DocumentoKey.EMPRESA_ENDERECO_NUMERO, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getNumero());
+//			break;
+//		case EMPRESA_ENDERECO_BAIRRO:
+//			replace(DocumentoKey.EMPRESA_ENDERECO_BAIRRO, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getBairro());
+//			break;
+//		case EMPRESA_ENDERECO_CEP:
+//			replace(DocumentoKey.EMPRESA_ENDERECO_CEP, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getCep());
+//			break;
+//		case EMPRESA_ENDERECO_UF:
+//			replace(DocumentoKey.EMPRESA_ENDERECO_UF, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getUf());
+//			break;
+//		case EMPRESA_ENDERECO_CIDADE:
+//			replace(DocumentoKey.EMPRESA_ENDERECO_CIDADE, loginBean.getUsuario().getAluno().getVagaEstagio().getEmpresa().getCidade());
+//			break;
 			
 		// Instituicao
 		case INSTITUICAO_NOME:

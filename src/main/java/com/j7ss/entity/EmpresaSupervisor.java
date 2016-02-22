@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -34,14 +35,14 @@ import com.j7ss.util.IGenericEntity;
  */
 @Entity
 @Table(name = "empresa_supervisor")
-@EqualsAndHashCode @ToString
+@ToString(of={"supervisor"}) @EqualsAndHashCode(of={"id"})
 public class EmpresaSupervisor implements IGenericEntity<EmpresaSupervisor> {
 	private static final long serialVersionUID = 1L;
 		
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idEmpresaSupervisor;
+	private Integer id;
 	@Getter @Setter
 	private String supervisor;
 	@Getter @Setter
@@ -52,12 +53,16 @@ public class EmpresaSupervisor implements IGenericEntity<EmpresaSupervisor> {
 	@ManyToOne
 	@Setter
 	private Empresa empresa;
+	
+	@OneToMany(mappedBy="empresaSupervisor")
+	@Getter @Setter
+	private List<VagaEstagio> vagaEstagios;
 		
 	
 //******************************************************************************************************************************	
 //## Builder
-	public EmpresaSupervisor idEmpresaSupervisor(Integer idEmpresaSupervisor){
-		this.idEmpresaSupervisor = idEmpresaSupervisor;
+	public EmpresaSupervisor id(Integer id){
+		this.id = id;
 		return this;
 	}
 	
@@ -75,12 +80,17 @@ public class EmpresaSupervisor implements IGenericEntity<EmpresaSupervisor> {
 		this.telefoneSupervisor = telefoneSupervisor;
 		return this;
 	}
+	
+	public EmpresaSupervisor empresa(Empresa empresa){
+		this.empresa = empresa;
+		return this;
+	}
 
 //******************************************************************************************************************************
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idEmpresaSupervisor == null;
+		return id == null;
 	}
 	
 	

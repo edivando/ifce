@@ -15,11 +15,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
@@ -33,7 +36,7 @@ import com.j7ss.util.IGenericEntity;
  */
 @Entity
 @Table(name = "documento")
-@EqualsAndHashCode
+@ToString(of={"nome"}) @EqualsAndHashCode(of={"id"})
 public class Documento implements IGenericEntity<Documento> {
 
 	private static final long serialVersionUID = 1L;
@@ -41,7 +44,7 @@ public class Documento implements IGenericEntity<Documento> {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idDocumento;
+	private Integer id;
 	@Getter @Setter
 	private String nome;
 	@Getter @Setter
@@ -52,22 +55,32 @@ public class Documento implements IGenericEntity<Documento> {
 	@Column(columnDefinition="text")
 	@Getter @Setter
 	private String htmlPage;
+	
 	@Getter @Setter
-	private Boolean obrigatorio = true;
+	private Boolean extra = false;
+	@Getter @Setter
+	private Boolean estagioObrigatorio = true;
+	
 	@Column(columnDefinition="text")
 	@Getter @Setter
 	private String keys;
 	
-	@Override
-	public String toString() {
-		return nome;
-	}
+	
+	@OneToMany(mappedBy="documento")
+	@OrderBy("ordem")
+	@Getter @Setter
+	private List<DocumentoCurso> documentoCursos;
+	
+	@OneToMany(mappedBy="documento")
+	@OrderBy("ordem")
+	@Getter @Setter
+	private List<DocumentoVagaEstagio> documentoVagasEstagio;
 	
 	
 //******************************************************************************************************************************
 //## Builder
-	public Documento idDocumento(Integer idDocumento){
-		this.idDocumento = idDocumento;
+	public Documento id(Integer id){
+		this.id = id;
 		return this;
 	}
 	
@@ -86,8 +99,13 @@ public class Documento implements IGenericEntity<Documento> {
 		return this;
 	}
 	
-	public Documento obrigatorio(Boolean obrigatorio){
-		this.obrigatorio = obrigatorio;
+	public Documento extra(Boolean extra){
+		this.extra = extra;
+		return this;
+	}
+	
+	public Documento estagioObrigatorio(Boolean estagioObrigatorio){
+		this.estagioObrigatorio = estagioObrigatorio;
 		return this;
 	}
 	
@@ -101,7 +119,7 @@ public class Documento implements IGenericEntity<Documento> {
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idDocumento == null;
+		return id == null;
 	}
 	
 	

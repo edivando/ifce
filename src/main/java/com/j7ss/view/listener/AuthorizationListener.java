@@ -51,7 +51,7 @@ public class AuthorizationListener implements PhaseListener {
 
 				LoginBean loginBean = (LoginBean) session.getAttribute("loginBean");			
 				if( !isPermissionPublicPage( paginaDestino ) ){
-					if(loginBean == null || loginBean.getUsuario() == null || loginBean.getUsuario().getIdUsuario() == null){	
+					if(loginBean == null || loginBean.getUsuario() == null || loginBean.getUsuario().isNew()){	
 						redirect("login.html");
 					}else if( !loginBean.isPagePermission( paginaDestino ) ){
 						redirect("erro-acessoNegado.html");

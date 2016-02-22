@@ -88,29 +88,6 @@
 							<ui:param name="disabled" value="true"/>
 						</ui:include> 
                  	</div>
-                 	<div id="documentos" class="tab-pane">
-                 		<p:dataList value="#{adminAlunoBean.entity.documentos}" var="doc" type="ordered">
-					        <f:facet name="header">
-					            Basic
-					        </f:facet>
-					        <p:commandLink actionListener="#{adminAlunoBean.openDocumento(doc)}">
-					        	#{doc.titulo}
-					        </p:commandLink>
-					        
-					    </p:dataList>
-                 	</div>
-                 	<div id="vagaEstagio" class="tab-pane">
-                 		<ui:include src="/module/moduleAlunoVagaEstagio.xhtml">
-							<ui:param name="vagaEstagio" value="#{adminAlunoBean.entity.vagaEstagio}"/>
-							<ui:param name="disabled" value="true"/>
-						</ui:include> 
-                 	</div>
-                 	<div id="empresa" class="tab-pane">
-                 		<ui:include src="/module/moduleAlunoVagaEstagioEmpresa.xhtml">
-							<ui:param name="vagaEstagio" value="#{adminAlunoBean.entity.vagaEstagio}"/>
-							<ui:param name="disabled" value="true"/>
-						</ui:include> 
-                 	</div>
             	</div>
         	</div>
    		</section>

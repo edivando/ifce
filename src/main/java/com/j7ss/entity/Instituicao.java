@@ -13,7 +13,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +22,10 @@ import javax.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
@@ -36,7 +39,7 @@ import com.j7ss.util.IGenericEntity;
  */
 @Entity
 @Table(name = "instituicao")
-@EqualsAndHashCode
+@ToString(of={"nome"}) @EqualsAndHashCode(of={"id"})
 public class Instituicao implements IGenericEntity<Instituicao>{
 
 	private static final long serialVersionUID = 1L;
@@ -44,7 +47,7 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idInstituicao;
+	private Integer id;
 	@Getter @Setter
 	private String nome;
 	@Getter @Setter
@@ -54,20 +57,20 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 	@Getter @Setter
 	private String responsavel;
 	
-	@OneToMany(mappedBy="instituicao", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy="instituicao", cascade=CascadeType.REMOVE)
+	@Fetch(FetchMode.JOIN)
 	@Getter @Setter
 	private List<Campus> campus;
 	
-	@Override
-	public String toString() {
-		return nome;
-	}
-
+	@OneToMany(mappedBy="instituicao")
+	@Getter @Setter
+	private List<Usuario> usuarios;
+	
 	
 //******************************************************************************************************************************
 //## Builder
-	public Instituicao idInstituicao(Integer idInstituicao){
-		this.idInstituicao = idInstituicao;
+	public Instituicao id(Integer id){
+		this.id = id;
 		return this;
 	}
 	
@@ -110,7 +113,7 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idInstituicao == null;
+		return id == null;
 	}
 
 	
@@ -129,7 +132,7 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 	}
 	
 	public static List<Instituicao> findAll(){
-		return dao.findAll();
+		return dao.findByQuery("SELECT i FROM Instituicao i"); //JOIN FETCH i.campus c
 	}
 	
 	public static Instituicao findById(Integer idInstituicao){

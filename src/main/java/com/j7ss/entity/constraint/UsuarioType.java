@@ -14,7 +14,7 @@ package com.j7ss.entity.constraint;
  * @date  10/02/2016
  * 
  */
-public enum TipoUsuario {
+public enum UsuarioType {
 
 	ADMINISTRADOR(
 			"perfil", 
@@ -38,7 +38,7 @@ public enum TipoUsuario {
 	
 	private String[] pages;
 	
-	private TipoUsuario(String...pages) {
+	private UsuarioType(String...pages) {
 		this.pages = pages;
 	}
 	

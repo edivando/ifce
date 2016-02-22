@@ -12,15 +12,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -31,6 +30,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import com.j7ss.entity.constraint.AlunoStatus;
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.IGenericEntity;
@@ -43,7 +43,7 @@ import com.j7ss.util.IGenericEntity;
  */
 @Entity
 @Table(name = "aluno")
-@ToString @EqualsAndHashCode
+@ToString @EqualsAndHashCode(of="id")
 public class Aluno implements IGenericEntity<Aluno>{
 
 	private static final long serialVersionUID = 1L;
@@ -51,9 +51,7 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idAluno;
-	@Getter @Setter
-	private String descricao;
+	private Integer id;
 	@Getter @Setter
 	private String matricula;
 	@Getter @Setter
@@ -70,23 +68,6 @@ public class Aluno implements IGenericEntity<Aluno>{
 	private String rg;
 	@Getter @Setter
 	private Date dataNascimento;
-	@ManyToOne
-	@Setter
-	private Curso curso;
-	@OneToOne
-	@Setter
-	private Usuario usuario;
-	@OneToOne
-	@Setter
-	private VagaEstagio vagaEstagio;
-	
-	@OneToMany(mappedBy="aluno", fetch=FetchType.EAGER)
-	@Fetch(FetchMode.SELECT)
-	@OrderBy("ordem")
-	@Setter
-	private List<DocumentoAluno> documentosAluno;
-
-	// Endereco
 	@Getter @Setter
 	private String endereco;
 	@Getter @Setter
@@ -99,17 +80,27 @@ public class Aluno implements IGenericEntity<Aluno>{
 	private String cidade;
 	@Getter @Setter
 	private String uf;
+	@Getter @Setter
+	private AlunoStatus status = AlunoStatus.NOVO;
 	
+	@ManyToOne
+	@Setter
+	private Curso curso;
+	
+	@OneToOne
+	@Setter
+	private Usuario usuario;
+	
+	@OneToMany(mappedBy="aluno", cascade=CascadeType.REMOVE)
+	@Fetch(FetchMode.JOIN)
+	@Setter
+	private List<VagaEstagio> vagasEstagio;
+
 	
 //******************************************************************************************************************************	
 //## Builder
-	public Aluno idAluno(Integer idAluno){
-		this.idAluno = idAluno;
-		return this;
-	}
-	
-	public Aluno descricao(String descricao){
-		this.descricao = descricao;
+	public Aluno id(Integer id){
+		this.id = id;
 		return this;
 	}
 	
@@ -148,16 +139,6 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return this;
 	}
 	
-	public Aluno curso(Curso curso){
-		this.curso = curso;
-		return this;
-	}
-	
-	public Aluno usuario(Usuario usuario){
-		this.usuario = usuario;
-		return this;
-	}
-	
 	public Aluno endereco(String endereco){
 		this.endereco = endereco;
 		return this;
@@ -183,13 +164,30 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return this;
 	}
 	
-	public Aluno addDocumento(DocumentoAluno docAluno) throws DAOException{
-		this.getDocumentosAluno().add(docAluno.save());
+	
+	public Aluno vagaEstagio(List<VagaEstagio> vagasEstagio){
+		this.vagasEstagio = vagasEstagio;
 		return this;
 	}
 	
-	public Aluno vagaEstagio(VagaEstagio vagaEstagio){
-		this.vagaEstagio = vagaEstagio;
+	public Aluno curso(Curso curso){
+		this.curso = curso;
+		return this;
+	}
+	
+	public Aluno usuario(Usuario usuario){
+		this.usuario = usuario;
+		return this;
+	}
+	
+	public Aluno addVagaEstagio(VagaEstagio vagaEstagio) throws DAOException{
+		getVagasEstagio().add(vagaEstagio.aluno(this).save());
+		save();
+		return this;
+	}
+	
+	public Aluno status(AlunoStatus status){
+		this.status = status;
 		return this;
 	}
 	
@@ -198,26 +196,114 @@ public class Aluno implements IGenericEntity<Aluno>{
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idAluno == null;
+		return id == null;
 	}
 	
-	public boolean isCompleteCadastro(){
+	public boolean isValido() {
+		return status.equals(AlunoStatus.VALIDO);
+	}
+	
+	public boolean isWizardAlunoInfo(){
 		return (
-			descricao != null 		&& !descricao.equals("") &&
-			matricula != null 		&& !matricula.equals("") &&
-			telefone != null 		&& !telefone.equals("") &&
-			cvLattes != null 		&& !cvLattes.equals("") &&
-			semestreAtual != null 	&& !semestreAtual.equals("") &&
-			cpf != null				&& !cpf.equals("") &&
-			rg != null 				&& !rg.equals("") &&
-			dataNascimento != null 	&& !dataNascimento.equals("") &&
-			curso != null 			&& curso.getNome() != null && !curso.getNome().equals("") &&
-			endereco != null 		&& !endereco.equals("") &&
-			bairro != null 			&& !bairro.equals("") &&
-			cep != null 			&& !cep.equals("") &&
-			cidade != null 			&& !cidade.equals("") &&
-			uf != null 				&& !uf.equals("") 
+				semestreAtual != null 	&& !semestreAtual.equals("") &&
+				telefone != null 		&& !telefone.equals("") &&
+				celular != null 		&& !celular.equals("") &&
+				cvLattes != null 		&& !cvLattes.equals("") &&
+				cpf != null				&& !cpf.equals("") &&
+				rg != null 				&& !rg.equals("") &&
+				dataNascimento != null 	&& !dataNascimento.equals("")
+			);
+	}
+	
+	public boolean isWizardAlunoEndereco(){
+		return (
+				endereco != null 		&& !endereco.equals("") &&
+				numero != null 			&& !numero.equals("") &&
+				bairro != null 			&& !bairro.equals("") &&
+				cep != null 			&& !cep.equals("") &&
+				cidade != null 			&& !cidade.equals("") &&
+				uf != null 				&& !uf.equals("") 
+			);
+	}
+	
+	public boolean isWizardVagaEstagio(){
+		if(getVagasEstagio().size() == 0){
+			return false;
+		}
+		VagaEstagio vaga = getVagasEstagio().get(0);
+		return (
+				vaga.getTurno() != null 			&& !vaga.getTurno().equals("") &&
+				vaga.getRemuneracao() != null 		&& !vaga.getRemuneracao().equals("") &&
+				vaga.getValorTransporte() != null 	&& !vaga.getValorTransporte().equals("") &&
+				vaga.getCargaHoraria() != null 		&& !vaga.getCargaHoraria().equals("") &&
+				vaga.getVigenciaInicio() != null 	&& !vaga.getVigenciaInicio().equals("") &&
+				vaga.getVigenciaFim() != null 		&& !vaga.getVigenciaFim().equals("") &&
+				vaga.getHoraInicioEstagio() != null && !vaga.getHoraInicioEstagio().equals("") &&
+				vaga.getHoraFimEstagio() != null 	&& !vaga.getHoraFimEstagio().equals("")
+			);
+	}
+	
+	public boolean isWizardVagaEstagioConcluir(){
+		if(getVagasEstagio().size() == 0) return false;
+		VagaEstagio vaga = getVagasEstagio().get(0);
+		return (
+				vaga.getApoliceNumero() != null 	&& !vaga.getApoliceNumero().equals("") &&
+				vaga.getApoliceEmpresa() != null 	&& !vaga.getApoliceEmpresa().equals("") 
+			);
+	}
+	
+	public boolean isWizardVagaEstagioEmpresa(){
+		if(getVagasEstagio().size() == 0) return false;
+		if(getVagasEstagio().get(0).getEmpresa().isNew()) return false;
+		Empresa empresa = getVagasEstagio().get(0).getEmpresa();
+		return (
+			empresa.getNome() != null 			&& !empresa.getNome().equals("") &&
+			empresa.getEmail() != null 			&& !empresa.getEmail().equals("") &&
+			empresa.getTelefone() != null		&& !empresa.getTelefone().equals("") &&
+			empresa.getFax() != null 			&& !empresa.getFax().equals("") &&
+			empresa.getCnpj() != null 			&& !empresa.getCnpj().equals("") &&
+			empresa.getSite() != null 			&& !empresa.getSite().equals("") &&
+			empresa.getRamoAtividade() != null 	&& !empresa.getRamoAtividade().equals("") &&
+			empresa.getEndereco() != null 		&& !empresa.getEndereco().equals("") &&
+			empresa.getNumero() != null 		&& !empresa.getNumero().equals("") &&
+			empresa.getBairro() != null 		&& !empresa.getBairro().equals("") &&
+			empresa.getCep() != null 			&& !empresa.getCep().equals("") &&
+			empresa.getUf() != null 			&& !empresa.getUf().equals("") &&
+			empresa.getCidade() != null 		&& !empresa.getCidade().equals("")
 		);
+	}
+	
+	public boolean isWizardVagaEstagioEmpresaSupervisor(){
+		if(getVagasEstagio().size() == 0) return false;
+		if(getVagasEstagio().get(0).getEmpresaSupervisor().isNew()) return false;
+		EmpresaSupervisor empSupervisor = getVagasEstagio().get(0).getEmpresaSupervisor();
+		return (
+			empSupervisor.getSupervisor() != null 		&& !empSupervisor.getSupervisor().equals("") &&
+			empSupervisor.getCargoSupervisor() != null 	&& !empSupervisor.getCargoSupervisor().equals("") &&
+			empSupervisor.getTelefoneSupervisor()!=null && !empSupervisor.getTelefoneSupervisor().equals("")
+		);
+	}
+	
+	
+	public String getWizardStep(){
+		if(!isWizardAlunoInfo()){
+			return "aluno";
+		}else if(!isWizardAlunoEndereco()){
+			return "endereco";
+		}else if(!isWizardVagaEstagio()){
+			return "vagaEstagio";
+		}else if(!isWizardVagaEstagioConcluir()){
+			return "vagaEstagioConcluir";
+		}else if(!isWizardVagaEstagioEmpresa()){
+			return "empresa";
+		}else if(!isWizardVagaEstagioEmpresaSupervisor()){
+			return "empresaSupervisor";
+		}
+		return null;
+	}
+	
+	public boolean isWizardCompleted(){
+		return getWizardStep() == null;
 	}
 	
 	public String getDescricaoCurso(){
@@ -248,20 +334,8 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return usuario == null ? usuario = new Usuario() : usuario;
 	}
 	
-	public VagaEstagio getVagaEstagio() {
-		return vagaEstagio == null ? vagaEstagio  = new VagaEstagio() : vagaEstagio;
-	}
-	
-	public List<Documento> getDocumentos(){
-		List<Documento> documentos = new ArrayList<>();
-		for (DocumentoAluno docA : documentosAluno) {
-			documentos.add(docA.getDocumento());
-		}
-		return documentos;
-	}
-	
-	public List<DocumentoAluno> getDocumentosAluno() {
-		return documentosAluno == null ? documentosAluno = DocumentoAluno.findByAluno(this) : documentosAluno;
+	public List<VagaEstagio> getVagasEstagio() {
+		return vagasEstagio == null ? vagasEstagio = new ArrayList<>() : vagasEstagio;
 	}
 	
 	
@@ -280,11 +354,15 @@ public class Aluno implements IGenericEntity<Aluno>{
 	}
 	
 	public static List<Aluno> findAll(){
-		return dao.findByQuery("SELECT a FROM Aluno a "); //LEFT JOIN FETCH a.documentosAluno da
+		return dao.findByQuery("SELECT a FROM Aluno a LEFT JOIN FETCH a.vagasEstagio ve "); 
 	}
 	
 	public static Aluno findByUsuario(Usuario usuario){
 		return dao.findOneByQuery("SELECT a FROM Aluno a WHERE a.usuario = ?1" , usuario);
 	}
+	
+//	public static List<Aluno> findByDocumentoStatus(DocumentoStatus status){
+//		return dao.findByQuery("Select a From Aluno a JOIN FETCH a.documentosAluno da WHERE da.status = ?1", status);
+//	}
 	
 }

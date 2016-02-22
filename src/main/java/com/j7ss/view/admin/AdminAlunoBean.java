@@ -6,7 +6,7 @@
  * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
  * 
  */
-package com.j7ss.view;
+package com.j7ss.view.admin;
 
 import java.io.IOException;
 import java.util.List;

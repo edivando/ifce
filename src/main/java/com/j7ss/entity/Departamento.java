@@ -13,7 +13,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +23,10 @@ import javax.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
@@ -37,7 +40,7 @@ import com.j7ss.util.IGenericEntity;
  */
 @Entity
 @Table(name = "departamento")
-@EqualsAndHashCode
+@ToString(of={"nome"}) @EqualsAndHashCode(of={"id"})
 public class Departamento implements IGenericEntity<Departamento> {
 
 	private static final long serialVersionUID = 1L;
@@ -45,7 +48,7 @@ public class Departamento implements IGenericEntity<Departamento> {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idDepartamento;
+	private Integer id;
 	@Getter @Setter
 	private String nome;
 	
@@ -53,20 +56,16 @@ public class Departamento implements IGenericEntity<Departamento> {
 	@Getter @Setter
 	private Campus campus;
 	
-	@OneToMany(mappedBy="departamento", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy="departamento", cascade=CascadeType.REMOVE)
+	@Fetch(FetchMode.JOIN)
 	@Getter @Setter
 	private List<Curso> cursos;
-	
-	@Override
-	public String toString() {
-		return nome;
-	}
 
 	
 //******************************************************************************************************************************
 //## Builder
-	public Departamento nome(Integer idDepartamento){
-		this.idDepartamento = idDepartamento;
+	public Departamento id(Integer id){
+		this.id = id;
 		return this;
 	}
 	
@@ -100,7 +99,7 @@ public class Departamento implements IGenericEntity<Departamento> {
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idDepartamento == null;
+		return id == null;
 	}
 	
 	

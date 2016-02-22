@@ -15,44 +15,45 @@
 <ui:composition>
 
 	<div class="form-group">
-		<label for="inputEndereco" class="col-sm-2 control-label">Endereço:</label>
+		<label for="inputEndereco" class="col-sm-2 control-label"><strong>Endereço:</strong></label>
 		<div class="col-sm-8">
 			<p:inputText id="inputEndereco" value="#{aluno.endereco}" placeholder="Rua..." styleClass="form-control"
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputNumero" class="col-sm-2 control-label">Número:</label>
+		<label for="inputNumero" class="col-sm-2 control-label"><strong>Número:</strong></label>
 		<div class="col-sm-2">
 			<p:inputText id="inputNumero" value="#{aluno.numero}" placeholder="Número" styleClass="form-control"
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputBairro" class="col-sm-2 control-label">Bairro:</label>
+		<label for="inputBairro" class="col-sm-2 control-label"><strong>Bairro:</strong></label>
 		<div class="col-sm-4">
 			<p:inputText id="inputBairro" value="#{aluno.bairro}" placeholder="Bairro..." styleClass="form-control" 
 				disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputCidade" class="col-sm-2 control-label">Cidade:</label>
+		<label for="inputCidade" class="col-sm-2 control-label"><strong>Cidade:</strong></label>
 		<div class="col-sm-4">
 			<p:inputText id="inputCidade" value="#{aluno.cidade}" placeholder="Cidade" styleClass="form-control"
 				 disabled="#{disabled}"/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputUF" class="col-sm-2 control-label">UF:</label>
+		<label for="inputUF" class="col-sm-2 control-label"><strong>UF:</strong></label>
 		<div class="col-sm-8">
 			<ui:include src="/module/moduleSelectOneEstadosBrasil.xhtml">
 				<ui:param name="value" value="#{aluno.uf}"/>
 				<ui:param name="disabled" value="#{disabled}"/>
+				<ui:param name="id" value="aluno"/>
 			</ui:include>
 		</div>
 	</div>
 		<div class="form-group">
-		<label for="inputCEP" class="col-sm-2 control-label">CEP:</label>
+		<label for="inputCEP" class="col-sm-2 control-label"><strong>CEP:</strong></label>
 		<div class="col-sm-3">
 			<p:inputMask id="inputCEP" value="#{aluno.cep}" placeholder="CEP" styleClass="form-control" mask="99.999-999"
 				disabled="#{disabled}"/>

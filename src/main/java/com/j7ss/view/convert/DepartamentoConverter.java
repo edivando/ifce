@@ -20,7 +20,7 @@ import javax.faces.convert.Converter;
 import lombok.Setter;
 
 import com.j7ss.entity.Departamento;
-import com.j7ss.view.AlunoCadastroBean;
+import com.j7ss.view.aluno.AlunoCadastroBean;
 
 /**
  * 

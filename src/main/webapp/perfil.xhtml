@@ -26,7 +26,7 @@
 				<span class="lead">
 					<i class="fa #{headerIcon}"/> Meu Perfil
 				</span>
-				<p:commandLink  action="#{loginBean.update}" update="@form" styleClass="pull-right btn btn-info btn-sm">
+				<p:commandLink  action="#{perfilBean.update}" update="@form" styleClass="pull-right btn btn-info btn-sm">
 					<i class="fa fa-save" />
 					Salvar
 				</p:commandLink>
@@ -36,7 +36,7 @@
 		      	<header class="panel-heading tab-bg-dark-navy-blue ">
 		        	<ul class="nav nav-tabs">
 		            	<li class="active"><a data-toggle="tab" href="#usuario">Usuário</a></li>
-		            	<h:outputFormat rendered="#{loginBean.usuario.tipoUsuario eq 'ALUNO'}">
+		            	<h:outputFormat rendered="#{perfilBean.usuario.tipoUsuario eq 'ALUNO'}">
 		            		<li> <a data-toggle="tab" href="#aluno">Aluno</a></li>
 		            		<li> <a data-toggle="tab" href="#endereco">Endereço</a></li>
 		                	<li> <a data-toggle="tab" href="#curso">Curso</a></li>
@@ -47,23 +47,23 @@
 	            	<div class="tab-content">
 	            		<div id="usuario" class="tab-pane active">
 	            			<ui:include src="/module/moduleUsuario.xhtml">
-								<ui:param name="usuario" value="#{loginBean.usuario}"/>
+								<ui:param name="usuario" value="#{perfilBean.usuario}"/>
 							</ui:include>
 	            		</div>
-	            		<h:outputFormat rendered="#{loginBean.usuario.tipoUsuario eq 'ALUNO'}">
+	            		<h:outputFormat rendered="#{perfilBean.usuario.tipoUsuario eq 'ALUNO'}">
 	            			<div id="aluno" class="tab-pane">
 								<ui:include src="/module/moduleAluno.xhtml">
-									<ui:param name="aluno" value="#{loginBean.usuario.aluno}"/>
+									<ui:param name="aluno" value="#{perfilBean.usuario.aluno}"/>
 								</ui:include>
 		                 	</div>
 		                 	<div id="endereco" class="tab-pane">
 		                 		<ui:include src="/module/moduleAlunoEndereco.xhtml">
-		                 			<ui:param name="aluno" value="#{loginBean.usuario.aluno}"/>
+		                 			<ui:param name="aluno" value="#{perfilBean.usuario.aluno}"/>
 		                 		</ui:include>
 		                 	</div>
 		                 	<div id="curso" class="tab-pane">
 						   		<ui:include src="/module/moduleAlunoCurso.xhtml">
-		                 			<ui:param name="aluno" value="#{loginBean.usuario.aluno}"/>
+		                 			<ui:param name="aluno" value="#{perfilBean.usuario.aluno}"/>
 		                 		</ui:include>
 		                 	</div>
 	            		</h:outputFormat>

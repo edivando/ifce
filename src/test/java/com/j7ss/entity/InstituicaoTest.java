@@ -16,7 +16,7 @@ public class InstituicaoTest {
 		 // TODO
 	}
 
-//	@Test
+	@Test
 	public final void testFindAll() {
 		List<Instituicao> instituicoes = Instituicao.findAll();
 		System.out.println(instituicoes);

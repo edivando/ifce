@@ -23,7 +23,6 @@ public enum DocumentoKey {
 	USUARIO_EMAIL( 				"`&&USUARIO_EMAIL&&`" ),
 	
 	// Aluno
-	ALUNO_DESCRICAO( 			"`&&ALUNO_DESCRICAO&&`" ),
 	ALUNO_MATRICULA( 			"`&&ALUNO_MATRICULA&&`" ),
 	ALUNO_TELEFONE( 			"`&&ALUNO_TELEFONE&&`" ),
 	ALUNO_CELULAR( 				"`&&ALUNO_CELULAR&&`" ),
@@ -94,7 +93,6 @@ public enum DocumentoKey {
 	
 	public static String getAluno(){
 		return new StringBuilder()
-			.append(DocumentoKey.ALUNO_DESCRICAO.getKey()).append("<br/>")
 			.append(DocumentoKey.ALUNO_MATRICULA.getKey()).append("<br/>")
 			.append(DocumentoKey.ALUNO_TELEFONE.getKey()).append("<br/>")
 			.append(DocumentoKey.ALUNO_CELULAR.getKey()).append("<br/>")

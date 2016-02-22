@@ -14,7 +14,7 @@
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition>
 
-	<p:selectOneMenu value="#{value}" style="width:200px;" disabled="#{disabled}">
+	<p:selectOneMenu id="selectUf#{id}" value="#{value}" style="width:200px;" disabled="#{disabled}" required="#{required}" requiredMessage="Item obrigatório!">
 		<f:selectItem itemLabel="Selecione..." 	itemValue="" />
 		<f:selectItem itemLabel="Acre" 			itemValue="AC" />
 		<f:selectItem itemLabel="Alagoas" 		itemValue="AL" />
@@ -44,6 +44,9 @@
 		<f:selectItem itemLabel="São Paulo" 	itemValue="SP" />
 		<f:selectItem itemLabel="Tocantins" 	itemValue="TO" />
 	</p:selectOneMenu>
+	<p:message for="selectUf#{id}"/>
+
+	
 
 
 </ui:composition>

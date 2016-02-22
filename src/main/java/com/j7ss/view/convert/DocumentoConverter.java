@@ -20,7 +20,7 @@ import javax.faces.convert.Converter;
 import lombok.Setter;
 
 import com.j7ss.entity.Documento;
-import com.j7ss.view.AdminInstituicaoBean;
+import com.j7ss.view.admin.AdminInstituicaoBean;
 
 /**
  * 

@@ -6,7 +6,7 @@
  * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
  * 
  */
-package com.j7ss.view;
+package com.j7ss.view.admin;
 
 import java.util.HashSet;
 import java.util.List;
@@ -82,6 +82,9 @@ public class AdminDocumentoBean extends BasicView<Documento>{
         	} catch (DAOException e) {
         	}
     	}
-		return htmlPage = Processor.process(getEntity().getHtmlPage());
+    	if(getEntity().getHtmlPage() != null){
+    		 htmlPage = Processor.process(getEntity().getHtmlPage());
+    	}
+		return htmlPage;
 	}
 }

@@ -13,7 +13,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +23,10 @@ import javax.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
@@ -37,7 +40,7 @@ import com.j7ss.util.IGenericEntity;
  */
 @Entity
 @Table(name = "campus")
-@EqualsAndHashCode
+@ToString(of={"nome"}) @EqualsAndHashCode(of={"id"})
 public class Campus implements IGenericEntity<Campus>{
 
 	private static final long serialVersionUID = 1L;
@@ -45,14 +48,13 @@ public class Campus implements IGenericEntity<Campus>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idCampus;
+	private Integer id;
 	@Getter @Setter  
 	private String nome;
 	@Getter @Setter
 	private String telefone;
 	@Getter @Setter
 	private String email;
-
 	@Getter @Setter
 	private String endereco;
 	@Getter @Setter
@@ -70,20 +72,16 @@ public class Campus implements IGenericEntity<Campus>{
 	@Getter @Setter
 	private Instituicao instituicao = new Instituicao();
 	
-	@OneToMany(mappedBy="campus", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy="campus", cascade=CascadeType.REMOVE)
+	@Fetch(FetchMode.JOIN)
 	@Getter @Setter
 	private List<Departamento> departamentos;
-	
-	@Override
-	public String toString() {
-		return nome;
-	}
 	
 	
 //******************************************************************************************************************************
 //## Builder
-	public Campus idCampus(Integer idCampus){
-		this.idCampus = idCampus;
+	public Campus id(Integer id){
+		this.id = id;
 		return this;
 	}
 	
@@ -152,7 +150,7 @@ public class Campus implements IGenericEntity<Campus>{
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idCampus == null;
+		return id == null;
 	}
 	
 	

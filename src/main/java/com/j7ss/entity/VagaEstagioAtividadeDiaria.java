@@ -18,9 +18,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+import com.j7ss.entity.constraint.VagaEstagioAtividadeDiariaStatus;
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.IGenericEntity;
@@ -33,6 +36,7 @@ import com.j7ss.util.IGenericEntity;
  */
 @Entity
 @Table(name = "vaga_estagio_atividade_diaria")
+@ToString @EqualsAndHashCode(of={"id"})
 public class VagaEstagioAtividadeDiaria implements IGenericEntity<VagaEstagioAtividadeDiaria>{
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +44,7 @@ public class VagaEstagioAtividadeDiaria implements IGenericEntity<VagaEstagioAti
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
-	private Integer idAtividade;
+	private Integer id;
 	@Getter @Setter
 	private Date date;
 	@Getter @Setter
@@ -52,13 +56,14 @@ public class VagaEstagioAtividadeDiaria implements IGenericEntity<VagaEstagioAti
 	@Getter @Setter
 	private VagaEstagio vagaEstagio;
 	
-	
+	@Getter @Setter
+	private VagaEstagioAtividadeDiariaStatus status = VagaEstagioAtividadeDiariaStatus.NOVA;
 	
 	
 //******************************************************************************************************************************
 //## Builder
-	public VagaEstagioAtividadeDiaria idAtividade(Integer idAtividade){
-		this.idAtividade = idAtividade;
+	public VagaEstagioAtividadeDiaria id(Integer id){
+		this.id = id;
 		return this;
 	}
 	
@@ -77,12 +82,21 @@ public class VagaEstagioAtividadeDiaria implements IGenericEntity<VagaEstagioAti
 		return this;
 	}
 	
+	public VagaEstagioAtividadeDiaria vagaEstagio(VagaEstagio vagaEstagio){
+		this.vagaEstagio = vagaEstagio;
+		return this;
+	}
+	
+	public VagaEstagioAtividadeDiaria status(VagaEstagioAtividadeDiariaStatus status){
+		this.status = status;
+		return this;
+	}
 	
 //******************************************************************************************************************************
 //## Getters Setters
 	@Override
 	public boolean isNew() {
-		return idAtividade == null;
+		return id == null;
 	}
 	
 	

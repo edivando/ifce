@@ -6,7 +6,7 @@
  * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
  * 
  */
-package com.j7ss.view;
+package com.j7ss.view.aluno;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,8 +23,7 @@ import com.j7ss.entity.Campus;
 import com.j7ss.entity.Curso;
 import com.j7ss.entity.Departamento;
 import com.j7ss.entity.Instituicao;
-import com.j7ss.entity.VagaEstagio;
-import com.j7ss.entity.constraint.TipoUsuario;
+import com.j7ss.entity.constraint.UsuarioType;
 import com.j7ss.util.MD5;
 import com.j7ss.util.Messages;
 import com.j7ss.util.WebContext;
@@ -54,17 +53,13 @@ public class AlunoCadastroBean implements Serializable {
 	
 	public void save(){
 		try {
-			aluno.getUsuario().senha(MD5.md5(aluno.getUsuario().getSenha())).ativo(true).tipoUsuario(TipoUsuario.ALUNO).save();
+			aluno.getUsuario()
+					.senha(MD5.md5(aluno.getUsuario().getSenha()))
+					.ativo(true)
+					.tipoUsuario(UsuarioType.ALUNO)
+					.save();
 			aluno.save();
-			aluno.vagaEstagio(new VagaEstagio("Minha Vaga").save());
-			
-//			List<Documento> docs = aluno.getCurso().getDocumentos();
-//			for (int i = 0; i < docs.size(); i++) {
-//				aluno.addDocumento( new DocumentoAluno(aluno)
-//						.documento(docs.get(i))
-//						.ordem(i)
-//						.status((i == 0 || !docs.get(i).getObrigatorio()) ? DocumentoStatus.DISPONIVEL : DocumentoStatus.INDISPONIVEL));
-//			}
+			aluno.getUsuario().aluno(aluno).save();
 			
 			instituicaos = new ArrayList<>();
 			instituicao = new Instituicao();
