@@ -14,80 +14,12 @@
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/layout/layoutPrivateDefault.xhtml">
 
-	<ui:param name="headerTitle" value="Alunos" />
+	<ui:param name="headerTitle" value="" />
 	<ui:param name="headerLink" value="instituicaoHome.html"/>
 	
-	<ui:define name="title">IFCE Estágios - Documentos</ui:define>
+	<ui:define name="title">IFCE Estágios - Alunos</ui:define>
 	<ui:define name="container">
-		<p:dataTable id="alunoDocTable" var="entity" value="#{instituicaoHomeBean.entitys}" 
-			paginator="true" rows="20" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			emptyMessage="Nenhum formulário submetido!" rendered="#{!instituicaoHomeBean.form}" resizableColumns="true" paginatorPosition="top">
-		
-			<p:column width="100" styleClass="text-center" >
- 				<p:commandLink update="@form" actionListener="#{instituicaoHomeBean.form}" styleClass="btn btn-white" >
-		 			<f:setPropertyActionListener target="#{instituicaoHomeBean.entity}" value="#{entity}"/>
-		 			<i class="fa fa-edit text-info" />Analizar
-				</p:commandLink>
-			</p:column>
-			<p:column headerText="Aluno">
-				#{entity.usuario.nome}
-			</p:column>
-			<p:column headerText="Email">
-				#{entity.usuario.email}
-			</p:column>
-			<p:column headerText="Curso">
-				#{entity.curso.nome}
-			</p:column>
-			<p:column headerText="Departamento">
-				#{entity.curso.departamento.nome}
-			</p:column>
-			<p:column headerText="Campus">
-				#{entity.curso.departamento.campus.nome}
-			</p:column>
-		</p:dataTable>
-		<p:panel id="formPanel" rendered="#{instituicaoHomeBean.form}" styleClass="form-horizontal" style="background-color: #f1f2f7;">
-			<p:focus />
-			<f:facet name="header">
-				<span class="lead">
-					<i class="fa fac-doc"/> Documento
-				</span>
-				<p:commandLink  action="#{instituicaoHomeBean.grid}" update=":formAll" styleClass="pull-right btn btn-danger btn-sm" immediate="true">
-					<i class="fa fa-reply-all" />
-					Cancelar
-				</p:commandLink>
-				<p:commandLink  action="#{instituicaoHomeBean.saveErro}" update=":formAll" styleClass="pull-right btn btn-info btn-sm"
-					style="margin-right: 10px;" >
-					<i class="fa fa-warning" /> Verificado Com Erros
-					<p:confirm header="Confime" message="Antes de Enviar, confirme se está tudo Ok." icon="ui-icon-alert" />
-				</p:commandLink>
-				<p:commandLink  action="#{instituicaoHomeBean.saveDownload}" update=":formAll" styleClass="pull-right btn btn-info btn-sm"
-					style="margin-right: 10px;" >
-					<i class="fa fa-download" /> Disponível Para Download
-					<p:confirm header="Confime" message="Antes de Enviar, confirme se está tudo Ok." icon="ui-icon-alert" />
-				</p:commandLink>
-			    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-			        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-			        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			    </p:confirmDialog>
-			</f:facet>
-			<div class="row">
-				<p:panel styleClass="col-md-4">
-					<div class="form-group">
-					    <label for="inputAlunoDocumentoMessage">Mensagem:</label>
-					    <p:inputTextarea id="inputAlunoDocumentoMessage" styleClass="form-control" value="#{instituicaoHomeBean.docMessage.message}" rows="15" 
-								placeholder="Mensagem que será enviada para o Aluno" />	
-				  	</div>
-				</p:panel>
-				<div class="col-md-8">
-					<ui:include src="/module/moduleDocPrint.xhtml" >
-						<ui:param name="bean" value="#{instituicaoHomeBean}"/>
-			      		<ui:param name="htmlPage" value="#{instituicaoHomeBean.docPage}" />
-			      		<ui:param name="btnPrint" value="false"/>
-			      		<ui:param name="btnSubmeter" value="false"/>
-			      	</ui:include> 	
-				</div>
-			</div>
-		</p:panel>
+
 	</ui:define>
 </ui:composition>
 </html>

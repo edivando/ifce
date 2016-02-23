@@ -24,7 +24,7 @@ import lombok.Setter;
  */
 @ManagedBean
 @ViewScoped
-public class AlunoVagaEstagioBean implements Serializable{
+public class REMOVEAlunoVagaEstagioBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Setter

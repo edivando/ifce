@@ -31,7 +31,7 @@ import com.j7ss.entity.VagaEstagio;
  */
 @ManagedBean
 @ViewScoped
-public class TermoCompromissoBean implements Serializable{
+public class REMOVETermoCompromissoBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Getter @Setter

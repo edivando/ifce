@@ -14,7 +14,7 @@
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/layout/layoutPrivateDefault.xhtml">
 
-	<ui:param name="headerTitle" value="Estágio" />
+	<ui:param name="headerTitle" value="Dados do Estágio" />
 	<ui:param name="headerLink" value="alunoHome.html" />
 	
 	<ui:define name="title">Estágio</ui:define>
@@ -32,11 +32,71 @@
 					<div class="col-md-12">
 		                <section class="panel">
 		                    <div class="panel-body profile-information">
-		                    	<div class="row">
-									<div class="col-md-6">
+								<div class="row">
+									<div class="col-md-9">
+			                     		<div class="profile-desk">
+			                        		<div class="row">
+			                        			<div class="col-md-7">
+			                        				<h1>#{vagaEstagio.aluno.usuario.nome}</h1>
+			                        				<p>
+			                        					<strong>Estagiário da Empresa:</strong> #{vagaEstagio.empresa.nome} 
+			                        					<br/>
+			                        					<strong>Email:</strong> #{vagaEstagio.empresa.email} 
+			                        					<br/>
+			                        					<strong>Telefone / Fax:</strong> #{vagaEstagio.empresa.telefone} / #{vagaEstagio.empresa.fax} 
+			                        					<br/>
+			                        					<strong>CNPJ:</strong> #{vagaEstagio.empresa.cnpj} 
+			                        					<br/>
+			                        					<strong>Site:</strong> #{vagaEstagio.empresa.site}
+			                        					<br/>
+			                        					<strong>Ramo de Atividade:</strong> #{vagaEstagio.empresa.ramoAtividade}
+			                        					<br/>
+			                        					<strong>Supervisor / Cargo / Telefone:</strong> #{vagaEstagio.empresaSupervisor.supervisor} 
+               								             /  #{vagaEstagio.empresaSupervisor.cargoSupervisor} / #{vagaEstagio.empresaSupervisor.telefoneSupervisor} 
+			                        					<br/>
+			                        					<strong>Endereço:</strong> #{vagaEstagio.empresa.endereco}, #{vagaEstagio.empresa.numero} 
+			                        					#{vagaEstagio.empresa.bairro} #{vagaEstagio.empresa.cidade} - #{vagaEstagio.empresa.uf} #{vagaEstagio.empresa.cep}
+			                        				</p>
+			                        			</div>
+			                        			<div class="col-md-5">
+			                        				<p>
+			                        					<strong>Vigência:</strong> De  
+			                        					<h:outputText value="#{vagaEstagio.vigenciaInicio}" >
+			                        						<f:convertDateTime pattern="dd/MM/yyyy"/>
+			                        					</h:outputText>
+			                        					até 
+			                        					<h:outputText value="#{vagaEstagio.vigenciaFim}" >
+			                        						<f:convertDateTime pattern="dd/MM/yyyy"/>
+			                        					</h:outputText>
+			                        					<br/>
+			                        					<strong>Turno: </strong>#{vagaEstagio.turno}
+			                        					<br/>
+			                        					<strong>Tipo de Estágio: </strong>#{vagaEstagio.type}
+			                        					<br/>
+			                        					<strong>Status: </strong>#{vagaEstagio.status}
+			                        					<br/>
+			                        					<strong>Valor da Bolsa: </strong>R$ #{vagaEstagio.remuneracao}
+			                        					<br/>
+			                        					<strong>Valor do Transporte: </strong>R$ #{vagaEstagio.valorTransporte}
+			                        				</p>
+			                        			</div>
+			                        		</div>
+			                           </div>
+			                       	</div>
+			                       	<div class="col-md-3">
+			                           	<div class="profile-statistics">
+			                               	<h1>#{vagaEstagio.horasConcluidas} horas</h1>
+			                               	<p>Horas concluídas e validada pela instituição</p>
+			                               	<h1>#{vagaEstagio.duracaoEstagio} horas</h1>
+			                               	<p>Duração do Estágio</p>
+			                           	</div>
+			                       	</div>
+			                	</div>
+			             		<div class="row">
+									<div class="col-md-4">
 
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-8">
 										<p:commandLink actionListener="#{alunoHomeBean.documentos}" styleClass="btn btn-info pull-right col-md-3 btn-xs" 
 											update="@form" style="margin-right: 10px;" >
 											<f:setPropertyActionListener target="#{alunoHomeBean.vagaEstagio}" value="#{vagaEstagio}"/>
@@ -57,21 +117,6 @@
 										</p:commandLink>
 									</div>
 								</div>
-								<div class="col-md-9">
-		                           <div class="profile-desk">
-		                               <h1>#{vagaEstagio.aluno.usuario.nome}</h1>
-		                               <span class="text-muted">Estagiário na Empresa: #{vagaEstagio.empresa.nome}</span>
-
-		                           </div>
-		                       	</div>
-		                       	<div class="col-md-3">
-		                           	<div class="profile-statistics">
-		                               	<h1>40</h1>
-		                               	<p>Horas concluídas</p>
-		                               	<h1>400</h1>
-		                               	<p>Duração do Estágio</p>
-		                           	</div>
-		                       	</div>
 		                    </div>
 		                </section>
 		            </div>
@@ -270,8 +315,13 @@
 			<div class="form-group">
 				<label for="inputQuantHoras" class="col-sm-2 control-label"><strong>Quantidade de horas:</strong></label>
 				<div class="col-sm-3">
-					<p:inputText id="inputQuantHoras" value="#{alunoHomeBean.atividadeDiaria.quantidadeHoras}" placeholder="Quantidade de horas estagiado." styleClass="form-control" 
-						required="true" requiredMessage="Item obrigatório!" />
+					<h:selectOneMenu id="inputQuantHoras"  value="#{alunoHomeBean.atividadeDiaria.quantidadeHoras}" required="true" 
+						requiredMessage="Item obrigatório!" styleClass="form-control" style="height: 34px;">
+		                <f:selectItem itemLabel="0" itemValue="0" />
+		                <f:selectItem itemLabel="4" itemValue="4" />
+		                <f:selectItem itemLabel="5" itemValue="5" />
+		                <f:selectItem itemLabel="6" itemValue="6" />
+		            </h:selectOneMenu>
 				</div>
 				<div class="col-sm-2">
 					<p:message for="inputQuantHoras"  />
@@ -291,6 +341,12 @@
 		</p:panel>
 		
 		<p:panel rendered="#{alunoHomeBean.documentoView}" >
+			<p:commandLink actionListener="#{alunoHomeBean.grid}" styleClass="btn btn-danger pull-right btn-sm" update="@form"
+            	style="margin-right: 10px;" >
+				<i class="fa fa-reply-all"/>
+				Back
+			</p:commandLink>
+			
 			<ui:include src="/module/moduleDocPrint.xhtml" >
 				<ui:param name="bean" value="#{alunoHomeBean}"/>
 	      		<ui:param name="htmlPage" value="#{alunoHomeBean.docPage}" />

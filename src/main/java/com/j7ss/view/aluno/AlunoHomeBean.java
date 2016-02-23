@@ -26,7 +26,6 @@ import com.j7ss.entity.VagaEstagioAtividadeDiaria;
 import com.j7ss.entity.constraint.DocumentoParse;
 import com.j7ss.entity.constraint.DocumentoStatus;
 import com.j7ss.util.DAOException;
-import com.j7ss.util.WebContext;
 import com.j7ss.view.LoginBean;
 
 /**
@@ -170,6 +169,7 @@ public class AlunoHomeBean implements Serializable{
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}
+		grid();
 	}
 	
 	public void saveAtividadeDiaria(){

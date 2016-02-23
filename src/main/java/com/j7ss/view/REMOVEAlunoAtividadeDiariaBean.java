@@ -28,7 +28,7 @@ import com.j7ss.util.BasicView;
  */
 @ManagedBean
 @ViewScoped
-public class AlunoAtividadeDiariaBean extends BasicView<VagaEstagioAtividadeDiaria>{
+public class REMOVEAlunoAtividadeDiariaBean extends BasicView<VagaEstagioAtividadeDiaria>{
 	private static final long serialVersionUID = 1L;
 	
 	@Setter

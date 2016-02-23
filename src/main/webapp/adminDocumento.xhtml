@@ -31,7 +31,7 @@
 	
 	<ui:define name="contentGrid">
 		<p:column headerText="Obrigatório" width="100" styleClass="text-center">
-			<span class="label #{entity.estagioObrigatorio ? 'label-primary' : 'label-danger'}">#{entity.estagioObrigatorio ? "Sim" : "Não"}</span>
+			<span class="label #{entity.obrigatorio ? 'label-primary' : 'label-danger'}">#{entity.obrigatorio ? "Sim" : "Não"}</span>
 		</p:column>
 		<p:column headerText="Extra" width="100" styleClass="text-center">
 			<span class="label #{entity.extra ? 'label-primary' : 'label-danger'}">#{entity.extra ? "Sim" : "Não"}</span>
@@ -85,9 +85,9 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputEstagioObrigatorio" class="col-sm-2 control-label"><strong>Estágio Obrigatório:</strong></label>
+			<label for="inputEstagioObrigatorio" class="col-sm-2 control-label"><strong>Obrigatório:</strong></label>
 			<div class="col-sm-8">
-				<p:selectBooleanButton id="inputEstagioObrigatorio" value="#{adminDocumentoBean.entity.estagioObrigatorio}" onLabel="Sim" offLabel="Não" 
+				<p:selectBooleanButton id="inputEstagioObrigatorio" value="#{adminDocumentoBean.entity.obrigatorio}" onLabel="Sim" offLabel="Não" 
 					onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:60px" />
 			</div>
 			<div class="col-sm-2">

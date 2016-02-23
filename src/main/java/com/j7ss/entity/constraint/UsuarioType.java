@@ -26,7 +26,9 @@ public enum UsuarioType {
 				
 	INSTITUICAO(
 			"perfil", 
-			"instituicaoHome"), 
+			"instituicaoHome",
+			"instituicaoAluno",
+			"instituicaoDocumento"), 
 	
 	ALUNO(	
 			"perfil", 

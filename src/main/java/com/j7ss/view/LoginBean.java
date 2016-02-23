@@ -20,7 +20,6 @@ import javax.faces.context.FacesContext;
 import lombok.Setter;
 
 import com.j7ss.entity.Usuario;
-import com.j7ss.entity.constraint.UsuarioType;
 import com.j7ss.util.MD5;
 import com.j7ss.util.WebContext;
 
@@ -45,12 +44,12 @@ public class LoginBean implements Serializable{
 			if(usuarios != null && usuarios.size() > 0 ){
 				String homePage = "";
 				usuario = usuarios.get(0);
-				if(usuario.getTipoUsuario().equals(UsuarioType.ALUNO)){
+				if(usuario.isTypeAluno()){
 //					usuario.getAluno().setVagasEstagio(VagaEstagio.findByAluno(usuario.getAluno()));
 					homePage = usuario.getAluno().isWizardCompleted() ? "alunoHome.html" : "alunoCompleteCadastro.html";
-				}else if(usuario.getTipoUsuario().equals(UsuarioType.INSTITUICAO)){
+				}else if(usuario.isTypeInstituicao()){
 					homePage = "instituicaoHome.html";
-				}else if(usuario.getTipoUsuario().equals(UsuarioType.ADMINISTRADOR)){
+				}else if(usuario.isTypeAdmin()){
 					homePage = "adminHome.html";
 				}
 				WebContext.redirect(homePage);
@@ -83,6 +82,17 @@ public class LoginBean implements Serializable{
 			}
 		}
 		return false;
+	}
+	
+	public String getHomeLink(){
+		if(getUsuario().isTypeAluno()){
+			return getUsuario().getAluno().isWizardCompleted() ? "alunoHome.html" : "alunoCompleteCadastro.html";
+		}else if(getUsuario().isTypeInstituicao()){
+			return "instituicaoHome.html";
+		}else if(getUsuario().isTypeAdmin()){
+			return "adminHome.html";
+		}
+		return "";  
 	}
 	
 }

@@ -65,6 +65,8 @@ public class AdminUsuarioBean extends BasicView<Usuario>{
 	public void save(Usuario usuario) {
 		if(usuario.getTipoUsuario().equals(UsuarioType.ADMINISTRADOR)){
 			usuario.setInstituicao(null);
+		}else if(usuario.getTipoUsuario().equals(UsuarioType.INSTITUICAO) && usuario.getInstituicao().isNew() && getInstituicaos().size() > 0){
+			usuario.setInstituicao(getInstituicaos().get(0));
 		}
 		entity = usuario;
 		super.save();

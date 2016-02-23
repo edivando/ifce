@@ -25,7 +25,7 @@ import com.j7ss.util.Messages;
  */
 @ManagedBean
 @ViewScoped
-public class EmpresaBean extends BasicView<Empresa>{
+public class REMOVEEmpresaBean extends BasicView<Empresa>{
 	private static final long serialVersionUID = 1L;
 	
 	@Override

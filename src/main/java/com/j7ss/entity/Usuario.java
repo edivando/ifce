@@ -57,6 +57,9 @@ public class Usuario implements IGenericEntity<Usuario>{
 	@Getter @Setter
 	private Boolean ativo = true;
 	
+	@Getter @Setter
+	private String instituicaoFilter;
+	
 	@OneToOne
 	@Setter
 	private Instituicao instituicao;
@@ -119,6 +122,18 @@ public class Usuario implements IGenericEntity<Usuario>{
 	@Override
 	public boolean isNew() {
 		return id == null;
+	}
+	
+	public boolean isTypeAluno() {
+		return tipoUsuario.equals(UsuarioType.ALUNO);
+	}
+	
+	public boolean isTypeInstituicao() {
+		return tipoUsuario.equals(UsuarioType.INSTITUICAO);
+	}
+	
+	public boolean isTypeAdmin() {
+		return tipoUsuario.equals(UsuarioType.ADMINISTRADOR);
 	}
 	
 	public Aluno getAluno() {

@@ -6,7 +6,7 @@
  * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
  * 
  */
-package com.j7ss.view;
+package com.j7ss.view.instituicao;
 
 import java.util.Date;
 import java.util.List;
@@ -23,6 +23,7 @@ import com.j7ss.entity.constraint.DocumentoParse;
 import com.j7ss.entity.constraint.DocumentoStatus;
 import com.j7ss.util.BasicView;
 import com.j7ss.util.DAOException;
+import com.j7ss.view.LoginBean;
 
 /**
  * 

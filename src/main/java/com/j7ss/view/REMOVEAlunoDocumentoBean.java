@@ -31,7 +31,7 @@ import com.j7ss.util.WebContext;
  */
 @ManagedBean
 @ViewScoped
-public class AlunoDocumentoBean extends BasicView<Aluno>{
+public class REMOVEAlunoDocumentoBean extends BasicView<Aluno>{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;

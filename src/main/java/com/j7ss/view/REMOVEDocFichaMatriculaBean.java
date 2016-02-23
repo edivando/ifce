@@ -28,7 +28,7 @@ import com.j7ss.entity.constraint.DocumentoKey;
  */
 @ManagedBean
 @ViewScoped
-public class DocFichaMatriculaBean implements Serializable{
+public class REMOVEDocFichaMatriculaBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	

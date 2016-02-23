@@ -59,7 +59,7 @@ public class Documento implements IGenericEntity<Documento> {
 	@Getter @Setter
 	private Boolean extra = false;
 	@Getter @Setter
-	private Boolean estagioObrigatorio = true;
+	private Boolean obrigatorio = true;
 	
 	@Column(columnDefinition="text")
 	@Getter @Setter
@@ -104,8 +104,8 @@ public class Documento implements IGenericEntity<Documento> {
 		return this;
 	}
 	
-	public Documento estagioObrigatorio(Boolean estagioObrigatorio){
-		this.estagioObrigatorio = estagioObrigatorio;
+	public Documento obrigatorio(Boolean obrigatorio){
+		this.obrigatorio = obrigatorio;
 		return this;
 	}
 	

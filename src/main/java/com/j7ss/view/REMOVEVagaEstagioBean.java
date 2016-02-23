@@ -8,12 +8,13 @@
  */
 package com.j7ss.view;
 
-import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import lombok.Getter;
+import com.j7ss.entity.VagaEstagio;
+import com.j7ss.util.BasicView;
 
 /**
  * 
@@ -23,9 +24,16 @@ import lombok.Getter;
  */
 @ManagedBean
 @ViewScoped
-public class HomeBean implements Serializable{
-
+public class REMOVEVagaEstagioBean extends BasicView<VagaEstagio>{
 	private static final long serialVersionUID = 1L;
-	@Getter
-	private String text = "aaaaaa";
+	
+	@Override
+	public VagaEstagio getEntity() {
+		return entity == null ? entity = new VagaEstagio() : entity;
+	}
+	
+	@Override
+	public List<VagaEstagio> getEntitys() {
+		return entitys == null ? entitys = VagaEstagio.findAll() : entitys;
+	}
 }

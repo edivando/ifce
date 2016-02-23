@@ -14,12 +14,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import lombok.Setter;
+
 import com.j7ss.entity.Usuario;
-import com.j7ss.entity.constraint.UsuarioType;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.Messages;
-
-import lombok.Setter;
 
 /**
  * 
@@ -39,7 +38,7 @@ public class PerfilBean implements Serializable{
 	
 	public void update(){
 		try {
-			if(getUsuario().getTipoUsuario().equals(UsuarioType.ALUNO)){
+			if(getUsuario().isTypeAluno()){
 				getUsuario().getAluno().save();
 			}
 			loginBean.getUsuario().save();

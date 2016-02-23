@@ -26,7 +26,7 @@
 	<ui:param name="btnBack" value="true" />
 	<ui:param name="btnSave" value="false" />
 	<ui:param name="btnEdit" value="true" />
-	<ui:param name="btnRemove" value="true" />
+	<ui:param name="btnRemove" value="false" />
 	
 	<ui:define name="contentGrid">
 		<p:column headerText="Nome">
@@ -58,9 +58,7 @@
 	                 <li class="active"><a data-toggle="tab" href="#aluno">Aluno</a></li>
 	                 <li class=""> <a data-toggle="tab" href="#curso">Curso</a> </li>
 	                 <li class=""> <a data-toggle="tab" href="#endereco">Endereço</a> </li>
-	                 <li class=""> <a data-toggle="tab" href="#documentos">Documentos</a> </li>
-	                 <li class=""> <a data-toggle="tab" href="#vagaEstagio">Vaga de Estágio</a> </li>
-	                 <li class=""> <a data-toggle="tab" href="#empresa">Empresa</a> </li>
+	                 <li class=""> <a data-toggle="tab" href="#dadosEstagio">Dados do Estágio</a> </li>
 	             </ul>
 	  		</header>
      		<div class="panel-body">
@@ -87,6 +85,12 @@
 							<ui:param name="aluno" value="#{adminAlunoBean.entity}"/>
 							<ui:param name="disabled" value="true"/>
 						</ui:include> 
+                 	</div>
+                 	<div id="dadosEstagio" class="tab-pane">
+                 		<p:dataTable >
+                 		
+                 		
+                 		</p:dataTable>
                  	</div>
             	</div>
         	</div>

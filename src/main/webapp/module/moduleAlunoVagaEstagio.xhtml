@@ -49,15 +49,26 @@
 				placeholder="Beneficios" disabled="#{disabled}" rendered="false" />	    
 		</div>
   	</div> -->
+    <div class="form-group">
+	    <label for="inputVagaType" class="col-sm-2 control-label"><strong>Tipo de Estágio:</strong></label>
+	    <div class="col-sm-3">
+	    	<h:selectOneMenu id="inputVagaType" value="#{vagaEstagio.type}" style="height: 34px;" styleClass="form-control"
+	    		disabled="#{disabled}">
+	            <f:selectItem itemLabel="Selecione..." itemValue="" />
+	            <f:selectItem itemLabel="Obrigatório" itemValue="OBRIGATORIO" />
+	            <f:selectItem itemLabel="Não Obrigatório" itemValue="NAO_OBRIGATORIO" />
+	        </h:selectOneMenu>			    
+	    </div>
+  	</div>
   	<div class="form-group">
 	    <label for="inputVagaTurno" class="col-sm-2 control-label"><strong>Turno:</strong></label>
-	    <div class="col-sm-8">
-	    	<p:selectOneMenu id="inputVagaTurno" value="#{vagaEstagio.turno}" style="width:200px" disabled="#{disabled}">
+	    <div class="col-sm-3"> 
+	    	<h:selectOneMenu id="inputVagaTurno" value="#{vagaEstagio.turno}" style="height: 34px;" styleClass="form-control" disabled="#{disabled}">
 	            <f:selectItem itemLabel="Selecione..." itemValue="" />
 	            <f:selectItem itemLabel="Manhã" itemValue="MANHA" />
 	            <f:selectItem itemLabel="Tarde" itemValue="TARDE" />
 	            <f:selectItem itemLabel="Noite" itemValue="NOITE" />
-	        </p:selectOneMenu>			    
+	        </h:selectOneMenu>			    
 	    </div>
   	</div>
   	<div class="form-group">
@@ -102,7 +113,7 @@
 	    </div>
    	</div>
   	<div class="form-group">
-	    <label for="inputVagaVigenciaInicio" class="col-sm-2 control-label"><strong>Vigencia - Início:</strong></label>
+	    <label for="inputVagaVigenciaInicio" class="col-sm-2 control-label"><strong>Vigência - Início:</strong></label>
 	    <div class="col-sm-2">
 			<p:inputMask id="inputVagaVigenciaInicio" styleClass="form-control" value="#{vagaEstagio.vigenciaInicio}" mask="99/99/9999"
 				placeholder="Data início do estágio"  disabled="#{disabled}" >
@@ -111,7 +122,7 @@
 	    </div>
    	</div>
    	<div class="form-group">
-	    <label for="inputVagaVigenciaFim" class="col-sm-2 control-label"><strong>Vigencia - Fim:</strong></label>
+	    <label for="inputVagaVigenciaFim" class="col-sm-2 control-label"><strong>Vigência - Fim:</strong></label>
 	    <div class="col-sm-2">
 			<p:inputMask id="inputVagaVigenciaFim" styleClass="form-control" value="#{vagaEstagio.vigenciaFim}" mask="99/99/9999"
 				placeholder="Data final do estágio"  disabled="#{disabled}" >

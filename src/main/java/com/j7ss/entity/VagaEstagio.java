@@ -31,8 +31,10 @@ import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.j7ss.entity.constraint.VagaEstagioAtividadeDiariaStatus;
 import com.j7ss.entity.constraint.VagaEstagioStatus;
 import com.j7ss.entity.constraint.VagaEstagioTurno;
+import com.j7ss.entity.constraint.VagaEstagioType;
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.IGenericEntity;
@@ -90,7 +92,9 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	private String apoliceEmpresa;
 	@Getter @Setter
 	private VagaEstagioStatus status = VagaEstagioStatus.NOVA;
-    
+	@Getter @Setter
+	private VagaEstagioType type = VagaEstagioType.OBRIGATORIO;
+	
 	@ManyToOne
 	@Getter @Setter
 	private Aluno aluno;
@@ -260,6 +264,20 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 			documentos.add(docA.getDocumento());
 		}
 		return documentos;
+	}
+	
+	public Integer getHorasConcluidas(){
+		int value = 0;
+		for (VagaEstagioAtividadeDiaria atividade : getAtividadesDiaria()) {
+			if(atividade.getStatus().equals(VagaEstagioAtividadeDiariaStatus.OK)){
+				value = value + atividade.getQuantidadeHoras();
+			}
+		}
+		return value;
+	}
+	
+	public Integer getDuracaoEstagio(){
+		return getAluno().getCurso().getDuracaoEstagio();
 	}
 	
 	public List<DocumentoVagaEstagio> getDocumentosVagaEstagio() {

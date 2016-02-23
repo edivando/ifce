@@ -33,7 +33,7 @@
 			<span class="label #{entity.emailValido ? 'label-primary' : 'label-danger'}">#{entity.emailValido ? "Sim" : "Não"}</span>
 		</p:column>  
 		<p:column headerText="Ativo" width="140" styleClass="text-center">
-			<p:inplace id="ativo" effectSpeed="fast" editor="true">
+			<p:inplace id="ativo" effectSpeed="fast" editor="true" >
 				<f:facet name="output">
 					<span class="label #{entity.ativo ? 'label-primary' : 'label-danger'}">#{entity.ativo ? "Sim" : "Não"}</span>
 	            </f:facet>
@@ -63,12 +63,12 @@
 		                <p:ajax listener="#{adminUsuarioBean.save(entity)}" update="@form"/>
 		            </h:selectOneMenu>
 		            -
-		            <p:selectOneMenu id="selectOneInstituicao" value="#{entity.instituicao}" rendered="#{entity.tipoUsuario eq 'INSTITUICAO'}" 
+		            <h:selectOneMenu id="selectOneInstituicao" value="#{entity.instituicao}" rendered="#{entity.tipoUsuario eq 'INSTITUICAO'}" 
 		            	converter="#{instituicaoUsuarioConverter}">
-		                <f:selectItem itemLabel="Selecione..." />
+		            	<f:selectItem itemLabel="Selecione..." />
 			            <f:selectItems value="#{adminUsuarioBean.instituicaos}" var="item" itemLabel="#{item.nome}" itemValue="#{item}"/>
-		                <p:ajax listener="#{adminUsuarioBean.save(entity)}"/>
-		            </p:selectOneMenu>
+		                <p:ajax listener="#{adminUsuarioBean.save(entity)}" update="@form"/>
+		            </h:selectOneMenu>
 	            </f:facet>
 	        </p:inplace>
 		</p:column>
@@ -93,8 +93,8 @@
 			<div class="form-group">
 				<label for="inputInstituicao" class="col-sm-2 control-label"><strong>Instituição</strong></label>
 				<div class="col-sm-6">
-					<h:selectOneMenu id="inputInstituicao"  value="#{adminUsuarioBean.entity.instituicao}" styleClass="form-control" style="height: 34px;">
-		                <f:selectItem itemLabel="Selecione..." itemValue="" />
+					<h:selectOneMenu id="inputInstituicao"  value="#{adminUsuarioBean.entity.instituicao}" styleClass="form-control" style="height: 34px;"
+						converter="#{instituicaoUsuarioConverter}">
 		                <f:selectItems value="#{adminUsuarioBean.instituicaos}" var="item" itemLabel="#{item.nome}" itemValue="#{item}"/>
 		            </h:selectOneMenu>
 				</div>
