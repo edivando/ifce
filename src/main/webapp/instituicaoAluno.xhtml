@@ -30,30 +30,34 @@
 	
 	<ui:define name="contentGrid">
 		<p:column headerText="Status" width="100" styleClass="text-center">
-			#{entity.status}
+			<span class="label #{entity.status.color} label-mini">#{entity.status.title}</span>
+			
 		</p:column>
 		<p:column headerText="Nome">
 			#{entity.usuario.nome}
 		</p:column>
-		<p:column headerText="Matrícula" width="150">
+		<p:column headerText="Matrícula" width="150" styleClass="text-center">
 			#{entity.matricula}
 		</p:column>
-		<p:column headerText="Instituição" width="100">
-			#{entity.curso.departamento.campus.instituicao.nome}
+		<p:column headerText="CPF" width="150" styleClass="text-center">
+			#{entity.cpf}
 		</p:column>
-		<p:column headerText="Campus" width="150">
+		<p:column headerText="RG" width="150" styleClass="text-center">
+			#{entity.rg}
+		</p:column>
+		<p:column headerText="Campus" width="120" >
 			#{entity.curso.departamento.campus.nome}
 		</p:column>
-		<p:column headerText="Departamento" width="150">
+		<p:column headerText="Departamento" width="120" >
 			#{entity.curso.departamento.nome}
 		</p:column>
-		<p:column headerText="Curso">
+		<p:column headerText="Curso" width="240" >
 			#{entity.curso.nome}
 		</p:column>
 	</ui:define>
 	
 	<ui:define name="headerFormButton">
-		<p:commandLink  action="#{instituicaoAlunoBean.saveInvalido}" update=":formAll" styleClass="pull-right btn btn-info btn-sm"
+		<p:commandLink  action="#{instituicaoAlunoBean.saveInvalido}" update=":formAll" styleClass="pull-right btn btn-warning btn-sm"
 			style="margin-right: 10px;" >
 			<i class="fa fa-save" />
 			<p:confirm header="Confime" message="Você tem certeza?" icon="ui-icon-alert" />
@@ -68,22 +72,68 @@
 	</ui:define>
 	
 	<ui:define name="contentForm">
-		<ui:include src="/module/moduleUsuario.xhtml">
-			<ui:param name="usuario" value="#{instituicaoAlunoBean.entity.usuario}"/>
-			<ui:param name="disabled" value="true"/>
-		</ui:include>
-		<ui:include src="/module/moduleAluno.xhtml">
-			<ui:param name="aluno" value="#{instituicaoAlunoBean.entity}"/>
-			<ui:param name="disabled" value="true"/>
-		</ui:include>
-		<ui:include src="/module/moduleAlunoCurso.xhtml">
-			<ui:param name="aluno" value="#{instituicaoAlunoBean.entity}"/>
-			<ui:param name="disabled" value="true"/>
-		</ui:include> 
-		<ui:include src="/module/moduleAlunoEndereco.xhtml">
-			<ui:param name="aluno" value="#{instituicaoAlunoBean.entity}"/>
-			<ui:param name="disabled" value="true"/>
-		</ui:include>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><strong>Nome:</strong></label>
+			<div class="col-sm-8">
+				<h:outputText value="#{instituicaoAlunoBean.entity.usuario.nome}" styleClass="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><strong>Email:</strong></label>
+			<div class="col-sm-8">
+				<h:outputText value="#{instituicaoAlunoBean.entity.usuario.email}" styleClass="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><strong>Data de Nascimento:</strong></label>
+			<div class="col-sm-3">
+				<h:outputText styleClass="form-control" value="#{instituicaoAlunoBean.entity.dataNascimento}" >
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputText>	
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><strong>CPF:</strong></label>
+			<div class="col-sm-3">
+				<h:outputText value="#{instituicaoAlunoBean.entity.cpf}" styleClass="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><strong>RG:</strong></label>
+			<div class="col-sm-3">
+				<h:outputText value="#{instituicaoAlunoBean.entity.rg}" styleClass="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><strong>Matrícula:</strong></label>
+			<div class="col-sm-4">
+				<h:outputText value="#{instituicaoAlunoBean.entity.matricula}" styleClass="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><strong>Semestre Atual:</strong></label>
+			<div class="col-sm-2">
+				<h:outputText value="#{instituicaoAlunoBean.entity.semestreAtual}" styleClass="form-control" />
+			</div>
+		</div> 
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><strong>Curso:</strong></label>
+			<div class="col-sm-4">
+				<h:outputText value="#{instituicaoAlunoBean.entity.curso.nome}" styleClass="form-control" />
+			</div>
+		</div>    
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><strong>Departamento:</strong></label>
+			<div class="col-sm-4">
+				<h:outputText value="#{instituicaoAlunoBean.entity.curso.departamento.nome}" styleClass="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><strong>Campus:</strong></label>
+			<div class="col-sm-4">
+				<h:outputText value="#{instituicaoAlunoBean.entity.curso.departamento.campus.nome}" styleClass="form-control" />
+			</div>
+		</div>
 	</ui:define>      
 </ui:composition>
 </html>

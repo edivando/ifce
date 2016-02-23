@@ -21,6 +21,7 @@ import lombok.Setter;
 
 import com.j7ss.entity.Usuario;
 import com.j7ss.util.MD5;
+import com.j7ss.util.Messages;
 import com.j7ss.util.WebContext;
 
 /**
@@ -55,7 +56,7 @@ public class LoginBean implements Serializable{
 				WebContext.redirect(homePage);
 			}else{
 				usuario = new Usuario();
-				FacesContext.getCurrentInstance().addMessage(null, (new FacesMessage(FacesMessage.SEVERITY_WARN, "Desculpe!", "Mas o email ou a senha informada não confere. Tente novamente!")));
+				Messages.showGrowlWarn("Desculpe!", "Mas o email ou a senha informada não confere. Tente novamente!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

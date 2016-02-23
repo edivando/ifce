@@ -60,16 +60,15 @@ public class AlunoCadastroBean implements Serializable {
 					.save();
 			aluno.save();
 			aluno.getUsuario().aluno(aluno).save();
-			
+			Messages.showGrowlInfo("Cadastro de Alunos", "Cadastrado com sucesso!");
 			instituicaos = new ArrayList<>();
 			instituicao = new Instituicao();
 			campus = new Campus();
 			departamento = new Departamento();
 			WebContext.redirect("login.html");
-			Messages.showGrowlInfo("Test", "Test");
-		} catch (Exception e) {
 			
-			Messages.showGrowlInfo("Test", "Test");
+		} catch (Exception e) {
+			Messages.showGrowlErro("Cadastro de Alunos", e.getMessage());
 		}
 	}
 	

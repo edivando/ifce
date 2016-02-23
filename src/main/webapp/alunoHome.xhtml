@@ -256,15 +256,11 @@
 		 			<i class="fa fa-edit text-info" />
 				</p:commandLink>
 				&nbsp;
-				<p:commandLink actionListener="#{alunoHomeBean.removeAtividadeDiaria(atividadeDiaria)}" update=":formAll" styleClass="btn btn-white" >
+				<p:commandLink actionListener="#{alunoHomeBean.removeAtividadeDiaria(atividadeDiaria)}" update="@form" styleClass="btn btn-white" >
 					<i class="fa fa-trash-o text-danger" />
 			        <p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
 			    </p:commandLink>
  
-			    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-			        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-			        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			    </p:confirmDialog>
 			</p:column>
 			<p:column headerText="Status" width="70" styleClass="text-center">
 				#{atividadeDiaria.status}

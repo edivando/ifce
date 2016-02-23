@@ -357,6 +357,10 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return dao.findByQuery("SELECT a FROM Aluno a LEFT JOIN FETCH a.vagasEstagio ve "); 
 	}
 	
+	public static List<Aluno> findByInstituicao(Instituicao instituicao){
+		return dao.findByQuery("SELECT a FROM Aluno a JOIN a.curso c JOIN c.departamento d JOIN d.campus c WHERE c.instituicao = ?1 ", instituicao); 
+	}
+	
 	public static Aluno findByUsuario(Usuario usuario){
 		return dao.findOneByQuery("SELECT a FROM Aluno a WHERE a.usuario = ?1" , usuario);
 	}

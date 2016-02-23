@@ -23,6 +23,7 @@ import com.j7ss.entity.constraint.DocumentoParse;
 import com.j7ss.entity.constraint.DocumentoStatus;
 import com.j7ss.util.BasicView;
 import com.j7ss.util.DAOException;
+import com.j7ss.util.Messages;
 import com.j7ss.view.LoginBean;
 
 /**
@@ -59,8 +60,7 @@ public class InstituicaoDocumentoBean extends BasicView<DocumentoVagaEstagio> {
 			getDocMessage().date(new Date()).usuario(loginBean.getUsuario()).documentoVagaEstagio(entity).save();
 			entity.save();
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Messages.showGrowlErro("Dados do Estágio", e.getMessage());
 		}
 		grid();
 	}
@@ -71,8 +71,7 @@ public class InstituicaoDocumentoBean extends BasicView<DocumentoVagaEstagio> {
 			getDocMessage().date(new Date()).usuario(loginBean.getUsuario()).documentoVagaEstagio(entity).save();
 			entity.save();
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Messages.showGrowlErro("Dados do Estágio", e.getMessage());
 		}
 		grid();
 	}

@@ -171,12 +171,11 @@ public class AdminInstituicaoBean extends BasicView<Instituicao>{
     		try {
     			entity.removeCampus(campus);
 				campus.remove();
+				Messages.showGrowlInfo("Campus", "Campus <strong>{0}</strong> removido com sucesso!", campus.getNome());
 				reloadTree();
 	    		back();
-	    		Messages.showGrowlInfo("Test", "test");
 			} catch (DAOException e) {
-				Messages.showGrowlInfo("Test", "test");
-				e.printStackTrace();
+				Messages.showGrowlErro("Campus", e.getMessage());
 			}
     	}
     }
@@ -186,12 +185,11 @@ public class AdminInstituicaoBean extends BasicView<Instituicao>{
     		try {
 				departamento.remove();
 				departamento.getCampus().removeDepartamento(departamento);
+				Messages.showGrowlInfo("Departamento", "Departamento <strong>{0}</strong> removido com sucesso!", departamento.getNome());
 				reloadTree();
 	    		back();	
-	    		Messages.showGrowlInfo("Test", "test");
 			} catch (DAOException e) {
-				Messages.showGrowlInfo("Test", "test");
-				e.printStackTrace();
+				Messages.showGrowlErro("Departamento", e.getMessage());
 			}
     	}
     }
@@ -201,12 +199,11 @@ public class AdminInstituicaoBean extends BasicView<Instituicao>{
     		try {
     			curso.getDepartamento().removeCurso(curso);
 				curso.remove();
+				Messages.showGrowlInfo("Curso", "Curso <strong>{0}</strong> removido com sucesso!", curso.getNome());
 				reloadTree();
 	    		back();
-	    		Messages.showGrowlInfo("Test", "test");
 			} catch (DAOException e) {
-				Messages.showGrowlInfo("Test", "test");
-				e.printStackTrace();
+				Messages.showGrowlErro("Curso", e.getMessage());
 			}
     	}
     }
@@ -217,12 +214,11 @@ public class AdminInstituicaoBean extends BasicView<Instituicao>{
     			entity.addCampus(campus.save());
     		} 
     		campus.save();
+    		Messages.showGrowlInfo("Campus", "Campus <strong>{0}</strong> salvo com sucesso!", campus.getNome());
     		reloadTree();
     		back();
-    		Messages.showGrowlInfo("Test", "test");
 		} catch (DAOException e) {
-			Messages.showGrowlInfo("Test", "test");
-			e.printStackTrace();
+			Messages.showGrowlErro("Campus", e.getMessage());
 		}
     }
     
@@ -232,12 +228,11 @@ public class AdminInstituicaoBean extends BasicView<Instituicao>{
     			campus.addDepartamento(departamento.save());
     		}
     		departamento.save();
+    		Messages.showGrowlInfo("Departamento", "Departamento <strong>{0}</strong> salvo com sucesso!", departamento.getNome());
     		reloadTree();
     		back();
-    		Messages.showGrowlInfo("Test", "test");
 		} catch (DAOException e) {
-			Messages.showGrowlInfo("Test", "test");
-			e.printStackTrace();
+			Messages.showGrowlErro("Departamento", e.getMessage());
 		}
     }
     
@@ -247,19 +242,18 @@ public class AdminInstituicaoBean extends BasicView<Instituicao>{
     			departamento.addCurso(curso.save());
     		}
 			curso.save();
+			Messages.showGrowlInfo("Curso", "Curso <strong>{0}</strong> salvo com sucesso!", curso.getNome());
 			curso.setDocumentos(pickListDocumentos.getTarget());
     		reloadTree();
     		back();
-    		Messages.showGrowlInfo("Test", "test");
 		} catch (DAOException e) {
-			Messages.showGrowlInfo("Test", "test");
-			e.printStackTrace();
+			Messages.showGrowlErro("Curso", e.getMessage());
 		}
     }
     
 	@Override
 	public void onSave() {
-		Messages.showGrowlInfo("Instituicao", "Instituicao <strong>{0}</strong> salvo com sucesso!", entity.getNome());
+		Messages.showGrowlInfo("Instituicao", "Instituicao <strong>{0}</strong> salva com sucesso!", entity.getNome());
 	}
 	
 	@Override

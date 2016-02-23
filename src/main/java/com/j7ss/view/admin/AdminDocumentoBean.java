@@ -22,6 +22,7 @@ import com.j7ss.entity.Documento;
 import com.j7ss.entity.constraint.DocumentoKey;
 import com.j7ss.util.BasicView;
 import com.j7ss.util.DAOException;
+import com.j7ss.util.Messages;
 
 /**
  * 
@@ -44,6 +45,16 @@ public class AdminDocumentoBean extends BasicView<Documento>{
 	@Override
 	public List<Documento> getEntitys() {
 		return entitys == null ? entitys = Documento.findAll() : entitys;
+	}
+	
+	@Override
+	public void onSave() {
+		Messages.showGrowlInfo("Documentos", "Documento <strong>{0}</strong> salvo com sucesso!", entity.getNome());
+	}
+	
+	@Override
+	public void onRemove(Documento entity) {
+		Messages.showGrowlInfo("Documentos", "Documento <strong>{0}</strong> removido com sucesso!", entity.getNome());
 	}
 	
 	@Override

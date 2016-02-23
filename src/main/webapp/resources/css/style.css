@@ -5710,3 +5710,25 @@ right: -1px;
     -o-transition: none;
     transition: none;
 }
+
+
+/* Primefaces */
+.ui-growl {   
+    position:fixed;
+    top: 86%;
+    width: 360px;
+}
+
+.ui-growl-message {
+    width: 290px;
+}
+
+.ui-growl-title {
+    font: 19px "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+}
+
+.ui-growl-message p {
+    font: 13px "Lucida Console", Monaco, monospace;
+    letter-spacing: -1px;
+}

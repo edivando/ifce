@@ -6,14 +6,9 @@
  * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
  * 
  */
-package com.j7ss.view;
+package com.j7ss.util.email;
 
-import java.io.Serializable;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
-import lombok.Getter;
+import java.util.Properties;
 
 /**
  * 
@@ -21,11 +16,12 @@ import lombok.Getter;
  * @date  10/02/2016
  * 
  */
-@ManagedBean
-@ViewScoped
-public class REMOVEHomeBean implements Serializable{
-
+public class MailProperties extends Properties{
 	private static final long serialVersionUID = 1L;
-	@Getter
-	private String text = "aaaaaa";
+	
+	public MailProperties() {
+		put("mail.smtp.port", "587");
+		put("mail.smtp.auth", "true");
+		put("mail.smtp.starttls.enable", "true");
+	}
 }

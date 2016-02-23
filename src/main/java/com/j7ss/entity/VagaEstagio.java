@@ -87,7 +87,7 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	@Getter @Setter
 	private Double valorTransporte;
 	@Getter @Setter
-    private Integer apoliceNumero;
+    private String apoliceNumero;
 	@Getter @Setter
 	private String apoliceEmpresa;
 	@Getter @Setter
@@ -208,7 +208,7 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 		return this;
 	}
 	
-	public VagaEstagio apoliceNumero(Integer apoliceNumero){
+	public VagaEstagio apoliceNumero(String apoliceNumero){
 		this.apoliceNumero = apoliceNumero;
 		return this;
 	}

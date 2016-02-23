@@ -11,12 +11,17 @@ package com.j7ss.view.instituicao;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+
+import lombok.Setter;
 
 import com.j7ss.entity.Aluno;
 import com.j7ss.entity.constraint.AlunoStatus;
 import com.j7ss.util.BasicView;
 import com.j7ss.util.DAOException;
+import com.j7ss.util.Messages;
+import com.j7ss.view.LoginBean;
 
 /**
  * 
@@ -29,6 +34,10 @@ import com.j7ss.util.DAOException;
 public class InstituicaoAlunoBean extends BasicView<Aluno>{
 	private static final long serialVersionUID = 1L;
 	
+	@Setter
+	@ManagedProperty(value="#{loginBean}")
+	private LoginBean loginBean;
+	
 	@Override
 	public Aluno getEntity() {
 		return entity == null ? entity = new Aluno() : entity;
@@ -36,20 +45,20 @@ public class InstituicaoAlunoBean extends BasicView<Aluno>{
 	
 	@Override
 	public List<Aluno> getEntitys() {
-		return entitys == null ? entitys = Aluno.findAll() : entitys;
+		return entitys == null ? entitys = Aluno.findByInstituicao(loginBean.getUsuario().getInstituicao()) : entitys;
 	}
 	
 	@Override
 	public void remove(Aluno entity) {
-		// Nao pode remover aluno
+		Messages.showGrowlFatal("Aluno", "Ação indisponível!");
 	}
 	
 	public void saveValido(){
 		try {
 			entity.status(AlunoStatus.VALIDO).save();
+			Messages.showGrowlInfo("Aluno", "Aluno válido");
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Messages.showGrowlErro("Aluno", e.getMessage());
 		}
 		grid();
 	}
@@ -57,9 +66,9 @@ public class InstituicaoAlunoBean extends BasicView<Aluno>{
 	public void saveInvalido(){
 		try {
 			entity.status(AlunoStatus.INVALIDO).save();
+			Messages.showGrowlInfo("Aluno", "Aluno inválido");
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Messages.showGrowlErro("Aluno", e.getMessage());
 		}
 		grid();
 	}
@@ -67,9 +76,9 @@ public class InstituicaoAlunoBean extends BasicView<Aluno>{
 	public void saveDesativar(){
 		try {
 			entity.getUsuario().ativo(false).save();
+			Messages.showGrowlInfo("Aluno", "Aluno será desativado e não poderá usar o sistema.");
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Messages.showGrowlErro("Aluno", e.getMessage());
 		}
 		grid();
 	}

@@ -42,9 +42,9 @@ public class PerfilBean implements Serializable{
 				getUsuario().getAluno().save();
 			}
 			loginBean.getUsuario().save();
-			Messages.showGrowlInfo("Tdsfs", "sadasda");
+			Messages.showGrowlInfo("Meu Perfil", "Meu Perfil salvo com sucesso!");
 		} catch (DAOException e) {
-			Messages.showGrowlInfo("Tdsfs", "sadasda");
+			Messages.showGrowlInfo("Meu Perfil", e.getMessage());
 			e.printStackTrace();
 		}
 	}

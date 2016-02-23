@@ -26,6 +26,7 @@ import com.j7ss.entity.VagaEstagioAtividadeDiaria;
 import com.j7ss.entity.constraint.DocumentoParse;
 import com.j7ss.entity.constraint.DocumentoStatus;
 import com.j7ss.util.DAOException;
+import com.j7ss.util.Messages;
 import com.j7ss.view.LoginBean;
 
 /**
@@ -166,8 +167,9 @@ public class AlunoHomeBean implements Serializable{
 	public void save(){
 		try {
 			vagaEstagio.save();
+			Messages.showGrowlInfo("Dados do Estágio", "Atualizado!");
 		} catch (DAOException e) {
-			e.printStackTrace();
+			Messages.showGrowlErro("Dados do Estágio", e.getMessage());
 		}
 		grid();
 	}
@@ -179,8 +181,9 @@ public class AlunoHomeBean implements Serializable{
 			}else{
 				atividadeDiaria.save();
 			}
+			Messages.showGrowlInfo("Atividade Diária", "Salva com sucesso!");
 		} catch (DAOException e) {
-			e.printStackTrace();
+			Messages.showGrowlErro("Atividade Diária", e.getMessage());
 		}
 		gridAtividade();
 	}
@@ -188,10 +191,11 @@ public class AlunoHomeBean implements Serializable{
 	public void removeAtividadeDiaria(VagaEstagioAtividadeDiaria atividadeDiaria){
 		try {
 			if(atividadeDiaria.remove()){
+				vagaEstagio.getAtividadesDiaria().remove(atividadeDiaria);
 				System.out.println("Removed");
 			}
 		} catch (DAOException e) {
-			e.printStackTrace();
+			Messages.showGrowlErro("Atividade Diária", e.getMessage());
 		}
 		gridAtividade();
 	}
@@ -220,21 +224,17 @@ public class AlunoHomeBean implements Serializable{
 		return loginBean.getUsuario().getAluno().getCurso().getDocumentoCursos();
 	}
 	
-	
-	
-	
 	public void saveDocumento(DocumentoStatus status){
 		try {
 			documentoVagaEstagio.status(status).save();
+			Messages.showGrowlInfo("Documentos", "Atualizado!");
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Messages.showGrowlErro("Documentos", e.getMessage());
 		}
 	}
 	
 	public String getDocPage() {
 		if(docPage == null){
-//			setDocumentoAluno();
 			docPage = new DocumentoParse(documentoVagaEstagio).toPage();
 		}
 		return docPage;
@@ -243,35 +243,5 @@ public class AlunoHomeBean implements Serializable{
 	public void setDocumentoVagaEstagio(DocumentoVagaEstagio documentoVagaEstagio) {
 		this.documentoVagaEstagio = documentoVagaEstagio;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-//	private void setDocumentoAluno(){
-//		documentoVagaEstagio = getDocumentoVagaEstagio();
-//		if(documentoVagaEstagio == null){
-//			for (Documento doc : loginBean.getUsuario().getAluno().getCurso().getDocumentos()) {
-//				if(doc.getId().equals(id)){
-//					//TODO: AlunoVagaEstagioBean + AlunoHomeBean + AlunoDocumentoBean + AlunoAtividadeDiaria
-////					documentoVagaEstagio = new DocumentoVagaEstagio(loginBean.getUsuario().getAluno())
-////										.documento(doc)
-////										.ordem(loginBean.getUsuario().getAluno().getDocumentos().size())
-////										.status(DocumentoStatus.DISPONIVEL);
-////					try {
-////						loginBean.getUsuario().getAluno().addDocumento(documentoAluno);
-////					} catch (DAOException e) {
-////						// TODO Auto-generated catch block
-////						e.printStackTrace();
-////					}
-//				}
-//			}
-//		}
-//	}
-//	
-//	
 
 }

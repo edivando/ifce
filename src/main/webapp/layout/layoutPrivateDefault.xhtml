@@ -28,13 +28,17 @@
 		       		<div class="row">
 		                <div class="col-md-12">
 		                    <ul class="breadcrumb">
-		                        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+		                        <li><a href="#{loginBean.homeLink}"><i class="fa fa-home"></i> Home</a></li>
 		                        <li class="active"><a href="#{headerLink}">#{headerTitle}</a></li>
 		                    </ul>
 		                </div>
 		            </div>
-		        	<p:growl id="growl" for="growl" showDetail="true" globalOnly="true" escape="false"/>
+		        	<p:growl id="growl" showDetail="true" globalOnly="true" escape="false"/>
 					<p:messages id="messages" for="messages" showDetail="false" showSummary="true" closable="true" />
+				    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+				        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				    </p:confirmDialog>
 		       		<ui:insert name="container"/>
 		       	</h:form>
 	        </section>

@@ -28,15 +28,18 @@
   		<ul class="nav navbar-nav">
 			<li><a href="adminAluno.html">Alunos</a></li>
 			<li><a href="adminDocumento.html">Documento</a></li>
-			<!-- <li><a href="empresa.html">Empresas</a></li> -->
 			<li><a href="adminInstituicao.html">Instituíções</a></li>
 			<li><a href="adminUsuario.html">Usuários</a></li>
-			<!-- <li><a href="vaga_estagio.html">Vagas de Estágio</a></li> -->
       	</ul>
  	</p:outputPanel>
 	        	
   	<!-- Menu Instituicao -->
- 	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario == 'INSTITUICAO'}"> </p:outputPanel>
+ 	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario == 'INSTITUICAO'}"> 
+ 		<ul class="nav navbar-nav">
+			<li><a href="instituicaoAluno.html">Alunos</a></li>
+			<li><a href="instituicaoDocumento.html">Documentos</a></li>
+      	</ul>
+ 	</p:outputPanel>
  	
  	<!-- Menu Aluno -->
  	<p:outputPanel rendered="#{loginBean.usuario.tipoUsuario == 'ALUNO'}"> 
@@ -51,18 +54,16 @@
 	        
 </div>
 
-
 <div class="top-nav clearfix">
     <ul class="nav pull-right top-menu">
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="resources/images/avatar1_small.jpg"/>
                 <span class="username">
-                	#{loginBean.usuario.nome} <h:outputFormat value="/ #{loginBean.usuario.instituicao.nome}" rendered="#{loginBean.usuario.tipoUsuario eq 'INSTITUICAO'}"/> 
+                	#{loginBean.usuario.nome} <h:outputFormat value=" / #{loginBean.usuario.instituicao.nome}" rendered="#{loginBean.usuario.typeInstituicao}"/> 
                 </span>
                 <b class="caret"></b>
             </a>
-
             <ul class="dropdown-menu extended logout">
                 <li><a href="perfil.html"><i class=" fa fa-user"> </i>Meu Perfil</a></li>
                 <li><a href="javascript:logoff();"><i class="fa fa-sign-out"></i>Sair</a></li>
