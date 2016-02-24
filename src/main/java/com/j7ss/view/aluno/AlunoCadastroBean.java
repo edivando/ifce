@@ -63,11 +63,11 @@ public class AlunoCadastroBean implements Serializable {
 			aluno.save();
 			aluno.getUsuario().aluno(aluno).save();
 			
-			// Enviar email
-			new MailApi()
-				.to(aluno.getUsuario().getEmail(), aluno.getUsuario().getNome())
-				.message("IFCE Estágio: Confirme seu cadastro!", MailTemplate.confirmEmail(aluno.getUsuario()))
-				.send();
+//			// Enviar email
+//			new MailApi()
+//				.to(aluno.getUsuario().getEmail(), aluno.getUsuario().getNome())
+//				.message("IFCE Estágio: Confirme seu cadastro!", MailTemplate.confirmEmail(aluno.getUsuario()))
+//				.send();
 			
 			Messages.showGrowlInfo("Cadastro de Alunos", "Cadastrado com sucesso!");
 			instituicaos = new ArrayList<>();
