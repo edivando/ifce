@@ -89,7 +89,10 @@ public class AdminDocumentoBean extends BasicView<Documento>{
     	if(!htmlPage.equals("")){
     		setKeys();
         	try {
-        		entity.save();
+        		if(entity.getNome() != null && !entity.getNome().isEmpty() && entity.getTitulo() != null && !entity.getTitulo().isEmpty() && 
+        				entity.getDescricao() != null && !entity.getDescricao().isEmpty()){
+        			entity.save();
+        		}
         	} catch (DAOException e) {
         	}
     	}

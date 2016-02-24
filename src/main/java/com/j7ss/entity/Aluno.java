@@ -182,8 +182,7 @@ public class Aluno implements IGenericEntity<Aluno>{
 	
 	public Aluno addVagaEstagio(VagaEstagio vagaEstagio) throws DAOException{
 		getVagasEstagio().add(vagaEstagio.aluno(this).save());
-		save();
-		return this;
+		return save();
 	}
 	
 	public Aluno status(AlunoStatus status){
@@ -199,8 +198,12 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return id == null;
 	}
 	
-	public boolean isValido() {
+	public boolean isStatusValido() {
 		return status.equals(AlunoStatus.VALIDO);
+	}
+	
+	public boolean isStatusInvalido(){
+		return status.equals(AlunoStatus.INVALIDO);
 	}
 	
 	public boolean isWizardAlunoInfo(){
@@ -337,7 +340,7 @@ public class Aluno implements IGenericEntity<Aluno>{
 	public List<VagaEstagio> getVagasEstagio() {
 		return vagasEstagio == null ? vagasEstagio = new ArrayList<>() : vagasEstagio;
 	}
-	
+
 	
 //******************************************************************************************************************************
 //## DAO

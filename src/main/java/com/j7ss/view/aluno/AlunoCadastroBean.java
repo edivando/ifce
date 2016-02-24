@@ -27,6 +27,8 @@ import com.j7ss.entity.constraint.UsuarioType;
 import com.j7ss.util.MD5;
 import com.j7ss.util.Messages;
 import com.j7ss.util.WebContext;
+import com.j7ss.util.email.MailApi;
+import com.j7ss.util.email.MailTemplate;
 
 /**
  * 
@@ -60,6 +62,13 @@ public class AlunoCadastroBean implements Serializable {
 					.save();
 			aluno.save();
 			aluno.getUsuario().aluno(aluno).save();
+			
+			// Enviar email
+			new MailApi()
+				.to(aluno.getUsuario().getEmail(), aluno.getUsuario().getNome())
+				.message("IFCE Estágio: Confirme seu cadastro!", MailTemplate.confirmEmail(aluno.getUsuario()))
+				.send();
+			
 			Messages.showGrowlInfo("Cadastro de Alunos", "Cadastrado com sucesso!");
 			instituicaos = new ArrayList<>();
 			instituicao = new Instituicao();

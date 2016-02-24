@@ -20,8 +20,22 @@
 	<ui:define name="title">Estágio</ui:define>
 	<ui:define name="container">
 	
+		<p:outputPanel styleClass="alert alert-warning fade in" rendered="#{!loginBean.usuario.ativo}">
+			<button data-dismiss="alert" class="close close-sm" type="button">
+		        <i class="fa fa-times"></i>
+		    </button>
+		    <strong>Atenção!</strong> Seu email: '#{loginBean.usuario.email}' não foi confirmado, verifique seu email, e confirme.
+		</p:outputPanel>
+		
+		<p:outputPanel styleClass="alert alert-warning fade in" rendered="#{loginBean.usuario.aluno.statusInvalido}">
+			<button data-dismiss="alert" class="close close-sm" type="button">
+		        <i class="fa fa-times"></i>
+		    </button>
+		    <strong>Atenção!</strong> Seu cadastra não foi validado pela instituição, favor verificar e corrigir seus dados.
+		</p:outputPanel>
+	
+	
 		<p:outputPanel rendered="#{alunoHomeBean.grid}">
-			
 			<p:commandLink styleClass="btn btn-info pull-right" rendered="false">
 				<i class="fa fa-plus"/>
 				Novo Estágio

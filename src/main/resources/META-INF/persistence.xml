@@ -12,10 +12,10 @@
 			<!-- OpenShift -->
 			<property name="hibernate.connection.url" value="jdbc:postgresql://127.6.177.2:5432/ifce"/>
 			<property name="javax.persistence.jdbc.user" value="admin9eg1unf" />
-			<property name="javax.persistence.jdbc.password" value="3-bU-QdK-Qx5" />
+			<property name="javax.persistence.jdbc.password" value="3-bU-QdK-Qx5" /> 
 
 			<!-- Local -->
-<!-- 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/ifce_0" />
+			<!-- <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/ifce_0" />
 			<property name="hibernate.connection.username" value="postgres" />
 			<property name="hibernate.connection.password" value="123" /> -->
 			

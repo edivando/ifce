@@ -54,6 +54,11 @@ public class MailApi{
 		return this;
 	}
 	
+	public MailApi message(String subject, String content) throws MailApiException{
+		return subject(subject).content(content);
+	}
+
+	
 	public MailApi cc(String email, String name) throws MailApiException{
 		try {
 			message.addRecipient(Message.RecipientType.CC, new InternetAddress(email, name));
@@ -92,11 +97,15 @@ public class MailApi{
 		}
 	}
 	
+	
+	
+	
+	
 	public static void main(String[] args) {
 		try {
 			new MailApi()
 				.subject("Test envio de email")
-				.content("Conteudo do email")
+				.content("Conteudo do email <strong>Test sadfad a</strong>   <i>Tests</i>")
 				.to("edivando7@gmail.com", "Edivando Alves")
 //				.to("charles.aragaohb@gmail.com", "Charlie Hebdoo")
 				.send();
