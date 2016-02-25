@@ -23,6 +23,5 @@ public class MailProperties extends Properties{
 		put("mail.smtp.port", "587");
 		put("mail.smtp.auth", "true");
 		put("mail.smtp.starttls.enable", "true");
-		put("mail.smtp.auth", "false");
 	}
 }
