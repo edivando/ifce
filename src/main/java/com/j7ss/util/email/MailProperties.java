@@ -21,8 +21,13 @@ public class MailProperties extends Properties{
 	
 	public MailProperties() {
 //		put("mail.smtp.port", "587");
-		put("mail.smtp.port", "25");
-		put("mail.smtp.auth", "true");
-		put("mail.smtp.starttls.enable", "true");
+//		put("mail.smtp.auth", "true");
+//		put("mail.smtp.starttls.enable", "true");
+		
+		put("mail.smtp.host", "smtp.gmail.com");
+        put("mail.smtp.socketFactory.port", "465");
+        put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        put("mail.smtp.auth", "true");
+        put("mail.smtp.port", "465");
 	}
 }
