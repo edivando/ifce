@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -49,22 +50,36 @@ public class Campus implements IGenericEntity<Campus>{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
 	@Getter @Setter  
 	private String nome;
+	
+	@Column(length=20)
 	@Getter @Setter
 	private String telefone;
+	
+	@Column(length=80)   
 	@Getter @Setter
 	private String email;
+	
 	@Getter @Setter
 	private String endereco;
+	
+	@Column(length=10)
 	@Getter @Setter
 	private String numero;
+	
 	@Getter @Setter
 	private String bairro;
+	
+	@Column(length=10)
 	@Getter @Setter
 	private String cep;
+	
+	@Column(length=2)
 	@Getter @Setter
 	private String uf;
+	
 	@Getter @Setter
 	private String cidade;
 	

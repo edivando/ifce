@@ -52,8 +52,10 @@ public class DocumentoVagaEstagio implements IGenericEntity<DocumentoVagaEstagio
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
 	@Getter @Setter
 	private Integer ordem;
+	
 	@Getter @Setter
 	private DocumentoStatus status;
 

@@ -20,6 +20,7 @@ import org.primefaces.event.FlowEvent;
 
 import com.j7ss.entity.Aluno;
 import com.j7ss.entity.VagaEstagio;
+import com.j7ss.entity.constraint.AlunoStatus;
 import com.j7ss.util.Messages;
 import com.j7ss.util.WebContext;
 import com.j7ss.view.LoginBean;
@@ -62,6 +63,7 @@ public class AlunoCompleteCadastroBean implements Serializable{
 
 	public void concluir(){
 		try {
+			loginBean.getUsuario().getAluno().status(AlunoStatus.VERIFICAR).save();
 			WebContext.redirect("alunoHome.html");
 		} catch (Exception e) {
 			Messages.showGrowlErro("Cadastro de Aluno", e.getMessage());

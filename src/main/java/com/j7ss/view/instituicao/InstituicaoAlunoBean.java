@@ -45,7 +45,7 @@ public class InstituicaoAlunoBean extends BasicView<Aluno>{
 	
 	@Override
 	public List<Aluno> getEntitys() {
-		return entitys == null ? entitys = Aluno.findByInstituicao(loginBean.getUsuario().getInstituicao()) : entitys;
+		return entitys == null ? entitys = Aluno.findByInstituicaoNotStatus(loginBean.getUsuario().getInstituicao(), AlunoStatus.NOVO) : entitys;
 	}
 	
 	@Override

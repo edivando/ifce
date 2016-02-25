@@ -45,11 +45,14 @@ public class DocumentoVagaEstagioMessage implements IGenericEntity<DocumentoVaga
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
 	@Column(columnDefinition="text")
 	@Getter @Setter
 	private String message;
+	
 	@Getter @Setter
 	private Date date;
+	
 	@Getter @Setter
 	private DocumentoStatus status;
 	

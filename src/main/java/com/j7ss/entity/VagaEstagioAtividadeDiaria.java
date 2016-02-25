@@ -45,10 +45,13 @@ public class VagaEstagioAtividadeDiaria implements IGenericEntity<VagaEstagioAti
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
 	@Getter @Setter
 	private Date date;
+	
 	@Getter @Setter
 	private String descricao;
+	
 	@Getter @Setter
 	private Integer quantidadeHoras;
 	

@@ -5,6 +5,7 @@ import lombok.Getter;
 public enum AlunoStatus {
 
 	NOVO("label-primary", "Novo"), 
+	VERIFICAR("label-warning", "Verificar"),
 	VALIDO("label-success", "Válido"), 
 	INVALIDO("label-danger", "Inválido");
 	

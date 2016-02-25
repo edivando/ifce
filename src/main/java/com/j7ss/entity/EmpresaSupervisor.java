@@ -10,6 +10,7 @@ package com.j7ss.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,10 +44,14 @@ public class EmpresaSupervisor implements IGenericEntity<EmpresaSupervisor> {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
 	@Getter @Setter
 	private String supervisor;
+	
 	@Getter @Setter
 	private String cargoSupervisor;
+	
+	@Column(length=20)
 	@Getter @Setter
 	private String telefoneSupervisor;
 		

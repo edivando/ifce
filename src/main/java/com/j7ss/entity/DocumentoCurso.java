@@ -41,6 +41,7 @@ public class DocumentoCurso implements IGenericEntity<DocumentoCurso> {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
 	@Getter @Setter
 	private Integer ordem;
 

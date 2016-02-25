@@ -45,19 +45,24 @@ public class Documento implements IGenericEntity<Documento> {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
 	@Getter @Setter
 	private String nome;
+	
 	@Getter @Setter
 	private String titulo;
+	
 	@Column(columnDefinition="text")
 	@Getter @Setter
 	private String descricao;
+	
 	@Column(columnDefinition="text")
 	@Getter @Setter
 	private String htmlPage;
 	
 	@Getter @Setter
 	private Boolean extra = false;
+	
 	@Getter @Setter
 	private Boolean obrigatorio = true;
 	

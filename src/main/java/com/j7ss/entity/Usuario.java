@@ -10,6 +10,7 @@ package com.j7ss.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,16 +45,23 @@ public class Usuario implements IGenericEntity<Usuario>{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
 	@Getter @Setter
 	private String nome;
+	
+	@Column(unique=true, length=80)
 	@Getter @Setter
 	private String email;
+	
 	@Getter @Setter
 	private String senha;
+	
 	@Getter @Setter
 	private UsuarioType tipoUsuario;
+	
 	@Getter @Setter
 	private Boolean emailValido = false;
+	
 	@Getter @Setter
 	private Boolean ativo = true;
 	

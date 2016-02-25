@@ -33,40 +33,22 @@
 	                </header>
 	                <div class="panel-body">
 	                	<h:form>
-           			    	<div class="form-horizontal">
+              				<div class="form-horizontal">
 	                			<div class="form-group">
-								    <label for="instituicao" class="col-sm-3 control-label"><strong>Instituição:</strong></label>
+								    <label for="campus" class="col-sm-3 control-label"><strong>Campus:</strong></label>
 								    <div class="col-sm-8">	
-								    	<p:autoComplete id="instituicao" value="#{alunoCadastroBean.instituicao}" minQueryLength="2" effect="fade" 
-								    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchInstituicao}" size="42" required="true"
-								    		requiredMessage="Você deve informar sua instituição de ensino!" placeholder="Qual sua Instituição de Ensino?"
-								    		var="inst" itemLabel="#{inst.nome}" itemValue="#{inst}" converter="#{instituicaoConverter}">
-								    		<p:ajax event="itemSelect" update="@all" />
-								    	</p:autoComplete>
+								    	<p:autoComplete id="campus" value="#{alunoCadastroBean.campus}" minQueryLength="2" effect="fade" 
+								    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchCampus}"  required="true"
+								    		placeholder="Qual seu Campus?" inputStyleClass="form-control" size="44"
+								    		var="item" itemLabel="#{item.nome}" itemValue="#{item}" converter="#{campusConverter}">
+								    		<p:ajax event="itemSelect" update="@all" />	  
+								    	</p:autoComplete>  
 								    </div>
 								    <div class="col-sm-1">
-										<p:message for="instituicao" display="icon" />
+										<p:message for="campus" display="icon"/>
 									</div>
 						    	</div>
 	                		</div>
-	                		<p:outputPanel id="campusPanel" rendered="#{!alunoCadastroBean.instituicao.isNew()}">
-               					<div class="form-horizontal">
-		                			<div class="form-group">
-									    <label for="campus" class="col-sm-3 control-label"><strong>Campus:</strong></label>
-									    <div class="col-sm-8">	
-									    	<p:autoComplete id="campus" value="#{alunoCadastroBean.campus}" minQueryLength="2" effect="fade" 
-									    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchCampus}"  required="true"
-									    		size="42" placeholder="Qual seu Campus?"
-									    		var="item" itemLabel="#{item.nome}" itemValue="#{item}" converter="#{campusConverter}">
-									    		<p:ajax event="itemSelect" update="@all" />	  
-									    	</p:autoComplete>  
-									    </div>
-									    <div class="col-sm-1">
-											<p:message for="campus" display="icon"/>
-										</div>
-							    	</div>
-		                		</div>
-	                		</p:outputPanel>
 	                		<p:outputPanel id="departamentoPanel" rendered="#{!alunoCadastroBean.campus.isNew()}">
                					<div class="form-horizontal">
 		                			<div class="form-group">
@@ -74,7 +56,7 @@
 									    <div class="col-sm-8">	
 									    	<p:autoComplete id="departamento" value="#{alunoCadastroBean.departamento}" minQueryLength="2" effect="fade" 
 									    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchDepartamentos}"  required="true"
-									    		size="42" placeholder="Qual seu departamento?"
+									    		placeholder="Qual seu departamento?" inputStyleClass="form-control" size="44"
 									    		var="item" itemLabel="#{item.nome}" itemValue="#{item}" converter="#{departamentoConverter}" >
 									    		<p:ajax event="itemSelect" update="@all" />	  
 									    	</p:autoComplete> 
@@ -92,7 +74,8 @@
 									    <div class="col-sm-8">	
 									    	<p:autoComplete id="curso" value="#{alunoCadastroBean.aluno.curso}" minQueryLength="2" effect="fade" 
 									    		forceSelection="true" completeMethod="#{alunoCadastroBean.searchCursos}"  required="true"
-									    		requiredMessage="Você deve informar o seu curso" size="42" placeholder="Qual seu Curso?"
+									    		requiredMessage="Você deve informar o seu curso" placeholder="Qual seu Curso?"
+									    		inputStyleClass="form-control" size="44"
 									    		var="item" itemLabel="#{item.nome}" itemValue="#{item}" converter="#{cursoConverter}" >
 									    		<p:ajax event="itemSelect" update="@all" />	  
 									    	</p:autoComplete> 

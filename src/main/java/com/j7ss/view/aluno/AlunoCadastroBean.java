@@ -9,9 +9,9 @@
 package com.j7ss.view.aluno;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -44,7 +44,7 @@ public class AlunoCadastroBean implements Serializable {
 	@Setter
 	private Aluno aluno;
 	
-	List<Instituicao> instituicaos = new ArrayList<>();
+//	List<Instituicao> instituicaos = new ArrayList<>();
 	
 	@Getter @Setter
 	private Instituicao instituicao = new Instituicao();
@@ -52,6 +52,14 @@ public class AlunoCadastroBean implements Serializable {
 	private Campus campus = new Campus();
 	@Getter @Setter
 	private Departamento departamento = new Departamento();
+	
+	@PostConstruct
+	public void init(){
+		List<Instituicao> list = Instituicao.findAll();
+		if(list != null && list.size() > 0){
+			instituicao = list.get(0);
+		}
+	}
 	
 	public void save(){
 		try {
@@ -63,14 +71,14 @@ public class AlunoCadastroBean implements Serializable {
 			aluno.save();
 			aluno.getUsuario().aluno(aluno).save();
 			
-//			// Enviar email
-//			new MailApi()
-//				.to(aluno.getUsuario().getEmail(), aluno.getUsuario().getNome())
-//				.message("IFCE Estágio: Confirme seu cadastro!", MailTemplate.confirmEmail(aluno.getUsuario()))
-//				.send();
+			// Enviar email
+			new MailApi()
+				.to(aluno.getUsuario().getEmail(), aluno.getUsuario().getNome())
+				.message("IFCE Estágio: Confirme seu cadastro!", MailTemplate.confirmEmail(aluno.getUsuario()))
+				.send();
 			
 			Messages.showGrowlInfo("Cadastro de Alunos", "Cadastrado com sucesso!");
-			instituicaos = new ArrayList<>();
+//			instituicaos = new ArrayList<>();
 			instituicao = new Instituicao();
 			campus = new Campus();
 			departamento = new Departamento();
@@ -85,9 +93,9 @@ public class AlunoCadastroBean implements Serializable {
 		return aluno == null ? aluno = new Aluno() : aluno;
 	}
 	
-	public List<Instituicao> searchInstituicao(String nome){
-		return instituicaos = Instituicao.findByNomeLike(nome);
-	}
+//	public List<Instituicao> searchInstituicao(String nome){
+//		return instituicaos = Instituicao.findByNomeLike(nome);
+//	}
 	
 	public List<Campus> searchCampus(String nome){
 		return Campus.findByNomeLike(instituicao, nome);
@@ -104,12 +112,12 @@ public class AlunoCadastroBean implements Serializable {
 	
 	//########
 	// Converts
-	public Instituicao getInstituicaoByNome(String nome){
-		for (Instituicao instituicao : instituicaos) {
-			if(instituicao.getNome().equals(nome)) return instituicao;
-		}
-		return null;
-	}
+//	public Instituicao getInstituicaoByNome(String nome){
+//		for (Instituicao instituicao : instituicaos) {
+//			if(instituicao.getNome().equals(nome)) return instituicao;
+//		}
+//		return null;
+//	}
 	
 	public Campus getCampusByNome(String nome){
 		if(instituicao != null){

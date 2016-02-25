@@ -56,42 +56,61 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
 	@Getter @Setter
 	private String nome;
+	
 	@Getter @Setter
 	private String descricao;
+	
 	@Getter @Setter
 	private String requisitos;
+	
 	@Getter @Setter
 	private String atividades;
+	
 	@Getter @Setter
 	private String beneficios;
+	
 	@Getter @Setter
 	private Integer cargaHoraria;
+	
 	@Getter @Setter
 	private Double remuneracao;
+	
 	@Getter @Setter
 	private VagaEstagioTurno turno;
+	
 	@Getter @Setter
 	private Date horaInicioEstagio;
+	
 	@Getter @Setter
 	private Date horaFimOuIntervalo;
+	
 	@Getter @Setter
 	private Date horaRetorno;
+	
 	@Getter @Setter
 	private Date horaFimEstagio;
+	
 	@Getter @Setter
 	private Date vigenciaInicio;
+	
 	@Getter @Setter
 	private Date vigenciaFim;
+	
 	@Getter @Setter
 	private Double valorTransporte;
+	
 	@Getter @Setter
     private String apoliceNumero;
+	
 	@Getter @Setter
 	private String apoliceEmpresa;
+	
 	@Getter @Setter
 	private VagaEstagioStatus status = VagaEstagioStatus.NOVA;
+	
 	@Getter @Setter
 	private VagaEstagioType type = VagaEstagioType.OBRIGATORIO;
 	

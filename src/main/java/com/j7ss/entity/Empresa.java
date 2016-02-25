@@ -10,6 +10,7 @@ package com.j7ss.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,30 +44,50 @@ public class Empresa implements IGenericEntity<Empresa>{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
 	@Getter @Setter
 	private String nome;
+	
+	@Column(length=80)
 	@Getter @Setter
 	private String email;
+	
+	@Column(length=20)
 	@Getter @Setter
 	private String telefone;
+	
+	@Column(length=20)
 	@Getter @Setter
 	private String fax;
+	
+	@Column(length=20)
 	@Getter @Setter
 	private String cnpj;
+	
 	@Getter @Setter
 	private String site;
+	
 	@Getter @Setter
 	private String ramoAtividade;
+	
 	@Getter @Setter
 	private String endereco;
+	
+	@Column(length=10)
 	@Getter @Setter
 	private String numero;
+	
 	@Getter @Setter
 	private String bairro;
+	
+	@Column(length=10)
 	@Getter @Setter
 	private String cep;
+	
+	@Column(length=2)
 	@Getter @Setter
 	private String uf;
+	
 	@Getter @Setter
 	private String cidade;
 	

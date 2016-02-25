@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -48,12 +49,18 @@ public class Instituicao implements IGenericEntity<Instituicao>{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
 	@Getter @Setter
 	private String nome;
+	
+	@Column(length=80)
 	@Getter @Setter
 	private String email;
+	
+	@Column(length=20)
 	@Getter @Setter
 	private String telefone;
+	
 	@Getter @Setter
 	private String responsavel;
 	

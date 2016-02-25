@@ -50,8 +50,10 @@ public class Curso implements IGenericEntity<Curso>{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
 	@Getter @Setter
 	private String nome;
+	
 	@Getter @Setter
 	private Integer duracaoEstagio;
 	

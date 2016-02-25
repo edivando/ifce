@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -52,34 +53,58 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter
 	private Integer id;
+	
+	@Column(length=20) 
 	@Getter @Setter
 	private String matricula;
+	
+	@Column(length=20)
 	@Getter @Setter
 	private String telefone;
+	
+	@Column(length=20)
 	@Getter @Setter
 	private String celular;
+	
+	@Column(length=100)
 	@Getter @Setter
 	private String cvLattes;
+	
 	@Getter @Setter
 	private Integer semestreAtual;
+	
+	@Column(length=15)
 	@Getter @Setter
 	private String cpf;
+	
+	@Column(length=25)
 	@Getter @Setter
 	private String rg;
+	
 	@Getter @Setter
 	private Date dataNascimento;
+	
 	@Getter @Setter
 	private String endereco;
+	
+	@Column(length=10)
 	@Getter @Setter
 	private String numero;
+	
 	@Getter @Setter
 	private String bairro;
+	
+	@Column(length=10)
 	@Getter @Setter
 	private String cep;
+	
 	@Getter @Setter
 	private String cidade;
+	
+	@Column(length=2)
 	@Getter @Setter
 	private String uf;
+	
 	@Getter @Setter
 	private AlunoStatus status = AlunoStatus.NOVO;
 	
@@ -360,16 +385,16 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return dao.findByQuery("SELECT a FROM Aluno a LEFT JOIN FETCH a.vagasEstagio ve "); 
 	}
 	
-	public static List<Aluno> findByInstituicao(Instituicao instituicao){
-		return dao.findByQuery("SELECT a FROM Aluno a JOIN a.curso c JOIN c.departamento d JOIN d.campus c WHERE c.instituicao = ?1 ", instituicao); 
+	public static List<Aluno> findByInstituicaoNotStatus(Instituicao instituicao, AlunoStatus status){
+		return dao.findByQuery("SELECT a FROM Aluno a JOIN a.curso c JOIN c.departamento d JOIN d.campus c WHERE c.instituicao = ?1 AND a.status != ?2 ", instituicao, status); 
 	}
 	
 	public static Aluno findByUsuario(Usuario usuario){
 		return dao.findOneByQuery("SELECT a FROM Aluno a WHERE a.usuario = ?1" , usuario);
 	}
 	
-//	public static List<Aluno> findByDocumentoStatus(DocumentoStatus status){
-//		return dao.findByQuery("Select a From Aluno a JOIN FETCH a.documentosAluno da WHERE da.status = ?1", status);
-//	}
+	public static List<Aluno> findByNotStatus(AlunoStatus status){
+		return dao.findByQuery("Select a From Aluno a WHERE a.status != ?1", status);
+	}
 	
 }
