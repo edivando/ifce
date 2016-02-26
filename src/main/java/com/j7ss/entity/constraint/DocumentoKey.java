@@ -8,7 +8,10 @@
  */
 package com.j7ss.entity.constraint;
 
+import java.util.Date;
+
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 
@@ -19,154 +22,127 @@ import lombok.Getter;
 public enum DocumentoKey {
 	
 	// Usuario
-	USUARIO_NOME( 				"`&&USUARIO_NOME&&`" ),
-	USUARIO_EMAIL( 				"`&&USUARIO_EMAIL&&`" ),
+	USUARIO_NOME(	"USUARIO", "`&&USUARIO_NOME&&`" ),
+	USUARIO_EMAIL(	"USUARIO", "`&&USUARIO_EMAIL&&`" ),
 	
 	// Aluno
-	ALUNO_MATRICULA( 			"`&&ALUNO_MATRICULA&&`" ),
-	ALUNO_TELEFONE( 			"`&&ALUNO_TELEFONE&&`" ),
-	ALUNO_CELULAR( 				"`&&ALUNO_CELULAR&&`" ),
-	ALUNO_CV_LATTES( 			"`&&ALUNO_CV_LATTES&&`" ),
-	ALUNO_CPF( 					"`&&ALUNO_CPF&&`" ),
-	ALUNO_RG( 					"`&&ALUNO_RG&&`" ),
-	ALUNO_DATA_NASCIMENTO( 		"`&&ALUNO_DATA_NASCIMENTO&&`" ),
-	ALUNO_ENDERECO_ENDERECO(	"`&&ALUNO_ENDERECO_ENDERECO&&`" ),
-	ALUNO_ENDERECO_NUMERO( 		"`&&ALUNO_ENDERECO_NUMERO&&`" ),
-	ALUNO_ENDERECO_BAIRRO( 		"`&&ALUNO_ENDERECO_BAIRRO&&`" ),
-	ALUNO_ENDERECO_CEP( 		"`&&ALUNO_ENDERECO_CEP&&`" ),
-	ALUNO_ENDERECO_CIDADE( 		"`&&ALUNO_ENDERECO_CIDADE&&`" ),
-	ALUNO_ENDERECO_UF( 			"`&&ALUNO_ENDERECO_UF&&`" ),
+	ALUNO_MATRICULA(			"ALUNO", "`&&ALUNO_MATRICULA&&`" ),
+	ALUNO_TELEFONE(				"ALUNO", "`&&ALUNO_TELEFONE&&`" ),
+	ALUNO_CELULAR(				"ALUNO", "`&&ALUNO_CELULAR&&`" ),
+	ALUNO_CV_LATTES(			"ALUNO", "`&&ALUNO_CV_LATTES&&`" ),
+	ALUNO_CPF(					"ALUNO", "`&&ALUNO_CPF&&`" ),
+	ALUNO_RG(					"ALUNO", "`&&ALUNO_RG&&`" ),
+	ALUNO_DATA_NASCIMENTO(		"ALUNO", "`&&ALUNO_DATA_NASCIMENTO&&`" ),
+	ALUNO_ENDERECO_ENDERECO(	"ALUNO", "`&&ALUNO_ENDERECO_ENDERECO&&`" ),
+	ALUNO_ENDERECO_NUMERO(		"ALUNO", "`&&ALUNO_ENDERECO_NUMERO&&`" ),
+	ALUNO_ENDERECO_BAIRRO(		"ALUNO", "`&&ALUNO_ENDERECO_BAIRRO&&`" ),
+	ALUNO_ENDERECO_CEP(			"ALUNO", "`&&ALUNO_ENDERECO_CEP&&`" ),
+	ALUNO_ENDERECO_CIDADE(		"ALUNO", "`&&ALUNO_ENDERECO_CIDADE&&`" ),
+	ALUNO_ENDERECO_UF(			"ALUNO", "`&&ALUNO_ENDERECO_UF&&`" ),
 	
 	// Empresa
-	EMPRESA_NOME( 				"`&&EMPRESA_NOME&&`" ),
-	EMPRESA_EMAIL( 				"`&&EMPRESA_EMAIL&&`" ),
-	EMPRESA_TELEFONE( 			"`&&EMPRESA_TELEFONE&&`" ),
-	EMPRESA_FAX( 				"`&&EMPRESA_FAX&&`" ),
-	EMPRESA_SUPERVISOR( 		"`&&EMPRESA_SUPERVISOR&&`" ),
-	EMPRESA_CARGO_SUPERVISOR(	"`&&EMPRESA_CARGO_SUPERVISOR&&`" ),
-	EMPRESA_TELEFONE_SUPERVISOR("`&&EMPRESA_TELEFONE_SUPERVISOR&&`" ),
-	EMPRESA_CNPJ( 				"`&&EMPRESA_CNPJ&&`" ),
-	EMPRESA_SITE( 				"`&&EMPRESA_SITE&&`" ),
-	EMPRESA_RAMO_ATIVIDADE( 	"`&&EMPRESA_RAMO_ATIVIDADE&&`" ),
-	EMPRESA_ENDERECO_ENDERECO(	"`&&EMPRESA_ENDERECO_ENDERECO&&`" ),
-	EMPRESA_ENDERECO_NUMERO(	"`&&EMPRESA_ENDERECO_NUMERO&&`" ),
-	EMPRESA_ENDERECO_BAIRRO(	"`&&EMPRESA_ENDERECO_BAIRRO&&`" ),
-	EMPRESA_ENDERECO_CEP( 		"`&&EMPRESA_ENDERECO_CEP&&`" ),
-	EMPRESA_ENDERECO_UF( 		"`&&EMPRESA_ENDERECO_UF&&`" ),
-	EMPRESA_ENDERECO_CIDADE(	"`&&EMPRESA_ENDERECO_CIDADE&&`" ),
+	EMPRESA_NOME(				"EMPRESA", "`&&EMPRESA_NOME&&`" ),
+	EMPRESA_EMAIL(				"EMPRESA", "`&&EMPRESA_EMAIL&&`" ),
+	EMPRESA_TELEFONE(			"EMPRESA", "`&&EMPRESA_TELEFONE&&`" ),
+	EMPRESA_FAX(				"EMPRESA", "`&&EMPRESA_FAX&&`" ),
+	EMPRESA_SUPERVISOR(			"EMPRESA", "`&&EMPRESA_SUPERVISOR&&`" ),
+	EMPRESA_CARGO_SUPERVISOR(	"EMPRESA", "`&&EMPRESA_CARGO_SUPERVISOR&&`" ),
+	EMPRESA_TELEFONE_SUPERVISOR("EMPRESA", "`&&EMPRESA_TELEFONE_SUPERVISOR&&`" ),
+	EMPRESA_CNPJ(				"EMPRESA", "`&&EMPRESA_CNPJ&&`" ),
+	EMPRESA_SITE(				"EMPRESA", "`&&EMPRESA_SITE&&`" ),
+	EMPRESA_RAMO_ATIVIDADE(		"EMPRESA", "`&&EMPRESA_RAMO_ATIVIDADE&&`" ),
+	EMPRESA_ENDERECO_ENDERECO(	"EMPRESA", "`&&EMPRESA_ENDERECO_ENDERECO&&`" ),
+	EMPRESA_ENDERECO_NUMERO(	"EMPRESA", "`&&EMPRESA_ENDERECO_NUMERO&&`" ),
+	EMPRESA_ENDERECO_BAIRRO(	"EMPRESA", "`&&EMPRESA_ENDERECO_BAIRRO&&`" ),
+	EMPRESA_ENDERECO_CEP(		"EMPRESA", "`&&EMPRESA_ENDERECO_CEP&&`" ),
+	EMPRESA_ENDERECO_UF(		"EMPRESA", "`&&EMPRESA_ENDERECO_UF&&`" ),
+	EMPRESA_ENDERECO_CIDADE(	"EMPRESA", "`&&EMPRESA_ENDERECO_CIDADE&&`" ),
+	
+	
+	// VagaEstagio
+	ESTAGIO_CARGA_HORARIA(			"ESTAGIO", "`&&ESTAGIO_&&`"),
+	ESTAGIO_REMUNERACAO(			"ESTAGIO", "`&&ESTAGIO_REMUNERACAO&&`"),
+	ESTAGIO_TURNO(					"ESTAGIO", "`&&ESTAGIO_TURNO&&`"),
+	ESTAGIO_HORA_INICIO_ESTAGIO(	"ESTAGIO", "`&&ESTAGIO_HORA_INICIO_ESTAGIO&&`"),
+	ESTAGIO_HORA_FIM_INTERVALO(		"ESTAGIO", "`&&ESTAGIO_HORA_FIM_INTERVALO&&`"),
+	ESTAGIO_HORA_RETORNO(			"ESTAGIO", "`&&ESTAGIO_HORA_RETORNO&&`"),
+	ESTAGIO_HORA_FIM_ESTAGIO(		"ESTAGIO", "`&&ESTAGIO_HORA_FIM_ESTAGIO&&`"),
+	ESTAGIO_VIGENCIA_INICIO(		"ESTAGIO", "`&&ESTAGIO_VIGENCIA_INICIO&&`"),
+	ESTAGIO_VIGENCIA_FIM(			"ESTAGIO", "`&&ESTAGIO_VIGENCIA_FIM&&`"),
+	ESTAGIO_VALOR_TRANSPORTE(		"ESTAGIO", "`&&ESTAGIO_VALOR_TRANSPORTE&&`"),
+	ESTAGIO_APOLICE_NUMERO(			"ESTAGIO", "`&&ESTAGIO_APOLICE_NUMERO&&`"),
+	ESTAGIO_APOLICE_EMPRESA(		"ESTAGIO", "`&&ESTAGIO_APOLICE_EMPRESA&&`"),
 	
 	// Instituicao
-	INSTITUICAO_NOME( 			"`&&INSTITUICAO_NOME&&`" ),
+	INSTITUICAO_NOME("INSTITUICAO",	"`&&INSTITUICAO_NOME&&`" ),
 	
 	// Campus
-	CAMPUS_NOME( 				"`&&CAMPUS_NOME&&`" ),
-	CAMPUS_EMAIL( 				"`&&CAMPUS_EMAIL&&`" ),
-	CAMPUS_TELEFONE( 			"`&&CAMPUS_TELEFONE&&`" ),
-	CAMPUS_ENDERECO_ENDERECO(	"`&&CAMPUS_ENDERECO_ENDERECO&&`" ),
-	CAMPUS_ENDERECO_NUMERO( 	"`&&CAMPUS_ENDERECO_NUMERO&&`" ),
-	CAMPUS_ENDERECO_BAIRRO( 	"`&&CAMPUS_ENDERECO_BAIRRO&&`" ),
-	CAMPUS_ENDERECO_CEP( 		"`&&CAMPUS_ENDERECO_CEP&&`" ),
-	CAMPUS_ENDERECO_UF( 		"`&&CAMPUS_ENDERECO_UF&&`" ),
-	CAMPUS_ENDERECO_CIDADE( 	"`&&CAMPUS_ENDERECO_CIDADE&&`" ),
+	CAMPUS_NOME(				"CAMPUS", "`&&CAMPUS_NOME&&`" ),
+	CAMPUS_EMAIL(				"CAMPUS", "`&&CAMPUS_EMAIL&&`" ),
+	CAMPUS_TELEFONE(			"CAMPUS", "`&&CAMPUS_TELEFONE&&`" ),
+	CAMPUS_ENDERECO_ENDERECO(	"CAMPUS", "`&&CAMPUS_ENDERECO_ENDERECO&&`" ),
+	CAMPUS_ENDERECO_NUMERO(		"CAMPUS", "`&&CAMPUS_ENDERECO_NUMERO&&`" ),
+	CAMPUS_ENDERECO_BAIRRO(		"CAMPUS", "`&&CAMPUS_ENDERECO_BAIRRO&&`" ),
+	CAMPUS_ENDERECO_CEP(		"CAMPUS", "`&&CAMPUS_ENDERECO_CEP&&`" ),
+	CAMPUS_ENDERECO_UF(			"CAMPUS", "`&&CAMPUS_ENDERECO_UF&&`" ),
+	CAMPUS_ENDERECO_CIDADE(		"CAMPUS", "`&&CAMPUS_ENDERECO_CIDADE&&`" ),
 	
 	// Departamento
-	DEPARTAMENTO_NOME( 			"`&&DEPARTAMENTO_NOME&&`" ),
+	DEPARTAMENTO_NOME("DEPARTAMENTO", "`&&DEPARTAMENTO_NOME&&`" ),
 	
 	// Curso
-	ALUNO_CURSO_SEMESTRE_ATUAL( "`&&ALUNO_CURSO_SEMESTRE_ATUAL&&`" ),
-	ALUNO_CURSO_NOME( 			"`&&ALUNO_CURSO_NOME&&`" );
+	ALUNO_CURSO_SEMESTRE_ATUAL(		"CURSO", "`&&ALUNO_CURSO_SEMESTRE_ATUAL&&`" ),
+	ALUNO_CURSO_NOME(				"CURSO", "`&&ALUNO_CURSO_NOME&&`" );
 	
 
 	@Getter
 	private String key;
+	private String group;
 	
-	private DocumentoKey(String key) {
+	private DocumentoKey(String group, String key) {
 		this.key = key;
+		this.group = group;
+	}
+	
+	private static String getByGroup(String group){
+		StringBuilder builder = new StringBuilder();
+		for(DocumentoKey v : values()){
+			if(v.group.equals(group)){
+				builder.append(v.key).append("<br/>");
+			}
+		}
+		return builder.toString();
 	}
 	
 	public static String getUsuario(){
-		return new StringBuilder()
-			.append(DocumentoKey.USUARIO_NOME.getKey()).append("<br/>")
-			.append(DocumentoKey.USUARIO_EMAIL.getKey())
-			.toString();
+		return getByGroup("USUARIO");
 	}
 	
 	public static String getAluno(){
-		return new StringBuilder()
-			.append(DocumentoKey.ALUNO_MATRICULA.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_TELEFONE.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_CELULAR.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_CV_LATTES.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_CPF.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_RG.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_DATA_NASCIMENTO.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_ENDERECO_ENDERECO.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_ENDERECO_NUMERO.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_ENDERECO_BAIRRO.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_ENDERECO_CEP.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_ENDERECO_CIDADE.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_ENDERECO_UF.getKey())
-			.toString();
-	}
+		return getByGroup("ALUNO");	}
 	
 	public static String getEmpresa(){
-		return new StringBuilder()
-			.append(DocumentoKey.EMPRESA_NOME.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_EMAIL.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_TELEFONE.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_FAX.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_SUPERVISOR.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_CARGO_SUPERVISOR.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_TELEFONE_SUPERVISOR.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_CNPJ.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_SITE.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_RAMO_ATIVIDADE.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_ENDERECO_ENDERECO.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_ENDERECO_NUMERO.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_ENDERECO_BAIRRO.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_ENDERECO_CEP.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_ENDERECO_UF.getKey()).append("<br/>")
-			.append(DocumentoKey.EMPRESA_ENDERECO_CIDADE.getKey())
-			.toString();
+		return getByGroup("EMPRESA");
+	}
+	
+	public static String getVagaEstagio(){
+		return getByGroup("ESTAGIO");
 	}
 	
 	public static String getInstituicao(){
-		return new StringBuilder()
-			.append(DocumentoKey.INSTITUICAO_NOME.getKey())
-			.toString();
+		return getByGroup("INSTITUICAO");
 	} 
 	
 	public static String getCampus(){
-		return new StringBuilder()
-			.append(DocumentoKey.CAMPUS_NOME.getKey()).append("<br/>")
-			.append(DocumentoKey.CAMPUS_EMAIL.getKey()).append("<br/>")
-			.append(DocumentoKey.CAMPUS_TELEFONE.getKey()).append("<br/>")
-			.append(DocumentoKey.CAMPUS_ENDERECO_ENDERECO.getKey()).append("<br/>")
-			.append(DocumentoKey.CAMPUS_ENDERECO_NUMERO.getKey()).append("<br/>")
-			.append(DocumentoKey.CAMPUS_ENDERECO_BAIRRO.getKey()).append("<br/>")
-			.append(DocumentoKey.CAMPUS_ENDERECO_CEP.getKey()).append("<br/>")
-			.append(DocumentoKey.CAMPUS_ENDERECO_UF.getKey()).append("<br/>")
-			.append(DocumentoKey.CAMPUS_ENDERECO_CIDADE.getKey())
-			.toString();
+		return getByGroup("CAMPUS");
 	}
 	
 	public static String getDepartamento(){
-		return new StringBuilder()
-			.append(DocumentoKey.DEPARTAMENTO_NOME.getKey())
-			.toString();
+		return getByGroup("DEPARTAMENTO");
 	}
 	
 	public static String getCurso(){
-		return new StringBuilder()
-			.append(DocumentoKey.ALUNO_CURSO_SEMESTRE_ATUAL.getKey()).append("<br/>")
-			.append(DocumentoKey.ALUNO_CURSO_NOME.getKey())
-			.toString();
+		return getByGroup("CURSO");
 	}
 	
-
-	
-
-	
-	
-
 }

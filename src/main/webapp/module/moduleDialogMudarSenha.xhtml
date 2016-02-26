@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	@version     1.0.0
+	@author      Edivando J. Alves
+	@contact     edivando@j7ss.com ( http://www.j7ss.com )
+	
+	@copyright Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved. 
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+
+	<p:dialog header="Mudar senha" widgetVar="modalMudarSenha" modal="true" width="700" closeOnEscape="true" >
+		<br/>
+		<h:form>
+		    <div class="form-horizontal">
+			    <div class="form-group">
+					<label for="inputSenhaAtual" class="col-sm-3 control-label">Senha Atual:</label>
+					<div class="col-sm-6">
+						<p:password id="inputSenhaAtual" value="#{mudarSenhaBean.senhaAtual}" placeholder="Sua senha atual" styleClass="form-control" 
+							feedback="true"/>
+						<p:message for="inputSenhaAtual"/>
+					</div>
+					
+				</div>
+				<div class="form-group">
+					<label for="inputNovaSenha" class="col-sm-3 control-label">Nova Senha:</label>
+					<div class="col-sm-6">
+						<p:password id="inputNovaSenha" value="#{mudarSenhaBean.novaSenha}" placeholder="Insira a nova senha" styleClass="form-control" 
+							feedback="true" match="inputConfirmSenha"/>
+						<p:message for="inputNovaSenha"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputConfirmSenha" class="col-sm-3 control-label">Confirme Senha:</label>
+					<div class="col-sm-6">
+						<p:password id="inputConfirmSenha" value="#{mudarSenhaBean.confirmSenha}" placeholder="Confirme sua nova senha" styleClass="form-control"
+							feedback="true" />
+						<p:message for="inputConfirmSenha"/>
+					</div>
+		
+				</div>
+				<p:separator />
+				<div class="text-center">
+					<p:commandLink actionListener="#{mudarSenhaBean.mudarSenha}" styleClass="btn btn-info">
+						<i class="fa fa-save" />
+						Mudar Senha
+					</p:commandLink>
+				</div>
+		    </div>
+		</h:form>
+	</p:dialog> 
+
+</ui:composition>
+</html>

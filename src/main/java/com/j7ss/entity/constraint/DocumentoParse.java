@@ -74,6 +74,44 @@ public class DocumentoParse {
 		case ALUNO_ENDERECO_UF:
 			replace(DocumentoKey.ALUNO_ENDERECO_UF, documentoVagaEstagio.getVagaEstagio().getAluno().getUf());
 			break;
+			
+			// Vaga Estagio
+		case ESTAGIO_CARGA_HORARIA:
+			replace(DocumentoKey.ESTAGIO_CARGA_HORARIA, documentoVagaEstagio.getVagaEstagio().getCargaHoraria());
+			break;
+		case ESTAGIO_REMUNERACAO:
+			replace(DocumentoKey.ESTAGIO_REMUNERACAO, documentoVagaEstagio.getVagaEstagio().getRemuneracao());
+			break;
+		case ESTAGIO_TURNO:
+			replace(DocumentoKey.ESTAGIO_TURNO, documentoVagaEstagio.getVagaEstagio().getTurno());
+			break;
+		case ESTAGIO_HORA_INICIO_ESTAGIO:
+			replace(DocumentoKey.ESTAGIO_HORA_INICIO_ESTAGIO, documentoVagaEstagio.getVagaEstagio().getHoraInicioEstagio());
+			break;
+		case ESTAGIO_HORA_FIM_INTERVALO:
+			replace(DocumentoKey.ESTAGIO_HORA_FIM_INTERVALO, documentoVagaEstagio.getVagaEstagio().getHoraFimOuIntervalo());
+			break;
+		case ESTAGIO_HORA_RETORNO:
+			replace(DocumentoKey.ESTAGIO_HORA_RETORNO, documentoVagaEstagio.getVagaEstagio().getHoraRetorno());
+			break;
+		case ESTAGIO_HORA_FIM_ESTAGIO:
+			replace(DocumentoKey.ESTAGIO_HORA_FIM_ESTAGIO, documentoVagaEstagio.getVagaEstagio().getHoraFimEstagio());
+			break;
+		case ESTAGIO_VIGENCIA_INICIO:
+			replace(DocumentoKey.ESTAGIO_VIGENCIA_INICIO, documentoVagaEstagio.getVagaEstagio().getVigenciaInicio());
+			break;
+		case ESTAGIO_VIGENCIA_FIM:
+			replace(DocumentoKey.ESTAGIO_VIGENCIA_FIM, documentoVagaEstagio.getVagaEstagio().getVigenciaFim());
+			break;
+		case ESTAGIO_VALOR_TRANSPORTE:
+			replace(DocumentoKey.ESTAGIO_VALOR_TRANSPORTE, documentoVagaEstagio.getVagaEstagio().getValorTransporte());
+			break;
+		case ESTAGIO_APOLICE_NUMERO:
+			replace(DocumentoKey.ESTAGIO_APOLICE_NUMERO, documentoVagaEstagio.getVagaEstagio().getApoliceNumero());
+			break;
+		case ESTAGIO_APOLICE_EMPRESA:
+			replace(DocumentoKey.ESTAGIO_APOLICE_EMPRESA, documentoVagaEstagio.getVagaEstagio().getApoliceEmpresa());
+			break;
 		
 		// Empresa
 		case EMPRESA_NOME:
@@ -89,16 +127,13 @@ public class DocumentoParse {
 			replace(DocumentoKey.EMPRESA_FAX, documentoVagaEstagio.getVagaEstagio().getEmpresa().getFax());
 			break;
 		case EMPRESA_SUPERVISOR:
-			// TODO: Empresa Supervisor
-//			replace(DocumentoKey.EMPRESA_SUPERVISOR, documentoVagaEstagio.getVagaEstagio().getEmpresa());
+			replace(DocumentoKey.EMPRESA_SUPERVISOR, documentoVagaEstagio.getVagaEstagio().getEmpresa());
 			break;
 		case EMPRESA_CARGO_SUPERVISOR:
-			// TODO: Empresa Supervisor
-//			replace(DocumentoKey.EMPRESA_CARGO_SUPERVISOR, documentoVagaEstagio.getVagaEstagio().getEmpresa());
+			replace(DocumentoKey.EMPRESA_CARGO_SUPERVISOR, documentoVagaEstagio.getVagaEstagio().getEmpresa());
 			break;
 		case EMPRESA_TELEFONE_SUPERVISOR:
-			// TODO: Empresa Supervisor
-//			replace(DocumentoKey.EMPRESA_TELEFONE_SUPERVISOR, documentoVagaEstagio.getVagaEstagio().getEmpresa());
+			replace(DocumentoKey.EMPRESA_TELEFONE_SUPERVISOR, documentoVagaEstagio.getVagaEstagio().getEmpresa());
 			break;
 		case EMPRESA_CNPJ:
 			replace(DocumentoKey.EMPRESA_CNPJ, documentoVagaEstagio.getVagaEstagio().getEmpresa().getCnpj());

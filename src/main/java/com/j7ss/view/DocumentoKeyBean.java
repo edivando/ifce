@@ -35,6 +35,10 @@ public class DocumentoKeyBean {
 		return DocumentoKey.getEmpresa();
 	}
 	
+	public String getVagaEstagio(){
+		return DocumentoKey.getVagaEstagio();
+	}
+	
 	public String getInstituicao(){
 		return DocumentoKey.getInstituicao();
 	}
