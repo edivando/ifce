@@ -17,7 +17,7 @@
 	<ui:param name="headerTitle" value="Dados do Estágio" />
 	<ui:param name="headerLink" value="alunoHome.html" />
 	
-	<ui:define name="title">Estágio</ui:define>
+	<ui:define name="title">IFCE Estágios - Estágios</ui:define>
 	<ui:define name="container">
 	
 		<p:outputPanel styleClass="alert alert-warning fade in" rendered="#{!loginBean.usuario.ativo}">
@@ -124,7 +124,7 @@
 											Editar
 										</p:commandLink>
 										<p:commandLink actionListener="#{alunoHomeBean.gridAtividade}" styleClass="btn btn-info pull-right col-md-3 btn-xs" 
-											update="@form" style="margin-right: 10px;" >
+											update="@form" style="margin-right: 10px;">
 			                       			<f:setPropertyActionListener target="#{alunoHomeBean.vagaEstagio}" value="#{vagaEstagio}"/>
 											<i class="fa fa-wrench"/>
 											Atividades Diárias
@@ -251,7 +251,6 @@
 				</div>
 			</div>
 		</p:outputPanel>
-
 		<p:dataTable id="tableAtividadeDiaria" var="atividadeDiaria" value="#{alunoHomeBean.vagaEstagio.atividadesDiaria}" 
 			paginator="true" rows="20" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			emptyMessage="Nenhuma atividade cadastrada!" rendered="#{alunoHomeBean.gridAtividade}" resizableColumns="true" paginatorPosition="top">
@@ -350,18 +349,23 @@
 		
 		</p:panel>
 		
-		<p:panel rendered="#{alunoHomeBean.documentoView}" >
-			<p:commandLink actionListener="#{alunoHomeBean.grid}" styleClass="btn btn-danger pull-right btn-sm" update="@form"
-            	style="margin-right: 10px;" >
-				<i class="fa fa-reply-all"/>
-				Back
-			</p:commandLink>
-			
+		<p:panel rendered="#{alunoHomeBean.documentoView}" styleClass="form-horizontal" style="background-color: #f1f2f7;">
+			<f:facet name="header">
+				<span class="lead">
+					<i class="fa fac-doc"/> Documento
+				</span>
+				<p:commandLink actionListener="#{alunoHomeBean.grid}" styleClass="btn btn-danger pull-right btn-sm" update="@form"
+	            	style="margin-right: 10px;" >
+					<i class="fa fa-reply-all"/>
+					Back
+				</p:commandLink>
+			</f:facet>
+
 			<ui:include src="/module/moduleDocPrint.xhtml" >
 				<ui:param name="bean" value="#{alunoHomeBean}"/>
 	      		<ui:param name="htmlPage" value="#{alunoHomeBean.docPage}" />
-	      		<ui:param name="btnPrint" value="true"/>
-	      		<ui:param name="btnSubmeter" value="true"/>
+	      		<ui:param name="btnPrint" value="#{alunoHomeBean.documentoVagaEstagio.statusDisponivelDownload}"/>
+	      		<ui:param name="btnSubmeterAvaliacao" value="#{alunoHomeBean.documentoVagaEstagio.statusDisponivel}"/>
 	      	</ui:include> 
 		</p:panel>
 

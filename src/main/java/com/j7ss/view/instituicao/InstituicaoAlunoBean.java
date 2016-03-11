@@ -39,16 +39,6 @@ public class InstituicaoAlunoBean extends BasicView<Aluno>{
 	private LoginBean loginBean;
 	
 	@Override
-	public Aluno getEntity() {
-		return entity == null ? entity = new Aluno() : entity;
-	}
-	
-	@Override
-	public List<Aluno> getEntitys() {
-		return entitys == null ? entitys = Aluno.findByInstituicaoNotStatus(loginBean.getUsuario().getInstituicao(), AlunoStatus.NOVO) : entitys;
-	}
-	
-	@Override
 	public void remove(Aluno entity) {
 		Messages.showGrowlFatal("Aluno", "Ação indisponível!");
 	}
@@ -82,5 +72,16 @@ public class InstituicaoAlunoBean extends BasicView<Aluno>{
 		}
 		grid();
 	}
-
+	
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public Aluno getEntity() {
+		return entity == null ? entity = new Aluno() : entity;
+	}
+	
+	@Override
+	public List<Aluno> getEntitys() {
+		return entitys == null ? entitys = Aluno.findByInstituicaoNotStatus(loginBean.getUsuario().getInstituicao(), AlunoStatus.NOVO) : entitys;
+	}
 }

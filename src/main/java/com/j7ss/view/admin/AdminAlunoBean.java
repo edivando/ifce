@@ -15,6 +15,7 @@ import javax.faces.bean.ViewScoped;
 
 import com.j7ss.entity.Aluno;
 import com.j7ss.util.BasicView;
+import com.j7ss.util.Messages;
 
 /**
  * 
@@ -27,6 +28,20 @@ import com.j7ss.util.BasicView;
 public class AdminAlunoBean extends BasicView<Aluno>{
 	private static final long serialVersionUID = 1L;
 	
+	
+	
+	
+	
+//******************************************************************************************************************************
+//## Growl Messages
+	@Override
+	public void onRemove(Aluno entity) {
+		Messages.showGrowlInfo("Aluno", "Aluno <strong>{0}</strong> removido com sucesso!", entity.getUsuario().getNome());
+	}
+	
+	
+//******************************************************************************************************************************
+//## Getters Setters
 	@Override
 	public Aluno getEntity() {
 		return entity == null ? entity = new Aluno() : entity;

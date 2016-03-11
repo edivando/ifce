@@ -19,6 +19,7 @@ import javax.faces.event.PhaseListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.j7ss.entity.constraint.Page;
 import com.j7ss.view.LoginBean;
 
 /**
@@ -33,7 +34,7 @@ public class AuthorizationListener implements PhaseListener {
 	private List<String> publicPages;
 	
 	public AuthorizationListener() {
-		publicPages = Arrays.asList("index","login","erro404","erro500","erro-acessoNegado","cadastro");
+		publicPages = Arrays.asList(Page.INDEX, Page.CADASTRO, Page.ERRO_404, Page.ERRO_500, Page.ERRO_ACESSO_NEGADO);
 	}
 	
 	@Override
@@ -52,9 +53,9 @@ public class AuthorizationListener implements PhaseListener {
 				LoginBean loginBean = (LoginBean) session.getAttribute("loginBean");			
 				if( !isPermissionPublicPage( paginaDestino ) ){
 					if(loginBean == null || loginBean.getUsuario() == null || loginBean.getUsuario().isNew()){	
-						redirect("login.html");
+						redirect(Page.INDEX);
 					}else if( !loginBean.isPagePermission( paginaDestino ) ){
-						redirect("erro-acessoNegado.html");
+						redirect(Page.ERRO_ACESSO_NEGADO);
 					}	
 				}		
 			}
@@ -81,7 +82,7 @@ public class AuthorizationListener implements PhaseListener {
 	}
 	
 	private String getNamePage(String page){
-		return page.replaceAll("error", "").replaceAll(".xhtml", "").replaceAll("/", "").replaceAll(".html", "");
+		return page.replaceAll("xhtml", "html").replaceAll("/", "");
 	}
 	
 	private boolean isPermissionPublicPage(String page){

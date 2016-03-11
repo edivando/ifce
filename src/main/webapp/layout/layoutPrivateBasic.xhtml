@@ -43,7 +43,7 @@
 				        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 				    </p:confirmDialog>
 					
-					<p:dataTable id="#{id}Table" var="entity" value="#{view.entitys}" 
+					<p:dataTable id="#{id}Table" var="entity" value="#{view.entitys}" widgetVar="#{id}Var"
 						paginator="true" rows="20" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 						emptyMessage="#{emptyMessage}" rendered="#{!view.form}" resizableColumns="true" paginatorPosition="top">
 					
@@ -67,7 +67,7 @@
 							&nbsp;
 							<p:commandLink actionListener="#{view.remove(entity)}" update=":formAll" styleClass="btn btn-white" rendered="#{btnRemove}" >
 								<i class="fa fa-trash-o text-danger" />
-						        <p:confirm header="Confime" message="Deseja realmente exlcuir?" icon="ui-icon-alert" />
+						        <p:confirm header="Confime" message="Deseja realmente excluir?" icon="ui-icon-alert" />
 						    </p:commandLink>
 						</p:column>
 						

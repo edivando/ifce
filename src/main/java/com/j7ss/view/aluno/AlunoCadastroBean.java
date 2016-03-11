@@ -23,12 +23,11 @@ import com.j7ss.entity.Campus;
 import com.j7ss.entity.Curso;
 import com.j7ss.entity.Departamento;
 import com.j7ss.entity.Instituicao;
+import com.j7ss.entity.constraint.Page;
 import com.j7ss.entity.constraint.UsuarioType;
 import com.j7ss.util.MD5;
 import com.j7ss.util.Messages;
 import com.j7ss.util.WebContext;
-import com.j7ss.util.email.MailApi;
-import com.j7ss.util.email.MailTemplate;
 
 /**
  * 
@@ -43,8 +42,6 @@ public class AlunoCadastroBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Setter
 	private Aluno aluno;
-	
-//	List<Instituicao> instituicaos = new ArrayList<>();
 	
 	@Getter @Setter
 	private Instituicao instituicao = new Instituicao();
@@ -78,24 +75,15 @@ public class AlunoCadastroBean implements Serializable {
 //				.send();
 			
 			Messages.showGrowlInfo("Cadastro de Alunos", "Cadastrado com sucesso!");
-//			instituicaos = new ArrayList<>();
 			instituicao = new Instituicao();
 			campus = new Campus();
 			departamento = new Departamento();
-			WebContext.redirect("login.html");
+			WebContext.redirect(Page.INDEX);
 			
 		} catch (Exception e) {
 			Messages.showGrowlErro("Cadastro de Alunos", e.getMessage());
 		}
 	}
-	
-	public Aluno getAluno() {
-		return aluno == null ? aluno = new Aluno() : aluno;
-	}
-	
-//	public List<Instituicao> searchInstituicao(String nome){
-//		return instituicaos = Instituicao.findByNomeLike(nome);
-//	}
 	
 	public List<Campus> searchCampus(String nome){
 		return Campus.findByNomeLike(instituicao, nome);
@@ -112,13 +100,6 @@ public class AlunoCadastroBean implements Serializable {
 	
 	//########
 	// Converts
-//	public Instituicao getInstituicaoByNome(String nome){
-//		for (Instituicao instituicao : instituicaos) {
-//			if(instituicao.getNome().equals(nome)) return instituicao;
-//		}
-//		return null;
-//	}
-	
 	public Campus getCampusByNome(String nome){
 		if(instituicao != null){
 			for (Campus campus : instituicao.getCampus()) {
@@ -145,5 +126,11 @@ public class AlunoCadastroBean implements Serializable {
 		}
 		return null;
 	}
-
+	
+//******************************************************************************************************************************
+//## Getters Setters
+	public Aluno getAluno() {
+		return aluno == null ? aluno = new Aluno() : aluno;
+	}
+	
 }

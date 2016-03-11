@@ -21,6 +21,7 @@ import org.primefaces.event.FlowEvent;
 import com.j7ss.entity.Aluno;
 import com.j7ss.entity.VagaEstagio;
 import com.j7ss.entity.constraint.AlunoStatus;
+import com.j7ss.entity.constraint.Page;
 import com.j7ss.util.Messages;
 import com.j7ss.util.WebContext;
 import com.j7ss.view.LoginBean;
@@ -44,27 +45,11 @@ public class AlunoCompleteCadastroBean implements Serializable{
 	@Setter
 	private VagaEstagio vagaEstagio;
 	
-	public Aluno getAluno(){
-		return loginBean.getUsuario().getAluno();
-	}
-	
-	public VagaEstagio getVagaEstagio() {
-		if(vagaEstagio != null){
-			return vagaEstagio;
-		}else{
-			if(loginBean.getUsuario().getAluno().getVagasEstagio().size() == 0){
-				vagaEstagio = new VagaEstagio();
-			}else{
-				vagaEstagio = loginBean.getUsuario().getAluno().getVagasEstagio().get(0);
-			}
-			return vagaEstagio;
-		}
-	}
 
 	public void concluir(){
 		try {
 			loginBean.getUsuario().getAluno().status(AlunoStatus.VERIFICAR).save();
-			WebContext.redirect("alunoHome.html");
+			WebContext.redirect(Page.ALUNO_HOME);
 		} catch (Exception e) {
 			Messages.showGrowlErro("Cadastro de Aluno", e.getMessage());
 		}
@@ -100,5 +85,24 @@ public class AlunoCompleteCadastroBean implements Serializable{
 		}
 		return event.getNewStep(); 
     }
+	
+//******************************************************************************************************************************
+//## Getters Setters
+	public Aluno getAluno(){
+		return loginBean.getUsuario().getAluno();
+	}
+	
+	public VagaEstagio getVagaEstagio() {
+		if(vagaEstagio != null){
+			return vagaEstagio;
+		}else{
+			if(loginBean.getUsuario().getAluno().getVagasEstagio().size() == 0){
+				vagaEstagio = new VagaEstagio();
+			}else{
+				vagaEstagio = loginBean.getUsuario().getAluno().getVagasEstagio().get(0);
+			}
+			return vagaEstagio;
+		}
+	}
 
 }

@@ -15,7 +15,6 @@ import javax.faces.bean.ViewScoped;
 
 import com.j7ss.entity.Instituicao;
 import com.j7ss.entity.Usuario;
-import com.j7ss.entity.constraint.UsuarioType;
 import com.j7ss.util.BasicView;
 import com.j7ss.util.MD5;
 import com.j7ss.util.Messages;
@@ -32,17 +31,30 @@ public class AdminUsuarioBean extends BasicView<Usuario>{
 	private static final long serialVersionUID = 1L;
 	
 	private List<Instituicao> instituicaos;
+
 	
 	@Override
-	public Usuario getEntity() {
-		return entity == null ? entity = new Usuario() : entity;
+	public void save() {
+		if(entity.isTypeAdmin()){
+			entity.setInstituicao(null);
+		}
+		entity.senhaMD5(entity.getSenha());
+		super.save();
 	}
 	
-	@Override
-	public List<Usuario> getEntitys() {
-		return entitys == null ? entitys = Usuario.findAllMinusAluno() : entitys;
+	public void save(Usuario usuario) {
+		if(usuario.isTypeAdmin()){
+			usuario.setInstituicao(null);
+		}else if(usuario.isTypeInstituicao() && usuario.getInstituicao().isNew() && getInstituicaos().size() > 0){
+			usuario.setInstituicao(getInstituicaos().get(0));
+		}
+		entity = usuario;
+		super.save();
 	}
+
 	
+//******************************************************************************************************************************
+//## Growl Messages
 	@Override
 	public void onSave() {
 		Messages.showGrowlInfo("Usuario", "Usuario <strong>{0}</strong> salvo com sucesso!", entity.getNome());
@@ -53,23 +65,17 @@ public class AdminUsuarioBean extends BasicView<Usuario>{
 		Messages.showGrowlInfo("Usuario", "Usuario <strong>{0}</strong> removido com sucesso!", usuario.getNome());
 	}
 	
+	
+//******************************************************************************************************************************
+//## Getters Setters
 	@Override
-	public void save() {
-		if(entity.getTipoUsuario().equals(UsuarioType.ADMINISTRADOR)){
-			entity.setInstituicao(null);
-		}
-		entity.senha(MD5.md5(entity.getSenha()));
-		super.save();
+	public Usuario getEntity() {
+		return entity == null ? entity = new Usuario() : entity;
 	}
 	
-	public void save(Usuario usuario) {
-		if(usuario.getTipoUsuario().equals(UsuarioType.ADMINISTRADOR)){
-			usuario.setInstituicao(null);
-		}else if(usuario.getTipoUsuario().equals(UsuarioType.INSTITUICAO) && usuario.getInstituicao().isNew() && getInstituicaos().size() > 0){
-			usuario.setInstituicao(getInstituicaos().get(0));
-		}
-		entity = usuario;
-		super.save();
+	@Override
+	public List<Usuario> getEntitys() {
+		return entitys == null ? entitys = Usuario.findAllMinusAluno() : entitys;
 	}
 	
 	public List<Instituicao> getInstituicaos() {
@@ -82,5 +88,4 @@ public class AdminUsuarioBean extends BasicView<Usuario>{
 		}
 		return null;
 	}
-
 }

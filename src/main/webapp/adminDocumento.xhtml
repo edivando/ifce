@@ -79,6 +79,7 @@
 			<div class="col-sm-8">
 				<p:selectBooleanButton id="inputObrigatorio" value="#{adminDocumentoBean.entity.extra}" onLabel="Sim" offLabel="Não" 
 					onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:60px" />
+				<p class="help-block">Se o documento não for obrigatório para a coclusão do estágio, ele é um documento extra.</p>
 			</div>
 			<div class="col-sm-2">
 				<p:message for="inputObrigatorio"  />
@@ -89,6 +90,7 @@
 			<div class="col-sm-8">
 				<p:selectBooleanButton id="inputEstagioObrigatorio" value="#{adminDocumentoBean.entity.obrigatorio}" onLabel="Sim" offLabel="Não" 
 					onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:60px" />
+				<p class="help-block">Se o estágio for obrigatório, este item deve ser marcado.</p>
 			</div>
 			<div class="col-sm-2">
 				<p:message for="inputEstagioObrigatorio"  />

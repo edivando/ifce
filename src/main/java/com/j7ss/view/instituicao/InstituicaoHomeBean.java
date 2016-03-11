@@ -14,8 +14,6 @@ import javax.faces.bean.ViewScoped;
 
 import com.j7ss.entity.DocumentoVagaEstagio;
 import com.j7ss.util.BasicView;
-import com.j7ss.util.email.MailApi;
-import com.j7ss.util.email.MailApiException;
 
 /**
  * 
@@ -31,12 +29,12 @@ public class InstituicaoHomeBean extends BasicView<DocumentoVagaEstagio> {
 	
 	@PostConstruct
 	public void init(){
-		try {
-			new MailApi().to("edivando7@gmail.com", "Edivando Alves").subject("titulo").content("message").send();
-		} catch (MailApiException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			new MailApi().to("edivando7@gmail.com", "Edivando Alves").subject("titulo").content("message").send();
+//		} catch (MailApiException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 

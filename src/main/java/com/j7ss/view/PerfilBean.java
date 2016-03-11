@@ -45,10 +45,12 @@ public class PerfilBean implements Serializable{
 			Messages.showGrowlInfo("Meu Perfil", "Meu Perfil salvo com sucesso!");
 		} catch (DAOException e) {
 			Messages.showGrowlInfo("Meu Perfil", e.getMessage());
-			e.printStackTrace();
 		}
 	}
 	
+	
+//******************************************************************************************************************************
+//## Getters Setters
 	public Usuario getUsuario(){
 		return loginBean.getUsuario();
 	}

@@ -250,30 +250,7 @@ public class AdminInstituicaoBean extends BasicView<Instituicao>{
 			Messages.showGrowlErro("Curso", e.getMessage());
 		}
     }
-    
-	@Override
-	public void onSave() {
-		Messages.showGrowlInfo("Instituicao", "Instituicao <strong>{0}</strong> salva com sucesso!", entity.getNome());
-	}
-	
-	@Override
-	public void onRemove(Instituicao instituicao) {
-		Messages.showGrowlInfo("Instituicao", "Instituicao <strong>{0}</strong> removido com sucesso!", instituicao.getNome());
-	}
-	
-	@Override
-	public Instituicao getEntity() {
-		return entity == null ? entity = new Instituicao() : entity;
-	}
-	
-	@Override
-	public List<Instituicao> getEntitys() {
-		return entitys == null ? entitys = Instituicao.findAll() : entitys;
-	}
-	
-	public List<Documento> getDocumentos() {
-		return documentos = documentos == null ? Documento.findAll() : documentos;
-	}
+
 	
 	public void onTransfer(TransferEvent event) {
         StringBuilder builder = new StringBuilder();
@@ -300,20 +277,6 @@ public class AdminInstituicaoBean extends BasicView<Instituicao>{
 		}
 		return null;
 	}
-
-
-	
-	public Campus getCampus() {
-		return campus == null ? campus = new Campus() : campus;
-	}
-	
-	public Departamento getDepartamento() {
-		return departamento == null ? departamento = new Departamento() : departamento;
-	}
-	
-	public Curso getCurso() {
-		return curso == null ? curso = new Curso() : curso;
-	}
 	
 	public void setCurso(Curso curso) {
 		this.curso = curso;
@@ -331,14 +294,6 @@ public class AdminInstituicaoBean extends BasicView<Instituicao>{
 		this.pickListDocumentos.setTarget(curso.getDocumentos());
 	}
 	
-	public boolean getNovoDepartamento(){
-		return campus == null ? false : showCampus && !campus.isNew();
-	}
-	
-	public boolean getNovoCurso(){
-		return departamento == null ? false : showDepartamento && !departamento.isNew();
-	}
-	
 	
 //## Button Remove Rendered	
 	public boolean isBtnRemoveCampus(){
@@ -353,4 +308,52 @@ public class AdminInstituicaoBean extends BasicView<Instituicao>{
 		return curso == null ? false : !curso.isNew(); 
 	}
 	
+//******************************************************************************************************************************
+//## Growl Messages
+	@Override
+	public void onSave() {
+		Messages.showGrowlInfo("Instituicao", "Instituicao <strong>{0}</strong> salva com sucesso!", entity.getNome());
+	}
+	
+	@Override
+	public void onRemove(Instituicao instituicao) {
+		Messages.showGrowlInfo("Instituicao", "Instituicao <strong>{0}</strong> removida com sucesso!", instituicao.getNome());
+	}
+	
+	
+//******************************************************************************************************************************
+//## Getters Setters	
+	public Campus getCampus() {
+		return campus == null ? campus = new Campus() : campus;
+	}
+	
+	public Departamento getDepartamento() {
+		return departamento == null ? departamento = new Departamento() : departamento;
+	}
+	
+	public Curso getCurso() {
+		return curso == null ? curso = new Curso() : curso;
+	}
+	
+	@Override
+	public Instituicao getEntity() {
+		return entity == null ? entity = new Instituicao() : entity;
+	}
+	
+	@Override
+	public List<Instituicao> getEntitys() {
+		return entitys == null ? entitys = Instituicao.findAll() : entitys;
+	}
+	
+	public List<Documento> getDocumentos() {
+		return documentos = documentos == null ? Documento.findAll() : documentos;
+	}
+	
+	public boolean getNovoDepartamento(){
+		return campus == null ? false : showCampus && !campus.isNew();
+	}
+	
+	public boolean getNovoCurso(){
+		return departamento == null ? false : showDepartamento && !departamento.isNew();
+	}
 }

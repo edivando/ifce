@@ -26,9 +26,12 @@
 	<ui:param name="btnBack" value="true" />
 	<ui:param name="btnSave" value="false" />
 	<ui:param name="btnEdit" value="true" />
-	<ui:param name="btnRemove" value="false" />
+	<ui:param name="btnRemove" value="true" />
 	
 	<ui:define name="contentGrid">
+		<p:column headerText="Status" width="80" styleClass="text-center">
+			<span class="label #{entity.status.color} label-mini">#{entity.status.title}</span>
+		</p:column>
 		<p:column headerText="Nome">
 			#{entity.usuario.nome}
 		</p:column>

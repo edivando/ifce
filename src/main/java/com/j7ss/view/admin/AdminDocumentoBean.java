@@ -38,26 +38,6 @@ public class AdminDocumentoBean extends BasicView<Documento>{
 	private String htmlPage = "";
 	
 	@Override
-	public Documento getEntity() {
-		return entity == null ? entity = new Documento() : entity;
-	}
-	
-	@Override
-	public List<Documento> getEntitys() {
-		return entitys == null ? entitys = Documento.findAll() : entitys;
-	}
-	
-	@Override
-	public void onSave() {
-		Messages.showGrowlInfo("Documentos", "Documento <strong>{0}</strong> salvo com sucesso!", entity.getNome());
-	}
-	
-	@Override
-	public void onRemove(Documento entity) {
-		Messages.showGrowlInfo("Documentos", "Documento <strong>{0}</strong> removido com sucesso!", entity.getNome());
-	}
-	
-	@Override
 	public void save() {
 		setKeys();
 		super.save();
@@ -101,4 +81,30 @@ public class AdminDocumentoBean extends BasicView<Documento>{
     	}
 		return htmlPage;
 	}
+    
+//******************************************************************************************************************************
+//## Growl Messages
+	@Override
+	public void onSave() {
+		Messages.showGrowlInfo("Documentos", "Documento <strong>{0}</strong> salvo com sucesso!", entity.getNome());
+	}
+	
+	@Override
+	public void onRemove(Documento entity) {
+		Messages.showGrowlInfo("Documentos", "Documento <strong>{0}</strong> removido com sucesso!", entity.getNome());
+	}
+	
+    
+//******************************************************************************************************************************
+//## Getters Setters
+	@Override
+	public Documento getEntity() {
+		return entity == null ? entity = new Documento() : entity;
+	}
+	
+	@Override
+	public List<Documento> getEntitys() {
+		return entitys == null ? entitys = Documento.findAll() : entitys;
+	}
+    
 }

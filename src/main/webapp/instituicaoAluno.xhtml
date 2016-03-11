@@ -29,9 +29,16 @@
 	<ui:param name="btnRemove" value="false" />
 	
 	<ui:define name="contentGrid">
-		<p:column headerText="Status" width="100" styleClass="text-center">
+		<p:column headerText="Status" width="120" styleClass="text-center" filterBy="#{entity.status}" filterMatchMode="exact">
+			<f:facet name="filter">
+                <p:selectOneMenu onchange="PF('alunoVar').filter()">
+                    <f:selectItem itemLabel="Selecione..." itemValue="#{null}" noSelectionOption="true" />
+                    <f:selectItem itemLabel="Verificar" itemValue="VERIFICAR" />
+                    <f:selectItem itemLabel="Válido" itemValue="VALIDO" />
+                    <f:selectItem itemLabel="Inválido" itemValue="INVALIDO" />
+                </p:selectOneMenu>
+            </f:facet>
 			<span class="label #{entity.status.color} label-mini">#{entity.status.title}</span>
-			
 		</p:column>
 		<p:column headerText="Nome">
 			#{entity.usuario.nome}

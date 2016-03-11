@@ -8,10 +8,7 @@
  */
 package com.j7ss.entity.constraint;
 
-import java.util.Date;
-
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * 

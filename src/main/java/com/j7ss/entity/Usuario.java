@@ -27,6 +27,7 @@ import com.j7ss.entity.constraint.UsuarioType;
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.IGenericEntity;
+import com.j7ss.util.MD5;
 
 /**
  * 
@@ -96,6 +97,11 @@ public class Usuario implements IGenericEntity<Usuario>{
 	
 	public Usuario senha(String senha){
 		this.senha = senha;
+		return this;
+	}
+	
+	public Usuario senhaMD5(String senha){
+		this.senha = MD5.md5(senha);
 		return this;
 	}
 	

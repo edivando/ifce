@@ -109,6 +109,14 @@ public class DocumentoVagaEstagio implements IGenericEntity<DocumentoVagaEstagio
 		return id == null;
 	}
 	
+	public boolean isStatusDisponivel() {
+		return DocumentoStatus.DISPONIVEL.equals(status);
+	}
+	
+	public boolean isStatusDisponivelDownload() {
+		return DocumentoStatus.DISPONIVEL_DOWNLOAD.equals(status);
+	}
+	
 	public String getLinkPagina(){
 		if(documento == null || status == DocumentoStatus.INDISPONIVEL){
 			return "";

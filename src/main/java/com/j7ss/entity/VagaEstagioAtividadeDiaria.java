@@ -102,6 +102,14 @@ public class VagaEstagioAtividadeDiaria implements IGenericEntity<VagaEstagioAti
 		return id == null;
 	}
 	
+	public boolean isStatusNova(){
+		return VagaEstagioAtividadeDiariaStatus.NOVA.equals(status);
+	}
+	
+	public boolean isStatusOk(){
+		return VagaEstagioAtividadeDiariaStatus.OK.equals(status);
+	}
+	
 	
 //******************************************************************************************************************************
 //## DAO

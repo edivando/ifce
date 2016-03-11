@@ -12,14 +12,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import lombok.Setter;
 
 import com.j7ss.entity.Usuario;
+import com.j7ss.entity.constraint.Page;
 import com.j7ss.util.MD5;
 import com.j7ss.util.Messages;
 import com.j7ss.util.WebContext;
@@ -43,37 +42,24 @@ public class LoginBean implements Serializable{
 		try {
 			List<Usuario> usuarios = Usuario.findByEmailAndSenha(usuario.getEmail(), MD5.md5(usuario.getSenha()));
 			if(usuarios != null && usuarios.size() > 0 ){
-				String homePage = "";
 				usuario = usuarios.get(0);
-				if(usuario.isTypeAluno()){
-//					usuario.getAluno().setVagasEstagio(VagaEstagio.findByAluno(usuario.getAluno()));
-					homePage = usuario.getAluno().isWizardCompleted() ? "alunoHome.html" : "alunoCompleteCadastro.html";
-				}else if(usuario.isTypeInstituicao()){
-					homePage = "instituicaoHome.html";
-				}else if(usuario.isTypeAdmin()){
-					homePage = "adminHome.html";
-				}
-				WebContext.redirect(homePage);
+				WebContext.redirect(getHomeLink());
 			}else{
 				usuario = new Usuario();
 				Messages.showGrowlWarn("Desculpe!", "Mas o email ou a senha informada não confere. Tente novamente!");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Messages.showGrowlErro("Erro ao fazer Login.", e.getMessage());
 		}
 	}
 	
 	public void logoff(){
 		WebContext.invalidateSession();
 		try {
-			WebContext.redirect("index.html");
+			WebContext.redirect(Page.INDEX);
 		} catch (IOException e) {
-			
+			Messages.showGrowlErro("Erro ao fazer Logoff.", e.getMessage());
 		}
-	}
-	
-	public Usuario getUsuario() {
-		return usuario == null ? usuario = new Usuario() : usuario;
 	}
 
 	public boolean isPagePermission(String paginaDestino) {
@@ -86,14 +72,20 @@ public class LoginBean implements Serializable{
 	}
 	
 	public String getHomeLink(){
-		if(getUsuario().isTypeAluno()){
-			return getUsuario().getAluno().isWizardCompleted() ? "alunoHome.html" : "alunoCompleteCadastro.html";
-		}else if(getUsuario().isTypeInstituicao()){
-			return "instituicaoHome.html";
-		}else if(getUsuario().isTypeAdmin()){
-			return "adminHome.html";
+		String homePage = "";
+		if(usuario.isTypeAluno()){
+			homePage = usuario.getAluno().isWizardCompleted() ? Page.ALUNO_HOME : Page.ALUNO_COMPLETE_CADASTRO;
+		}else if(usuario.isTypeInstituicao()){
+			homePage = Page.INSTITUICAO_HOME;
+		}else if(usuario.isTypeAdmin()){
+			homePage = Page.ADMIN_HOME;
 		}
-		return "";  
+		return homePage;
 	}
 	
+//******************************************************************************************************************************
+//## Getters Setters
+	public Usuario getUsuario() {
+		return usuario == null ? usuario = new Usuario() : usuario;
+	}
 }

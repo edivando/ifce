@@ -18,14 +18,28 @@ import lombok.Getter;
  */
 public enum DocumentoStatus {
 
+	// Documento não disponível para submeter
 	INDISPONIVEL("fa-times","", "Não Disponível"), 
+	
+	// Disponível para edição e submissão
 	DISPONIVEL("fa-check", "blue", "Disponível"), 
+	
+	// Aguardando verificação/Validação do setor de estágios do IFCE
 	AGUARDANDO_VERIFICACAO("fa-clock-o", "yellow", "Aguardando verificação da instituição"), 
+	
+	// Setor de estágios está verificando este documento
 	VERIFICANDO("fa-play-circle-o", "purple", "Verificando"), 
+	
+	// Após verificação do setor de estágio, foi detectado erros
 	VERIFICADO_COM_ERRO("fa-warning", "red", "Verificado com erros"), 
+	
+	// Disponível para downloads e assinaturas
 	DISPONIVEL_DOWNLOAD("fa-download", "green", "Disponível para Download"),
+	
+	// Documento concluído
 	CONCLUIDO("fa-times", "", "Concluído");
 
+	
 	@Getter
 	private String icon;
 	@Getter

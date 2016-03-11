@@ -112,7 +112,7 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@Setter
 	private Curso curso;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.REMOVE)
 	@Setter
 	private Usuario usuario;
 	
@@ -188,7 +188,6 @@ public class Aluno implements IGenericEntity<Aluno>{
 		this.uf = uf;
 		return this;
 	}
-	
 	
 	public Aluno vagaEstagio(List<VagaEstagio> vagasEstagio){
 		this.vagasEstagio = vagasEstagio;

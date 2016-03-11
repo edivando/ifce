@@ -24,6 +24,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import com.j7ss.entity.constraint.DocumentoStatus;
 import com.j7ss.util.DAO;
 import com.j7ss.util.DAOException;
 import com.j7ss.util.IGenericEntity;
@@ -125,8 +126,7 @@ public class Documento implements IGenericEntity<Documento> {
 	@Override
 	public boolean isNew() {
 		return id == null;
-	}
-	
+	}	
 	
 //******************************************************************************************************************************	
 //## DAO

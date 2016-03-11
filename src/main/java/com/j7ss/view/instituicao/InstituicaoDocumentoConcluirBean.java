@@ -34,7 +34,7 @@ import com.j7ss.view.LoginBean;
  */
 @ManagedBean
 @ViewScoped
-public class InstituicaoDocumentoBean extends BasicView<DocumentoVagaEstagio> {
+public class InstituicaoDocumentoConcluirBean extends BasicView<DocumentoVagaEstagio> {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -45,26 +45,13 @@ public class InstituicaoDocumentoBean extends BasicView<DocumentoVagaEstagio> {
 	@Setter
 	private DocumentoVagaEstagioMessage docMessage;
 	
-	public void saveErro(){
+	public void saveConcluido(DocumentoVagaEstagio entity){
 		try {
-			entity.status(DocumentoStatus.VERIFICADO_COM_ERRO).save();
+			entity.status(DocumentoStatus.CONCLUIDO).save();
 			getDocMessage().date(new Date()).usuario(loginBean.getUsuario()).documentoVagaEstagio(entity).save();
 			entity.save();
 			// Enviar email para aluno
-			Messages.showGrowlInfo("Documento", "Este documento estará disponível para download.");
-		} catch (DAOException e) {
-			Messages.showGrowlErro("Documento", e.getMessage());
-		}
-		grid();
-	}
-	
-	public void saveDownload(){
-		try {
-			entity.status(DocumentoStatus.DISPONIVEL_DOWNLOAD).save();
-			getDocMessage().date(new Date()).usuario(loginBean.getUsuario()).documentoVagaEstagio(entity).save();
-			entity.save();
-			// Enviar email para aluno
-			Messages.showGrowlInfo("Documento", "Este documento estará disponível para download.");
+			Messages.showGrowlInfo("Documento", "Este documento concluído.");
 		} catch (DAOException e) {
 			Messages.showGrowlErro("Documento", e.getMessage());
 		}
@@ -83,6 +70,6 @@ public class InstituicaoDocumentoBean extends BasicView<DocumentoVagaEstagio> {
 	
 	@Override
 	public List<DocumentoVagaEstagio> getEntitys() {
-		return entitys == null ? entitys = DocumentoVagaEstagio.findByDocumentoStatus(DocumentoStatus.AGUARDANDO_VERIFICACAO) : entitys;
+		return entitys == null ? entitys = DocumentoVagaEstagio.findByDocumentoStatus(DocumentoStatus.DISPONIVEL_DOWNLOAD) : entitys;
 	}
 }

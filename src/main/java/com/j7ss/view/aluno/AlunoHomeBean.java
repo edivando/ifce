@@ -23,6 +23,7 @@ import com.j7ss.entity.DocumentoCurso;
 import com.j7ss.entity.DocumentoVagaEstagio;
 import com.j7ss.entity.VagaEstagio;
 import com.j7ss.entity.VagaEstagioAtividadeDiaria;
+import com.j7ss.entity.constraint.AlunoStatus;
 import com.j7ss.entity.constraint.DocumentoParse;
 import com.j7ss.entity.constraint.DocumentoStatus;
 import com.j7ss.util.DAOException;
@@ -70,12 +71,16 @@ public class AlunoHomeBean implements Serializable{
 	private boolean formAtividade;
 	
 	public void documentos(){
-		grid = false;
-		formEstagio = false;
-		formAtividade = false;
-		gridAtividade = false;
-		documentos = true;
-		documentoView = false;
+		if(loginBean.getUsuario().getAluno().isStatusValido()){
+			grid = false;
+			formEstagio = false;
+			formAtividade = false;
+			gridAtividade = false;
+			documentos = true;
+			documentoView = false;
+		}else{
+			Messages.showGrowlWarn("Atenção!!!", "Aguarde a validação do seu cadastro por parte do setor de estágios");
+		}
 	}
 	
 	public void documentoView(){
@@ -106,12 +111,16 @@ public class AlunoHomeBean implements Serializable{
 	}
 	
 	public void gridAtividade(){
-		grid = false;
-		formEstagio = false;
-		formAtividade = false;
-		gridAtividade = true;
-		documentos = false;
-		documentoView = false;
+		if(loginBean.getUsuario().getAluno().isStatusValido()){
+			grid = false;
+			formEstagio = false;
+			formAtividade = false;
+			gridAtividade = true;
+			documentos = false;
+			documentoView = false;
+		}else{
+			Messages.showGrowlWarn("Atenção!!!", "Aguarde a validação do seu cadastro por parte do setor de estágios");
+		}
 	}
 	
 	public void grid(){
@@ -122,10 +131,6 @@ public class AlunoHomeBean implements Serializable{
 		documentos = false;
 		documentoView = false;
 		vagaEstagio = null;
-	}
-	
-	public VagaEstagio getVagaEstagio() {
-		return vagaEstagio == null ? vagaEstagio = new VagaEstagio() : vagaEstagio;
 	}
 	
 	public void setVagaEstagio(VagaEstagio vagaEstagio) {
@@ -155,17 +160,11 @@ public class AlunoHomeBean implements Serializable{
 		}
 	}
 	
-	public List<VagaEstagio> getVagasEstagio() {
-		return vagasEstagio == null ? vagasEstagio = VagaEstagio.findByAluno(loginBean.getUsuario().getAluno()) : vagasEstagio;
-//		return loginBean.getUsuario().getAluno().getVagasEstagio();
-	}
-	
-	public VagaEstagioAtividadeDiaria getAtividadeDiaria() {
-		return atividadeDiaria == null ? atividadeDiaria = new VagaEstagioAtividadeDiaria() : atividadeDiaria;
-	}
-	
 	public void save(){
 		try {
+			if(vagaEstagio.getAluno().getStatus().equals(AlunoStatus.INVALIDO)){
+				vagaEstagio.getAluno().status(AlunoStatus.VERIFICAR).save();
+			}
 			vagaEstagio.save();
 			Messages.showGrowlInfo("Dados do Estágio", "Atualizado!");
 		} catch (DAOException e) {
@@ -215,15 +214,7 @@ public class AlunoHomeBean implements Serializable{
 		}
 		return false;
 	}
-	
-	public List<DocumentoVagaEstagio> getDocVagaEstagio(){
-		return getVagaEstagio().getDocumentosVagaEstagio();
-	}
-	
-	private List<DocumentoCurso> getDocCursos(){
-		return loginBean.getUsuario().getAluno().getCurso().getDocumentoCursos();
-	}
-	
+
 	public void saveDocumento(DocumentoStatus status){
 		try {
 			documentoVagaEstagio.status(status).save();
@@ -233,6 +224,9 @@ public class AlunoHomeBean implements Serializable{
 		}
 	}
 	
+	
+//******************************************************************************************************************************
+//## Getters Setters
 	public String getDocPage() {
 		if(docPage == null){
 			docPage = new DocumentoParse(documentoVagaEstagio).toPage();
@@ -242,6 +236,30 @@ public class AlunoHomeBean implements Serializable{
 	
 	public void setDocumentoVagaEstagio(DocumentoVagaEstagio documentoVagaEstagio) {
 		this.documentoVagaEstagio = documentoVagaEstagio;
+	}
+	
+	public DocumentoVagaEstagio getDocumentoVagaEstagio() {
+		return documentoVagaEstagio == null ? documentoVagaEstagio = new DocumentoVagaEstagio() : documentoVagaEstagio;
+	}
+	
+	public VagaEstagio getVagaEstagio() {
+		return vagaEstagio == null ? vagaEstagio = new VagaEstagio() : vagaEstagio;
+	}
+	
+	public List<DocumentoVagaEstagio> getDocVagaEstagio(){
+		return getVagaEstagio().getDocumentosVagaEstagio();
+	}
+	
+	private List<DocumentoCurso> getDocCursos(){
+		return loginBean.getUsuario().getAluno().getCurso().getDocumentoCursos();
+	}
+	
+	public List<VagaEstagio> getVagasEstagio() {
+		return vagasEstagio == null ? vagasEstagio = VagaEstagio.findByAluno(loginBean.getUsuario().getAluno()) : vagasEstagio;
+	}
+	
+	public VagaEstagioAtividadeDiaria getAtividadeDiaria() {
+		return atividadeDiaria == null ? atividadeDiaria = new VagaEstagioAtividadeDiaria() : atividadeDiaria;
 	}
 
 }
