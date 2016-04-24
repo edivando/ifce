@@ -246,7 +246,7 @@
 								Cancelar
 							</p:commandLink>
 							<p:commandLink  actionListener="#{adminInstituicaoBean.saveCurso}" update="@form" styleClass="pull-right btn btn-info btn-xs"
-								style="margin-right: 10px;" process="@this inputCursoNome inputCursoDuracaoEstagio" >
+								style="margin-right: 10px;" process="@this inputCursoNome inputCursoDuracaoEstagio inputCursoProfessorOrientador inputCursoProfessorOrientadorTelefone inputCursoProfessorOrientadorEmail" >
 								<i class="fa fa-save" />
 								Salvar
 							</p:commandLink>
@@ -262,7 +262,36 @@
 								<p:message for="inputCursoNome"  />
 							</div>
 						</div>
-						
+						<div class="form-group">
+							<label for="inputCursoProfessorOrientador" class="col-sm-2 control-label"><strong>Professor Orientador:</strong></label>
+							<div class="col-sm-8">
+								<p:inputText id="inputCursoProfessorOrientador" value="#{adminInstituicaoBean.curso.professorOrientador}" placeholder="Nome do Professor Orientador" 
+									styleClass="form-control" required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
+							</div>
+							<div class="col-sm-2">
+								<p:message for="inputCursoProfessorOrientador"  />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputCursoProfessorOrientadorTelefone" class="col-sm-2 control-label"><strong>Telefone do Professor Orientador:</strong></label>
+							<div class="col-sm-8">
+								<p:inputText id="inputCursoProfessorOrientadorTelefone" value="#{adminInstituicaoBean.curso.professorOrientadorTelefone}" placeholder="Telefone do Professor Orientador" 
+									styleClass="form-control" required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
+							</div>
+							<div class="col-sm-2">
+								<p:message for="inputCursoProfessorOrientadorTelefone"  />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputCursoProfessorOrientadorEmail" class="col-sm-2 control-label"><strong>Email do Professor Orientador:</strong></label>
+							<div class="col-sm-8">
+								<p:inputText id="inputCursoProfessorOrientadorEmail" value="#{adminInstituicaoBean.curso.professorOrientadorEmail}" placeholder="Email do Professor Orientador" 
+									styleClass="form-control" required="true" requiredMessage="Item obrigatório!" maxlength="80"/>
+							</div>
+							<div class="col-sm-2">
+								<p:message for="inputCursoProfessorOrientadorEmail"  />
+							</div>
+						</div>
 						<div class="form-group">
 							<label for="inputCursoDuracaoEstagio" class="col-sm-2 control-label"><strong>Duração do Estágio:</strong></label>
 							<div class="col-sm-3">

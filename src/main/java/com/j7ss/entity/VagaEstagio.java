@@ -67,7 +67,10 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	private String requisitos;
 	
 	@Getter @Setter
-	private String atividades;
+	private String atividades;   // Atividades a serem desenvolvidas
+	
+	@Getter @Setter
+	private String resultados;   // Resultados esperados
 	
 	@Getter @Setter
 	private String beneficios;

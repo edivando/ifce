@@ -55,6 +55,13 @@ public class Curso implements IGenericEntity<Curso>{
 	private String nome;
 	
 	@Getter @Setter
+	private String professorOrientador;
+	@Getter @Setter
+	private String professorOrientadorTelefone;
+	@Getter @Setter
+	private String professorOrientadorEmail;
+	
+	@Getter @Setter
 	private Integer duracaoEstagio;
 	
 	@ManyToOne
