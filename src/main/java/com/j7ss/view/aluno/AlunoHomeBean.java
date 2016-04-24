@@ -18,6 +18,8 @@ import javax.faces.bean.ViewScoped;
 import lombok.Getter;
 import lombok.Setter;
 
+import com.j7ss.core.DAOException;
+import com.j7ss.core.Messages;
 import com.j7ss.entity.Documento;
 import com.j7ss.entity.DocumentoCurso;
 import com.j7ss.entity.DocumentoVagaEstagio;
@@ -26,8 +28,6 @@ import com.j7ss.entity.VagaEstagioAtividadeDiaria;
 import com.j7ss.entity.constraint.AlunoStatus;
 import com.j7ss.entity.constraint.DocumentoParse;
 import com.j7ss.entity.constraint.DocumentoStatus;
-import com.j7ss.util.DAOException;
-import com.j7ss.util.Messages;
 import com.j7ss.view.LoginBean;
 
 /**

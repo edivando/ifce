@@ -26,14 +26,14 @@ import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.DualListModel;
 import org.primefaces.model.TreeNode;
 
+import com.j7ss.core.BasicView;
+import com.j7ss.core.DAOException;
+import com.j7ss.core.Messages;
 import com.j7ss.entity.Campus;
 import com.j7ss.entity.Curso;
 import com.j7ss.entity.Departamento;
 import com.j7ss.entity.Documento;
 import com.j7ss.entity.Instituicao;
-import com.j7ss.util.BasicView;
-import com.j7ss.util.DAOException;
-import com.j7ss.util.Messages;
 
 /**
  * 

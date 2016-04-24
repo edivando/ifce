@@ -18,6 +18,9 @@ import javax.faces.bean.ViewScoped;
 import lombok.Getter;
 import lombok.Setter;
 
+import com.j7ss.core.MD5;
+import com.j7ss.core.Messages;
+import com.j7ss.core.WebContext;
 import com.j7ss.entity.Aluno;
 import com.j7ss.entity.Campus;
 import com.j7ss.entity.Curso;
@@ -25,9 +28,6 @@ import com.j7ss.entity.Departamento;
 import com.j7ss.entity.Instituicao;
 import com.j7ss.entity.constraint.Page;
 import com.j7ss.entity.constraint.UsuarioType;
-import com.j7ss.util.MD5;
-import com.j7ss.util.Messages;
-import com.j7ss.util.WebContext;
 
 /**
  * 

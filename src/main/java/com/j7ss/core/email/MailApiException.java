@@ -6,7 +6,7 @@
  * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
  * 
  */
-package com.j7ss.util;
+package com.j7ss.core.email;
 
 /**
  * 
@@ -14,23 +14,21 @@ package com.j7ss.util;
  * @date  10/02/2016
  * 
  */
-public class DAOException extends Exception {
+public class MailApiException extends Exception{
 
 	private static final long serialVersionUID = 1L;
+	
+	
+	public MailApiException(String msg) {
+		super(msg);
+	}
+	
+	public MailApiException(Throwable t) {
+		super(t);
+	}
+	
+	public MailApiException(String msg, Throwable t) {
+		super(msg, t);
+	}
 
-	public DAOException() {
-		super();
-	}
-	
-	public DAOException(String message){
-		super(message);
-	}
-	
-	public DAOException(Throwable e){
-		super(e);
-	}
-	
-	public DAOException(String message, Throwable e){
-		super(message, e);
-	}
 }

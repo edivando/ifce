@@ -12,8 +12,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import com.j7ss.core.BasicView;
 import com.j7ss.entity.DocumentoVagaEstagio;
-import com.j7ss.util.BasicView;
 
 /**
  * 

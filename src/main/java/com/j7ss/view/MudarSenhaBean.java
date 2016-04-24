@@ -19,9 +19,9 @@ import lombok.Setter;
 
 import org.primefaces.context.RequestContext;
 
-import com.j7ss.util.DAOException;
-import com.j7ss.util.MD5;
-import com.j7ss.util.Messages;
+import com.j7ss.core.DAOException;
+import com.j7ss.core.MD5;
+import com.j7ss.core.Messages;
 
 /**
  * 

@@ -17,11 +17,11 @@ import javax.faces.bean.SessionScoped;
 
 import lombok.Setter;
 
+import com.j7ss.core.MD5;
+import com.j7ss.core.Messages;
+import com.j7ss.core.WebContext;
 import com.j7ss.entity.Usuario;
 import com.j7ss.entity.constraint.Page;
-import com.j7ss.util.MD5;
-import com.j7ss.util.Messages;
-import com.j7ss.util.WebContext;
 
 /**
  * 

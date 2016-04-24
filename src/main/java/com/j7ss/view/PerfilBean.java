@@ -16,9 +16,9 @@ import javax.faces.bean.ViewScoped;
 
 import lombok.Setter;
 
+import com.j7ss.core.DAOException;
+import com.j7ss.core.Messages;
 import com.j7ss.entity.Usuario;
-import com.j7ss.util.DAOException;
-import com.j7ss.util.Messages;
 
 /**
  * 

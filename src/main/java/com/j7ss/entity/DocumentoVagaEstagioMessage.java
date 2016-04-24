@@ -23,10 +23,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import com.j7ss.core.DAO;
+import com.j7ss.core.DAOException;
+import com.j7ss.core.IGenericEntity;
 import com.j7ss.entity.constraint.DocumentoStatus;
-import com.j7ss.util.DAO;
-import com.j7ss.util.DAOException;
-import com.j7ss.util.IGenericEntity;
 
 /**
  * 

@@ -6,14 +6,14 @@
  * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
  * 
  */
-package com.j7ss.util;
+package com.j7ss.core;
 
 import java.io.Serializable;
 import java.util.List;
 
-import com.j7ss.util.DAOException;
-import com.j7ss.util.IGenericEntity;
-import com.j7ss.util.Messages;
+import com.j7ss.core.DAOException;
+import com.j7ss.core.IGenericEntity;
+import com.j7ss.core.Messages;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -16,11 +16,11 @@ import javax.faces.bean.ViewScoped;
 
 import lombok.Setter;
 
+import com.j7ss.core.BasicView;
+import com.j7ss.core.DAOException;
+import com.j7ss.core.Messages;
 import com.j7ss.entity.Aluno;
 import com.j7ss.entity.constraint.AlunoStatus;
-import com.j7ss.util.BasicView;
-import com.j7ss.util.DAOException;
-import com.j7ss.util.Messages;
 import com.j7ss.view.LoginBean;
 
 /**

@@ -28,9 +28,9 @@ import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.j7ss.util.DAO;
-import com.j7ss.util.DAOException;
-import com.j7ss.util.IGenericEntity;
+import com.j7ss.core.DAO;
+import com.j7ss.core.DAOException;
+import com.j7ss.core.IGenericEntity;
 
 /**
  * 

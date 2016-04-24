@@ -6,7 +6,7 @@
  * @copyright  	Copyright 2010 - 2016 J7 Smart Solutions, all rights reserved.
  * 
  */
-package com.j7ss.util;
+package com.j7ss.core;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;

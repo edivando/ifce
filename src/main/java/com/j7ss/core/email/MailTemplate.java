@@ -1,4 +1,4 @@
-package com.j7ss.util.email;
+package com.j7ss.core.email;
 
 import com.j7ss.entity.Usuario;
 

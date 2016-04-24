@@ -18,12 +18,12 @@ import lombok.Setter;
 
 import org.primefaces.event.FlowEvent;
 
+import com.j7ss.core.Messages;
+import com.j7ss.core.WebContext;
 import com.j7ss.entity.Aluno;
 import com.j7ss.entity.VagaEstagio;
 import com.j7ss.entity.constraint.AlunoStatus;
 import com.j7ss.entity.constraint.Page;
-import com.j7ss.util.Messages;
-import com.j7ss.util.WebContext;
 import com.j7ss.view.LoginBean;
 
 /**

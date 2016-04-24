@@ -13,11 +13,11 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import com.j7ss.core.BasicView;
+import com.j7ss.core.MD5;
+import com.j7ss.core.Messages;
 import com.j7ss.entity.Instituicao;
 import com.j7ss.entity.Usuario;
-import com.j7ss.util.BasicView;
-import com.j7ss.util.MD5;
-import com.j7ss.util.Messages;
 
 /**
  * 
