@@ -274,6 +274,8 @@ public class Aluno implements IGenericEntity<Aluno>{
 		if(getVagasEstagio().size() == 0) return false;
 		VagaEstagio vaga = getVagasEstagio().get(0);
 		return (
+				vaga.getAtividades() != null 	    && !vaga.getAtividades().equals("") &&
+				vaga.getResultados() != null 	    && !vaga.getResultados().equals("") &&
 				vaga.getApoliceNumero() != null 	&& !vaga.getApoliceNumero().equals("") &&
 				vaga.getApoliceEmpresa() != null 	&& !vaga.getApoliceEmpresa().equals("") 
 			);

@@ -330,7 +330,6 @@
 						</div>
 				   	</div>
 	            </p:panel>
-	
 	        </p:tab>
 	        
 	        <p:tab id="vagaEstagioConcluir">
@@ -342,7 +341,26 @@
                      	</button>
                      	<strong>Dados do Estágio </strong> XXXXX.
                 	</div>
-                	
+                	<div class="form-group">
+					    <label for="inputVagaAtividades" class="col-sm-2 control-label"><strong>Atividades a serem desenvolvidas no estágio:</strong></label>
+					    <div class="col-sm-7">
+							<p:inputTextarea id="inputVagaAtividades" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.atividades}" 
+								placeholder="Atividades a serem desenvolvidas no estágio" required="true" requiredMessage="Item obrigatório!" rows="10"/>			    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaAtividades"/>
+						</div>
+				   	</div>
+				   	<div class="form-group">
+					    <label for="inputVagaResultados" class="col-sm-2 control-label"><strong>Resultados Esperados:</strong></label>
+					    <div class="col-sm-7">
+							<p:inputTextarea id="inputVagaResultados" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.resultados}" 
+								placeholder="Resultados esperados durante o estágio" required="true" requiredMessage="Item obrigatório!" rows="10"/>			    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaResultados"/>
+						</div>
+				   	</div>
 				   	<div class="form-group">
 					    <label for="inputVagaApoliceNumero" class="col-sm-2 control-label"><strong>Apolice nº:</strong></label>
 					    <div class="col-sm-4">
