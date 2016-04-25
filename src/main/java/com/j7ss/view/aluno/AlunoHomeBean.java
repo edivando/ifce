@@ -153,7 +153,7 @@ public class AlunoHomeBean implements Serializable{
 											.vagaEstagio(vagaEstagio)
 											.documento(dc.getDocumento())
 											.ordem(i)
-											.status(first ?  DocumentoStatus.DISPONIVEL : DocumentoStatus.INDISPONIVEL) );
+											.status(i < 3 ?  DocumentoStatus.DISPONIVEL : DocumentoStatus.INDISPONIVEL) );
 				first = false;
 			}
 			i++;

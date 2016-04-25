@@ -239,6 +239,7 @@
 				               	<span class="input-group-addon btn-primary"> R$ </span>
 				          		<p:inputText id="inputVagaBolsa" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.remuneracao}"
 									placeholder="Valor da Bolsa" required="true" requiredMessage="Item obrigatório!" />
+								<span class="input-group-addon btn-primary">,00</span>	
 				           </div>				    
 					    </div>
 					    <div class="col-md-2">
@@ -251,7 +252,9 @@
 					    	<div class="input-group m-bot15">
 				               	<span class="input-group-addon btn-primary"> R$ </span>
 				          		<p:inputText id="inputVagaTransporte" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.valorTransporte}" 
-									placeholder="Valor da Auxilio Transporte" required="true" requiredMessage="Item obrigatório!" />	
+									placeholder="Valor da Auxilio Transporte" required="true" requiredMessage="Item obrigatório!" />
+								<span class="input-group-addon btn-primary">,00</span>	
+								
 				           </div>		    
 					    </div>
 					    <div class="col-md-2">
@@ -277,7 +280,7 @@
 							</p:inputMask>			    
 					    </div>
 					    <div class="col-md-2">
-							<p:message for="inputVagaCargaHoraria"/>
+							<p:message for="inputVagaVigenciaInicio"/>
 						</div>
 				   	</div>
 				   	<div class="form-group">
@@ -289,7 +292,7 @@
 							</p:inputMask>			    
 					    </div>
 					    <div class="col-md-2">
-							<p:message for="inputVagaCargaHoraria"/>
+							<p:message for="inputVagaVigenciaFim"/>
 						</div>
 				   	</div>
 				   	<div class="form-group">
@@ -301,7 +304,7 @@
 							</p:inputMask>			    
 					    </div>
 					    <div class="col-md-2">
-							<p:message for="inputVagaCargaHoraria"/>
+							<p:message for="inputVagaHoraInicio"/>
 						</div>
 				   	</div>
 				   	<div class="form-group">
@@ -333,7 +336,7 @@
 							</p:inputMask>			    
 					    </div>
 					    <div class="col-md-2">
-							<p:message for="inputVagaCargaHoraria"/>
+							<p:message for="inputVagaHoraFim"/>
 						</div>
 				   	</div>
 	            </p:panel>
@@ -579,16 +582,14 @@
 					</div>
 					<div class="form-group">
 						<label for="inputEmpresaSupervisorTelefone" class="col-sm-2 control-label"><strong>Telefone do Supervisor:</strong></label>
-						<div class="col-sm-3">
-							<p:inputText id="inputEmpresaSupervisorTelefone" value="#{alunoCompleteCadastroBean.vagaEstagio.empresaSupervisor.telefoneSupervisor}" 
-								placeholder="Cargo do Supervisor" styleClass="form-control" required="true" requiredMessage="Item obrigatório!"  />
+						<div class="col-sm-3">						
+							<p:inputMask id="inputEmpresaSupervisorTelefone" value="#{alunoCompleteCadastroBean.vagaEstagio.empresaSupervisor.telefoneSupervisor}" 
+								placeholder="Cargo do Supervisor" styleClass="form-control" required="true" requiredMessage="Item obrigatório!"  mask="(99) 9999-9999" />
 						</div>
 						 <div class="col-md-2">
 							<p:message for="inputEmpresaSupervisorTelefone"/>
 						</div>
 					</div>
-                	
-                	
                 </p:panel>
 
 	        </p:tab>
@@ -596,6 +597,7 @@
 	        <p:tab>
 	        	<p:panel styleClass="text-center">
 	        		<h1>Cadastro Completo</h1>
+	        		<h3>Aguarde a validação do seu cadastro pelo setor de Estágios do IFCE, após isso você poderá submeter os documentos do estágio.</h3>
 	        		<p:commandLink action="#{alunoCompleteCadastroBean.concluir}" styleClass="btn btn-info btn-sm">
 						<i class="fa fa-save" />
 						<strong>Concluir</strong>

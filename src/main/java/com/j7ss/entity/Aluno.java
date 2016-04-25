@@ -93,7 +93,7 @@ public class Aluno implements IGenericEntity<Aluno>{
 	private String numero;
 	
 	@Getter @Setter
-	private String complemento;
+	private String complemento = "      ";
 	
 	@Getter @Setter
 	private String bairro;
