@@ -75,6 +75,9 @@ public class DocumentoParse {
 		case ALUNO_ENDERECO_NUMERO:
 			replace(DocumentoKey.ALUNO_ENDERECO_NUMERO, documentoVagaEstagio.getVagaEstagio().getAluno().getNumero());
 			break;
+		case ALUNO_ENDERECO_COMPLEMENTO:
+			replace(DocumentoKey.ALUNO_ENDERECO_COMPLEMENTO, documentoVagaEstagio.getVagaEstagio().getAluno().getComplemento());
+			break;
 		case ALUNO_ENDERECO_BAIRRO:
 			replace(DocumentoKey.ALUNO_ENDERECO_BAIRRO, documentoVagaEstagio.getVagaEstagio().getAluno().getBairro());
 			break;

@@ -93,6 +93,9 @@ public class Aluno implements IGenericEntity<Aluno>{
 	private String numero;
 	
 	@Getter @Setter
+	private String complemento;
+	
+	@Getter @Setter
 	private String bairro;
 	
 	@Column(length=10)
