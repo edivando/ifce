@@ -342,6 +342,16 @@
                      	<strong>Dados do Estágio </strong> XXXXX.
                 	</div>
                 	<div class="form-group">
+					    <label for="inputVagaSetor" class="col-sm-2 control-label"><strong>Setor de realização do estágio:</strong></label>
+					    <div class="col-sm-7">
+							<p:inputText id="inputVagaSetor" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.setor}" 
+								placeholder="Setor onde você vai estagiar" required="true" requiredMessage="Item obrigatório!"/>			    
+					    </div>
+					    <div class="col-md-2">
+							<p:message for="inputVagaSetor"/>
+						</div>
+				   	</div>
+                	<div class="form-group">
 					    <label for="inputVagaAtividades" class="col-sm-2 control-label"><strong>Atividades a serem desenvolvidas no estágio:</strong></label>
 					    <div class="col-sm-7">
 							<p:inputTextarea id="inputVagaAtividades" styleClass="form-control" value="#{alunoCompleteCadastroBean.vagaEstagio.atividades}" 
