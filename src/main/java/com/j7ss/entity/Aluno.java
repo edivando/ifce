@@ -33,6 +33,7 @@ import lombok.ToString;
 
 import com.j7ss.core.DAO;
 import com.j7ss.core.DAOException;
+import com.j7ss.core.DateUtil;
 import com.j7ss.core.IGenericEntity;
 import com.j7ss.entity.constraint.AlunoStatus;
 
@@ -365,6 +366,10 @@ public class Aluno implements IGenericEntity<Aluno>{
 	
 	public List<VagaEstagio> getVagasEstagio() {
 		return vagasEstagio == null ? vagasEstagio = new ArrayList<>() : vagasEstagio;
+	}
+	
+	public String getDataNascimentoFormat(){
+		return DateUtil.format(dataNascimento);
 	}
 
 	

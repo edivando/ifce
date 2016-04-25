@@ -71,6 +71,12 @@ public class InstituicaoDocumentoBean extends BasicView<DocumentoVagaEstagio> {
 		grid();
 	}
 	
+	@Override
+	public void grid() {
+		super.grid();
+		this.docMessage = null;
+	}
+	
 //******************************************************************************************************************************
 //## Getters Setters
 	public String getDocPage(){

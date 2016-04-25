@@ -224,6 +224,19 @@ public class AlunoHomeBean implements Serializable{
 		}
 	}
 	
+	public void submeterAvaliacao(){
+		try {
+			documentoVagaEstagio.status(DocumentoStatus.AGUARDANDO_VERIFICACAO).save();
+			Messages.showGrowlInfo("Documento enviado para avaliação", "Favor aguardar correção por parte da instituição.");
+		} catch (DAOException e) {
+			Messages.showGrowlErro("Documentos", e.getMessage());
+		}
+	}
+	
+	public boolean isDisponivel(){
+		return documentoVagaEstagio.isStatusDisponivel() || documentoVagaEstagio.isVerificadoComErro();
+	}
+	
 	
 //******************************************************************************************************************************
 //## Getters Setters

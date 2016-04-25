@@ -9,6 +9,7 @@
 package com.j7ss.entity.constraint;
 
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 
@@ -88,10 +89,23 @@ public enum DocumentoKey {
 	DEPARTAMENTO_NOME("DEPARTAMENTO", "`&&DEPARTAMENTO_NOME&&`" ),
 	
 	// Curso
-	ALUNO_CURSO_SEMESTRE_ATUAL(		"CURSO", "`&&ALUNO_CURSO_SEMESTRE_ATUAL&&`" ),
-	ALUNO_CURSO_NOME(				"CURSO", "`&&ALUNO_CURSO_NOME&&`" );
+	ALUNO_CURSO_SEMESTRE_ATUAL(					"CURSO", "`&&ALUNO_CURSO_SEMESTRE_ATUAL&&`" ),
+	ALUNO_CURSO_NOME(							"CURSO", "`&&ALUNO_CURSO_NOME&&`" ),
+	ALUNO_CURSO_PROFESSOR_ORIENTADOR(			"CURSO", "`&&ALUNO_CURSO_ORIENTADOR&&`"),
+	ALUNO_CURSO_PROFESSOR_ORIENTADOR_TELEFONE(	"CURSO", "`&&ALUNO_CURSO_ORIENTADOR_TELEFONE&&`"),
+	ALUNO_CURSO_PROFESSOR_ORIENTADOR_EMAIL(		"CURSO", "`&&ALUNO_CURSO_ORIENTADOR_EMAIL&&`");
 	
-
+	@Getter @Setter
+	private String professorOrientador;
+	@Getter @Setter
+	private String professorOrientadorTelefone;
+	@Getter @Setter
+	private String professorOrientadorEmail;
+	
+	@Getter @Setter
+	private Integer duracaoEstagio;
+	
+	
 	@Getter
 	private String key;
 	private String group;

@@ -67,7 +67,7 @@ public class DocumentoParse {
 			replace(DocumentoKey.ALUNO_RG, documentoVagaEstagio.getVagaEstagio().getAluno().getRg());
 			break;
 		case ALUNO_DATA_NASCIMENTO:
-			replace(DocumentoKey.ALUNO_DATA_NASCIMENTO, documentoVagaEstagio.getVagaEstagio().getAluno().getDataNascimento());
+			replace(DocumentoKey.ALUNO_DATA_NASCIMENTO, documentoVagaEstagio.getVagaEstagio().getAluno().getDataNascimentoFormat());
 			break;
 		case ALUNO_ENDERECO_ENDERECO:
 			replace(DocumentoKey.ALUNO_ENDERECO_ENDERECO, documentoVagaEstagio.getVagaEstagio().getAluno().getEndereco());
@@ -140,13 +140,13 @@ public class DocumentoParse {
 			replace(DocumentoKey.EMPRESA_FAX, documentoVagaEstagio.getVagaEstagio().getEmpresa().getFax());
 			break;
 		case EMPRESA_SUPERVISOR:
-			replace(DocumentoKey.EMPRESA_SUPERVISOR, documentoVagaEstagio.getVagaEstagio().getEmpresa());
+			replace(DocumentoKey.EMPRESA_SUPERVISOR, documentoVagaEstagio.getVagaEstagio().getEmpresaSupervisor().getSupervisor());
 			break;
 		case EMPRESA_CARGO_SUPERVISOR:
-			replace(DocumentoKey.EMPRESA_CARGO_SUPERVISOR, documentoVagaEstagio.getVagaEstagio().getEmpresa());
+			replace(DocumentoKey.EMPRESA_CARGO_SUPERVISOR, documentoVagaEstagio.getVagaEstagio().getEmpresaSupervisor().getCargoSupervisor());
 			break;
 		case EMPRESA_TELEFONE_SUPERVISOR:
-			replace(DocumentoKey.EMPRESA_TELEFONE_SUPERVISOR, documentoVagaEstagio.getVagaEstagio().getEmpresa());
+			replace(DocumentoKey.EMPRESA_TELEFONE_SUPERVISOR, documentoVagaEstagio.getVagaEstagio().getEmpresaSupervisor().getTelefoneSupervisor());
 			break;
 		case EMPRESA_CNPJ:
 			replace(DocumentoKey.EMPRESA_CNPJ, documentoVagaEstagio.getVagaEstagio().getEmpresa().getCnpj());
@@ -222,12 +222,21 @@ public class DocumentoParse {
 		case ALUNO_CURSO_NOME:
 			replace(DocumentoKey.ALUNO_CURSO_NOME, documentoVagaEstagio.getVagaEstagio().getAluno().getCurso().getNome());
 			break;
+		case ALUNO_CURSO_PROFESSOR_ORIENTADOR:
+			replace(DocumentoKey.ALUNO_CURSO_PROFESSOR_ORIENTADOR, documentoVagaEstagio.getVagaEstagio().getAluno().getCurso().getProfessorOrientador());
+			break;
+		case ALUNO_CURSO_PROFESSOR_ORIENTADOR_TELEFONE:
+			replace(DocumentoKey.ALUNO_CURSO_PROFESSOR_ORIENTADOR_TELEFONE, documentoVagaEstagio.getVagaEstagio().getAluno().getCurso().getProfessorOrientadorTelefone());
+			break;
+		case ALUNO_CURSO_PROFESSOR_ORIENTADOR_EMAIL:
+			replace(DocumentoKey.ALUNO_CURSO_PROFESSOR_ORIENTADOR_EMAIL, documentoVagaEstagio.getVagaEstagio().getAluno().getCurso().getProfessorOrientadorEmail());
+			break;
 		}
 	}
 	
 	private void replace(DocumentoKey key, Object value){
 		if(value != null){
-			docPage = docPage.replace(key.getKey(), value.toString());
+			docPage = docPage.replace(key.getKey(), value.toString()+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
 		}
 	}
 	

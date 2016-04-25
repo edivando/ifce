@@ -48,7 +48,9 @@ public class AlunoCompleteCadastroBean implements Serializable{
 
 	public void concluir(){
 		try {
-			loginBean.getUsuario().getAluno().status(AlunoStatus.VERIFICAR).save();
+			if(!loginBean.getUsuario().getAluno().getStatus().equals(AlunoStatus.VALIDO)){
+				loginBean.getUsuario().getAluno().status(AlunoStatus.VERIFICAR).save();
+			}
 			WebContext.redirect(Page.ALUNO_HOME);
 		} catch (Exception e) {
 			Messages.showGrowlErro("Cadastro de Aluno", e.getMessage());

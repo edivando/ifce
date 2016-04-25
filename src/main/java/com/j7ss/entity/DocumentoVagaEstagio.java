@@ -113,6 +113,12 @@ public class DocumentoVagaEstagio implements IGenericEntity<DocumentoVagaEstagio
 		return DocumentoStatus.DISPONIVEL.equals(status);
 	}
 	
+	public boolean isVerificadoComErro() {
+		return DocumentoStatus.VERIFICADO_COM_ERRO.equals(status);
+	}
+	
+	
+	
 	public boolean isStatusDisponivelDownload() {
 		return DocumentoStatus.DISPONIVEL_DOWNLOAD.equals(status);
 	}

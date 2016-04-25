@@ -354,17 +354,27 @@
 				<span class="lead">
 					<i class="fa fac-doc"/> Documento
 				</span>
-				<p:commandLink actionListener="#{alunoHomeBean.grid}" styleClass="btn btn-danger pull-right btn-sm" update="@form"
+				<p:commandLink actionListener="#{alunoHomeBean.documentos}" styleClass="btn btn-danger pull-right btn-sm" update="@form"
 	            	style="margin-right: 10px;" >
 					<i class="fa fa-reply-all"/>
 					Back
 				</p:commandLink>
+				<p:commandLink type="button" actionListener="#{alunoHomeBean.submeterAvaliacao}" styleClass="btn btn-primary pull-right btn-sm" 
+					rendered="#{alunoHomeBean.disponivel}"  style="margin-right: 10px;" update="@form" >
+			   		<i class="fa fa-send"/>
+			    	Submeter para Avaliação
+				</p:commandLink>
+				&nbsp;
+				<p:commandLink type="button" styleClass="btn btn-warning pull-right btn-sm" rendered="#{alunoHomeBean.documentoVagaEstagio.statusDisponivelDownload}"
+					style="margin-right: 10px;" update="@form">
+			   		<i class="fa fa-print"/>
+			    	Imprimir PDF
+			   		<p:printer target="documentPreview" />
+				</p:commandLink>
 			</f:facet>
 
 			<ui:include src="/module/moduleDocPrint.xhtml" >
-				<ui:param name="bean" value="#{alunoHomeBean}"/>
 	      		<ui:param name="htmlPage" value="#{alunoHomeBean.docPage}" />
-	      		<ui:param name="btnPrint" value="#{alunoHomeBean.documentoVagaEstagio.statusDisponivelDownload}"/>
 	      		<ui:param name="btnSubmeterAvaliacao" value="#{alunoHomeBean.documentoVagaEstagio.statusDisponivel}"/>
 	      	</ui:include> 
 		</p:panel>
