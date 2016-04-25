@@ -125,6 +125,15 @@ public class DocumentoParse {
 		case ESTAGIO_APOLICE_EMPRESA:
 			replace(DocumentoKey.ESTAGIO_APOLICE_EMPRESA, documentoVagaEstagio.getVagaEstagio().getApoliceEmpresa());
 			break;
+		case ESTAGIO_ATIVIDADES:
+			replace(DocumentoKey.ESTAGIO_ATIVIDADES, documentoVagaEstagio.getVagaEstagio().getAtividades());
+			break;
+		case ESTAGIO_RESULTADOS:
+			replace(DocumentoKey.ESTAGIO_RESULTADOS, documentoVagaEstagio.getVagaEstagio().getResultados());
+			break;
+		case ESTAGIO_SETOR:
+			replace(DocumentoKey.ESTAGIO_SETOR, documentoVagaEstagio.getVagaEstagio().getSetor());
+			break;
 		
 		// Empresa
 		case EMPRESA_NOME:

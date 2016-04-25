@@ -277,6 +277,7 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return (
 				vaga.getAtividades() != null 	    && !vaga.getAtividades().equals("") &&
 				vaga.getResultados() != null 	    && !vaga.getResultados().equals("") &&
+				vaga.getSetor() != null 	        && !vaga.getSetor().equals("") &&
 				vaga.getApoliceNumero() != null 	&& !vaga.getApoliceNumero().equals("") &&
 				vaga.getApoliceEmpresa() != null 	&& !vaga.getApoliceEmpresa().equals("") 
 			);
