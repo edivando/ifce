@@ -249,6 +249,7 @@ public class AlunoHomeBean implements Serializable{
 	
 	public void setDocumentoVagaEstagio(DocumentoVagaEstagio documentoVagaEstagio) {
 		this.documentoVagaEstagio = documentoVagaEstagio;
+		this.docPage = null;
 	}
 	
 	public DocumentoVagaEstagio getDocumentoVagaEstagio() {

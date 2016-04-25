@@ -49,7 +49,10 @@ public class AdminDocumentoBean extends BasicView<Documento>{
 
 		if(entity.getHtmlPage() != null && entity.getHtmlPage().length() > 0){
 			for (DocumentoKey key : DocumentoKey.values()) {
-				if(entity.getHtmlPage().contains(key.getKey())){
+				if(entity.getHtmlPage().contains(key.getKey()+"||[")){
+					int index = entity.getHtmlPage().indexOf(key.getKey()+"||[");
+					keys.add( entity.getHtmlPage().substring(index, index+key.getKey().length()+7) );
+				}else if(entity.getHtmlPage().contains(key.getKey())){
 					keys.add(key.getKey());
 				}
 			}
