@@ -132,6 +132,11 @@
 			           	</h:panelGrid>
 			        </p:tab>
 			        <p:tab title="&nbsp;&nbsp;Preview" titleStyle="width:200px;">
+			        	<p:commandLink type="button" styleClass="btn btn-warning pull-right btn-sm" >
+					   		<i class="fa fa-print"/>
+					    	Imprimir PDF
+					   		<p:printer target="documentPreview" />
+						</p:commandLink>
 			        	<ui:include src="/module/moduleDocPrint.xhtml" >
 			        		<ui:param name="htmlPage" value="#{adminDocumentoBean.htmlPage}" />
 			        		<ui:param name="btnPrint" value="true"/>
