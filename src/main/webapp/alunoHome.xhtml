@@ -215,7 +215,6 @@
 			                         		<f:setPropertyActionListener target="#{alunoHomeBean.documentoVagaEstagio}" value="#{doc}"/>
 			                         		#{doc.documento.titulo}
 			                         	</p:commandLink>
-			                         
 			                         </h1>
 			                         <p>#{doc.status.titulo}</p>
 			                         <hr style="margin-top: 0px;"/>
@@ -339,8 +338,8 @@
 			<div class="form-group">
 				<label for="inputDescricao" class="col-sm-2 control-label"><strong>Descrição:</strong></label>
 				<div class="col-sm-8">
-					<p:inputTextarea id="inputDescricao" value="#{alunoHomeBean.atividadeDiaria.descricao}" placeholder="Dscrição das atividades diárias" styleClass="form-control" 
-						required="true" requiredMessage="Item obrigatório!" rows="3"/>
+					<p:inputTextarea id="inputDescricao" value="#{alunoHomeBean.atividadeDiaria.descricao}" placeholder="Dscrição das atividades diárias" 
+						styleClass="form-control" required="true" requiredMessage="Item obrigatório!" rows="3"/>
 				</div>
 				<div class="col-sm-2">
 					<p:message for="inputDescricao"  />
@@ -359,13 +358,13 @@
 					<i class="fa fa-reply-all"/>
 					Back
 				</p:commandLink>
-				<p:commandLink type="button" actionListener="#{alunoHomeBean.submeterAvaliacao}" styleClass="btn btn-primary pull-right btn-sm" 
+				<p:commandLink type="button" actionListener="#{alunoHomeBean.submeterAvaliacao}" styleClass="btn btn-primary pull-right btn-sm col-md-2" 
 					rendered="#{alunoHomeBean.disponivel}"  style="margin-right: 10px;" update="@form" >
 			   		<i class="fa fa-send"/>
 			    	Submeter para Avaliação
 				</p:commandLink>
 				&nbsp;
-				<p:commandLink type="button" styleClass="btn btn-warning pull-right btn-sm" rendered="#{alunoHomeBean.documentoVagaEstagio.statusDisponivelDownload}"
+				<p:commandLink type="button" styleClass="btn btn-warning pull-right btn-sm col-md-2" rendered="#{alunoHomeBean.disponivelDownload}"
 					style="margin-right: 10px;" update="@form">
 			   		<i class="fa fa-print"/>
 			    	Imprimir PDF

@@ -8,14 +8,14 @@
  */
 package com.j7ss.core.email;
 
-import java.io.UnsupportedEncodingException;
+import javax.ws.rs.core.MediaType;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
+import com.sun.jersey.core.util.MultivaluedMapImpl;
+
 
 /**
  * 
@@ -25,93 +25,68 @@ import javax.mail.internet.MimeMessage;
  */
 public class MailApi{
 	
-	private Session session;
-	private MimeMessage message;
+	private static final String API = "key-12319d671287729839092d7d3a7c3cf7";
+	private static final String URL = "https://api.mailgun.net/v3/j7ss.com/messages";
+	private static final String EMAIL = "IFCE Estágios <postmaster@j7ss.com>";
+	private WebResource webResource;
+	private MultivaluedMapImpl formData;
 	
-	private String email 	= "meu.estagio.ifce@gmail.com";
-	private String password = "@aqswde123";
-	
-	public MailApi() {
-		session = Session.getDefaultInstance(new MailProperties(), null);
-		message = new MimeMessage(session);
+	public MailApi(){
+		Client client = Client.create();
+	    client.addFilter(new HTTPBasicAuthFilter("api", API));
+	    webResource = client.resource(URL);
+	    formData = new MultivaluedMapImpl();
+	    formData.add("from", EMAIL);
 	}
 	
-	public MailApi subject(String subject) throws MailApiException{
-		try {
-			message.setSubject(subject);
-		} catch (MessagingException e) {
-			throw new MailApiException(e);
+	public MailApi subject(String subject){
+		formData.add("subject", subject);
+		return this;
+	}
+	
+	public MailApi text(String text){
+		formData.add("text", text);
+		return this;
+	}
+	
+	public MailApi html(String html){
+		formData.add("html", html);
+		return this;
+	}
+	
+	public MailApi to(String email, String name){
+		if(email != null){
+			formData.add("to", (name==null?"":name)+" <"+email+">");
 		}
 		return this;
 	}
 	
-	public MailApi content(String content) throws MailApiException{
-		try {
-			message.setContent(content, "text/html");
-		} catch (MessagingException e) {
-			throw new MailApiException(e);
-		}
-		return this;
+	public ClientResponse send(){
+		return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).post(ClientResponse.class, formData);
 	}
 	
-	public MailApi message(String subject, String content) throws MailApiException{
-		return subject(subject).content(content);
-	}
+	
+	
+	
+//	//***************************
+//	//Static Methods
+//	
+//	public static boolean sendEmailNewUserProfile(User user){
+//		ClientResponse client = new MailApi()
+//		.to(user.getEmail(), user.getName())
+//		.subject("Bem vindo ao Almoço Já")
+//		.html(EmailTemplate.welcomeProfile(user))
+//		.send();
+//		return client.getStatus() == 200;
+//	}
+//	
+//	public static boolean sendEmailNewAdmin(User user){
+//		ClientResponse client = new MailApi()
+//		.to(user.getEmail(), user.getName())
+//		.subject("Bem vindo ao Almoço Já")
+//		.html("New Admin")
+//		.send();
+//		return client.getStatus() == 200;
+//	}
 
-	
-	public MailApi cc(String email, String name) throws MailApiException{
-		try {
-			message.addRecipient(Message.RecipientType.CC, new InternetAddress(email, name));
-		} catch (MessagingException | UnsupportedEncodingException e) {
-			throw new MailApiException(e);
-		}
-		return this;
-	}
-	
-	public MailApi bcc(String email, String name) throws MailApiException{
-		try {
-			message.addRecipient(Message.RecipientType.BCC, new InternetAddress(email, name));
-		} catch (MessagingException | UnsupportedEncodingException e) {
-			throw new MailApiException(e);
-		}
-		return this;
-	}
-	
-	public MailApi to(String email, String name) throws MailApiException{
-		try {
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email, name));
-		} catch (MessagingException | UnsupportedEncodingException e) {
-			throw new MailApiException(e);
-		}
-		return this;
-	}
-	
-	public void send() throws MailApiException{
-		try {
-			Transport transport = session.getTransport("smtp");
-			transport.connect("smtp.gmail.com", email, password);
-			transport.sendMessage(message, message.getAllRecipients());
-			transport.close();
-		} catch (MessagingException e) {
-			throw new MailApiException(e);
-		}
-	}
-	
-	
-	
-	
-	
-	public static void main(String[] args) {
-		try {
-			new MailApi()
-				.subject("Test envio de email")
-				.content("Conteudo do email <strong>Test sadfad a</strong>   <i>Tests</i>")
-				.to("edivando7@gmail.com", "Edivando Alves")
-//				.to("charles.aragaohb@gmail.com", "Charlie Hebdoo")
-				.send();
-		} catch (MailApiException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }

@@ -122,10 +122,10 @@ public class DocumentoParse {
 			replace(lenght, DocumentoKey.ESTAGIO_HORA_FIM_ESTAGIO, documentoVagaEstagio.getVagaEstagio().getHoraFimEstagio());
 			break;
 		case ESTAGIO_VIGENCIA_INICIO:
-			replace(lenght, DocumentoKey.ESTAGIO_VIGENCIA_INICIO, documentoVagaEstagio.getVagaEstagio().getVigenciaInicio());
+			replace(lenght, DocumentoKey.ESTAGIO_VIGENCIA_INICIO, documentoVagaEstagio.getVagaEstagio().getVigenciaInicioFormat());
 			break;
 		case ESTAGIO_VIGENCIA_FIM:
-			replace(lenght, DocumentoKey.ESTAGIO_VIGENCIA_FIM, documentoVagaEstagio.getVagaEstagio().getVigenciaFim());
+			replace(lenght, DocumentoKey.ESTAGIO_VIGENCIA_FIM, documentoVagaEstagio.getVagaEstagio().getVigenciaFimFormat());
 			break;
 		case ESTAGIO_VALOR_TRANSPORTE:
 			replace(lenght, DocumentoKey.ESTAGIO_VALOR_TRANSPORTE, documentoVagaEstagio.getVagaEstagio().getValorTransporte());

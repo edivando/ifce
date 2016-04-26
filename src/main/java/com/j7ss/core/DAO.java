@@ -217,41 +217,6 @@ public class DAO<T extends IGenericEntity<T>>{
 		return GenericJPA.getInstance().getEntityManagerFactory().createEntityManager();
 	}
 	
-//	static class DAOBuilder {
-//		private EntityManagerFactory factory;
-//		
-//		private EntityManager entityManager;
-//		
-//		public DAOBuilder(EntityManagerFactory factory) {
-//			this.factory = factory;
-//			this.entityManager = factory.createEntityManager();
-//		}
-//		
-//		public DAOBuilder close(){
-//			entityManager.close();
-//			return this;
-//		}
-//	
-//		public EntityManager get() {
-//			return entityManager;
-//		}
-//		
-//		public DAOBuilder begin() {
-//			entityManager.getTransaction().begin();
-//			return this;
-//		}
-//	
-//		public DAOBuilder rollback() {
-//			entityManager.getTransaction().rollback();
-//			return this;
-//		}
-//
-//		public DAOBuilder commit() {
-//			entityManager.getTransaction().commit();
-//			return this;
-//		}
-//	}
-	
 	static class GenericJPA implements Serializable{
 		private static final long serialVersionUID = -8732971614557917884L;
 

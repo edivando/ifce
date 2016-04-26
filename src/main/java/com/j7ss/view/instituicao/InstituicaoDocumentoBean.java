@@ -20,6 +20,8 @@ import lombok.Setter;
 import com.j7ss.core.BasicView;
 import com.j7ss.core.DAOException;
 import com.j7ss.core.Messages;
+import com.j7ss.core.email.EmailTemplate;
+import com.j7ss.core.email.MailApi;
 import com.j7ss.entity.DocumentoVagaEstagio;
 import com.j7ss.entity.DocumentoVagaEstagioMessage;
 import com.j7ss.entity.constraint.DocumentoParse;
@@ -51,7 +53,13 @@ public class InstituicaoDocumentoBean extends BasicView<DocumentoVagaEstagio> {
 			getDocMessage().date(new Date()).usuario(loginBean.getUsuario()).documentoVagaEstagio(entity).save();
 			entity.save();
 			// Enviar email para aluno
-			Messages.showGrowlInfo("Documento", "Este documento estará disponível para download.");
+			new MailApi()
+				.to(entity.getVagaEstagio().getAluno().getUsuario().getEmail(), entity.getVagaEstagio().getAluno().getUsuario().getNome())
+				.subject("Bem vindo ao IFCE Estágios")
+				.html(EmailTemplate.documentoPendenteErro(entity.getVagaEstagio().getAluno().getUsuario().getNome(), 
+														  entity.getVagaEstagio().getAluno().getUsuario().getEmail()))
+			.send();
+			Messages.showGrowlInfo("Documento", "Este documento ficará aguardando a correção para ser liberado para download.");
 		} catch (DAOException e) {
 			Messages.showGrowlErro("Documento", e.getMessage());
 		}
@@ -64,6 +72,13 @@ public class InstituicaoDocumentoBean extends BasicView<DocumentoVagaEstagio> {
 			getDocMessage().date(new Date()).usuario(loginBean.getUsuario()).documentoVagaEstagio(entity).save();
 			entity.save();
 			// Enviar email para aluno
+			new MailApi()
+				.to(entity.getVagaEstagio().getAluno().getUsuario().getEmail(), entity.getVagaEstagio().getAluno().getUsuario().getNome())
+				.subject("Bem vindo ao Almoço Já")
+				.html(EmailTemplate.documentoLiberadoParaDowwnload(entity.getVagaEstagio().getAluno().getUsuario().getNome(), 
+															   	   entity.getVagaEstagio().getAluno().getUsuario().getEmail()))
+				.send();
+			
 			Messages.showGrowlInfo("Documento", "Este documento estará disponível para download.");
 		} catch (DAOException e) {
 			Messages.showGrowlErro("Documento", e.getMessage());

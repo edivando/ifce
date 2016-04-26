@@ -25,7 +25,7 @@ public class EmailTemplate{
 		return new String[]{""};
 	}
 	
-	public static String[] confirmEmail(String name, String email, String password, Integer serverId){
+	public static String confirmEmail(String name, String email, String password, Integer serverId){
 		StringBuilder urlConfirm = new StringBuilder(url);
 		urlConfirm.append("/confirmEmail?i=").append(serverId).append("&u=").append(MD5.md5(email+password+serverId));
 
@@ -34,7 +34,28 @@ public class EmailTemplate{
 		page.append("Você precisa confirmar seu email ").append(email).append(" no IFCE Estágios: ");
 		page.append("<a href='").append(urlConfirm).append("'>").append("Click here").append("</a><br/>");
 		page.append("<a href='").append(urlConfirm).append("'>").append(urlConfirm).append("</a>");
-		return new String[]{ "Confirm Your E-mail", Processor.process(page.toString()) };
+		return Processor.process(page.toString());
+	}
+	
+	public static String confirmCadastroInstituicao(String name, String email){
+		StringBuilder page = new StringBuilder();
+		page.append("###<center>Seu cadastro foi confirmado pela Instituição").append("</center>\n\n");
+		page.append("Agora você pode concluír e submeter os primeiros documentos");
+		return Processor.process(page.toString());
+	}
+	
+	public static String documentoLiberadoParaDowwnload(String name, String email){
+		StringBuilder page = new StringBuilder();
+		page.append("###<center>Documento esta liberado para download").append("</center>\n\n");
+		page.append("Faça o download, imprima, pege as assinaturas e leve ao setor de estágios do IFCE.");
+		return Processor.process(page.toString());
+	}
+	
+	public static String documentoPendenteErro(String name, String email){
+		StringBuilder page = new StringBuilder();
+		page.append("###<center>Existe alguns erros nos seus documentos, favor verificar").append("</center>\n\n");
+		page.append("Entre no IFCE Estágios e corriga os documentos.");
+		return Processor.process(page.toString());
 	}
 	
 //	public static void main(String[] args) {

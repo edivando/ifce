@@ -19,6 +19,8 @@ import lombok.Setter;
 import com.j7ss.core.BasicView;
 import com.j7ss.core.DAOException;
 import com.j7ss.core.Messages;
+import com.j7ss.core.email.EmailTemplate;
+import com.j7ss.core.email.MailApi;
 import com.j7ss.entity.Aluno;
 import com.j7ss.entity.constraint.AlunoStatus;
 import com.j7ss.view.LoginBean;
@@ -47,6 +49,11 @@ public class InstituicaoAlunoBean extends BasicView<Aluno>{
 		try {
 			entity.status(AlunoStatus.VALIDO).save();
 			Messages.showGrowlInfo("Aluno", "Aluno válido");
+			new MailApi()
+				.to(entity.getUsuario().getEmail(), entity.getUsuario().getNome())
+				.subject("Bem vindo ao Almoço Já")
+				.html(EmailTemplate.confirmCadastroInstituicao(entity.getUsuario().getNome(), entity.getUsuario().getEmail()))
+				.send();
 		} catch (DAOException e) {
 			Messages.showGrowlErro("Aluno", e.getMessage());
 		}

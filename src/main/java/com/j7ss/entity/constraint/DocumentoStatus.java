@@ -37,7 +37,7 @@ public enum DocumentoStatus {
 	DISPONIVEL_DOWNLOAD("fa-download", "green", "Disponível para Download"),
 	
 	// Documento concluído
-	CONCLUIDO("fa-times", "", "Concluído");
+	CONCLUIDO("fa-check-circle", "", "Concluído");
 
 	
 	@Getter

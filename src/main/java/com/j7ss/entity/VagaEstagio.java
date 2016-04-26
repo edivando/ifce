@@ -33,6 +33,7 @@ import org.hibernate.annotations.FetchMode;
 
 import com.j7ss.core.DAO;
 import com.j7ss.core.DAOException;
+import com.j7ss.core.DateUtil;
 import com.j7ss.core.IGenericEntity;
 import com.j7ss.entity.constraint.VagaEstagioAtividadeDiariaStatus;
 import com.j7ss.entity.constraint.VagaEstagioStatus;
@@ -311,6 +312,14 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 	
 	public List<VagaEstagioAtividadeDiaria> getAtividadesDiaria() {
 		return atividadesDiaria;  //== null && !isNew() ? atividadesDiaria = VagaEstagioAtividadeDiaria.findByVagaEstagio(this) : atividadesDiaria;
+	}
+	
+	public String getVigenciaInicioFormat(){
+		return DateUtil.format(vigenciaInicio);
+	}
+	
+	public String getVigenciaFimFormat(){
+		return DateUtil.format(vigenciaFim);
 	}
 	
 	

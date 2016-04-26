@@ -237,6 +237,10 @@ public class AlunoHomeBean implements Serializable{
 		return documentoVagaEstagio.isStatusDisponivel() || documentoVagaEstagio.isVerificadoComErro();
 	}
 	
+	public boolean isDisponivelDownload(){
+		return documentoVagaEstagio.isStatusDisponivelDownload() || documentoVagaEstagio.isStatusConcluido();
+	}
+	
 	
 //******************************************************************************************************************************
 //## Getters Setters
