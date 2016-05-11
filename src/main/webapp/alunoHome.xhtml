@@ -221,12 +221,14 @@
 			                         <p> #{doc.documento.descricao} </p>
 			                         <hr/>
 			                         <ui:repeat var="msg" value="#{doc.documentoAlunoMessages}">
-			                         	<p style="text-align: center; font-size: 10px;">
-		                         			#{msg.usuario.nome} em:   
-			                         		<h:outputText value="#{msg.date}">
-			                         			<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-			                         		</h:outputText>
-			                         	</p>
+			                         	<div class="text-center">
+				                         	<strong>
+			                         			#{msg.usuario.nome} em:   
+				                         		<h:outputText value="#{msg.date}">
+				                         			<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+				                         		</h:outputText>
+				                         	</strong>
+				                         </div>
 			                         	<p style="margin-bottom: 25px;">#{msg.message}</p>
 			                         </ui:repeat>
 			                         

@@ -322,6 +322,33 @@ public class VagaEstagio implements IGenericEntity<VagaEstagio>{
 		return DateUtil.format(vigenciaFim);
 	}
 	
+	public String getHoraInicioEstagioFormat(){
+		if(horaInicioEstagio != null){
+			return DateUtil.getHora(horaInicioEstagio);
+		}
+		return "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	}
+	
+	public String getHoraFimOuIntervaloFormat(){
+		if(horaFimOuIntervalo != null){
+			return DateUtil.getHora(horaFimOuIntervalo);
+		}
+		return "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	}
+	
+	public String getHoraRetornoFormat(){
+		if(horaRetorno != null){
+			return DateUtil.getHora(horaRetorno);
+		}
+		return "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	}
+	
+	public String getHoraFimEstagioFormat(){
+		if(horaFimEstagio != null){
+			return DateUtil.getHora(horaFimEstagio);
+		}
+		return "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	}
 	
 //******************************************************************************************************************************
 //## DAO

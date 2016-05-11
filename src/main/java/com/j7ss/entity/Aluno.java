@@ -92,8 +92,8 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@Getter @Setter
 	private String numero;
 	
-	@Getter @Setter
-	private String complemento = "      ";
+	@Setter
+	private String complemento;
 	
 	@Getter @Setter
 	private String bairro;
@@ -239,7 +239,6 @@ public class Aluno implements IGenericEntity<Aluno>{
 				semestreAtual != null 	&& !semestreAtual.equals("") &&
 				telefone != null 		&& !telefone.equals("") &&
 				celular != null 		&& !celular.equals("") &&
-				cvLattes != null 		&& !cvLattes.equals("") &&
 				cpf != null				&& !cpf.equals("") &&
 				rg != null 				&& !rg.equals("") &&
 				dataNascimento != null 	&& !dataNascimento.equals("")
@@ -374,6 +373,10 @@ public class Aluno implements IGenericEntity<Aluno>{
 	
 	public String getDataNascimentoFormat(){
 		return DateUtil.format(dataNascimento);
+	}
+	
+	public String getComplemento() {
+		return complemento == null ? "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" : complemento;
 	}
 
 	

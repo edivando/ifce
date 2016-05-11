@@ -110,16 +110,16 @@ public class DocumentoParse {
 			replace(lenght, DocumentoKey.ESTAGIO_TURNO, documentoVagaEstagio.getVagaEstagio().getTurno());
 			break;
 		case ESTAGIO_HORA_INICIO_ESTAGIO:
-			replace(lenght, DocumentoKey.ESTAGIO_HORA_INICIO_ESTAGIO, documentoVagaEstagio.getVagaEstagio().getHoraInicioEstagio());
+			replace(lenght, DocumentoKey.ESTAGIO_HORA_INICIO_ESTAGIO, documentoVagaEstagio.getVagaEstagio().getHoraInicioEstagioFormat());
 			break;
 		case ESTAGIO_HORA_FIM_INTERVALO:
-			replace(lenght, DocumentoKey.ESTAGIO_HORA_FIM_INTERVALO, documentoVagaEstagio.getVagaEstagio().getHoraFimOuIntervalo());
+			replace(lenght, DocumentoKey.ESTAGIO_HORA_FIM_INTERVALO, documentoVagaEstagio.getVagaEstagio().getHoraFimOuIntervaloFormat());
 			break;
 		case ESTAGIO_HORA_RETORNO:
-			replace(lenght, DocumentoKey.ESTAGIO_HORA_RETORNO, documentoVagaEstagio.getVagaEstagio().getHoraRetorno());
+			replace(lenght, DocumentoKey.ESTAGIO_HORA_RETORNO, documentoVagaEstagio.getVagaEstagio().getHoraRetornoFormat());
 			break;
 		case ESTAGIO_HORA_FIM_ESTAGIO:
-			replace(lenght, DocumentoKey.ESTAGIO_HORA_FIM_ESTAGIO, documentoVagaEstagio.getVagaEstagio().getHoraFimEstagio());
+			replace(lenght, DocumentoKey.ESTAGIO_HORA_FIM_ESTAGIO, documentoVagaEstagio.getVagaEstagio().getHoraFimEstagioFormat());
 			break;
 		case ESTAGIO_VIGENCIA_INICIO:
 			replace(lenght, DocumentoKey.ESTAGIO_VIGENCIA_INICIO, documentoVagaEstagio.getVagaEstagio().getVigenciaInicioFormat());
