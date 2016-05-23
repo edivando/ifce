@@ -20,6 +20,7 @@
 			<property name="hibernate.show_sql" value="true" />  
             <property name="hibernate.format_sql" value="false" />  
             
+            
             <!-- POOL -->  
 <!--             <property name="connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider"/>
             <property name="hibernate.c3p0.min_size" value="3"/>
