@@ -92,7 +92,7 @@ public class Aluno implements IGenericEntity<Aluno>{
 	@Getter @Setter
 	private String numero;
 	
-	@Setter
+	@Getter @Setter
 	private String complemento;
 	
 	@Getter @Setter
@@ -375,9 +375,9 @@ public class Aluno implements IGenericEntity<Aluno>{
 		return DateUtil.format(dataNascimento);
 	}
 	
-	public String getComplemento() {
-		return complemento == null ? "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" : complemento;
-	}
+//	public String getComplemento() {
+//		return complemento == null ? "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" : complemento;
+//	}
 
 	
 //******************************************************************************************************************************
@@ -409,5 +409,4 @@ public class Aluno implements IGenericEntity<Aluno>{
 	public static List<Aluno> findByNotStatus(AlunoStatus status){
 		return dao.findByQuery("Select a From Aluno a WHERE a.status != ?1", status);
 	}
-	
 }
