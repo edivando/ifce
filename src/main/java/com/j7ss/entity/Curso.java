@@ -16,6 +16,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
@@ -77,6 +80,12 @@ public class Curso implements IGenericEntity<Curso>{
 	@OneToMany(mappedBy="curso")
 	@Getter @Setter
 	private List<Aluno> alunos;
+	
+	@ManyToMany//(mappedBy = "cursosDarAula")
+	@Fetch(FetchMode.JOIN)
+	@JoinTable(name="professor_curso", joinColumns={@JoinColumn(name="curso_id")}, inverseJoinColumns={@JoinColumn(name="professor_id")})
+	@Getter @Setter
+	private List<Professor> professores;
 		
 	
 //******************************************************************************************************************************
@@ -150,5 +159,10 @@ public class Curso implements IGenericEntity<Curso>{
 	
 	public static List<Curso> findByNomeLike(Departamento departamento, String nome){
 		return dao.findByQuery("SELECT i FROM Curso i WHERE i.departamento = ?1 AND lower(i.nome) like ?2" ,departamento, "%"+nome.toLowerCase()+"%");
+	}
+	
+	//Necessario para listar um autocomplete
+	public static List<Curso> findAll(){
+		return dao.findByQuery("SELECT a FROM Curso a"); 
 	}
 }

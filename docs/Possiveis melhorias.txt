@@ -1,0 +1,10 @@
+Possíveis melhorias:
+
+   Quando pequei o projeto logo de cara fui nas classes de teste e sentir falta dos testes básicos
+   salvar, remover, atualizar. Seria bom ter esses testes.
+
+   As classes converte possui um atributo bean dentro delas impedindo que outras views usem
+   as classes.
+
+   O documento TCC ­ IFCE estágios possui o script para adiciona o primeiro administrador porém não dizer
+   qual é a senha. Seria bom ter explicitamente qual e o usuário e senha.

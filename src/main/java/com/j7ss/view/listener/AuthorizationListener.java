@@ -34,7 +34,7 @@ public class AuthorizationListener implements PhaseListener {
 	private List<String> publicPages;
 	
 	public AuthorizationListener() {
-		publicPages = Arrays.asList(Page.INDEX, Page.CADASTRO, Page.ERRO_404, Page.ERRO_500, Page.ERRO_ACESSO_NEGADO);
+		publicPages = Arrays.asList(Page.INDEX, Page.CADASTROPROFESSOR, Page.ADMIN_PROFESSOR ,Page.CADASTRO, Page.ERRO_404, Page.ERRO_500, Page.ERRO_ACESSO_NEGADO);
 	}
 	
 	@Override
