@@ -14,17 +14,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.j7ss.core.BasicView;
-import com.j7ss.core.MD5;
 import com.j7ss.core.Messages;
 import com.j7ss.entity.Instituicao;
 import com.j7ss.entity.Usuario;
 
-/**
- * 
- * @author Edivando Alves
- * @date  10/02/2016
- * 
- */
 @ManagedBean
 @ViewScoped
 public class AdminUsuarioBean extends BasicView<Usuario>{

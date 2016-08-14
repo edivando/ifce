@@ -6,6 +6,8 @@ public class Page {
 	// public pages
 	public static final String INDEX 				= "index.html";
 	public static final String CADASTRO 			= "cadastro.html";
+	public static final String CADASTROPROFESSOR	= "cadastroProfessor.html";
+	public static final String ADMIN_PROFESSOR		= "adminProfessor.html";
 	
 	// erro pages
 	public static final String ERRO_404 			= "erro404.html";

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/layout/layoutPublicDefault.xhtml">
+	<ui:define name="title">IFCE Estágios - Professores</ui:define>
+
+	<ui:define name="menu">
+		<div class="horizontal-menu navbar-collapse collapse ">
+			<ul class="nav navbar-nav">
+				<li><a href="cadastro.html">Cadastro</a></li>
+				<li><a href="cadastroProfessor.html">Professor</a></li>
+				<li class="active"><a href="adminProfessor.html">Admin
+						Professor</a></li>
+				<li><a href="login.html">Login</a></li>
+			</ul>
+		</div>
+	</ui:define>
+	<ui:define name="container">
+		<br />
+		<br />
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<section class="panel"> <header class="panel-heading">
+				Professores </header>
+				<div class="panel-body">
+					<h:form>
+						<p:dataTable id="mainTable" var="item"
+							value="#{adminProfessorBean.entitys}">
+							<p:column headerText="Nome">
+								<label for="nome" class="col-sm-2 control-label"><strong>#{item.nome}</strong></label>
+							</p:column>
+
+							<p:column headerText="Qualificação">
+								<label for="qualificacao" class="col-sm-2 control-label"><strong>#{item.qualificacao}</strong></label>
+							</p:column>
+
+							<p:column headerText="Idade">
+								<label for="idade" class="col-sm-2 control-label"><strong>#{item.idade}</strong></label>
+							</p:column>
+
+							<p:column>
+
+								<div class="nav nav-pills">
+									<ui:repeat var="curso" value="#{item.cursosDarAula}">
+										<li><label class="col-sm-2 control-label"><strong>#{curso.nome}</strong></label>
+										</li>
+									</ui:repeat>
+								</div>
+
+							</p:column>
+
+							<p:column headerText="Alterar">
+
+								<button type="button"
+									data-toggle="modal" data-target="##{item.id}">
+									<span class="glyphicon glyphicon-refresh"></span>
+								</button>
+
+
+
+
+								<div class="modal fade" id="#{item.id}" role="dialog">
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title">Atualizar dados professor</h4>
+											</div>
+
+
+											<div class="modal-body">
+
+
+												<div class="form-horizontal">
+													<div class="form-group">
+														<label for="nome" class="col-sm-3 control-label"><strong>Nome:</strong></label>
+														<div class="col-sm-8">
+															<p:inputText value="#{item.nome}"
+																placeholder="Seu nome completo..."
+																styleClass="form-control" maxlength="80" required="true"
+																requiredMessage="Você deve informar o seu nome completo!"
+																id="nome" />
+														</div>
+														<div class="col-sm-1">
+															<p:message for="idade" display="icon" />
+														</div>
+													</div>
+												</div>
+
+												<div class="form-horizontal">
+													<div class="form-group">
+														<label for="qualificacao" class="col-sm-3 control-label"><strong>Qualificação:</strong></label>
+														<div class="col-sm-8">
+															<p:inputText value="#{item.qualificacao}"
+																placeholder="Sua qualificação..."
+																styleClass="form-control" maxlength="40" required="true"
+																requiredMessage="Você deve informar a sua qualificação!"
+																id="qualificacao" />
+
+														</div>
+														<div class="col-sm-1">
+															<p:message for="qualificacao" display="icon" />
+														</div>
+													</div>
+												</div>
+
+												<div class="form-horizontal">
+													<div class="form-group">
+														<label for="idade" class="col-sm-3 control-label"><strong>Idade:</strong></label>
+														<div class="col-sm-8">
+															<p:inputText value="#{item.idade}"
+																placeholder="Sua idade..." styleClass="form-control"
+																maxlength="40" required="true"
+																requiredMessage="Você deve informar a sua idade!"
+																id="idade" />
+														</div>
+
+														<div class="col-sm-1">
+															<p:message for="idade" display="icon" />
+														</div>
+													</div>
+												</div>
+
+
+												<div class="form-horizontal">
+													<p:messages for="curso" display="text" />
+													<div class="form-group">
+														<label for="curso" class="col-sm-3 control-label"><strong>Curso:</strong></label>
+														<div class="col-sm-8">
+
+
+															<p:inputText value="#{adminProfessorBean.curso.nome}"
+																placeholder="Vai dar aula em qual curso?"
+																styleClass="form-control" maxlength="40" id="curso" />
+
+															<h:commandButton value="Adicionar curso"
+																action="#{adminProfessorBean.addCurso}"
+																styleClass="btn btn-info btn-block">
+
+																<f:setPropertyActionListener value="#{item}"
+																	target="#{adminProfessorBean.entity}" />
+															</h:commandButton>
+
+															<p:dataTable id="tableProfessor"
+																value="#{item.cursosDarAula}" var="curso">
+
+																<div class="form-horizontal">
+																	<p:column>
+																		<label class="col-sm-3 control-label"><strong>#{curso.nome}</strong></label>
+																	</p:column>
+
+
+																	<p:column>
+																		<p:commandLink update="tableProfessor"
+																			action="#{adminProfessorBean.removerCurso(curso)}">
+																			<f:setPropertyActionListener value="#{item}"
+																				target="#{adminProfessorBean.entity}" />
+																			<span class="glyphicon glyphicon-remove"></span>
+																		</p:commandLink>
+																	</p:column>
+
+																</div>
+
+
+															</p:dataTable>
+
+														</div>
+													</div>
+												</div>
+
+
+
+
+
+											</div>
+
+											<div class="modal-footer">
+
+												<div class="col-md-6">
+													<div class="text-center">
+														<h:commandLink action="#{adminProfessorBean.save}"
+															styleClass="btn btn-info btn-block">
+
+															<f:setPropertyActionListener value="#{item}"
+																target="#{adminProfessorBean.entity}" />
+
+															<strong>Salvar Alterações</strong>
+														</h:commandLink>
+													</div>
+												</div>
+
+												<div class="col-md-6">
+													<div class="text-center">
+														<h:commandLink update="mainTable"
+															styleClass="btn btn-info btn-block">
+															<strong>Close</strong>
+														</h:commandLink>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+
+							</p:column>
+
+							<p:column headerText="Remover">
+								<h:commandLink action="#{adminProfessorBean.remove(item)}">
+									<span class="glyphicon glyphicon-remove"></span>
+								</h:commandLink>
+							</p:column>
+
+
+						</p:dataTable>
+
+
+					</h:form>
+
+				</div>
+				</section>
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
